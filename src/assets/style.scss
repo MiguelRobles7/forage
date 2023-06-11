@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$color-primary: #ff;
+#app {
+  padding: 1rem;
+  font-weight: normal;
+}
+h1 {
+  /* font-size: 20rem; */
+  color: $color-primary;
+}
