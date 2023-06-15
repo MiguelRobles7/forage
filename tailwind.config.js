@@ -2,7 +2,13 @@
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
-    extend: {}
+    extend: {
+      fontFamily: {
+        Rowdies: "'Rowdies', serif",
+        SpaceGrotesk: "'SpaceGrotesk', serif",
+        TTInterphases: "'TTInterphases', serif"
+      },
+    }
   },
   plugins: []
 }
