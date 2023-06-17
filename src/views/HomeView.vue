@@ -34,6 +34,9 @@ export default {
           <img src="../assets/search-2.png" alt="" class="w-7">
         </div>
       </div>
+      <div class=" font-TTInterphases font-semibold text-xl mt-4">
+        With Forage, you can access a vast community of passionate food <br> enthusiasts who share their honest reviews and recommendations.
+      </div>
      </div> 
     </div>
 
