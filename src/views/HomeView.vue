@@ -9,7 +9,7 @@ export default {
   data() {
     return {
       restaurants: [
-        {id: 1, logo: '../../public/coffee-time-logo.png', name: 'Coffee Time', summary: 'Coffee,Tea,Pastry,Cafe', description: 'Savor our exquisite handcrafted beverages, meticulously prepared by our skilled artisans. From delicate latte art to carefully infused flavors, each cup is a masterpiece that not only delights your taste buds but also captivates your eyes. At Coffee Time, we believe that coffee should be a symphony of aesthetics and taste. Let every sip transport you to a world of flavor and aesthetic in perfect harmony.', 
+        {id: 1, logo: '../../public/restaurant-logos/coffee-time-logo.png', backgroundCard: "../../public/restaurant-bg/coffee-time-bg-s.png", name: 'Coffee Time', summary: 'Coffee,Tea,Pastry,Cafe', description: 'Savor our exquisite handcrafted beverages, meticulously prepared by our skilled artisans. From delicate latte art to carefully infused flavors, each cup is a masterpiece that not only delights your taste buds but also captivates your eyes. At Coffee Time, we believe that coffee should be a symphony of aesthetics and taste. Let every sip transport you to a world of flavor and aesthetic in perfect harmony.', 
       reviewCount: 421, rating: 4.8}
       ]
     }
@@ -47,13 +47,13 @@ export default {
         </div>
         <div class="flex flex-wrap justify-between">
           <RouterLink :to="{name: 'establishment', params: {id: restaurants[0].id}}" class="basis-[49.5%]">
-            <RestaurantCard :name="restaurants[0].name" :imgPath="restaurants[0].logo" :description="restaurants[0].description" :summary="restaurants[0].summary" :rating="restaurants[0].rating" :reviewCount="restaurants[0].reviewCount"></RestaurantCard>
+            <RestaurantCard :name="restaurants[0].name" :imgPath="restaurants[0].logo" :bgImgPath="restaurants[0].backgroundCard" :description="restaurants[0].description" :summary="restaurants[0].summary" :rating="restaurants[0].rating" :reviewCount="restaurants[0].reviewCount"></RestaurantCard>
           </RouterLink>
           <RouterLink :to="{name: 'establishment', params: {id: restaurants[0].id}}" class="basis-[49.5%]">
-            <RestaurantCard :name="restaurants[0].name" :imgPath="restaurants[0].logo" :description="restaurants[0].description" :summary="restaurants[0].summary" :rating="restaurants[0].rating" :reviewCount="restaurants[0].reviewCount"></RestaurantCard>
+            <RestaurantCard :name="restaurants[0].name" :imgPath="restaurants[0].logo" :bgImgPath="restaurants[0].backgroundCard" :description="restaurants[0].description" :summary="restaurants[0].summary" :rating="restaurants[0].rating" :reviewCount="restaurants[0].reviewCount"></RestaurantCard>
           </RouterLink>
           <RouterLink :to="{name: 'establishment', params: {id: restaurants[0].id}}" class="basis-[49.5%]">
-            <RestaurantCard :name="restaurants[0].name" :imgPath="restaurants[0].logo" :description="restaurants[0].description" :summary="restaurants[0].summary" :rating="restaurants[0].rating" :reviewCount="restaurants[0].reviewCount"></RestaurantCard>
+            <RestaurantCard :name="restaurants[0].name" :imgPath="restaurants[0].logo" :bgImgPath="restaurants[0].backgroundCard" :description="restaurants[0].description" :summary="restaurants[0].summary" :rating="restaurants[0].rating" :reviewCount="restaurants[0].reviewCount"></RestaurantCard>
           </RouterLink>
         </div>
       </div>
@@ -63,16 +63,17 @@ export default {
           Everyone's Favorites
         </div>
         <div class="flex flex-wrap justify-between">
-          <RouterLink :to="{name: 'establishment', params: {id: restaurants[0].id}}" class="basis-[49.5%]"> <RestaurantCard :name="restaurants[0].name" :imgPath="restaurants[0].logo" :description="restaurants[0].description" :summary="restaurants[0].summary" :rating="restaurants[0].rating" :reviewCount="restaurants[0].reviewCount"></RestaurantCard>
+          <RouterLink :to="{name: 'establishment', params: {id: restaurants[0].id}}" class="basis-[49.5%]">
+            <RestaurantCard :name="restaurants[0].name" :imgPath="restaurants[0].logo" :bgImgPath="restaurants[0].backgroundCard" :description="restaurants[0].description" :summary="restaurants[0].summary" :rating="restaurants[0].rating" :reviewCount="restaurants[0].reviewCount"></RestaurantCard>
           </RouterLink>
           <RouterLink :to="{name: 'establishment', params: {id: restaurants[0].id}}" class="basis-[49.5%]">
-            <RestaurantCard :name="restaurants[0].name" :imgPath="restaurants[0].logo" :description="restaurants[0].description" :summary="restaurants[0].summary" :rating="restaurants[0].rating" :reviewCount="restaurants[0].reviewCount"></RestaurantCard>
+            <RestaurantCard :name="restaurants[0].name" :imgPath="restaurants[0].logo" :bgImgPath="restaurants[0].backgroundCard" :description="restaurants[0].description" :summary="restaurants[0].summary" :rating="restaurants[0].rating" :reviewCount="restaurants[0].reviewCount"></RestaurantCard>
           </RouterLink>
           <RouterLink :to="{name: 'establishment', params: {id: restaurants[0].id}}" class="basis-[49.5%]">
-            <RestaurantCard :name="restaurants[0].name" :imgPath="restaurants[0].logo" :description="restaurants[0].description" :summary="restaurants[0].summary" :rating="restaurants[0].rating" :reviewCount="restaurants[0].reviewCount"></RestaurantCard>
+            <RestaurantCard :name="restaurants[0].name" :imgPath="restaurants[0].logo" :bgImgPath="restaurants[0].backgroundCard" :description="restaurants[0].description" :summary="restaurants[0].summary" :rating="restaurants[0].rating" :reviewCount="restaurants[0].reviewCount"></RestaurantCard>
           </RouterLink>
           <RouterLink :to="{name: 'establishment', params: {id: restaurants[0].id}}" class="basis-[49.5%]">
-            <RestaurantCard :name="restaurants[0].name" :imgPath="restaurants[0].logo" :description="restaurants[0].description" :summary="restaurants[0].summary" :rating="restaurants[0].rating" :reviewCount="restaurants[0].reviewCount"></RestaurantCard>
+            <RestaurantCard :name="restaurants[0].name" :imgPath="restaurants[0].logo" :bgImgPath="restaurants[0].backgroundCard" :description="restaurants[0].description" :summary="restaurants[0].summary" :rating="restaurants[0].rating" :reviewCount="restaurants[0].reviewCount"></RestaurantCard>
           </RouterLink>
         </div>
       </div>

@@ -1,9 +1,8 @@
 <script>
-import internal from 'stream';
-
 export default {
     props: {
         imgPath: String,
+        bgImgPath: String,
         name: String,
         description: String, 
         summary: String,   
@@ -14,9 +13,9 @@ export default {
 </script>
 
 <template>
-    <div class="grid grid-cols-[200px_1fr] restaurant-card mb-4">
+    <div class="grid grid-cols-[200px_1fr] mb-4">
         <img :src="imgPath" alt="" class="rounded-s-md w-[200px] h-auto">
-        <div class="bg-fade rounded-e-md">
+        <div :class="`bg-[linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),url('${bgImgPath}')]`" class="rounded-e-md bg-cover">
            <div class="px-6 flex">
                 <div class="mt-4">
                     <div class="flex">
@@ -53,7 +52,7 @@ export default {
 
 <style>
 .bg-fade {
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0,0,0,0.8)), url('../assets/coffee-time-bg-s.png');
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0,0,0,0.8)), url('../../public/restaurant-bg/coffee-time-bg-s.png'); 
     background-size: cover;
 }
-</style>
+</style>--akgodPah
