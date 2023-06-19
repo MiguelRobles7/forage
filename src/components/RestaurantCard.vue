@@ -49,10 +49,3 @@ export default {
         </div>
     </div>
 </template>
-
-<style>
-.bg-fade {
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0,0,0,0.8)), url('../../public/restaurant-bg/coffee-time-bg-s.png'); 
-    background-size: cover;
-}
-</style>--akgodPah
