@@ -1,22 +1,18 @@
-<script setup></script>
+<script>
+import LogRegModal from '../components/LogRegModal.vue';
+
+export default {
+  components: {
+    LogRegModal
+  }
+}
+</script>
 
 <template>
   <main>
-    <div class="backdrop">
-      <div class="grid h-screen place-items-center">
-        <div class="rounded-xl bg-gradient-to-b from-[#F4F2EB] to-[#B8B6B2] min-w-[75vw] min-h-[75vh]">
-          <div class="grid grid-flow-col">
-            <div>Insert bg Here</div>
-            <div class="mt-10 ml-20">
-              <span class="font-TTInterphases font-bold text-4xl"><span class="text-[#2A7E58]">Login</span> your account.</span>
-              <div>
-                <form action=""></form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <LogRegModal type="Login" typeText="your account.">
+
+    </LogRegModal>
   </main>
 </template>
 
