@@ -11,7 +11,11 @@ export default {
 <template>
   <main>
     <LogRegModal type="Login" typeText="your account.">
-
+      <template v-slot:content>
+        <form>
+          
+        </form>
+      </template>
     </LogRegModal>
   </main>
 </template>
