@@ -4,20 +4,29 @@
       <template v-slot:content>
         <form @submit.prevent="submitForm">
           <div class=" flex flex-col">
-            <label>Email</label>
-            <input v-model="email" type="email" required>
+            <div class="flex items-start border">
+              <img src="../assets/LoginRegister/Email.png">
+              <input v-model="email" type="Email" @focus="hidePlaceholder" @blur="showPlaceholder" placeholder="Email" class=" placeholder-inherit pl-1" required>
+            </div>
             <label v-if="emailText">{{ emailText }}</label>
   
-            <label>Password</label>
-            <input v-model="password" type="password" required>
+            <div class="flex items-start border">
+              <img src="../assets/LoginRegister/Key.png">
+              <input v-model="password" type="Password" @focus="hidePlaceholder" @blur="showPlaceholder" placeholder="Password" class=" placeholder-inherit pl-1"  required>
+            </div>
             <label v-if="passwordText">{{ passwordText }}</label>
   
             <div>
               <input v-model="keepLoggedIn" type="checkbox">
-              <label>Keep me logged in</label>
+              <label class="font-TTInterphases pl-2 select-none" @click="toggleKeepLogin">Keep me logged in</label>
             </div>
 
-            <button>Login</button>
+            <button class=" rounded-2xl bg-[#1A2228] max-w-min text-white uppercase font-SpaceGrotesk p-2 pl-5 pr-5 text-xs mb-5">Login</button>
+
+            <div class=" font-TTInterphases">
+              <div>Don't have an account?</div>
+              <RouterLink to="/register" class=" text-[#2A7E58] underline">Sign up here</RouterLink>
+            </div>
           </div>
         </form>
       </template>
@@ -27,7 +36,7 @@
 
 <script>
 import LogRegModal from '../components/LogRegModal.vue';
-
+import { RouterLink } from 'vue-router';
 export default {
   components: {
     LogRegModal
@@ -64,6 +73,15 @@ export default {
           this.$router.push('/home');
         }
       }
+    },
+    hidePlaceholder(e) {
+      e.target.placeholder = '';
+    },
+    showPlaceholder(e) {
+      (e.target.type === 'email') ? e.target.placeholder = 'Email' : e.target.placeholder = 'Password';
+    },
+    toggleKeepLogin() {
+      this.keepLoggedIn = !this.keepLoggedIn;
     }
   }
 }
@@ -78,8 +96,11 @@ export default {
     height: 100%;
 }
 input {
-  max-width: 25vw;
+  background-color: transparent;
+}
+.border {
+  border-bottom: 1px solid #1A2228;
   margin-bottom: 1rem;
-
+  max-width: 25vw;
 }
 </style>

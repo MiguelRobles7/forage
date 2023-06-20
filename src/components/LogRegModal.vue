@@ -29,7 +29,7 @@ export default {
             </div>
             <div class="mt-10 ml-20 svg">
               <span class="font-TTInterphases font-bold text-4xl"><span class="text-[#2A7E58]">{{ type }}</span> {{ typeText }}</span>
-              <div>
+              <div class="mt-10">
                 <slot name="content"></slot>
               </div>
             </div>
@@ -53,6 +53,6 @@ export default {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    min-height: 75vh;
+    max-height: 75vh;
 }
 </style>
