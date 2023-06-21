@@ -283,6 +283,11 @@ $background-color: #1d1d1f;
       flex-direction: column;
       .profile-image {
         max-width: 10em;
+        border-radius: 10px;
+      }
+      .banner-image {
+        max-width: 25em;
+        border-radius: 10px;
       }
       .banner-image-button {
         display: flex;
