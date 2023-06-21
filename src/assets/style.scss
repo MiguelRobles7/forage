@@ -3,9 +3,10 @@
 
 $color-primary: #0000;
 $font-small: 0.5rem;
-$font-medium: 1rem;
+$font-regular: 1rem;
+$font-medium: 1.5rem;
 $font-large: 2rem;
-$font-xlarge: 4rem;
+$font-xlarge: 2.5rem;
 $background-color: #1d1d1f;
 
 @font-face {
@@ -67,24 +68,26 @@ $background-color: #1d1d1f;
 }
 
 #app {
+  font-family: 'TTInterphases';
   font-weight: normal;
   background-color: $background-color;
+  color: white;
+  overflow-x: hidden;
 }
 
 .nav-link {
-  font-size: $font-medium;
+  font-size: $font-regular;
   font-family: SpaceGrotesk;
   font-weight: bold;
-  color: white;
 }
+
 .navbar {
-  padding: 0.5rem 6rem;
-  background-color: $background-color !important;
+  padding: 0.5em 6em;
 }
 .navbar-brand {
-  color: white;
   font-size: $font-large;
   font-family: Rowdies;
+  color: white;
 }
 .nav-button {
   background: linear-gradient(180deg, #5ddb8f 0%, #35c56f 100%);
@@ -92,8 +95,159 @@ $background-color: #1d1d1f;
   border-radius: 4px;
   border: none;
   padding: 0.2rem 1rem;
-  color: white;
   font-size: 0.8rem;
   font-family: SpaceGrotesk;
   font-weight: bold;
+  color: white;
+}
+.index-land {
+  margin-left: 12em;
+  min-height: 80vh;
+  align-items: center;
+  display: grid;
+}
+.display-text {
+  font-size: $font-xlarge;
+  font-family: TTInterphases;
+  font-weight: bold;
+}
+.index-search {
+  background: #ffffff;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  height: 2.5em;
+  width: 30em;
+  padding: 1em;
+  border: none;
+}
+.font-default {
+  font-size: $font-regular;
+  font-family: TTInterphases;
+  font-weight: 600;
+}
+
+.gradient-wrapper {
+  background: linear-gradient(180deg, #1d1d1f 0%, #1d1d1f 0.01%, #000000 82.08%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  gap: 2em;
+}
+.gradient-box-type-1 {
+  width: 90vw;
+  border: 4px solid #26262a;
+  box-shadow: 2px 4px 16px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(148.59deg, #212124 18.97%, #111112 81.06%);
+}
+.gradient-box-type-2 {
+  width: 90vw;
+  border: 4px solid #26262a;
+  box-shadow: 2px 4px 16px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(148.59deg, #37383b 18.97%, #111112 35.77%);
+}
+.restaurant-card {
+  background: #fff;
+  box-shadow: 6px 4px 12px 2px rgba(0, 0, 0, 0.16);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+.flex-row-right {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.def-icon {
+  min-width: 1em;
+  width: 1em;
+  max-width: 1em;
+  min-height: 1em;
+  height: 1em;
+  max-height: 1em;
+}
+.center {
+  align-items: center;
+  justify-content: center;
+}
+.def-gap {
+  gap: 0.5em;
+}
+
+.font-small {
+  font-size: $font-regular;
+  font-family: TTInterphases;
+}
+
+.restaurant-card-image {
+  max-width: auto;
+  height: 100%;
+}
+.title {
+  font-size: 1.4rem;
+  font-family: TTInterphases;
+  font-weight: bold;
+}
+.rcard {
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../assets/coffee-time-bg-s.png');
+  background-size: cover;
+  width: 100%;
+  padding: 1.2em;
+  gap: 0.2em;
+
+  .name {
+    font-size: 1.4rem;
+    font-family: TTInterphases;
+    font-weight: bold;
+    line-height: 0.9;
+  }
+
+  .summary {
+    font-weight: 400;
+    font-size: 0.85em;
+    /* identical to box height */
+
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .description {
+    font-weight: 400;
+    font-size: 0.85em;
+    line-height: 1.2em;
+  }
+
+  .image {
+    max-width: 30%;
+    height: auto;
+  }
+
+  .icon-font {
+    font-weight: 400;
+    font-size: 0.8em;
+    line-height: 15px;
+    /* identical to box height */
+  }
+
+  .stats {
+    width: 100%;
+    justify-content: end;
+  }
 }
