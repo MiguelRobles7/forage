@@ -52,7 +52,7 @@ export default {
     background-image: url('../assets/LogRegModal/LogRegbg.png');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    background-position: left;
     max-height: 75vh;
 }
 </style>
