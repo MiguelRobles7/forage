@@ -3,8 +3,8 @@
     <LogRegModal type="Login" typeText="your account.">
       <template v-slot:content>
         <form @submit.prevent="submitForm">
-          <div class="flex flex-col">
-            <div class="flex items-start border">
+          <div class="flex-col">
+            <div class="input-parent">
               <img src="../assets/LoginRegister/Email.png" />
               <input
                 v-model="email"
@@ -12,13 +12,13 @@
                 @focus="hidePlaceholder"
                 @blur="showPlaceholder"
                 placeholder="Email"
-                class="placeholder-inherit pl-1"
+                class="input-def"
                 required
               />
             </div>
             <label v-if="emailText">{{ emailText }}</label>
 
-            <div class="flex items-start border">
+            <div class="input-parent">
               <img src="../assets/LoginRegister/Key.png" />
               <input
                 v-model="password"
@@ -26,7 +26,7 @@
                 @focus="hidePlaceholder"
                 @blur="showPlaceholder"
                 placeholder="Password"
-                class="placeholder-inherit pl-1"
+                class="input-def"
                 required
               />
             </div>
@@ -34,18 +34,12 @@
 
             <div>
               <input v-model="keepLoggedIn" type="checkbox" />
-              <label class="font-TTInterphases pl-2 select-none" @click="toggleKeepLogin"
-                >Keep me logged in</label
-              >
+              <label @click="toggleKeepLogin">Keep me logged in</label>
             </div>
 
-            <button
-              class="rounded-2xl bg-[#1A2228] max-w-min text-white uppercase font-SpaceGrotesk p-2 pl-5 pr-5 text-xs mb-5"
-            >
-              Login
-            </button>
+            <button class="modal-button">LOGIN</button>
 
-            <div class="font-TTInterphases">
+            <div class="font-default">
               <div>Don't have an account?</div>
               <RouterLink to="/register" class="text-[#2A7E58] underline">Sign up here</RouterLink>
             </div>
