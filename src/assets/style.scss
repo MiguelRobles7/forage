@@ -278,11 +278,13 @@ $background-color: #1d1d1f;
       font-size: 1.7em;
     }
     .image-settings {
-      max-width: 20em;
       padding: 2.8em;
       display: flex;
       flex-direction: column;
-      .image-button {
+      .profile-image {
+        max-width: 10em;
+      }
+      .banner-image-button {
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -301,9 +303,30 @@ $background-color: #1d1d1f;
         font-weight: 500;
         color: #e6e6e6;
         width: fit-content;
-
         align-self: flex-end;
         margin: -1.8em -1.2em 0 0;
+      }
+      .profile-image-button {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 0.8em;
+        background: linear-gradient(180deg, #1a2228 0%, #191920 100%);
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        border: none;
+        padding: 10px 24px;
+        letter-spacing: 0.1em;
+        color: #e6e6e6;
+        font-family: 'SpaceGrotesk';
+
+        font-size: 0.8em;
+        font-weight: 500;
+        color: #e6e6e6;
+        width: fit-content;
+        align-self: flex-end;
+        margin: -1.8em 17em 0 0;
       }
     }
     .main-settings {

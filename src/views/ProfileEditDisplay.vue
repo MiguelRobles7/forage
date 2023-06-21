@@ -83,7 +83,7 @@ export default {
           <div class="setting-item">
             <span>Profile Picture</span>
             <img :src="profile_picture" alt="profile image" class="profile-image" />
-            <button class="image-button">
+            <button class="profile-image-button">
               <img src="src\assets\profile-edit-redirect\general.svg" alt="" />
               CHANGE
             </button>
@@ -91,7 +91,7 @@ export default {
           <div class="setting-item">
             <span>Banner Picture</span>
             <img :src="banner" alt="banner image" class="banner-image" />
-            <button class="image-button">
+            <button class="banner-image-button">
               <img src="src\assets\profile-edit-redirect\general.svg" alt="" />
               CHANGE
             </button>
