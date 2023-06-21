@@ -3,71 +3,126 @@
 @tailwind utilities;
 
 @layer base {
-    @font-face {
-        font-family: "Rowdies";
-        src: url('./fonts/rowdies/Rowdies-Regular.ttf');
-    }
-    @font-face {
-        font-family: "Rowdies";
-        src: url('./fonts/rowdies/Rowdies-Bold.ttf');
-        font-weight: bold;
-    }
-    @font-face {
-        font-family: "Rowdies";
-        src: url('./fonts/rowdies/Rowdies-Light.ttf');
-        font-weight: 100;
-    }
-    @font-face {
-        font-family: "SpaceGrotesk";
-        src: url('./fonts/space-grotesk/SpaceGrotesk-Regular.ttf');
-    }
-    @font-face {
-        font-family: "SpaceGrotesk";
-        src: url('./fonts/space-grotesk/SpaceGrotesk-Light.ttf');
-        font-weight: 100;
-    }
-    @font-face {
-        font-family: "SpaceGrotesk";
-        src: url('./fonts/space-grotesk/SpaceGrotesk-Medium.ttf');
-        font-weight: 500;
-    }
-    @font-face {
-        font-family: "SpaceGrotesk";
-        src: url('./fonts/space-grotesk/SpaceGrotesk-Bold.ttf');
-        font-weight:bold;    
-    }
-    @font-face {
-        font-family: "TTInterphases";
-        src: url('./fonts/tt-interphases/TT Interphases Pro Trial Regular.ttf');
-    }
-    @font-face {
-        font-family: "TTInterphases";
-        src: url('./fonts/tt-interphases/TT Interphases Pro Trial Medium.ttf');
-        font-weight:500;
-    }
-    @font-face {
-        font-family: "TTInterphases";
-        src: url('./fonts/tt-interphases/TT Interphases Pro Trial Light.ttf');
-        font-weight:100;
-    }
-    @font-face {
-        font-family: "TTInterphases";
-        src: url('./fonts/tt-interphases/TT Interphases Pro Trial DemiBold.ttf');
-        font-weight:600;
-    }
-    @font-face {
-        font-family: "TTInterphases";
-        src: url('./fonts/tt-interphases/TT Interphases Pro Trial Bold.ttf');
-        font-weight:bold;
-    }
+  @font-face {
+    font-family: 'Rowdies';
+    src: url('./fonts/rowdies/Rowdies-Regular.ttf');
+  }
+  @font-face {
+    font-family: 'Rowdies';
+    src: url('./fonts/rowdies/Rowdies-Bold.ttf');
+    font-weight: bold;
+  }
+  @font-face {
+    font-family: 'Rowdies';
+    src: url('./fonts/rowdies/Rowdies-Light.ttf');
+    font-weight: 100;
+  }
+  @font-face {
+    font-family: 'SpaceGrotesk';
+    src: url('./fonts/space-grotesk/SpaceGrotesk-Regular.ttf');
+  }
+  @font-face {
+    font-family: 'SpaceGrotesk';
+    src: url('./fonts/space-grotesk/SpaceGrotesk-Light.ttf');
+    font-weight: 100;
+  }
+  @font-face {
+    font-family: 'SpaceGrotesk';
+    src: url('./fonts/space-grotesk/SpaceGrotesk-Medium.ttf');
+    font-weight: 500;
+  }
+  @font-face {
+    font-family: 'SpaceGrotesk';
+    src: url('./fonts/space-grotesk/SpaceGrotesk-Bold.ttf');
+    font-weight: bold;
+  }
+  @font-face {
+    font-family: 'TTInterphases';
+    src: url('./fonts/tt-interphases/TT Interphases Pro Trial Regular.ttf');
+  }
+  @font-face {
+    font-family: 'TTInterphases';
+    src: url('./fonts/tt-interphases/TT Interphases Pro Trial Medium.ttf');
+    font-weight: 500;
+  }
+  @font-face {
+    font-family: 'TTInterphases';
+    src: url('./fonts/tt-interphases/TT Interphases Pro Trial Light.ttf');
+    font-weight: 100;
+  }
+  @font-face {
+    font-family: 'TTInterphases';
+    src: url('./fonts/tt-interphases/TT Interphases Pro Trial DemiBold.ttf');
+    font-weight: 600;
+  }
+  @font-face {
+    font-family: 'TTInterphases';
+    src: url('./fonts/tt-interphases/TT Interphases Pro Trial Bold.ttf');
+    font-weight: bold;
+  }
 }
 
-$color-primary: #ff;
 #app {
   padding: 1rem;
   font-weight: normal;
+  color: white;
 }
 h1 {
   /* font-size: 20rem; */
-  color: $color-primary;
+  color: white;
+}
+.modal {
+  width: 75vw;
+  height: 75vh;
+  background: linear-gradient(180deg, #f4f2eb -1.7%, #b8b6b2 99.51%);
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  .left {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    background-image: url('/src/assets/LogRegModal/LogRegbg.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5em;
+
+    .main-text {
+      font-size: 3rem;
+      font-family: TTInterphases;
+      font-weight: bold;
+    }
+    .sub-text {
+      font-size: 0.9em;
+      font-family: TTInterphases;
+      width: 80%;
+    }
+  }
+  .right {
+    padding: 2em;
+    color: black;
+    .blob {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: -1;
+    }
+
+    .head {
+      font-size: 2.5rem;
+      font-family: TTInterphases;
+      font-weight: bold;
+    }
+  }
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
 }
