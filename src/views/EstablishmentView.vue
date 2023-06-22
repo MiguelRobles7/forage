@@ -1,7 +1,10 @@
 <script>
+import EstablishmentViewNav from '../components/navbars/EstablishmentViewNav.vue'
 export default {
   props: ['id'],
-
+  components: {
+    EstablishmentViewNav
+  },
   data() {
     return {
       restaurants: [
@@ -49,7 +52,8 @@ export default {
 </script>
 
 <template>
-  <div>
+  <EstablishmentViewNav></EstablishmentViewNav>
+  <div class="pt-[92px]">
     <h1>Establishment</h1>
     <div>The id is {{ id }}</div>
     <div>The restaurant is {{ restaurant.name }}</div>
