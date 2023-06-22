@@ -1,51 +1,38 @@
 <script>
+import internal from 'stream'
+
 export default {
-    props: {
-        imgPath: String,
-        bgImgPath: String,
-        name: String,
-        description: String, 
-        summary: String,   
-        reviewCount: Number, 
-        rating: Number 
-    }
+  props: {
+    imgPath: String,
+    name: String,
+    description: String,
+    summary: String,
+    reviewCount: Number,
+    rating: Number
+  }
 }
 </script>
 
 <template>
-    <div class="grid grid-cols-[200px_1fr] mb-4">
-        <img :src="imgPath" alt="" class="rounded-s-md w-[200px] h-auto">
-        <div :class="`bg-[linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),url('${bgImgPath}')]`" class="rounded-e-md bg-cover">
-           <div class="px-6 flex">
-                <div class="mt-4">
-                    <div class="flex">
-                        <div class="font-TTInterphases font-bold text-2xl mt-4">
-                            {{ name }}
-                        </div>
-                        <div class="flex grow justify-end">
-                           <div class="flex">
-                                <img src="../assets/star.png" alt="" class="w-[.85rem] h-[.85rem] mt-[.12rem] mr-2">
-                                <div class="font-TTInterphases mr-2 text-sm">{{ rating }} rating </div>
-                                <div class="text-[.5rem] mt-1 mr-2">●</div>
-                           </div> 
-                           <div class="flex">
-                                <img src="../assets/comments.png" alt="" class="w-[.85rem] h-[.85rem] mt-[.2rem] mr-2">
-                                <div class="font-TTInterphases mr-2 text-sm">{{ reviewCount }} reviews </div>
-                                <div class="text-[.5rem] mt-1 mr-2">●</div>
-                           </div> 
-                           <div class="font-TTInterphases text-sm">
-                            $$$
-                           </div> 
-                        </div>
-                    </div>
-                    <div class="font-TTInterphases text-xs mt-1">
-                        {{ summary }}
-                    </div>
-                    <div class="font-TTInterphases text-xs mt-1">
-                        {{ description }}
-                    </div>
-                </div>
-           </div> 
-        </div>
+  <div class="restaurant-card">
+    <img :src="imgPath" alt="" class="restaurant-card-image" />
+    <div class="flex-col rcard">
+      <div class="flex-row def-gap stats">
+        <img src="../assets/star.png" alt="" class="def-icon" />
+        <div class="icon-font">{{ rating }} rating</div>
+        <div class="icon-font">●</div>
+
+        <img src="../assets/comments.png" alt="" class="def-icon" />
+        <div class="icon-font">{{ reviewCount }} reviews</div>
+        <div class="icon-font">●</div>
+        <!-- TODO: Replace with innovative way to make some dollars greyer based on price range  -->
+        <div class="icon-font">$$$$</div>
+      </div>
+      <div class="name">{{ name }}</div>
+      <div class="summary">{{ summary }}</div>
+      <div class="description">{{ description }}</div>
     </div>
+  </div>
 </template>
+
+<style></style>
