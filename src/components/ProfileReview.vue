@@ -17,6 +17,7 @@ export default {
   <div class="review">
     <div class="review-item">
       <span>{{ title }}</span>
+      <!-- Phase 2 TODO: Innovative way for starring -->
       <div class="stars">
         <img class="star" src="/src/assets/star.png" alt="" />
         <img class="star" src="/src/assets/star.png" alt="" />
@@ -29,6 +30,7 @@ export default {
       <p class="body">{{ body }}</p>
     </div>
     <div class="review-item" style="justify-content: flex-end; gap: 0.625rem">
+      <!-- Phase 2 TODO: innovative way to load all images dynamically -->
       <img class="review-icon" src="/src/assets/review-cards/userimage.png" alt="" />
       <div class="review-voting">
         <img class="review-icon" src="/src/assets/review-cards/upvote.svg" alt="" />

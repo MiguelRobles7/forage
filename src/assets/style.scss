@@ -493,15 +493,165 @@ $background-color: #1d1d1f;
 }
 .profile-view {
   width: 100vw;
-  height: 100vh;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  .banner {
+    width: 100vw;
+    height: 60vh;
+    background: linear-gradient(180deg, rgba(29, 29, 31, 0) 0%, #1d1d1f 84.17%),
+      url('src/assets/profile-edit-display/cover.png');
+    background-repeat: no-repeat;
+  }
+  .content {
+    margin-top: -58vh;
+    display: flex;
+    flex-direction: row;
+  }
+  .left {
+    display: flex;
+    flex-direction: column;
+    padding: 6em 2em 6em 6em;
+    gap: 1.2em;
+  }
+  .right {
+    display: flex;
+    flex-direction: column;
+    padding: 11em 6em 6em 0;
+    .filter {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5625rem;
+      margin-top: 1.5em;
+      span {
+        color: #e9edf1;
+        font-size: 1.1rem;
+        font-family: SpaceGrotesk;
+        font-weight: 500;
+      }
+      .selected {
+        background: linear-gradient(180deg, #5ddb8f 0%, #35c56f 100%);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+      }
+    }
+    h1 {
+      color: #fff;
+      font-size: 2rem;
+      font-family: TTInterphases;
+      font-weight: 700;
+      margin: 0;
+    }
+    .info {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+    .stats {
+      display: flex;
+      align-items: center;
+      gap: 0.3125rem;
+      img {
+        width: 1.125rem;
+        height: 1.125rem;
+        flex-shrink: 0;
+      }
+      span {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.875rem;
+        font-family: TTInterphases;
+      }
+    }
+    p {
+      margin: 0;
+      color: #fff;
+      font-size: 0.875rem;
+      font-family: TTInterphases;
+      width: 58%;
+    }
+  }
+  .profile-image {
+    width: 19em;
+    height: 19em;
+    flex-shrink: 0;
+    border-radius: 10px;
+  }
+  .socials {
+    display: inline-flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.625rem;
+    position: absolute;
+    top: 6em;
+    right: 3em;
+    img {
+      width: 3em;
+      height: 3em;
+    }
+  }
+  .left-panel {
+    display: flex;
+    width: 18.75rem;
+    padding: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+
+    border-radius: 6px;
+    border: 2px solid #2c2c31;
+    background: #212124;
+    box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.2);
+
+    span {
+      color: #e6e6e6;
+      font-size: 0.75rem;
+      font-family: TTInterphases;
+      font-weight: 600;
+      letter-spacing: 0.015rem;
+    }
+  }
+  .establishments {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    align-self: stretch;
+    width: 100%;
+  }
+  .pair {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 0.75rem;
+
+    img {
+      width: 1.875rem;
+      height: 1.875rem;
+      flex-shrink: 0;
+    }
+    p {
+      margin: 0;
+      color: #e6e6e6;
+      font-size: 0.75rem;
+      font-family: TTInterphases;
+      font-weight: 500;
+      line-height: 100%;
+    }
+    .stars {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.0625rem;
+      margin-left: auto;
+    }
+    .star {
+      width: 0.625rem;
+      height: 0.625rem;
+    }
+  }
   .review-container {
     display: flex;
     width: 60vw;
-    padding: 1.875rem 1.875rem 11.4375rem 1.875rem;
+    padding: 1.875rem 1.875rem 1.875rem 1.875rem;
     flex-direction: column;
     gap: 0.75rem;
 
@@ -551,6 +701,11 @@ $background-color: #1d1d1f;
     display: flex;
     align-items: flex-start;
     gap: 0.0625rem;
+    margin-left: auto;
+  }
+  .star {
+    width: 0.625rem;
+    height: 0.625rem;
   }
   span {
     color: var(--text-text-h-1-text, #e6e6e6);
@@ -558,13 +713,6 @@ $background-color: #1d1d1f;
     font-family: TTInterphases;
     font-weight: 700;
     line-height: 100%;
-  }
-  .stars {
-    margin-left: auto;
-  }
-  .star {
-    width: 0.625rem;
-    height: 0.625rem;
   }
   .review-icon {
     width: 1.5rem;
@@ -574,10 +722,11 @@ $background-color: #1d1d1f;
     margin: 0;
   }
   .body {
-    color: #e6e6e6;
-    font-size: 0.75rem;
-    font-family: TTInterphases;
-    line-height: 113%;
+    color: #e6e6e6 !important;
+    font-size: 0.75rem !important;
+    font-family: TTInterphases !important;
+    line-height: 113% !important;
+    width: 100% !important;
   }
   .review-voting {
     display: flex;
