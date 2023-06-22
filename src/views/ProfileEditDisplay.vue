@@ -27,7 +27,7 @@ export default {
 <template>
   <main>
     <HomeViewNav></HomeViewNav>
-    <div class="profile-edit-display">
+    <div class="profile-edit">
       <div class="left">
         <div class="banner"></div>
         <div class="profile">
