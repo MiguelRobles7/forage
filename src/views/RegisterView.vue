@@ -33,7 +33,6 @@
                   required
                 />
               </div>
-              <!-- <label v-if="passwordText">{{ passwordText }}</label> -->
 
               <div class="input-parent">
                 <img src="../assets/LoginRegister/Lock.png" />
@@ -48,6 +47,7 @@
                   required
                 />
               </div>
+              <label v-if="passwordText" class="input-def">{{ passwordText }}</label>
             </div>
             <div v-if="currPage === 2">
               <div class="input-parent">
@@ -117,14 +117,36 @@
               </div>
 
             </div>
+            <div v-if="currPage === 3">
+              <div class="labels">
+                <img src="../assets/LoginRegister/Note.svg" />
+                <label class="input-def">Describe yourself (optional)</label>
+              </div>
+              <!-- Textbox input -->
+              <textarea
+                id="desc"
+                v-model="desc"
+                type="text"
+                @focus="hidePlaceholder"
+                @blur="showPlaceholder"
+                class="input-def"
+              ></textarea>
 
+              <div class="labels margin-top">
+                <img src="../assets/LoginRegister/Camera.svg" />
+                <label class="input-def">Upload an image (optional)</label>
+              </div>
+              <div class="img margin-top">
+                <img src="../assets/LoginRegister/Plus Math.svg" />
+              </div>
+            </div>
 
-            <button class="modal-button">
+            <button class="modal-button margin-top">
               <span v-if="currPage === 1 || currPage === 2">NEXT PAGE →</span>
-              <span v-else>Confirm</span>
+              <span v-else>CONFIRM</span>
             </button>
 
-            <div>
+            <div class="margin-top">
               <div>Already have an account?</div>
               <RouterLink to="/login" style="color: #2a7e58; text-decoration: underline">
                 Log in here
@@ -155,7 +177,8 @@ export default {
       zip: '',
       desc: '',
       image: '',
-      currPage: 2
+      passwordText: '',
+      currPage: 3
     }
   },
   methods: {
@@ -191,6 +214,15 @@ export default {
       }
     },
     nextPage() {
+      if (this.currPage === 1) {
+        if (this.password !== this.passwordConfirm) {
+          this.passwordText = 'Passwords do not match'
+          return
+        }
+      }
+      if (this.currPage === 3) {
+        this.$router.push('/login')
+      }
       this.currPage++
     }
   }
@@ -222,5 +254,28 @@ input {
 }
 .counZip input {
   max-width: 155px;
+}
+textarea {
+  margin-top: 5px;
+  resize: none;
+  min-width: 100%;
+  background-color: transparent;
+  border: 2px solid #000;
+  min-height: 5em;
+}
+.margin-top {
+  margin-top: 10px;
+}
+.img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: fit-content;
+  max-height: fit-content;
+  border: 2px solid #000;
+  cursor: pointer;
+}
+.img img {
+  padding: 15px;
 }
 </style>
