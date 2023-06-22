@@ -141,7 +141,7 @@
               </div>
             </div>
 
-            <button class="modal-button margin-top">
+            <button class="modal-button">
               <span v-if="currPage === 1 || currPage === 2">NEXT PAGE →</span>
               <span v-else>CONFIRM</span>
             </button>
@@ -277,5 +277,8 @@ textarea {
 }
 .img img {
   padding: 15px;
+}
+button {
+  margin-top: 20px;
 }
 </style>

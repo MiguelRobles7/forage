@@ -29,7 +29,7 @@ export default {
             <span style="color: #2a7e58">{{ type }} </span>
             {{ typeText }}
           </span>
-          <div class="mt-10">
+          <div class="title-margin">
             <slot name="content"></slot>
           </div>
         </div>
@@ -48,5 +48,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.title-margin {
+  margin-top: 20px;
 }
 </style>

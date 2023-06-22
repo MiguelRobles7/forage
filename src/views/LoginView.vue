@@ -12,7 +12,7 @@
                 @focus="hidePlaceholder"
                 @blur="showPlaceholder"
                 placeholder="Email"
-                class="input-def"
+                class="input-def input"
                 required
               />
             </div>
@@ -26,20 +26,20 @@
                 @focus="hidePlaceholder"
                 @blur="showPlaceholder"
                 placeholder="Password"
-                class="input-def"
+                class="input-def input"
                 required
               />
             </div>
             <label v-if="passwordText">{{ passwordText }}</label>
 
-            <div>
+            <div class="margin-top keep-signed">
               <input v-model="keepLoggedIn" type="checkbox" />
               <label @click="toggleKeepLogin">Keep me logged in</label>
             </div>
 
             <button class="modal-button">LOGIN</button>
 
-            <div class="font-default">
+            <div class="font-default margin-top">
               <div>Don't have an account?</div>
               <RouterLink to="/register" class="text-[#2A7E58] underline">Sign up here</RouterLink>
             </div>
@@ -120,5 +120,20 @@ input {
   border-bottom: 1px solid #1a2228;
   margin-bottom: 1rem;
   max-width: 25vw;
+}
+.input {
+  background-color: transparent;
+  min-width: 100%;
+  outline: none;
+}
+.margin-top {
+  margin-top: 10px;
+}
+button {
+  margin-top: 20px;
+}
+.keep-signed {
+  display: flex;
+  gap: 10px;
 }
 </style>
