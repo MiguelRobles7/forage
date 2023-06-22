@@ -8,8 +8,12 @@ export default {
   data() {
     return {
       restaurants: [
-        {restaurant_id:1 ,logo: '../../public/coffee-time-logo.png', name: 'Coffee Time', summary: 'Coffee,Tea,Pastry,Cafe', description: 'Savor our exquisite handcrafted beverages, meticulously prepared by our skilled artisans. From delicate latte art to carefully infused flavors, each cup is a masterpiece that not only delights your taste buds but also captivates your eyes. At Coffee Time, we believe that coffee should be a symphony of aesthetics and taste. Let every sip transport you to a world of flavor and aesthetic in perfect harmony.', 
-      reviewCount: 421, rating: 4.8}
+        {restaurant_id:1 ,logo: '../../public/coffee-time-logo.png', name: 'Coffee Time', summary: 'Coffee • Tea • Pastry • Cafe', description: 'Savor our exquisite handcrafted beverages, meticulously prepared by our skilled artisans. From delicate latte art to carefully infused flavors, each cup is a masterpiece that not only delights your taste buds but also captivates your eyes. At Coffee Time, we believe that coffee should be a symphony of aesthetics and taste. Let every sip transport you to a world of flavor and aesthetic in perfect harmony.', 
+      reviewCount: 421, rating: 4.8, 
+      backgroundImg: '../../public/restaurant-bg/coffee-time-bg-l.png', 
+      location:'Shangrila Plaza',
+      openingTime: '9:00AM',
+      closingTime: '9:00PM'}
       ],
       reviews: [
         {user_id: 1, restaurant_id:1, rating: 5, upvotes: 30, review: "Is good, is chill"},
@@ -52,12 +56,42 @@ export default {
 </script>
 
 <template>
-  <EstablishmentViewNav></EstablishmentViewNav>
-  <div class="pt-[92px]">
-    <h1>Establishment</h1>
-    <div>The id is {{ id }}</div>
-    <div>The restaurant is {{ restaurant.name }}</div>
-    <div>The menu is {{ menu_items }}</div>
-    <div>The reviews are {{ current_reviews }}</div>
-  </div>
+    <div class="establishment-bg" :style="`background:linear-gradient(180deg, rgba(29, 29, 31, 0.00) 0%, #1D1D1F 100%), url(${restaurant.backgroundImg}); background-size:cover; background-position: center center; min-height:40vh`"> 
+    </div>
+    <div class="establishment-card container rounded-3">
+      <div class="row">
+        <div class="col-auto">
+          <img :src="restaurant.logo" alt="" class="rounded-3">
+        </div>
+        <div class="col restaurant-info">
+          <div class="summary">
+           {{ restaurant.summary }} 
+          </div>
+          <div class="name">
+            {{ restaurant.name }}
+          </div>
+          <div class="d-flex align-items-center">
+            <img src="../assets/star.png" alt="" class="icon">
+            <div class="info">{{ restaurant.rating }} Rating</div>
+            <div class="dot">•</div>
+
+            <img src="../assets/comments.png" alt="" class="icon">
+            <div class="info">{{ restaurant.reviewCount }} Rating</div>
+            <div class="dot">•</div>
+
+            <div class="info"> $$$$ </div>
+            <div class="dot">•</div>
+
+            <img src="../assets/clock.png" alt="" class="icon">
+            <div class="info">{{ restaurant.openingTime }} - {{ restaurant.closingTime }}</div>
+          </div>
+          <div class="d-flex location">
+            {{ restaurant.location }}
+          </div>
+          <div class="description">
+            {{ restaurant.description }}
+          </div>
+        </div>
+      </div>
+    </div>
 </template>
