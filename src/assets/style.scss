@@ -207,7 +207,6 @@ $background-color: #1d1d1f;
   font-weight: bold;
 }
 .rcard {
-  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../assets/coffee-time-bg-s.png');
   background-size: cover;
   width: 100%;
   padding: 1.2em;
@@ -489,5 +488,51 @@ $background-color: #1d1d1f;
     line-height: 15px;
     letter-spacing: 0.02em;
     color: #e6e6e6;
+  }
+}
+
+.establishment-card {
+  padding: 1.7rem 1.7rem;
+  margin-top: -7rem;
+  margin-left: 5rem;
+  display: flex;
+  width: 50%;
+  background: linear-gradient(180deg, #37383B 0%, #111112 27.06%);
+}
+
+.restaurant-info {
+  font-family: 'TTInterphases';
+
+  .summary {
+    color: rgba(255, 255, 255, 0.80);
+    font-size: .8rem;
+  }
+
+  .name {
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  .location {
+    font-size: .8rem;
+  }
+
+  .description {
+    font-size: .9rem;
+  }
+
+  .info {
+    font-size: .8rem
+  }
+
+  .dot {
+    margin-right: .2rem;
+    margin-left: .2rem;
+  }
+
+  .icon {
+    width: 18px;
+    height: 18px;
+    margin-right: .4rem;
   }
 }

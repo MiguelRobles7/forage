@@ -12,6 +12,7 @@ export default {
       restaurants: [
         {
           logo: '../../public/coffee-time-logo.png',
+          bgCard: '../../public/restaurant-bg/coffee-time-bg-s.png',
           name: 'Coffee Time',
           summary: 'Coffee • Tea • Pastry • Cafe',
           description:
@@ -52,6 +53,7 @@ export default {
             <RestaurantCard
               :name="restaurants[0].name"
               :imgPath="restaurants[0].logo"
+              :bgImgPath="restaurants[0].bgCard"
               :description="restaurants[0].description"
               :summary="restaurants[0].summary"
               :rating="restaurants[0].rating"
@@ -60,6 +62,7 @@ export default {
             <RestaurantCard
               :name="restaurants[0].name"
               :imgPath="restaurants[0].logo"
+              :bgImgPath="restaurants[0].bgCard"
               :description="restaurants[0].description"
               :summary="restaurants[0].summary"
               :rating="restaurants[0].rating"
@@ -70,6 +73,7 @@ export default {
             <RestaurantCard
               :name="restaurants[0].name"
               :imgPath="restaurants[0].logo"
+              :bgImgPath="restaurants[0].bgCard"
               :description="restaurants[0].description"
               :summary="restaurants[0].summary"
               :rating="restaurants[0].rating"
@@ -78,6 +82,7 @@ export default {
             <RestaurantCard
               :name="restaurants[0].name"
               :imgPath="restaurants[0].logo"
+              :bgImgPath="restaurants[0].bgCard"
               :description="restaurants[0].description"
               :summary="restaurants[0].summary"
               :rating="restaurants[0].rating"
@@ -94,6 +99,7 @@ export default {
             <RestaurantCard
               :name="restaurants[0].name"
               :imgPath="restaurants[0].logo"
+              :bgImgPath="restaurants[0].bgCard"
               :description="restaurants[0].description"
               :summary="restaurants[0].summary"
               :rating="restaurants[0].rating"
@@ -102,6 +108,7 @@ export default {
             <RestaurantCard
               :name="restaurants[0].name"
               :imgPath="restaurants[0].logo"
+              :bgImgPath="restaurants[0].bgCard"
               :description="restaurants[0].description"
               :summary="restaurants[0].summary"
               :rating="restaurants[0].rating"
@@ -112,6 +119,7 @@ export default {
             <RestaurantCard
               :name="restaurants[0].name"
               :imgPath="restaurants[0].logo"
+              :bgImgPath="restaurants[0].bgCard"
               :description="restaurants[0].description"
               :summary="restaurants[0].summary"
               :rating="restaurants[0].rating"
@@ -120,6 +128,7 @@ export default {
             <RestaurantCard
               :name="restaurants[0].name"
               :imgPath="restaurants[0].logo"
+              :bgImgPath="restaurants[0].bgCard"
               :description="restaurants[0].description"
               :summary="restaurants[0].summary"
               :rating="restaurants[0].rating"
