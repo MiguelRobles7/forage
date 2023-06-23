@@ -12,6 +12,6 @@ export default {
    <div class="menu-item-card">
       <img :src="imgPath" alt="">
       <div class="item-name">{{ name }}</div>
-      <div class="item-price">₱ {{ price }}.00</div>
+      <div class="item-price">₱ {{ price }}</div>
    </div> 
 </template>

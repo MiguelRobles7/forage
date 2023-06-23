@@ -1,5 +1,6 @@
 [
     {
+      "restaurant_id": 1,
       "logo": "../../public/coffee-time-logo.png",
       "bgCard": "../../public/restaurant-bg/coffee-time-bg-s.png",
       "backgroundImg": "../../public/restaurant-bg/coffee-time-bg-l.png",
@@ -13,6 +14,7 @@
       "location": "Shangrila Plaza"
     },
     {
+      "restaurant_id": 2,
       "logo": "../../public/pizza-logo.jpg",
       "bgCard": "../../public/restaurant-bg/pizza-bg.jpg",
       "backgroundImg": "../../public/restaurant-bg/pizza-bg-l.jpg",
@@ -26,6 +28,7 @@
       "location": "SM Megamall"
     },
     {
+      "restaurant_id": 3,
       "logo": "../../public/sushi-logo.jpg",
       "bgCard": "../../public/restaurant-bg/sushi-bg.jpg",
       "backgroundImg": "../../public/restaurant-bg/sushi-bg-l.jpg",
@@ -39,6 +42,7 @@
       "location": "Glorietta 4"
     },
     {
+      "restaurant_id": 4,
       "logo": "../../public/indian-logo.jpg",
       "bgCard": "../../public/restaurant-bg/indian-bg.jpg",
       "name": "Spice Avenue",
@@ -51,6 +55,7 @@
       "location": "Greenbelt 3"
     },
     {
+      "restaurant_id": 5,
       "logo": "../../public/veggie-logo.jpg",
       "bgCard": "../../public/restaurant-bg/veggie-bg.jpg",
       "name": "Veggie Haven",
