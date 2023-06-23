@@ -7,9 +7,10 @@ export default {
     bgImgPath: String,
     name: String,
     description: String,
-    summary: String,
+    tags: String,
     reviewCount: Number,
-    rating: Number
+    rating: Number,
+    price: String
   }
 }
 </script>
@@ -17,22 +18,25 @@ export default {
 <template>
   <div class="restaurant-card">
     <img :src="imgPath" alt="" class="restaurant-card-image" />
-      <div class="flex-col rcard" :style="`background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(${bgImgPath});`">
-        <div class="flex-row def-gap stats">
-          <img src="../assets/star.png" alt="" class="def-icon" />
-          <div class="icon-font">{{ rating }} rating</div>
-          <div class="icon-font">●</div>
+    <div
+      class="flex-col rcard"
+      :style="`background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(${bgImgPath});`"
+    >
+      <div class="flex-row def-gap stats">
+        <img src="../assets/star.png" alt="" class="def-icon" />
+        <div class="icon-font">{{ rating }} rating</div>
+        <div class="icon-font">●</div>
 
-          <img src="../assets/comments.png" alt="" class="def-icon" />
-          <div class="icon-font">{{ reviewCount }} reviews</div>
-          <div class="icon-font">●</div>
-          <!-- TODO: Replace with innovative way to make some dollars greyer based on price range  -->
-          <div class="icon-font">$$$$</div>
-        </div>
-        <div class="name">{{ name }}</div>
-        <div class="summary">{{ summary }}</div>
-        <div class="description">{{ description }}</div>
+        <img src="../assets/comments.png" alt="" class="def-icon" />
+        <div class="icon-font">{{ reviewCount }} reviews</div>
+        <div class="icon-font">●</div>
+        <!-- TODO: Replace with innovative way to make some dollars greyer based on price range  -->
+        <div class="icon-font">{{ price }}</div>
       </div>
+      <div class="name">{{ name }}</div>
+      <div class="summary">{{ tags }}</div>
+      <div class="description">{{ description }}</div>
+    </div>
   </div>
 </template>
 
