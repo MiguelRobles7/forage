@@ -538,7 +538,24 @@ $background-color: #1d1d1f;
 }
 
 .establishment-content{
-  background: linear-gradient(180deg, #1D1D1F 0%, #000 100%);  ;
+  background: linear-gradient(180deg, #1D1D1F 0%, #000 100%);
+
+  .review-box {
+    padding: 1.5rem;
+    width: 85%;
+    background: linear-gradient(180deg, #212124 0%, #111112 100%);
+    border-radius: 8px;
+    border: 4px solid #26262A;
+    box-shadow: 2px 4px 16px 6px rgba(0, 0, 0, 0.08);
+  }
+
+  .review {
+    flex-basis: 33%;
+    border-radius: 6px;
+    border: 2px solid #323237;
+    background: #2F2F33;
+    box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.20);
+  }
 }
 
 .menu-box {
@@ -549,11 +566,12 @@ $background-color: #1d1d1f;
   border: 4px solid #26262A;
   box-shadow: 2px 4px 16px 6px rgba(0, 0, 0, 0.08);
 
-  .title {
-    margin-bottom: 1rem;
-    font-weight: bold;
-    font-size: 1.3rem;
-  }
+}
+
+.title {
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 1.3rem;
 }
 
 .menu-item-card {

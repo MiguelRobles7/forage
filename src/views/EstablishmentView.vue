@@ -1,10 +1,11 @@
 <script>
 import EstablishmentViewNav from '../components/navbars/EstablishmentViewNav.vue'
 import MenuItem from '../components/MenuItem.vue'
+import Review from '../components/EstablishmentReview.vue'
 export default {
   props: ['id'],
   components: {
-    EstablishmentViewNav, MenuItem
+    EstablishmentViewNav, MenuItem, Review
   },
   data() {
     return {
@@ -100,7 +101,7 @@ export default {
         </div>
     </div>
 
-    <div class="establishment-content d-flex justify-content-center">
+    <div class="establishment-content d-flex flex-col align-items-center gap-4">
       <div class="menu-box">
         <div class="title">
           What's in the menu?
@@ -191,6 +192,20 @@ export default {
             ></MenuItem>
           </div>
         </div>
-      </div> 
+      </div>
+      
+      <div class="review-box">
+        <div class="title">
+          Top Reviews 
+        </div>
+
+        <div class="flex-col gap-3">
+          <div class="flex-row gap-3">
+            <Review></Review>  
+            <Review></Review>  
+            <Review></Review>  
+          </div>    
+        </div>
+      </div>
     </div>
 </template>
