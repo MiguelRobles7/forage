@@ -21,11 +21,11 @@ export default {
         <div class="flex-row" style="width: 100%">
           <span class="title">Replying to {{ user }}'s review</span>
           <div class="stars" style="margin: 0 0 0 auto">
-            <img class="star" src="/src/assets/star.png" alt="" />
-            <img class="star" src="/src/assets/star.png" alt="" />
-            <img class="star" src="/src/assets/star.png" alt="" />
-            <img class="star" src="/src/assets/star.png" alt="" />
-            <img class="star" src="/src/assets/star.png" alt="" />
+            <img class="star" src="/src/assets/icons/star.png" alt="" />
+            <img class="star" src="/src/assets/icons/star.png" alt="" />
+            <img class="star" src="/src/assets/icons/star.png" alt="" />
+            <img class="star" src="/src/assets/icons/star.png" alt="" />
+            <img class="star" src="/src/assets/icons/star.png" alt="" />
           </div>
         </div>
         <div class="inner">

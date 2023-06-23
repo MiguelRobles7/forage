@@ -1,17 +1,17 @@
 <script>
-import HomeViewNav from '../components/navbars/HomeViewNav.vue'
+import DefaultBarLoggedIn from '../components/navbars/DefaultBarLoggedIn.vue'
 import ProfileEditRedirect from '../components/ProfileEditRedirect.vue'
 import ProfileManageReview from '../components/ProfileManageReview.vue'
 
 export default {
   components: {
-    HomeViewNav,
+    DefaultBarLoggedIn,
     ProfileEditRedirect,
     ProfileManageReview
   },
   data() {
     return {
-      profile_picture: '/src/assets/profile-edit-display/user.png',
+      profile_picture: '/public/profile/pfps/1.png',
       banner: '/src/assets/profile-edit-display/cover.png',
       name: 'I miss you balik ka na',
       account_type: 'personal ',
@@ -28,7 +28,7 @@ export default {
           title: 'Simply the best latte in town',
           rating: 5,
           body: 'The latte at your coffee shop is an exquisite work of art, perfectly crafted to delight the senses. Its velvety smoothness dances with the rich aroma of freshly brewed espresso, creating a symphony of flavors that caress the palate with each sip. Savoring your latte is like embarking on a blissful journey, where the harmonious balance of steamed milk and espresso transports me to a realm of pure indulgence. Thank you for creating such a divine elixir that elevates my coffee experience to new heights.',
-          images: ['/src/assets/coffee-time-bg-s.png'],
+          images: ['/public/restaurant-bg/coffee-time-bg-s.png'],
           upvotes: 301,
           downvotes: 0
         },
@@ -36,7 +36,7 @@ export default {
           title: 'The pastries are a must try',
           rating: 5,
           body: "Your coffee shop's pastries are a delectable delight that brings sheer joy to my taste buds.",
-          images: ['/src/assets/review-cards/userimage.png'],
+          images: ['/public/restaurant-bg/coffee-time-bg-s.png'],
           upvotes: 73,
           downvotes: 0
         }
@@ -82,12 +82,3 @@ export default {
     </div>
   </main>
 </template>
-
-<style>
-.gradient-bg {
-  background: linear-gradient(-7.28deg, #1d1d1f 24.57%, rgba(29, 29, 31, 0.2) 90.45%), url('../assets/home-bg.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 130vh;
-}
-</style>
