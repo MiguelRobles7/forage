@@ -34,8 +34,21 @@ export default {
         }
       ],
       reviews: [
-        { user_id: 1, restaurant_id: 1, rating: 5, upvotes: 30, review: 'Is good, is chill' },
-        { user_id: 2, restaurant_id: 2, rating: 5, upvotes: 30, review: 'Is good, is chill' }
+        {
+          user_name: 'Jadnel',
+          user_image: '/src/assets/profile-edit-display/user.png',
+          title: 'Fantastic Experience',
+          rating: 5,
+          body: 'I had a fantastic experience at this restaurant. The food was delicious, the service was excellent, and the ambiance was great. Highly recommended!',
+          images: [],
+          upvotes: 23,
+          downvotes: 1,
+          owner_response: [
+            'Coffee Time',
+            '/src/assets/coffee-time-logo.png',
+            'Thank you for your kind words! We hope to see you again soon.'
+          ]
+        }
       ],
       review_images: [
         { user_id: 1, restaurant_id: 1, rating: 5, upvotes: 30, review: 'Is good, is chill' },
@@ -246,9 +259,19 @@ export default {
       </div>
       <div class="flex-col gap-3">
         <div class="flex-row gap-3">
-          <EstablishmentReview></EstablishmentReview>
-          <Review></Review>
-          <Review></Review>
+          <EstablishmentReview
+            v-for="review in reviews"
+            :key="review"
+            :ownerReply="reviews[0].owner_response"
+            :userImg="reviews[0].user_image"
+            :userID="reviews[0].user_name"
+            :title="reviews[0].title"
+            :content="reviews[0].body"
+            :stars="reviews[0].rating"
+            :upvotes="reviews[0].upvotes"
+            :downvotes="reviews[0].downvotes"
+          >
+          </EstablishmentReview>
         </div>
       </div>
     </div>
