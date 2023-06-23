@@ -1,5 +1,5 @@
 <script>
-import DefaultBarLoggedIn from '../components/navbars/HomeViewNav.vue'
+import DefaultBarLoggedIn from '../components/navbars/DefaultBarLoggedIn.vue'
 import RestaurantCard from '../components/RestaurantCard.vue'
 export default {
   props: {
