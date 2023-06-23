@@ -1,5 +1,4 @@
 <template>
-  <main>
     <LogRegModal type="Create" typeText="an account.">
       <template v-slot:content>
         <form @submit.prevent="nextPage">
@@ -156,7 +155,6 @@
         </form>
       </template>
     </LogRegModal>
-  </main>
 </template>
 
 <script>

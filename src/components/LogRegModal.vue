@@ -6,12 +6,17 @@ export default {
   },
   data() {
     return {}
+  },
+  methods: {
+    closeModal() {
+      this.$emit('close')
+    }
   }
 }
 </script>
 
 <template>
-    <div class="backdrop">
+    <div class="backdrop" @click.self="closeModal">
       <div class="modal">
         <div class="left">
           <div class="flex-col">
