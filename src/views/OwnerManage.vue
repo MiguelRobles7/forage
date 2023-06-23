@@ -1,17 +1,17 @@
 <script>
-import HomeViewNav from '../components/navbars/HomeViewNav.vue'
+import DefaultBarLoggedIn from '../components/navbars/DefaultBarLoggedIn.vue'
 import ProfileEditRedirect from '../components/ProfileEditRedirect.vue'
 import OwnerManageReviews from '../components/OwnerManageReviews.vue'
 
 export default {
   components: {
-    HomeViewNav,
+    DefaultBarLoggedIn,
     ProfileEditRedirect,
     OwnerManageReviews
   },
   data() {
     return {
-      profile_picture: '/src/assets/profile-edit-display/user.png',
+      profile_picture: '/public/coffee-time-logo.png',
       banner: '/src/assets/profile-edit-display/cover.png',
       name: 'I miss you balik ka na',
       account_type: 'personal ',
@@ -48,15 +48,15 @@ export default {
 
 <template>
   <main>
-    <HomeViewNav></HomeViewNav>
+    <DefaultBarLoggedIn name="Johndayll Arizala" image="/public/profile/pfps/1.png"></DefaultBarLoggedIn>
     <div class="profile-edit">
       <div class="left">
         <div class="banner"></div>
         <div class="profile">
           <img :src="profile_picture" alt="profile image" class="profile-image" />
           <div class="profile-info">
-            <span class="name">{{ name }}</span>
-            <span class="subtext">{{ account_type }} account</span>
+            <span class="name">Coffee Time</span>
+            <span class="subtext">establishment account</span>
           </div>
         </div>
       </div>
@@ -82,12 +82,3 @@ export default {
     </div>
   </main>
 </template>
-
-<style>
-.gradient-bg {
-  background: linear-gradient(-7.28deg, #1d1d1f 24.57%, rgba(29, 29, 31, 0.2) 90.45%), url('../assets/home-bg.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 130vh;
-}
-</style>

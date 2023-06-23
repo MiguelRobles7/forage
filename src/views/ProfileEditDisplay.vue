@@ -1,15 +1,15 @@
 <script>
-import HomeViewNav from '../components/navbars/HomeViewNav.vue'
+import DefaultBarLoggedIn from '../components/navbars/DefaultBarLoggedIn.vue'
 import ProfileEditRedirect from '../components/ProfileEditRedirect.vue'
 export default {
   components: {
-    HomeViewNav,
+    DefaultBarLoggedIn,
     ProfileEditRedirect
   },
   data() {
     return {
-      profile_picture: '/src/assets/profile-edit-display/user.png',
-      banner: '/src/assets/profile-edit-display/cover.png',
+      profile_picture: '/public/profile/pfps/1.png',
+      banner: '/public/profile/banners/1.png',
       name: 'I miss you balik ka na',
       account_type: 'personal ',
       description:
@@ -101,12 +101,3 @@ export default {
     </div>
   </main>
 </template>
-
-<style>
-.gradient-bg {
-  background: linear-gradient(-7.28deg, #1d1d1f 24.57%, rgba(29, 29, 31, 0.2) 90.45%), url('../assets/home-bg.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 130vh;
-}
-</style>

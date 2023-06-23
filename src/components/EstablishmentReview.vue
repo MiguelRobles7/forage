@@ -28,11 +28,11 @@ export default {
         <span class="tag">{{ userName }}</span>
         <!-- Phase 2 TODO: Innovative way for starring -->
         <div class="stars">
-          <img class="star" src="/src/assets/star.png" alt="" />
-          <img class="star" src="/src/assets/star.png" alt="" />
-          <img class="star" src="/src/assets/star.png" alt="" />
-          <img class="star" src="/src/assets/star.png" alt="" />
-          <img class="star" src="/src/assets/star.png" alt="" />
+          <img class="star" src="/src/assets/icons/star.png" alt="" />
+          <img class="star" src="/src/assets/icons/star.png" alt="" />
+          <img class="star" src="/src/assets/icons/star.png" alt="" />
+          <img class="star" src="/src/assets/icons/star.png" alt="" />
+          <img class="star" src="/src/assets/icons/star.png" alt="" />
         </div>
       </div>
       <div class="review-item">
@@ -61,11 +61,11 @@ export default {
           <span class="tag">{{ ownerReply[0] }}</span>
           <!-- Phase 2 TODO: Innovative way for starring -->
           <div class="stars">
-            <img class="star" src="/src/assets/star.png" alt="" />
-            <img class="star" src="/src/assets/star.png" alt="" />
-            <img class="star" src="/src/assets/star.png" alt="" />
-            <img class="star" src="/src/assets/star.png" alt="" />
-            <img class="star" src="/src/assets/star.png" alt="" />
+            <img class="star" src="/src/assets/icons/star.png" alt="" />
+            <img class="star" src="/src/assets/icons/star.png" alt="" />
+            <img class="star" src="/src/assets/icons/star.png" alt="" />
+            <img class="star" src="/src/assets/icons/star.png" alt="" />
+            <img class="star" src="/src/assets/icons/star.png" alt="" />
           </div>
         </div>
         <div class="review-item">
