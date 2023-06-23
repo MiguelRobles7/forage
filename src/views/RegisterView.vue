@@ -180,6 +180,9 @@ export default {
     }
   },
   methods: {
+    closeModal() {
+      this.$emit('close')
+    },
     hidePlaceholder(e) {
       e.target.placeholder = ''
     },
@@ -219,7 +222,7 @@ export default {
         }
       }
       if (this.currPage === 3) {
-        this.$router.push('/login')
+        this.closeModal()
       }
       this.currPage++
     }
