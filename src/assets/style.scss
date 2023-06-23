@@ -510,15 +510,15 @@ $background-color: #1d1d1f;
   margin-left: 5rem;
   display: flex;
   width: 50%;
-  background: linear-gradient(180deg, #37383B 0%, #111112 27.06%);
+  background: linear-gradient(180deg, #37383b 0%, #111112 27.06%);
 }
 
 .restaurant-info {
   font-family: 'TTInterphases';
 
   .summary {
-    color: rgba(255, 255, 255, 0.80);
-    font-size: .8rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.8rem;
   }
 
   .name {
@@ -527,38 +527,38 @@ $background-color: #1d1d1f;
   }
 
   .location {
-    font-size: .8rem;
+    font-size: 0.8rem;
   }
 
   .description {
-    font-size: .9rem;
+    font-size: 0.9rem;
   }
 
   .info {
-    font-size: .8rem
+    font-size: 0.8rem;
   }
 
   .dot {
-    margin-right: .2rem;
-    margin-left: .2rem;
+    margin-right: 0.2rem;
+    margin-left: 0.2rem;
   }
 
   .icon {
     width: 18px;
     height: 18px;
-    margin-right: .4rem;
+    margin-right: 0.4rem;
   }
 }
 
-.establishment-content{
-  background: linear-gradient(180deg, #1D1D1F 0%, #000 100%);
+.establishment-content {
+  background: linear-gradient(180deg, #1d1d1f 0%, #000 100%);
 
   .review-box {
     padding: 1.5rem;
     width: 85%;
     background: linear-gradient(180deg, #212124 0%, #111112 100%);
     border-radius: 8px;
-    border: 4px solid #26262A;
+    border: 4px solid #26262a;
     box-shadow: 2px 4px 16px 6px rgba(0, 0, 0, 0.08);
   }
 
@@ -566,8 +566,8 @@ $background-color: #1d1d1f;
     flex-basis: 33%;
     border-radius: 6px;
     border: 2px solid #323237;
-    background: #2F2F33;
-    box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.20);
+    background: #2f2f33;
+    box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -576,9 +576,8 @@ $background-color: #1d1d1f;
   width: 85%;
   background: linear-gradient(180deg, #212124 0%, #111112 100%);
   border-radius: 8px;
-  border: 4px solid #26262A;
+  border: 4px solid #26262a;
   box-shadow: 2px 4px 16px 6px rgba(0, 0, 0, 0.08);
-
 }
 
 .title {
@@ -591,7 +590,7 @@ $background-color: #1d1d1f;
   padding: 1rem 1rem;
   font-family: TTInterphases;
   width: 171px;
-  border: 2px solid #2C2C31;
+  border: 2px solid #2c2c31;
   background: #212124;
   border-radius: 6px;
   box-shadow: 2px 4px 16px 6px rgba(0, 0, 0, 0.08);
@@ -605,7 +604,7 @@ $background-color: #1d1d1f;
   }
 
   .item-price {
-    font-weight:900;
+    font-weight: 900;
   }
 }
 
@@ -616,7 +615,7 @@ $background-color: #1d1d1f;
   .banner {
     width: 100vw;
     height: 60vh;
-   
+
     background-repeat: no-repeat;
   }
   .content {

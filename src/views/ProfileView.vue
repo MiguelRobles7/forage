@@ -4,14 +4,14 @@ import ProfileReview from '../components/ProfileReview.vue'
 import Profiles from '../views/JSON/profiles.json'
 
 export default {
-  props: {id: Number},
+  props: { id: Number },
   components: {
     HomeViewNav,
     ProfileReview
   },
   data() {
     return {
-      profiles : Profiles,
+      profiles: Profiles,
       establishments: [
         {
           name: 'Sussé Cafe',
@@ -62,7 +62,9 @@ export default {
 
   computed: {
     Profile() {
-      return this.profiles.filter((profile) => { return profile.id === Number(this.id)})[0]
+      return this.profiles.filter((profile) => {
+        return profile.id === Number(this.id)
+      })[0]
     }
   }
 }
@@ -77,8 +79,11 @@ export default {
         <img src="/src/assets/profile-view/instagram.png" alt="" />
         <img src="/src/assets/profile-view/twitter.png" alt="" />
       </div>
-      <div class="banner" :style="`background: linear-gradient(180deg, rgba(29, 29, 31, 0) 0%, #1d1d1f 84.17%),
-      url(${Profile.banner});`"></div>
+      <div
+        class="banner"
+        :style="`background: linear-gradient(180deg, rgba(29, 29, 31, 0) 0%, #1d1d1f 84.17%),
+      url(${Profile.banner});`"
+      ></div>
       <div class="content">
         <div class="left">
           <img class="profile-image" :src="Profile.profile_picture" alt="" />
@@ -111,7 +116,7 @@ export default {
               <img src="/src/assets/profile-view/location.svg" alt="" />
               <span>{{ Profile.street }} {{ Profile.city }}, {{ Profile.province }}, {{ Profile.country }} </span>
             </div>
-            <p>{{ Profile.description }}</p>
+            <p style="min-height: 17.5vh">{{ Profile.description }}</p>
           </div>
           <div class="filter">
             <span class="selected"> Latest </span>
