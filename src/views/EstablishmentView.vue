@@ -126,7 +126,7 @@ export default {
           <div class="dot">•</div>
 
           <img src="/src/assets/icons/comments.png" alt="" class="icon" />
-          <div class="info">{{ restaurant.reviewCount }} Rating</div>
+          <div class="info">{{ restaurant.reviewCount }} Reviews</div>
           <div class="dot">•</div>
 
           <div class="info">{{ restaurant.price_range }}</div>
@@ -158,7 +158,7 @@ export default {
       </div>
     </div>
 
-    <div class="review-box">
+    <div class="review-box" style="margin-bottom: 5vh">
       <div class="title">
         <span> Top Reviews </span>
         <button class="review-button" @click="edit" value="view">
