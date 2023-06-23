@@ -48,7 +48,7 @@ export default {
 
 <template>
   <main>
-    <HomeViewNav></HomeViewNav>
+    <DefaultBarLoggedIn name="Johndayll Arizala" image="/public/profile/pfps/1.png"></DefaultBarLoggedIn>
     <div class="profile-edit">
       <div class="left">
         <div class="banner"></div>

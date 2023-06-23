@@ -5,7 +5,7 @@ import restoCard from '../views/JSON/restaurants.json'
 export default {
   components: {
     HomeViewNav,
-    RestaurantCard,
+    RestaurantCard
   },
 
   data() {
