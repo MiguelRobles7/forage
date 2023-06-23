@@ -1,0 +1,92 @@
+[
+    {
+      "restaurant_id": 1,
+      "imgPath": "../../public/menu-items/",
+      "name": "Espresso",
+      "price": 99.75
+    },
+    {
+      "restaurant_id": 1,
+      "imgPath": "../../public/menu-items/",
+      "name": "Cappuccino",
+      "price": 124.75
+    },
+    {
+      "restaurant_id": 1,
+      "imgPath": "../../public/menu-items/",
+      "name": "Matcha Latte",
+      "price": 136.25
+    },
+    {
+      "restaurant_id": 2,
+      "imgPath": "../../public/menu-items/",
+      "name": "Margherita Pizza",
+      "price": 274.75
+    },
+    {
+      "restaurant_id": 2,
+      "imgPath": "../../public/menu-items/",
+      "name": "Pepperoni Pizza",
+      "price": 324.75
+    },
+    {
+      "restaurant_id": 2,
+      "imgPath": "../../public/menu-items/",
+      "name": "Capricciosa Pizza",
+      "price": 337.25
+    },
+    {
+      "restaurant_id": 3,
+      "imgPath": "../../public/menu-items/",
+      "name": "Sashimi Platter",
+      "price": 569.75
+    },
+    {
+      "restaurant_id": 3,
+      "imgPath": "../../public/menu-items/",
+      "name": "California Roll",
+      "price": 224.75
+    },
+    {
+      "restaurant_id": 3,
+      "imgPath": "../../public/menu-items/",
+      "name": "Tempura Udon",
+      "price": 324.75
+    },
+    {
+        "restaurant_id": 4,
+        "imgPath": "../../public/menu-items/",
+        "name": "Butter Chicken",
+        "price": 289.75
+      },
+      {
+        "restaurant_id": 4,
+        "imgPath": "../../public/menu-items/",
+        "name": "Naan Bread",
+        "price": 59.75
+      },
+      {
+        "restaurant_id": 4,
+        "imgPath": "../../public/menu-items/",
+        "name": "Palak Paneer",
+        "price": 229.75
+      },
+    {
+      "restaurant_id": 5,
+      "imgPath": "../../public/menu-items/",
+      "name": "Veggie Burger",
+      "price": 324.75
+    },
+    {
+      "restaurant_id": 5,
+      "imgPath": "../../public/menu-items/",
+      "name": "Quinoa Salad",
+      "price": 299.75
+    },
+    {
+      "restaurant_id": 5,
+      "imgPath": "../../public/menu-items/",
+      "name": "Sweet Potato Fries",
+      "price": 149.75
+    }
+  ]
