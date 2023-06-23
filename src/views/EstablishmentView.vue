@@ -1,6 +1,5 @@
 <script>
-import HomeViewNav from '../components/navbars/HomeViewNav.vue'
-import EstablishmentViewNav from '../components/navbars/EstablishmentViewNav.vue'
+import SearchBarLoggedIn from '../components/navbars/SearchBarLoggedIn.vue'
 import AddReviewModal from '../components/AddReviewModal.vue'
 
 import MenuItem from '../components/MenuItem.vue'
@@ -9,7 +8,7 @@ import EstablishmentReview from '../components/EstablishmentReview.vue'
 export default {
   props: ['id'],
   components: {
-    HomeViewNav,
+    SearchBarLoggedIn,
     MenuItem,
     EstablishmentReview,
     AddReviewModal
@@ -121,7 +120,7 @@ export default {
 </script>
 
 <template>
-  <HomeViewNav></HomeViewNav>
+  <SearchBarLoggedIn name="Johndayll Arizala" image="/public/profile/pfps/1.png"></SearchBarLoggedIn>
   <div class="socials">
     <img src="/src/assets/profile-view/facebook.png" alt="" />
     <img src="/src/assets/profile-view/instagram.png" alt="" />

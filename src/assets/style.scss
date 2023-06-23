@@ -89,6 +89,47 @@ $background-color: #1d1d1f;
   font-family: Rowdies;
   color: white;
 }
+.log-nav-button {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #5ddb8f 0%, #35c56f 100%);
+  padding: 0;
+  border: none;
+  img {
+    height: 1.5em;
+    border-radius: 2px;
+    padding: 0;
+  }
+  span {
+    color: #fff;
+    font-size: 0.8rem;
+    font-family: SpaceGrotesk;
+    font-weight: 700;
+    margin-right: 0.7rem;
+  }
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.nav-search {
+  display: flex;
+  width: 18.75rem;
+  height: 2.125rem;
+  padding: 0rem 0.625rem;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 8px;
+  background: #fff;
+
+  color: #31363c;
+  font-size: 0.8rem;
+  font-family: SpaceGrotesk;
+  font-weight: 300;
+}
 .nav-button {
   background: linear-gradient(180deg, #5ddb8f 0%, #35c56f 100%);
   box-shadow: 4px 4px 16px 12px rgba(0, 0, 0, 0.12);
