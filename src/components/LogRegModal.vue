@@ -17,7 +17,7 @@ export default {
 
 <template>
   <div class="backdrop" @click.self="closeModal">
-    <div class="modal">
+    <div class="modal" style="position: static">
       <div class="left">
         <div class="flex-col">
           <span class="main-text">Welcome to Forage</span>

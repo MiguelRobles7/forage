@@ -24,11 +24,11 @@ export default {
       users: Users,
       reviews: [
         {
-          user_name: Users[0].name, 
+          user_name: Users[0].name,
           user_image: Users[0].profile_picture,
           title: Reviews[5].title,
           rating: 5,
-          body: Reviews[5].body, 
+          body: Reviews[5].body,
           images: [],
           upvotes: Reviews[5].upvotes,
           downvotes: 1,
@@ -41,11 +41,11 @@ export default {
           ]
         },
         {
-          user_name: Users[1].name,
+          user_name: Users[1].name + ' • Edited',
           user_image: Users[1].profile_picture,
-          title: Reviews[3].title, 
+          title: Reviews[3].title,
           rating: 5,
-          body:  Reviews[3].body,
+          body: Reviews[3].body,
           images: [],
           upvotes: Reviews[3].upvotes,
           downvotes: 1
@@ -53,9 +53,9 @@ export default {
         {
           user_name: Users[2].name,
           user_image: Users[2].profile_picture,
-          title: Reviews[0].title, 
+          title: Reviews[0].title,
           rating: 5,
-          body:  Reviews[0].body,
+          body: Reviews[0].body,
           images: [],
           upvotes: Reviews[0].upvotes,
           downvotes: 1
@@ -63,9 +63,9 @@ export default {
         {
           user_name: Users[3].name,
           user_image: Users[3].profile_picture,
-          title: Reviews[4].title, 
+          title: Reviews[4].title,
           rating: 5,
-          body:  Reviews[4].body,
+          body: Reviews[4].body,
           images: [],
           upvotes: Reviews[4].upvotes,
           downvotes: 1
@@ -73,9 +73,9 @@ export default {
         {
           user_name: Users[4].name,
           user_image: Users[4].profile_picture,
-          title: Reviews[3].title, 
+          title: Reviews[3].title,
           rating: 5,
-          body:  Reviews[3].body,
+          body: Reviews[3].body,
           images: [],
           upvotes: Reviews[3].upvotes,
           downvotes: 1

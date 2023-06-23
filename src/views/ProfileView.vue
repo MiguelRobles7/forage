@@ -42,11 +42,6 @@ export default {
           name: 'Boy Besprend Bar',
           average_rating: 5,
           image: '/src/assets/profile-view/bbb.png'
-        },
-        {
-          name: 'Kabadingan Kainan',
-          average_rating: 5,
-          image: '/src/assets/profile-view/kabadingan.png'
         }
       ],
       reviews: [

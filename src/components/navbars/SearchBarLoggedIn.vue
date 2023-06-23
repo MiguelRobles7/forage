@@ -1,20 +1,26 @@
 <script>
 export default {
-  props: { name: String, image: String }
+  props: { name: String, image: String },
+  methods: {
+    click() {
+      console.log('imy')
+      window.location.href = '../profile-view/1'
+    }
+  }
 }
 </script>
 <template>
   <nav class="navbar" style="background-color: #0d1115">
     <div class="container-fluid">
       <div class="nav-item">
-        <a class="navbar-brand" href="/index"> Forage </a>
+        <a class="navbar-brand" href="/"> Forage </a>
         <input class="nav-search" type="text" placeholder="🔎︎ What are you craving?" />
       </div>
 
       <div class="d-flex column-gap-3 align-items-center">
-        <button class="log-nav-button">
+        <button class="log-nav-button" @click="click">
           <img :src="image" alt="" />
-          <span>{{ name }}</span>
+          <span> {{ name }}</span>
         </button>
         <button class="nav-button">Log Out</button>
       </div>
