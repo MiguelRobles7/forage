@@ -84,7 +84,7 @@ export default {
         if (!passwordMatch) {
           this.passwordText = 'Password is incorrect!'
         } else {
-          this.$router.push('/home')
+          this.$emit('close')
         }
       }
     },
