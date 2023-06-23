@@ -129,7 +129,7 @@ export default {
           <div class="info">{{ restaurant.reviewCount }} Rating</div>
           <div class="dot">•</div>
 
-          <div class="info">{{ restaurant.price }}</div>
+          <div class="info">{{ restaurant.price_range }}</div>
           <div class="dot">•</div>
 
           <img src="/src/assets/icons/clock.png" alt="" class="icon" />
@@ -151,21 +151,9 @@ export default {
       <div class="title">What's in the menu?</div>
       <div class="flex-col gap-3">
         <div class="flex-row gap-3">
-          <MenuItem
-            :imgPath="menu_items[0].imgPath"
-            :name="menu_items[0].name"
-            :price="menu_items[0].price"
-          ></MenuItem>
-          <MenuItem
-            :imgPath="menu_items[1].imgPath"
-            :name="menu_items[1].name"
-            :price="menu_items[1].price"
-          ></MenuItem>
-          <MenuItem
-            :imgPath="menu_items[2].imgPath"
-            :name="menu_items[2].name"
-            :price="menu_items[2].price"
-          ></MenuItem>
+          <MenuItem :imgPath="menu_items[0].imgPath" :name="menu_items[0].name" :price="menu_items[0].price"></MenuItem>
+          <MenuItem :imgPath="menu_items[1].imgPath" :name="menu_items[1].name" :price="menu_items[1].price"></MenuItem>
+          <MenuItem :imgPath="menu_items[2].imgPath" :name="menu_items[2].name" :price="menu_items[2].price"></MenuItem>
         </div>
       </div>
     </div>
