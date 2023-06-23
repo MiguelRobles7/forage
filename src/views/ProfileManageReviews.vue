@@ -24,10 +24,11 @@ export default {
       zip_code: '1550',
       reviews: [
         {
+          restaurant: 'Coffee Time',
           title: 'Simply the best latte in town',
           rating: 5,
           body: 'The latte at your coffee shop is an exquisite work of art, perfectly crafted to delight the senses. Its velvety smoothness dances with the rich aroma of freshly brewed espresso, creating a symphony of flavors that caress the palate with each sip. Savoring your latte is like embarking on a blissful journey, where the harmonious balance of steamed milk and espresso transports me to a realm of pure indulgence. Thank you for creating such a divine elixir that elevates my coffee experience to new heights.',
-          images: ['/src/assets/review-cards/userimage.png'],
+          images: ['/src/assets/coffee-time-bg-s.png'],
           upvotes: 301,
           downvotes: 0
         },
@@ -66,6 +67,7 @@ export default {
           <div class="review-container">
             <div v-for="r in reviews" :key="r">
               <ProfileManageReview
+                :restaurant="r.restaurant"
                 :title="r.title"
                 :rating="r.rating"
                 :body="r.body"
