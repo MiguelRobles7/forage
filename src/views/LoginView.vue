@@ -1,5 +1,4 @@
 <template>
-  <main>
     <LogRegModal type="Login" typeText="your account.">
       <template v-slot:content>
         <form @submit.prevent="submitForm">
@@ -41,13 +40,12 @@
 
             <div class="font-default margin-top">
               <div>Don't have an account?</div>
-              <RouterLink to="/register" class="text-[#2A7E58] underline">Sign up here</RouterLink>
+              <RouterLink to="/register" class="">Sign up here</RouterLink>
             </div>
           </div>
         </form>
       </template>
     </LogRegModal>
-  </main>
 </template>
 
 <script>
@@ -106,13 +104,6 @@ export default {
 </script>
 
 <style scoped>
-.backdrop {
-  top: 0;
-  position: fixed;
-  background: rgba(0, 0, 0, 0.5);
-  width: 100%;
-  height: 100%;
-}
 input {
   background-color: transparent;
 }

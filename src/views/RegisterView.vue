@@ -178,7 +178,7 @@ export default {
       desc: '',
       image: '',
       passwordText: '',
-      currPage: 3
+      currPage: 1
     }
   },
   methods: {

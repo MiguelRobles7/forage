@@ -11,7 +11,6 @@ export default {
 </script>
 
 <template>
-  <main>
     <div class="backdrop">
       <div class="modal">
         <div class="left">
@@ -35,7 +34,6 @@ export default {
         </div>
       </div>
     </div>
-  </main>
 </template>
 
 <style scoped>
