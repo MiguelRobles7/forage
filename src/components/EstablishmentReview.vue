@@ -17,7 +17,7 @@ export default {
 
 <template>
   <div class="review">
-    <img class="reviewer-pfp" src="/public/review-avatar.png" alt="" />
+    <img class="reviewer-pfp" :src="userImg" alt="" />
     <div class="cont">
       <div class="review-item" style="margin-bottom: -0.5vh">
         <span class="tag">{{ userID }}</span>
