@@ -44,7 +44,7 @@ export default {
           downvotes: 1,
           owner_response: [
             'Coffee Time',
-            '/src/assets/coffee-time-logo.png',
+            '/public/coffee-time-logo.png',
             'Thanks!',
             'Thank you for your kind words! We hope to see you again soon.',
             '12'
@@ -143,22 +143,22 @@ export default {
           {{ restaurant.name }}
         </div>
         <div class="d-flex align-items-center mb-1">
-          <img src="../assets/star.png" alt="" class="icon" />
+          <img src="/src/assets/icons/star.png" alt="" class="icon" />
           <div class="info">{{ restaurant.rating }} Rating</div>
           <div class="dot">•</div>
 
-          <img src="../assets/comments.png" alt="" class="icon" />
+          <img src="/src/assets/icons/comments.png" alt="" class="icon" />
           <div class="info">{{ restaurant.reviewCount }} Rating</div>
           <div class="dot">•</div>
 
-          <div class="info">$$$$</div>
+          <div class="info">{{ restaurant.price }}</div>
           <div class="dot">•</div>
 
-          <img src="../assets/clock.png" alt="" class="icon" />
+          <img src="/src/assets/icons/clock.png" alt="" class="icon" />
           <div class="info">{{ restaurant.openingTime }} - {{ restaurant.closingTime }}</div>
         </div>
         <div class="d-flex location align-items-center">
-          <img src="../assets/location.png" alt="" class="icon" />
+          <img src="/src/assets/icons/location.png" alt="" class="icon" />
           <div>{{ restaurant.location }}</div>
         </div>
         <div class="description">

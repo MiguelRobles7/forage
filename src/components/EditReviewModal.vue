@@ -25,11 +25,11 @@ export default {
         <div class="flex-row" style="width: 100%">
           <span class="title">Edit your review for {{ restaurant }}</span>
           <div class="stars" style="width: auto">
-            <img class="star" src="/src/assets/star.png" alt="" />
-            <img class="star" src="/src/assets/star.png" alt="" />
-            <img class="star" src="/src/assets/star.png" alt="" />
-            <img class="star" src="/src/assets/star.png" alt="" />
-            <img class="star" src="/src/assets/star.png" alt="" />
+            <img class="star" src="/src/assets/" alt="" />
+            <img class="star" src="/src/assets/" alt="" />
+            <img class="star" src="/src/assets/" alt="" />
+            <img class="star" src="/src/assets/" alt="" />
+            <img class="star" src="/src/assets/" alt="" />
           </div>
         </div>
         <div class="inner">

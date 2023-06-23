@@ -66,12 +66,3 @@ export default {
     </div>
   </main>
 </template>
-
-<style>
-.gradient-bg {
-  background: linear-gradient(-7.28deg, #1d1d1f 24.57%, rgba(29, 29, 31, 0.2) 90.45%), url('../assets/home-bg.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 130vh;
-}
-</style>

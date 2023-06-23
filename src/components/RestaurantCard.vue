@@ -23,11 +23,11 @@ export default {
       :style="`background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(${bgImgPath});`"
     >
       <div class="flex-row def-gap stats">
-        <img src="../assets/star.png" alt="" class="def-icon" />
+        <img src="/src/assets/icons/star.png" alt="" class="def-icon" />
         <div class="icon-font">{{ rating }} rating</div>
         <div class="icon-font">●</div>
 
-        <img src="../assets/comments.png" alt="" class="def-icon" />
+        <img src="/src/assets/icons/comments.png" alt="" class="def-icon" />
         <div class="icon-font">{{ reviewCount }} reviews</div>
         <div class="icon-font">●</div>
         <!-- TODO: Replace with innovative way to make some dollars greyer based on price range  -->
