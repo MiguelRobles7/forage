@@ -39,8 +39,11 @@ export default {
         <a href="" class="nav-link font-default"> Home </a>
         <a href="#highlights" class="nav-link font-default"> Highlights </a>
         <a href="#top" class="nav-link font-default"> Top Reviews </a>
-        <button class="nav-button" @click="toggleRegister">Sign Up</button>
-        <button class="nav-button" @click="toggleLogin">Log In</button>
+        <button class="log-nav-button">
+          <img :src="image" alt="" />
+          <span>{{ name }}</span>
+        </button>
+        <button class="nav-button">Log Out</button>
       </div>
     </div>
   </nav>
