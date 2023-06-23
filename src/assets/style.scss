@@ -74,7 +74,58 @@ $background-color: #1d1d1f;
   color: white;
   overflow-x: hidden;
 }
+h1 {
+  /* font-size: 20rem; */
+  color: white;
+}
+.modal {
+  position: static;
+  width: 60vw;
+  height: 75vh;
+  background: linear-gradient(180deg, #f4f2eb -1.7%, #b8b6b2 99.51%);
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  .left {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    background-image: url('/src/assets/LogRegModal/LogRegbg.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5em;
 
+    .main-text {
+      font-size: 3rem;
+      font-family: TTInterphases;
+      font-weight: bold;
+    }
+    .sub-text {
+      font-size: 0.9em;
+      font-family: TTInterphases;
+      width: 80%;
+    }
+  }
+  .right {
+    padding: 3em;
+    color: black;
+    .blob {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: -1;
+    }
+
+    .head {
+      font-size: 2.5rem;
+      font-family: TTInterphases;
+      font-weight: bold;
+    }
+  }
+}
 .nav-link {
   font-size: $font-regular;
   font-family: SpaceGrotesk;
@@ -206,14 +257,55 @@ $background-color: #1d1d1f;
   overflow: hidden;
 }
 
-.flex-col {
-  display: flex;
-  flex-direction: column;
-}
 .flex-row {
   display: flex;
   flex-direction: row;
 }
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+.modal-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 24px;
+  gap: 10px;
+  background: linear-gradient(180deg, #1a2228 0%, #191920 100%);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 19px;
+
+  width: fit-content;
+  color: white;
+
+  font-family: SpaceGrotesk;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.7em;
+  line-height: 14px;
+  letter-spacing: 0.2em;
+}
+.input-def {
+  color: #000000;
+  font-family: 'SpaceGrotesk';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  opacity: 1;
+}
+
+.input-parent {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  border-bottom: 1px solid #1a2228;
+  margin-bottom: 1rem;
+  max-width: 25vw;
+  border-width: 0 0 1px 0;
+}
+
 .flex-row-right {
   display: flex;
   flex-direction: row-reverse;
