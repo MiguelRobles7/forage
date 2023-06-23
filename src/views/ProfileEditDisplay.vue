@@ -8,8 +8,8 @@ export default {
   },
   data() {
     return {
-      profile_picture: '/src/assets/profile-edit-display/user.png',
-      banner: '/src/assets/profile-edit-display/cover.png',
+      profile_picture: '/public/profile/pfps/1.png',
+      banner: '/public/profile/banners/1.png',
       name: 'I miss you balik ka na',
       account_type: 'personal ',
       description:
