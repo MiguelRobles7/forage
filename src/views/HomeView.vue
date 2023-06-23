@@ -1,7 +1,7 @@
 <script>
 import HomeViewNav from '../components/navbars/HomeViewNav.vue'
 import RestaurantCard from '../components/RestaurantCard.vue'
-import restoCard from '../views/JSON/restocard.json'
+import restoCard from '../views/JSON/restaurants.json'
 export default {
   components: {
     HomeViewNav,
