@@ -5,6 +5,16 @@ import Profiles from '../views/JSON/profiles.json'
 
 export default {
   props: { id: Number },
+  methods: {
+    review() {
+      console.log('imy')
+      window.location.href = '../owner-manage-reviews'
+    },
+    setting() {
+      console.log('imy')
+      window.location.href = '../profile-edit-display'
+    }
+  },
   components: {
     DefaultBarLoggedIn,
     ProfileReview
@@ -75,6 +85,12 @@ export default {
     <DefaultBarLoggedIn name="Johndayll Arizala" image="/public/profile/pfps/1.png"></DefaultBarLoggedIn>
     <div class="profile-view">
       <div class="socials">
+        <button @click="review" style="border: none; border-radius: 8px; padding: 0 !important; margin: none">
+          <img src="/public/review.png" alt="" style="width: 2.3em; height: auto" />
+        </button>
+        <button @click="setting" style="border: none; border-radius: 8px; padding: 0 !important; margin: none">
+          <img src="/public/setting.png" alt="" style="width: 2.3em; height: auto" />
+        </button>
         <img src="/src/assets/profile-view/facebook.png" alt="" />
         <img src="/src/assets/profile-view/instagram.png" alt="" />
         <img src="/src/assets/profile-view/twitter.png" alt="" />

@@ -11,7 +11,7 @@ import internal from 'stream'
     <div class="redirect-container">
       <div class="redirect-item">
         <img class="icon" src="/src/assets/profile-edit-redirect/display.svg" alt="" />
-        <span>Display Settings </span>
+        <span> <a href="../profile-edit-display"> Display Settings </a> </span>
       </div>
       <div class="redirect-item">
         <img class="icon" src="/src/assets/profile-edit-redirect/account-setting.svg" alt="" />
@@ -23,7 +23,7 @@ import internal from 'stream'
       </div>
       <div class="redirect-item">
         <img class="icon" src="/src/assets/profile-edit-redirect/manage-reviews.svg" alt="" />
-        <span>Manage Reviews </span>
+        <span> <a href="../profile-manage-reviews"> Manage Reviews </a> </span>
       </div>
     </div>
   </div>

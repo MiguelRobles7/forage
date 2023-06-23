@@ -1,11 +1,13 @@
 <script>
 import LoginModal from '../../views/LoginView.vue'
+import { RouterLink } from 'vue-router'
 import RegisterModal from '../../views/RegisterView.vue'
 
 export default {
   components: {
     LoginModal,
-    RegisterModal
+    RegisterModal,
+    RouterLink
   },
   props: { name: String, image: String },
 
@@ -23,6 +25,10 @@ export default {
 
     toggleRegister() {
       this.showRegister = !this.showRegister
+    },
+
+    click() {
+      this.$router.push('/profile-view/1')
     }
   }
 }
@@ -40,10 +46,11 @@ export default {
         <a href="" class="nav-link font-default"> Home </a>
         <a href="#highlights" class="nav-link font-default"> Highlights </a>
         <a href="#top" class="nav-link font-default"> Top Reviews </a>
-        <button class="log-nav-button">
+        <button class="log-nav-button" @click="click">
           <img :src="image" alt="" />
           <span> {{ name }}</span>
         </button>
+
         <button class="nav-button">Log Out</button>
       </div>
     </div>
