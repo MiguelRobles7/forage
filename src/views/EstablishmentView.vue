@@ -21,6 +21,7 @@ export default {
     return {
       modal: false,
       restaurants: Restaurants,
+      users: Users,
       reviews: [
         {
           user_name: Users[0].name, 
@@ -86,10 +87,6 @@ export default {
       ],
       menu: MenuItems
     }
-  },
-
-  mounted() {
-    console.log('miss na kita, legit')
   },
 
   computed: {
@@ -217,7 +214,8 @@ export default {
             :key="reviews[0]"
             :ownerReply="reviews[0].owner_response"
             :userImg="reviews[0].user_image"
-            :userID="reviews[0].user_name"
+            :userID="users[0].id"
+            :userName="reviews[0].user_name"
             :title="reviews[0].title"
             :content="reviews[0].body"
             :stars="reviews[0].rating"
@@ -231,7 +229,8 @@ export default {
             :key="reviews[1]"
             :ownerReply="reviews[1].owner_response"
             :userImg="reviews[1].user_image"
-            :userID="reviews[1].user_name"
+            :userID="users[1].id"
+            :userName="reviews[1].user_name"
             :title="reviews[1].title"
             :content="reviews[1].body"
             :stars="reviews[1].rating"
@@ -243,7 +242,8 @@ export default {
             :key="reviews[2]"
             :ownerReply="reviews[2].owner_response"
             :userImg="reviews[2].user_image"
-            :userID="reviews[2].user_name"
+            :userID="users[2].id"
+            :userName="reviews[2].user_name"
             :title="reviews[2].title"
             :content="reviews[2].body"
             :stars="reviews[2].rating"
@@ -257,7 +257,8 @@ export default {
             :key="reviews[3]"
             :ownerReply="reviews[3].owner_response"
             :userImg="reviews[3].user_image"
-            :userID="reviews[3].user_name"
+            :userID="users[3].id"
+            :userName="reviews[3].user_name"
             :title="reviews[3].title"
             :content="reviews[3].body"
             :stars="reviews[3].rating"
@@ -269,7 +270,8 @@ export default {
             :key="reviews[4]"
             :ownerReply="reviews[4].owner_response"
             :userImg="reviews[4].user_image"
-            :userID="reviews[4].user_name"
+            :userID="this.users[4].id"
+            :userName="reviews[4].user_name"
             :title="reviews[4].title"
             :content="reviews[4].body"
             :stars="reviews[4].rating"

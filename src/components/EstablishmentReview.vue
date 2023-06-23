@@ -1,26 +1,31 @@
 <script>
 import internal from 'stream'
 
+import { RouterLink } from 'vue-router';
 export default {
-  props: {
-    ownerReply: Array,
-    userImg: String,
-    userID: String,
-    title: String,
-    content: String,
-    stars: Number,
-    upvotes: Number,
-    downvotes: Number
-  }
+    props: {
+        ownerReply: Array,
+        userImg: String,
+        userName: String,
+        userID: Number,
+        title: String,
+        content: String,
+        stars: Number,
+        upvotes: Number,
+        downvotes: Number
+    },
+    components: { RouterLink }
 }
 </script>
 
 <template>
   <div class="review">
-    <img class="reviewer-pfp" :src="userImg" alt="" />
+    <RouterLink :to="{name: 'profile-view', params: {id: this.userID}}">
+      <img class="reviewer-pfp" :src="userImg" alt="" />
+    </RouterLink>
     <div class="cont">
       <div class="review-item" style="margin-bottom: -0.5vh">
-        <span class="tag">{{ userID }}</span>
+        <span class="tag">{{ userName }}</span>
         <!-- Phase 2 TODO: Innovative way for starring -->
         <div class="stars">
           <img class="star" src="/src/assets/star.png" alt="" />
