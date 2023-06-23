@@ -43,7 +43,7 @@ const router = createRouter({
       component: () => import('../views/ProfileEditDisplay.vue')
     },
     {
-      path: '/profile-view/:email',
+      path: '/profile-view/:id',
       name: 'profile-view',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
