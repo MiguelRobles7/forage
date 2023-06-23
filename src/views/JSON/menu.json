@@ -1,91 +1,91 @@
 [
     {
       "restaurant_id": 1,
-      "imgPath": "../../public/menu-items/",
+      "imgPath": "../../public/menu-item/espresso.jpg",
       "name": "Espresso",
       "price": 99.75
     },
     {
       "restaurant_id": 1,
-      "imgPath": "../../public/menu-items/",
+      "imgPath": "../../public/menu-item/cappuccino.jpg",
       "name": "Cappuccino",
       "price": 124.75
     },
     {
       "restaurant_id": 1,
-      "imgPath": "../../public/menu-items/",
+      "imgPath": "../../public/menu-item/matcha-latte.jpg",
       "name": "Matcha Latte",
       "price": 136.25
     },
     {
       "restaurant_id": 2,
-      "imgPath": "../../public/menu-items/",
+      "imgPath": "../../public/menu-item/margherita-pizza.jpg",
       "name": "Margherita Pizza",
       "price": 274.75
     },
     {
       "restaurant_id": 2,
-      "imgPath": "../../public/menu-items/",
+      "imgPath": "../../public/menu-item/pepperoni-pizza.jpg",
       "name": "Pepperoni Pizza",
       "price": 324.75
     },
     {
       "restaurant_id": 2,
-      "imgPath": "../../public/menu-items/",
+      "imgPath": "../../public/menu-item/capricciosa-pizza.jpg",
       "name": "Capricciosa Pizza",
       "price": 337.25
     },
     {
       "restaurant_id": 3,
-      "imgPath": "../../public/menu-items/",
+      "imgPath": "../../public/menu-item/sashimi-platter.jpg",
       "name": "Sashimi Platter",
       "price": 569.75
     },
     {
       "restaurant_id": 3,
-      "imgPath": "../../public/menu-items/",
+      "imgPath": "../../public/menu-item/california-roll.jpg",
       "name": "California Roll",
       "price": 224.75
     },
     {
       "restaurant_id": 3,
-      "imgPath": "../../public/menu-items/",
+      "imgPath": "../../public/menu-item/tempura-udon.jpg",
       "name": "Tempura Udon",
       "price": 324.75
     },
     {
-        "restaurant_id": 4,
-        "imgPath": "../../public/menu-items/",
-        "name": "Butter Chicken",
-        "price": 289.75
-      },
-      {
-        "restaurant_id": 4,
-        "imgPath": "../../public/menu-items/",
-        "name": "Naan Bread",
-        "price": 59.75
-      },
-      {
-        "restaurant_id": 4,
-        "imgPath": "../../public/menu-items/",
-        "name": "Palak Paneer",
-        "price": 229.75
-      },
+      "restaurant_id": 4,
+      "imgPath": "../../public/menu-item/butter-chicken.jpg",
+      "name": "Butter Chicken",
+      "price": 289.75
+    },
+    {
+      "restaurant_id": 4,
+      "imgPath": "../../public/menu-item/naan-bread.jpg",
+      "name": "Naan Bread",
+      "price": 59.75
+    },
+    {
+      "restaurant_id": 4,
+      "imgPath": "../../public/menu-item/palak-paneer.jpg",
+      "name": "Palak Paneer",
+      "price": 229.75
+    },
     {
       "restaurant_id": 5,
-      "imgPath": "../../public/menu-items/",
+      "imgPath": "../../public/menu-item/veggie-burger.jpg",
       "name": "Veggie Burger",
       "price": 324.75
     },
     {
       "restaurant_id": 5,
-      "imgPath": "../../public/menu-items/",
+      "imgPath": "../../public/menu-item/quinoa-salad.jpg",
       "name": "Quinoa Salad",
       "price": 299.75
     },
     {
       "restaurant_id": 5,
-      "imgPath": "../../public/menu-items/",
+      "imgPath": "../../public/menu-item/sweet-potato-fries.jpg",
       "name": "Sweet Potato Fries",
       "price": 149.75
     }
