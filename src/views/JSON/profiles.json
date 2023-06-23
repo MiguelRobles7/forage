@@ -1,16 +1,66 @@
 [
-    {
-      "profile_picture": "/src/assets/profile-edit-display/user.png",
-      "banner": "/src/assets/profile-edit-display/cover.png",
-      "name": "I miss you balik ka na",
-      "account_type": "personal ",
-      "description":
-      "Nakatitig sa malayo, may lungkot na bumabalot sa'king puso. Sa mundong puno ng tawa at ngiti, ako'y tila isang tanging damo sa disyerto ng kaligayahan. Ang saklap ng pag-ibig, ito ang aking laging kasama. Sa bawat tibok ng puso, ramdam ko ang pagkirot ng nakaraan. Isang alaala ng mga pangakong binitawan, mga sandaling puno ng tamis, ngunit wala nang natira kundi mga pagsisisi.",
-      "street": "n/a",
-      "city": "Mandaluyong City",
-      "province": "Metro Manila",
-      "country": "Philippines",
-      "zip_code": "1550",
-      "email": "jd@forage.com"
-    }
+  {
+    "profile_picture": "/src/assets/profile-edit-display/user.png",
+    "banner": "/src/assets/profile-edit-display/cover.png",
+    "name": "I miss you balik ka na",
+    "account_type": "personal",
+    "description": "Nakatitig sa malayo, may lungkot na bumabalot sa'king puso. Sa mundong puno ng tawa at ngiti, ako'y tila isang tanging damo sa disyerto ng kaligayahan. Ang saklap ng pag-ibig, ito ang aking laging kasama. Sa bawat tibok ng puso, ramdam ko ang pagkirot ng nakaraan. Isang alaala ng mga pangakong binitawan, mga sandaling puno ng tamis, ngunit wala nang natira kundi mga pagsisisi.",
+    "street": "n/a",
+    "city": "Mandaluyong City",
+    "province": "Metro Manila",
+    "country": "Philippines",
+    "zip_code": "1550",
+    "email": "jd@forage.com"
+  },
+  {
+    "profile_picture": "/src/assets/profile-edit-display/user2.png",
+    "banner": "/src/assets/profile-edit-display/cover2.png",
+    "name": "Jose Raphael Martinez",
+    "account_type": "personal",
+    "description": "I'm a thrill-seeker who loves exploring the great outdoors. From mountain summits to deep sea dives, I'm always up for an adventure. Life is too short to stay within the confines of comfort, so I push my boundaries and embrace the unknown. Join me on my journey as I chase adrenaline and create unforgettable memories.",
+    "street": "Pusong Bato",
+    "city": "Los Angeles",
+    "province": "California",
+    "country": "United States",
+    "zip_code": "90001",
+    "email": "rafa@forage.com"
+  },
+  {
+    "profile_picture": "/src/assets/profile-edit-display/user3.png",
+    "banner": "/src/assets/profile-edit-display/cover3.png",
+    "name": "Don Laude Aspecto",
+    "account_type": "personal",
+    "description": "Food is my passion, and I'm constantly on a quest to discover new flavors and culinary experiences. From street food stalls to Michelin-starred restaurants, I believe that every meal tells a story. Join me as I embark on gastronomic adventures, sharing my favorite dishes, recipes, and hidden gems from around the world.",
+    "street": "Tondo",
+    "city": "Manila",
+    "province": "Île-de-France",
+    "country": "Philippines",
+    "zip_code": "12345",
+    "email": "don@forage.com"
+  },
+  {
+    "profile_picture": "/src/assets/profile-edit-display/user4.png",
+    "banner": "/src/assets/profile-edit-display/cover4.png",
+    "name": "Miguel Robles",
+    "description":"I am an adventurous wanderer, always seeking the thrill of new experiences. Whether it's hiking through dense forests, exploring ancient ruins, or immersing myself in vibrant cultures, I crave the excitement of discovering the unknown. Join me on my journey as I chase adrenaline, create lifelong memories, and unravel the mysteries of the world.",
+    "street": "Dian Street",
+    "city": "Makati",
+    "province": "Tondo",
+    "country": "Philippines",
+    "zip_code": "90001",
+    "email": "miguel@forage.com"
+  },
+  {
+    "profile_picture": "/src/assets/profile-edit-display/user5.png",
+    "banner": "/src/assets/profile-edit-display/cover5.png",
+    "name": "Jason Morales",
+    "description":"Pumupunta sa Paranaque para kumain ng skyflakes at ang motto sa buhay ay 'san ka punta to the moon roadtrip zoom zoom'",
+    "street": "Skyflakes",
+    "city": "Paris",
+    "province": "Mandaluyong",
+    "country": "France",
+    "zip_code": "54321",
+    "email": "miguel@forage.com"
+  }
 ]
+
