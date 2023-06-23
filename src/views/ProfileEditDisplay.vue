@@ -1,9 +1,9 @@
 <script>
-import HomeViewNav from '../components/navbars/HomeViewNav.vue'
+import DefaultBarLoggedIn from '../components/navbars/DefaultBarLoggedIn.vue'
 import ProfileEditRedirect from '../components/ProfileEditRedirect.vue'
 export default {
   components: {
-    HomeViewNav,
+    DefaultBarLoggedIn,
     ProfileEditRedirect
   },
   data() {

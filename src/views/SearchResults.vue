@@ -1,9 +1,9 @@
 <script>
-import HomeViewNav from '../components/navbars/HomeViewNav.vue'
+import DefaultBarLoggedIn from '../components/navbars/HomeViewNav.vue'
 import RestaurantCard from '../components/RestaurantCard.vue'
 export default {
   components: {
-    HomeViewNav,
+    DefaultBarLoggedIn,
     RestaurantCard
   },
 
@@ -109,7 +109,7 @@ export default {
 
 <template>
   <main>
-    <HomeViewNav></HomeViewNav>
+    <DefaultBarLoggedIn name="Johndayll Arizala" image="/public/profile/pfps/1.png"></DefaultBarLoggedIn>
     <div class="search">
       <div class="results">
         <!-- MCO2 TODO: Make this actually search based on a given key -->
