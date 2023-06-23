@@ -2,6 +2,7 @@
 import HomeViewNav from '../components/navbars/HomeViewNav.vue'
 import ProfileReview from '../components/ProfileReview.vue'
 export default {
+  props: ['email'],
   components: {
     HomeViewNav,
     ProfileReview
@@ -77,13 +78,14 @@ export default {
         <img src="/src/assets/profile-view/instagram.png" alt="" />
         <img src="/src/assets/profile-view/twitter.png" alt="" />
       </div>
-      <div class="banner"></div>
+      <div class="banner" :style="`background: linear-gradient(180deg, rgba(29, 29, 31, 0) 0%, #1d1d1f 84.17%),
+      url(${banner});`"></div>
       <div class="content">
         <div class="left">
           <img class="profile-image" :src="profile_picture" alt="" />
           <div class="left-panel">
             <!-- Phase 2 TODO: show  only when user is business owner -->
-            <span>Owned Establishments</span>
+            <span>Owned Establishments {{ email }}</span>
             <div class="establishments">
               <div class="pair" v-for="establishment in establishments" :key="establishment">
                 <img :src="establishment.image" alt="" />

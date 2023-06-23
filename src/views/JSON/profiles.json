@@ -1,0 +1,66 @@
+[
+  {
+    "profile_picture": "/src/assets/profile-edit-display/user.png",
+    "banner": "/src/assets/profile-edit-display/cover.png",
+    "name": "Johndayll Arizala",
+    "account_type": "personal",
+    "description": "As I step into the bustling restaurant, a wave of enticing aromas envelops me, teasing my senses and setting the stage for my culinary adventure. I can feel the excitement welling up within me, for today I am Johndayll, the passionate food reviewer ready to embark on another gastronomic journey.",
+    "street": "n/a",
+    "city": "Mandaluyong City",
+    "province": "Metro Manila",
+    "country": "Philippines",
+    "zip_code": "1550",
+    "email": "jd@forage.com"
+  },
+  {
+    "profile_picture": "/src/assets/profile-edit-display/user2.jpg",
+    "banner": "/src/assets/profile-edit-display/cover.png",
+    "name": "Jose Raphael Martinez",
+    "account_type": "personal",
+    "description": "I'm a thrill-seeker who loves exploring the great outdoors. From mountain summits to deep sea dives, I'm always up for an adventure. Life is too short to stay within the confines of comfort, so I push my boundaries and embrace the unknown. Join me on my journey as I chase adrenaline and create unforgettable memories.",
+    "street": "Ocean Avenue",
+    "city": "Santa Monica",
+    "province": "California",
+    "country": "United States",
+    "zip_code": "90401",
+    "email": "rafa@forage.com"
+  },
+  {
+    "profile_picture": "/src/assets/profile-edit-display/user3.jpg",
+    "banner": "/src/assets/profile-edit-display/cover.png",
+    "name": "Don Laude Aspecto",
+    "account_type": "personal",
+    "description": "Food is my passion, and I'm constantly on a quest to discover new flavors and culinary experiences. From street food stalls to Michelin-starred restaurants, I believe that every meal tells a story. Join me as I embark on gastronomic adventures, sharing my favorite dishes, recipes, and hidden gems from around the world.",
+    "street": "Calle Mayor",
+    "city": "Madrid",
+    "province": "Madrid",
+    "country": "Spain",
+    "zip_code": "28013",
+    "email": "don@forage.com"
+  },
+  {
+    "profile_picture": "/src/assets/profile-edit-display/user4.jpg",
+    "banner": "/src/assets/profile-edit-display/cover.png",
+    "name": "Miguel Robles",
+    "description":"I am an adventurous wanderer, always seeking the thrill of new experiences. Whether it's hiking through dense forests, exploring ancient ruins, or immersing myself in vibrant cultures, I crave the excitement of discovering the unknown. Join me on my journey as I chase adrenaline, create lifelong memories, and unravel the mysteries of the world.",
+    "street": "Schlossstraße",
+    "city": "Heidelberg",
+    "province": "Baden-Württemberg",
+    "country": "Germany",
+    "zip_code": "69117",
+    "email": "miguel@forage.com"
+  },
+  {
+    "profile_picture": "/src/assets/profile-edit-display/user5.jpg",
+    "banner": "/src/assets/profile-edit-display/cover.png",
+    "name": "Jason Morales",
+    "description":"Beyond the food itself, I relish in the stories shared by the passionate chefs and the dedicated staff. Their tales of inspiration, dedication, and perseverance add depth to the dishes, breathing life into every morsel. I listen intently, eager to understand the vision behind each creation, and to connect with the hearts behind the kitchen doors.",
+    "street": "Rue Saint-Jean",
+    "city": "Annecy",
+    "province": "Haute-Savoie",
+    "country": "France",
+    "zip_code": "74000",
+    "email": "jason@forage.com"
+  }
+]
+
