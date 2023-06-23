@@ -26,7 +26,12 @@ export default {
             <div class="display-text">Explore New Flavors</div>
             <div class="display-text">Find New Favorites</div>
           </div>
-          <input type="text" class="col index-search" placeholder="Search..." />
+          <div>
+            <input type="text" class="col index-search" placeholder="Search..." />
+            <button style="margin-left: -2.5em; background: none; border: none">
+              <RouterLink to="/search-results/coffee">🔎︎</RouterLink>
+            </button>
+          </div>
           <div class="font-default" style="width: 35%">
             With Forage, you can access a vast community of passionate food enthusiasts who share their honest reviews
             and recommendations.
@@ -36,7 +41,7 @@ export default {
     </div>
 
     <div class="gradient-wrapper">
-      <div class="gradient-box-type-1">
+      <div class="gradient-box-type-1" id="highlights">
         <div class="title">The latest craze spots around.</div>
         <div class="flex-row gap-3">
           <div class="flex-col gap-3">
@@ -49,6 +54,7 @@ export default {
                 :summary="restaurants[0].summary"
                 :rating="restaurants[0].rating"
                 :reviewCount="restaurants[0].reviewCount"
+                :price="restaurants[0].price_range"
               ></RestaurantCard>
             </RouterLink>
             <RouterLink :to="{ name: 'establishment', params: { id: restaurants[1].restaurant_id } }">
@@ -60,6 +66,7 @@ export default {
                 :summary="restaurants[1].summary"
                 :rating="restaurants[1].rating"
                 :reviewCount="restaurants[1].reviewCount"
+                :price="restaurants[1].price_range"
               ></RestaurantCard>
             </RouterLink>
           </div>
@@ -73,6 +80,7 @@ export default {
                 :summary="restaurants[2].summary"
                 :rating="restaurants[2].rating"
                 :reviewCount="restaurants[2].reviewCount"
+                :price="restaurants[2].price_range"
               ></RestaurantCard>
             </RouterLink>
             <RouterLink :to="{ name: 'establishment', params: { id: restaurants[3].restaurant_id } }">
@@ -84,13 +92,14 @@ export default {
                 :summary="restaurants[3].summary"
                 :rating="restaurants[3].rating"
                 :reviewCount="restaurants[3].reviewCount"
+                :price="restaurants[3].price_range"
               ></RestaurantCard>
             </RouterLink>
           </div>
         </div>
       </div>
 
-      <div class="gradient-box-type-2">
+      <div class="gradient-box-type-2" id="top">
         <div class="title">The latest craze spots around.</div>
         <div class="flex-row gap-3">
           <div class="flex-col gap-3">
@@ -103,6 +112,7 @@ export default {
                 :summary="restaurants[4].summary"
                 :rating="restaurants[4].rating"
                 :reviewCount="restaurants[4].reviewCount"
+                :price="restaurants[4].price_range"
               ></RestaurantCard>
             </RouterLink>
             <RouterLink :to="{ name: 'establishment', params: { id: restaurants[0].restaurant_id } }">
@@ -114,6 +124,7 @@ export default {
                 :summary="restaurants[0].summary"
                 :rating="restaurants[0].rating"
                 :reviewCount="restaurants[0].reviewCount"
+                :price="restaurants[0].price_range"
               ></RestaurantCard>
             </RouterLink>
           </div>
@@ -127,6 +138,7 @@ export default {
                 :summary="restaurants[3].summary"
                 :rating="restaurants[3].rating"
                 :reviewCount="restaurants[3].reviewCount"
+                :price="restaurants[3].price_range"
               ></RestaurantCard>
             </RouterLink>
             <RouterLink :to="{ name: 'establishment', params: { id: restaurants[2].restaurant_id } }">
@@ -138,6 +150,7 @@ export default {
                 :summary="restaurants[2].summary"
                 :rating="restaurants[2].rating"
                 :reviewCount="restaurants[2].reviewCount"
+                :price="restaurants[2].price_range"
               ></RestaurantCard>
             </RouterLink>
           </div>
