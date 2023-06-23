@@ -36,7 +36,7 @@ export default {
     </div>
 
     <div class="gradient-wrapper">
-      <div class="gradient-box-type-1">
+      <div class="gradient-box-type-1" id="highlights">
         <div class="title">The latest craze spots around.</div>
         <div class="flex-row gap-3">
           <div class="flex-col gap-3">
@@ -86,7 +86,7 @@ export default {
         </div>
       </div>
 
-      <div class="gradient-box-type-2">
+      <div class="gradient-box-type-2" id="top">
         <div class="title">Everybody's favorites.</div>
         <div class="flex-row gap-3">
           <div class="flex-col gap-3">
