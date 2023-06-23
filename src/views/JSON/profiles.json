@@ -11,7 +11,14 @@
     "province": "Metro Manila",
     "country": "Philippines",
     "zip_code": "1550",
-    "email": "jd@forage.com"
+    "email": "jd@forage.com",
+
+    "facebook": "",
+    "instagram": "",
+    "twitter": "",
+
+    "owned_establishments_id": [],
+    "user_reviews_id": []
   },
   {
     "id": 2,

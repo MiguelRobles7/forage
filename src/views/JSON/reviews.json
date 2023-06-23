@@ -1,0 +1,18 @@
+[
+  {
+    "id": 0,
+    "owner_id": 0,
+
+    "title": "",
+    "body": "",
+    "given_rating": 0,
+    "upvotes": 0,
+    "downvotes": 0,
+
+    "is_response": false,
+    "is_edited": false,
+    "has_owner_response": false,
+
+    "images": []
+  }
+]
