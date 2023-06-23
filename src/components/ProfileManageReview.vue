@@ -1,14 +1,28 @@
 <script>
 import internal from 'stream'
-
+import EditReviewModal from '../components/EditReviewModal.vue'
 export default {
+  components: {
+    EditReviewModal
+  },
   props: {
+    restaurant: String,
     title: String,
     rating: Number,
     body: String,
     images: Array,
     upvotes: Number,
     downvotes: Number
+  },
+  data() {
+    return {
+      modal: false
+    }
+  },
+  methods: {
+    edit: function () {
+      this.modal = true
+    }
   }
 }
 </script>
@@ -31,13 +45,21 @@ export default {
         <p class="body">{{ body }}</p>
       </div>
     </div>
-    <button>
+    <button class="panel-button" @click="edit" value="view">
       <img src="/src/assets/profile-edit-redirect/manage-edit.svg" alt="" />
+      <EditReviewModal
+        v-if="modal"
+        :restaurant="restaurant"
+        :title="title"
+        :rating="rating"
+        :body="body"
+        :images="images"
+      ></EditReviewModal>
     </button>
-    <button>
+    <button class="panel-button">
       <img src="/src/assets/profile-edit-redirect/manage-delete.svg" alt="" />
     </button>
   </div>
 </template>
-
+<script></script>
 <style></style>
