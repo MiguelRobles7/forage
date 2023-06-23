@@ -7,6 +7,7 @@ export default {
     LoginModal,
     RegisterModal
   },
+  props: { name: String, image: String },
 
   data() {
     return {
@@ -41,7 +42,7 @@ export default {
         <a href="#top" class="nav-link font-default"> Top Reviews </a>
         <button class="log-nav-button">
           <img :src="image" alt="" />
-          <span>{{ name }}</span>
+          <span> {{ name }}</span>
         </button>
         <button class="nav-button">Log Out</button>
       </div>
