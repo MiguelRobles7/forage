@@ -1,9 +1,10 @@
 <script>
 import EstablishmentViewNav from '../components/navbars/EstablishmentViewNav.vue'
+import MenuItem from '../components/MenuItem.vue'
 export default {
   props: ['id'],
   components: {
-    EstablishmentViewNav
+    EstablishmentViewNav, MenuItem
   },
   data() {
     return {
@@ -27,7 +28,7 @@ export default {
         {user_id: 1, name: "Jadnel", password: "ako nalang kasi", image: "", location: "puso nya", description: "Sya parin bro", }
       ],
       menu: [
-        {restaurant_id: 1, item_name: "Original Latte", price: 139.00, image: ""},
+        {restaurant_id: 1, item_name: "Original Latte", price: 139.00, image: "../../public/menu-item/original-latte.png"},
         {restaurant_id: 1, item_name: "Caramel Latte", price: 149.00, image: ""},
         {restaurant_id: 2, item_name: "Vanilla Latte", price: 149.00, image: ""}
       ]
@@ -56,42 +57,140 @@ export default {
 </script>
 
 <template>
-    <div class="establishment-bg" :style="`background:linear-gradient(180deg, rgba(29, 29, 31, 0.00) 0%, #1D1D1F 100%), url(${restaurant.backgroundImg}); background-size:cover; background-position: center center; min-height:40vh`"> 
-    </div>
-    <div class="establishment-card container rounded-3">
-      <div class="row">
-        <div class="col-auto">
-          <img :src="restaurant.logo" alt="" class="rounded-3">
-        </div>
-        <div class="col restaurant-info">
-          <div class="summary">
-           {{ restaurant.summary }} 
-          </div>
-          <div class="name">
-            {{ restaurant.name }}
-          </div>
-          <div class="d-flex align-items-center">
-            <img src="../assets/star.png" alt="" class="icon">
-            <div class="info">{{ restaurant.rating }} Rating</div>
-            <div class="dot">•</div>
-
-            <img src="../assets/comments.png" alt="" class="icon">
-            <div class="info">{{ restaurant.reviewCount }} Rating</div>
-            <div class="dot">•</div>
-
-            <div class="info"> $$$$ </div>
-            <div class="dot">•</div>
-
-            <img src="../assets/clock.png" alt="" class="icon">
-            <div class="info">{{ restaurant.openingTime }} - {{ restaurant.closingTime }}</div>
-          </div>
-          <div class="d-flex location">
-            {{ restaurant.location }}
-          </div>
-          <div class="description">
-            {{ restaurant.description }}
-          </div>
-        </div>
+    <div class="establishment-bg d-flex justify-content-end" :style="`background:linear-gradient(180deg, rgba(29, 29, 31, 0.00) 0%, #1D1D1F 100%), url(${restaurant.backgroundImg}); background-size:cover; background-position: center center; min-height:40vh`"> 
+      <div class="d-flex">
+        Insert Icons
       </div>
+    </div>
+      <div class="establishment-card container rounded-3 mb-5">
+        <div class="row">
+          <div class="col-auto">
+            <img :src="restaurant.logo" alt="" class="rounded-3">
+          </div>
+          <div class="col restaurant-info">
+            <div class="summary">
+             {{ restaurant.summary }} 
+            </div>
+            <div class="name">
+              {{ restaurant.name }}
+            </div>
+            <div class="d-flex align-items-center mb-1">
+              <img src="../assets/star.png" alt="" class="icon">
+              <div class="info">{{ restaurant.rating }} Rating</div>
+              <div class="dot">•</div>
+
+              <img src="../assets/comments.png" alt="" class="icon">
+              <div class="info">{{ restaurant.reviewCount }} Rating</div>
+              <div class="dot">•</div>
+
+              <div class="info"> $$$$ </div>
+              <div class="dot">•</div>
+
+              <img src="../assets/clock.png" alt="" class="icon">
+              <div class="info">{{ restaurant.openingTime }} - {{ restaurant.closingTime }}</div>
+            </div>
+            <div class="d-flex location align-items-center">
+              <img src="../assets/location.png" alt="" class="icon">
+              <div>{{restaurant.location }}</div>
+            </div>
+            <div class="description">
+              {{ restaurant.description }}
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="establishment-content d-flex justify-content-center">
+      <div class="menu-box">
+        <div class="title">
+          What's in the menu?
+        </div>
+        <div class="flex-col gap-3">
+          <div class="flex-row gap-3 justify-content-center">
+            <MenuItem 
+              :imgPath="menu_items[0].image"
+              :name="menu_items[0].item_name"
+              :price="menu_items[0].price"
+            ></MenuItem>
+            <MenuItem 
+              :imgPath="menu_items[0].image"
+              :name="menu_items[0].item_name"
+              :price="menu_items[0].price"
+            ></MenuItem>
+            <MenuItem 
+              :imgPath="menu_items[0].image"
+              :name="menu_items[0].item_name"
+              :price="menu_items[0].price"
+            ></MenuItem>
+            <MenuItem 
+              :imgPath="menu_items[0].image"
+              :name="menu_items[0].item_name"
+              :price="menu_items[0].price"
+            ></MenuItem>
+            <MenuItem 
+              :imgPath="menu_items[0].image"
+              :name="menu_items[0].item_name"
+              :price="menu_items[0].price"
+            ></MenuItem>
+            <MenuItem 
+              :imgPath="menu_items[0].image"
+              :name="menu_items[0].item_name"
+              :price="menu_items[0].price"
+            ></MenuItem>
+            <MenuItem 
+              :imgPath="menu_items[0].image"
+              :name="menu_items[0].item_name"
+              :price="menu_items[0].price"
+            ></MenuItem>
+            <MenuItem 
+              :imgPath="menu_items[0].image"
+              :name="menu_items[0].item_name"
+              :price="menu_items[0].price"
+            ></MenuItem>
+          </div>
+          <div class="flex-row gap-3 justify-content-center">
+            <MenuItem 
+              :imgPath="menu_items[0].image"
+              :name="menu_items[0].item_name"
+              :price="menu_items[0].price"
+            ></MenuItem>
+            <MenuItem 
+              :imgPath="menu_items[0].image"
+              :name="menu_items[0].item_name"
+              :price="menu_items[0].price"
+            ></MenuItem>
+            <MenuItem 
+              :imgPath="menu_items[0].image"
+              :name="menu_items[0].item_name"
+              :price="menu_items[0].price"
+            ></MenuItem>
+            <MenuItem 
+              :imgPath="menu_items[0].image"
+              :name="menu_items[0].item_name"
+              :price="menu_items[0].price"
+            ></MenuItem>
+            <MenuItem 
+              :imgPath="menu_items[0].image"
+              :name="menu_items[0].item_name"
+              :price="menu_items[0].price"
+            ></MenuItem>
+            <MenuItem 
+              :imgPath="menu_items[0].image"
+              :name="menu_items[0].item_name"
+              :price="menu_items[0].price"
+            ></MenuItem>
+            <MenuItem 
+              :imgPath="menu_items[0].image"
+              :name="menu_items[0].item_name"
+              :price="menu_items[0].price"
+            ></MenuItem>
+            <MenuItem 
+              :imgPath="menu_items[0].image"
+              :name="menu_items[0].item_name"
+              :price="menu_items[0].price"
+            ></MenuItem>
+          </div>
+        </div>
+      </div> 
     </div>
 </template>

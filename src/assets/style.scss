@@ -536,3 +536,45 @@ $background-color: #1d1d1f;
     margin-right: .4rem;
   }
 }
+
+.establishment-content{
+  background: linear-gradient(180deg, #1D1D1F 0%, #000 100%);  ;
+}
+
+.menu-box {
+  padding: 1.5rem;
+  width: 85%;
+  background: linear-gradient(180deg, #212124 0%, #111112 100%);
+  border-radius: 8px;
+  border: 4px solid #26262A;
+  box-shadow: 2px 4px 16px 6px rgba(0, 0, 0, 0.08);
+
+  .title {
+    margin-bottom: 1rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
+}
+
+.menu-item-card {
+  padding: 1rem 1rem;
+  font-family: TTInterphases;
+  width: 171px;
+  border: 2px solid #2C2C31;
+  background: #212124;
+  border-radius: 6px;
+  box-shadow: 2px 4px 16px 6px rgba(0, 0, 0, 0.08);
+
+  img {
+    width: 100%;
+  }
+
+  .item-name {
+    font-weight: bold;
+  }
+
+  .item-price {
+    font-weight:900;
+  }
+}
+
