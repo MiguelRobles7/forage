@@ -1,23 +1,17 @@
 <script>
 import HomeViewNav from '../components/navbars/HomeViewNav.vue'
 import ProfileReview from '../components/ProfileReview.vue'
+import Profiles from '../views/JSON/profiles.json'
+
 export default {
+  props: { id: Number },
   components: {
     HomeViewNav,
     ProfileReview
   },
   data() {
     return {
-      profile_picture: '/src/assets/profile-edit-display/user.png',
-      banner: '/src/assets/profile-edit-display/cover.png',
-      name: 'I miss you balik ka na',
-      description:
-        "Nakatitig sa malayo, may lungkot na bumabalot sa'king puso. Sa mundong puno ng tawa at ngiti, ako'y tila isang tanging damo sa disyerto ng kaligayahan. Ang saklap ng pag-ibig, ito ang aking laging kasama. Sa bawat tibok ng puso, ramdam ko ang pagkirot ng nakaraan. Isang alaala ng mga pangakong binitawan, mga sandaling puno ng tamis, ngunit wala nang natira kundi mga pagsisisi.",
-      street: '',
-      city: 'Mandaluyong City',
-      province: 'Metro Manila',
-      country: 'Philippines',
-      zip_code: '1550',
+      profiles: Profiles,
       establishments: [
         {
           name: 'Sussé Cafe',
@@ -64,6 +58,14 @@ export default {
         }
       ]
     }
+  },
+
+  computed: {
+    Profile() {
+      return this.profiles.filter((profile) => {
+        return profile.id === Number(this.id)
+      })[0]
+    }
   }
 }
 </script>
@@ -77,10 +79,14 @@ export default {
         <img src="/src/assets/profile-view/instagram.png" alt="" />
         <img src="/src/assets/profile-view/twitter.png" alt="" />
       </div>
-      <div class="banner"></div>
+      <div
+        class="banner"
+        :style="`background: linear-gradient(180deg, rgba(29, 29, 31, 0) 0%, #1d1d1f 84.17%),
+      url(${Profile.banner});`"
+      ></div>
       <div class="content">
         <div class="left">
-          <img class="profile-image" :src="profile_picture" alt="" />
+          <img class="profile-image" :src="Profile.profile_picture" alt="" />
           <div class="left-panel">
             <!-- Phase 2 TODO: show  only when user is business owner -->
             <span>Owned Establishments</span>
@@ -102,15 +108,15 @@ export default {
         </div>
         <div class="right">
           <div class="info">
-            <h1>I miss you balik ka na</h1>
+            <h1>{{ Profile.name }}</h1>
             <div class="stats">
               <img src="/src/assets/profile-view/comments.svg" alt="" />
               <span>Wrote {{ reviews.length }} Reviews</span>
               <span>•</span>
               <img src="/src/assets/profile-view/location.svg" alt="" />
-              <span>{{ street }} {{ city }}, {{ province }}, {{ country }} </span>
+              <span>{{ Profile.street }} {{ Profile.city }}, {{ Profile.province }}, {{ Profile.country }} </span>
             </div>
-            <p>{{ description }}</p>
+            <p style="min-height: 17.5vh">{{ Profile.description }}</p>
           </div>
           <div class="filter">
             <span class="selected"> Latest </span>
@@ -119,7 +125,7 @@ export default {
             <span> Lowest </span>
           </div>
           <div class="review-container">
-            <h1>{{ name }}'s Latest Reviews</h1>
+            <h1>{{ Profile.name }}'s Latest Reviews</h1>
             <div class="review-box">
               <div class="review-col">
                 <!-- MCO2 TODO: Dynamically load these -->

@@ -1,0 +1,83 @@
+[
+  {
+    "id": 0,
+    "owner_id": 0,
+
+    "title": "Delightful Ambiance and Scrumptious Brews!",
+    "body": "Coffee Time is an absolute gem! From the moment I stepped in, I was greeted by the warmest staff who made me feel right at home. The interior decor is charming and cozy, perfect for unwinding with a cup of coffee. Speaking of coffee, their brews are a delight to the taste buds. I tried their signature cappuccino, and it was the perfect balance of rich flavors and velvety texture. The pastries they offer are equally mouthwatering, and I couldn't resist indulging in a freshly baked croissant. Coffee Time has definitely become my go-to spot for a caffeine fix and a relaxing atmosphere.",
+    "given_rating": 5,
+    "upvotes": 100,
+    "downvotes": 10,
+
+    "is_response": false,
+    "is_edited": false,
+    "has_owner_response": false,
+
+    "images": []
+  },
+  {
+    "id": 1,
+    "owner_id": 1,
+
+    "title": "A Hidden Coffee Paradise!",
+    "body": "If you're a true coffee connoisseur, Coffee Time is a must-visit! Tucked away in a quiet corner of the city, this little café is a hidden gem. The moment you walk in, the aroma of freshly brewed coffee envelops you, instantly awakening your senses. The baristas here are true artists, meticulously crafting each cup with precision and passion. I highly recommend trying their pour-over coffee; it's a mesmerizing experience to watch the water flow through the grounds, extracting the most exquisite flavors. The staff is incredibly knowledgeable and friendly, always ready to recommend the perfect blend based on your preferences. Coffee Time is truly a paradise for coffee lovers!",
+    "given_rating": 4,
+    "upvotes": 20,
+    "downvotes": 3,
+
+    "is_response": false,
+    "is_edited": false,
+    "has_owner_response": false,
+
+    "images": []
+  },
+  {
+    "id": 2,
+    "owner_id": 2,
+
+    "title": "A Slice of Heaven for Coffee Aficionados",
+    "body": "As a self-proclaimed coffee aficionado, I am constantly on the lookout for exceptional cafés, and Coffee Time exceeded my expectations in every way. The moment you enter, you're greeted by the soothing melody of soft jazz and the tantalizing aroma of freshly ground coffee beans. The menu offers a wide variety of coffee options from different regions, each with its own distinct flavor profile. The latte art is simply mesmerizing; it's evident that the baristas take immense pride in their craft. The attention to detail and the use of high-quality ingredients set Coffee Time apart. Whether you're looking for a quick pick-me-up or a tranquil spot to savor your cup of joe, this place is a slice of heaven for all coffee enthusiasts.",
+    "given_rating": 4,
+    "upvotes": 15,
+    "downvotes": 6,
+
+    "is_response": false,
+    "is_edited": false,
+    "has_owner_response": false,
+
+    "images": []
+  },
+  {
+    "id": 3,
+    "owner_id": 3,
+
+    "title": "The Best Espresso",
+    "body": "The espresso at Coffee Time is an absolute delight! It has the perfect balance of boldness and smoothness, leaving a lingering flavor that keeps you coming back for more. The aroma alone is enough to awaken your senses and kickstart your day. The baristas at Coffee Time are true experts in their craft, ensuring that every shot of espresso is brewed to perfection. Whether enjoyed on its own or as the base for other specialty drinks, Coffee Time's espresso is a must-try for all coffee lovers.",
+    "given_rating": 5,
+    "upvotes": 5,
+    "downvotes": 0,
+
+    "is_response": false,
+    "is_edited": false,
+    "has_owner_response": false,
+
+    "images": []
+  },
+  {
+    "id": 4,
+    "owner_id": 4,
+
+    "title": "The Worst Matcha Latte",
+    "body": "I recently had the unfortunate experience of trying Coffee Time's Matcha Latte, and I must say, it was a disappointment. The matcha flavor was incredibly weak, almost nonexistent. It tasted more like a regular milk latte with a hint of artificial sweetness. The texture was thin and watery, lacking the creamy richness that a good matcha latte should have. It seemed like they used low-quality matcha powder, as there was a noticeable bitterness that lingered unpleasantly. Overall, I would not recommend Coffee Time's Matcha Latte if you're looking for an authentic and satisfying matcha experience.",
+    "given_rating": 1,
+    "upvotes": 10,
+    "downvotes": 1,
+
+    "is_response": false,
+    "is_edited": false,
+    "has_owner_response": false,
+
+    "images": []
+  }
+]
+
