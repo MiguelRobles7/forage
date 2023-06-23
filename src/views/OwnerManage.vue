@@ -1,13 +1,13 @@
 <script>
 import HomeViewNav from '../components/navbars/HomeViewNav.vue'
 import ProfileEditRedirect from '../components/ProfileEditRedirect.vue'
-import ProfileManageReview from '../components/ProfileManageReview.vue'
+import OwnerManageReviews from '../components/OwnerManageReviews.vue'
 
 export default {
   components: {
     HomeViewNav,
     ProfileEditRedirect,
-    ProfileManageReview
+    OwnerManageReviews
   },
   data() {
     return {
@@ -48,7 +48,7 @@ export default {
 
 <template>
   <main>
-    <DefaultBarLoggedIn name="Johndayll Arizala" image="/public/profile/pfps/1.png"></DefaultBarLoggedIn>
+    <HomeViewNav></HomeViewNav>
     <div class="profile-edit">
       <div class="left">
         <div class="banner"></div>
@@ -56,17 +56,16 @@ export default {
           <img :src="profile_picture" alt="profile image" class="profile-image" />
           <div class="profile-info">
             <span class="name">{{ name }}</span>
-            <span class="subtext">Your {{ account_type }} account</span>
+            <span class="subtext">{{ account_type }} account</span>
           </div>
         </div>
-        <ProfileEditRedirect></ProfileEditRedirect>
       </div>
       <div class="right">
         <div class="review-settings">
-          <h1>Manage Your Reviews</h1>
+          <h1>Reply to your store's reviews</h1>
           <div class="review-container">
             <div v-for="r in reviews" :key="r">
-              <ProfileManageReview
+              <OwnerManageReviews
                 :restaurant="r.restaurant"
                 :title="r.title"
                 :rating="r.rating"
@@ -74,7 +73,8 @@ export default {
                 :images="r.images"
                 :upvotes="r.upvotes"
                 :downvotes="r.downvotes"
-              ></ProfileManageReview>
+                user="Type"
+              ></OwnerManageReviews>
             </div>
           </div>
         </div>

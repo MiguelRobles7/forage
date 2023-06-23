@@ -26,7 +26,7 @@ export default {
 
 <template>
   <main>
-    <HomeViewNav></HomeViewNav>
+    <DefaultBarLoggedIn name="Johndayll Arizala" image="/public/profile/pfps/1.png"></DefaultBarLoggedIn>
     <div class="profile-edit">
       <div class="left">
         <div class="banner"></div>
@@ -43,34 +43,34 @@ export default {
         <div class="main-settings">
           <h1>Display Settings</h1>
           <div class="setting-item">
-            <span>Display Name</span>
+            <span class="setting-span">Display Name</span>
             <input class="profile-input" type="text" :placeholder="name" />
           </div>
           <div class="setting-item">
-            <span>Description</span>
+            <span class="setting-span">Description</span>
             <textarea class="profile-input" name="" id="" cols="30" rows="10" :placeholder="description"></textarea>
           </div>
           <div class="setting-item">
-            <span>Street Name</span>
+            <span class="setting-span">Street Name</span>
             <input class="profile-input" type="text" :placeholder="street" />
           </div>
           <div class="setting-pair">
             <div class="setting-item">
-              <span>City</span>
+              <span class="setting-span">City</span>
               <input class="profile-input" type="text" :placeholder="city" />
             </div>
             <div class="setting-item">
-              <span>Province</span>
+              <span class="setting-span">Province</span>
               <input class="profile-input" type="text" :placeholder="province" />
             </div>
           </div>
           <div class="setting-pair">
             <div class="setting-item">
-              <span>Country</span>
+              <span class="setting-span">Country</span>
               <input class="profile-input" type="text" :placeholder="country" />
             </div>
             <div class="setting-item">
-              <span>ZIP Code</span>
+              <span class="setting-span">ZIP Code</span>
               <input class="profile-input" type="text" :placeholder="zip_code" style="width: 28%" />
             </div>
           </div>
@@ -81,7 +81,7 @@ export default {
         </div>
         <div class="image-settings">
           <div class="setting-item">
-            <span>Profile Picture</span>
+            <span class="setting-span">Profile Picture</span>
             <img :src="profile_picture" alt="profile image" class="profile-image" />
             <button class="profile-image-button">
               <img src="src\assets\profile-edit-redirect\general.svg" alt="" />
@@ -89,7 +89,7 @@ export default {
             </button>
           </div>
           <div class="setting-item">
-            <span>Banner Picture</span>
+            <span class="setting-span">Banner Picture</span>
             <img :src="banner" alt="banner image" class="banner-image" />
             <button class="banner-image-button">
               <img src="src\assets\profile-edit-redirect\general.svg" alt="" />

@@ -43,12 +43,13 @@ const router = createRouter({
       component: () => import('../views/ProfileEditDisplay.vue')
     },
     {
-      path: '/profile-view',
+      path: '/profile-view/:id',
       name: 'profile-view',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/ProfileView.vue')
+      component: () => import('../views/ProfileView.vue'),
+      props: true
     },
     {
       path: '/search-results',
@@ -65,6 +66,14 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/ProfileManageReviews.vue')
+    },
+    {
+      path: '/owner-manage-reviews',
+      name: 'owner-manage-reviews',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/OwnerManage.vue')
     }
   ]
 })

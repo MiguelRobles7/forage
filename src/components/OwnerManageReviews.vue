@@ -1,9 +1,9 @@
 <script>
 import internal from 'stream'
-import EditReviewModal from '../components/EditReviewModal.vue'
+import OwnerRespondModal from '../components/OwnerRespondModal.vue'
 export default {
   components: {
-    EditReviewModal
+    OwnerRespondModal
   },
   props: {
     restaurant: String,
@@ -12,7 +12,9 @@ export default {
     body: String,
     images: Array,
     upvotes: Number,
-    downvotes: Number
+    downvotes: Number,
+
+    user: String
   },
   data() {
     return {
@@ -46,18 +48,8 @@ export default {
       </div>
     </div>
     <button class="panel-button" @click="edit" value="view">
-      <img src="/src/assets/profile-edit-redirect/manage-edit.svg" alt="" />
-      <EditReviewModal
-        v-if="modal"
-        :restaurant="restaurant"
-        :title="title"
-        :rating="rating"
-        :body="body"
-        :images="images"
-      ></EditReviewModal>
-    </button>
-    <button class="panel-button">
-      <img src="/src/assets/profile-edit-redirect/manage-delete.svg" alt="" />
+      <img src="/public/owner_reply.svg" alt="" />
+      <OwnerRespondModal v-if="modal" :user="user"></OwnerRespondModal>
     </button>
   </div>
 </template>

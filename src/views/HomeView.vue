@@ -1,6 +1,7 @@
 <script>
 import HomeViewNav from '../components/navbars/HomeViewNav.vue'
 import RestaurantCard from '../components/RestaurantCard.vue'
+import restoCard from '../views/JSON/restaurants.json'
 export default {
   components: {
     HomeViewNav,
@@ -9,17 +10,7 @@ export default {
 
   data() {
     return {
-      restaurants: [
-        {
-          logo: '../../public/coffee-time-logo.png',
-          name: 'Coffee Time',
-          summary: 'Coffee • Tea • Pastry • Cafe',
-          description:
-            'Savor our exquisite handcrafted beverages, meticulously prepared by our skilled artisans. From delicate latte art to carefully infused flavors, each cup is a masterpiece that not only delights your taste buds but also captivates your eyes. At Coffee Time, we believe that coffee should be a symphony of aesthetics and taste. Let every sip transport you to a world of flavor and aesthetic in perfect harmony.',
-          reviewCount: 421,
-          rating: 4.8
-        }
-      ]
+      restaurants: restoCard
     }
   }
 }
@@ -49,40 +40,52 @@ export default {
         <div class="title">The latest craze spots around.</div>
         <div class="flex-row gap-3">
           <div class="flex-col gap-3">
-            <RestaurantCard
-              :name="restaurants[0].name"
-              :imgPath="restaurants[0].logo"
-              :description="restaurants[0].description"
-              :summary="restaurants[0].summary"
-              :rating="restaurants[0].rating"
-              :reviewCount="restaurants[0].reviewCount"
-            ></RestaurantCard>
-            <RestaurantCard
-              :name="restaurants[0].name"
-              :imgPath="restaurants[0].logo"
-              :description="restaurants[0].description"
-              :summary="restaurants[0].summary"
-              :rating="restaurants[0].rating"
-              :reviewCount="restaurants[0].reviewCount"
-            ></RestaurantCard>
+            <RouterLink :to="{name: 'establishment', params: {id: restaurants[0].restaurant_id}}">
+              <RestaurantCard
+                :name="restaurants[0].name"
+                :imgPath="restaurants[0].logo"
+                :bgImgPath="restaurants[0].bgCard"
+                :description="restaurants[0].description"
+                :summary="restaurants[0].summary"
+                :rating="restaurants[0].rating"
+                :reviewCount="restaurants[0].reviewCount"
+              ></RestaurantCard>
+            </RouterLink>
+            <RouterLink :to="{name: 'establishment', params: {id: restaurants[1].restaurant_id}}">
+              <RestaurantCard
+                :name="restaurants[1].name"
+                :imgPath="restaurants[1].logo"
+                :bgImgPath="restaurants[1].bgCard"
+                :description="restaurants[1].description"
+                :summary="restaurants[1].summary"
+                :rating="restaurants[1].rating"
+                :reviewCount="restaurants[1].reviewCount"
+              ></RestaurantCard>
+            </RouterLink>
           </div>
           <div class="flex-col gap-3">
-            <RestaurantCard
-              :name="restaurants[0].name"
-              :imgPath="restaurants[0].logo"
-              :description="restaurants[0].description"
-              :summary="restaurants[0].summary"
-              :rating="restaurants[0].rating"
-              :reviewCount="restaurants[0].reviewCount"
-            ></RestaurantCard>
-            <RestaurantCard
-              :name="restaurants[0].name"
-              :imgPath="restaurants[0].logo"
-              :description="restaurants[0].description"
-              :summary="restaurants[0].summary"
-              :rating="restaurants[0].rating"
-              :reviewCount="restaurants[0].reviewCount"
-            ></RestaurantCard>
+            <RouterLink :to="{name: 'establishment', params: {id: restaurants[2].restaurant_id}}">
+              <RestaurantCard
+                :name="restaurants[2].name"
+                :imgPath="restaurants[2].logo"
+                :bgImgPath="restaurants[2].bgCard"
+                :description="restaurants[2].description"
+                :summary="restaurants[2].summary"
+                :rating="restaurants[2].rating"
+                :reviewCount="restaurants[2].reviewCount"
+              ></RestaurantCard>
+            </RouterLink>
+            <RouterLink :to="{name: 'establishment', params: {id: restaurants[3].restaurant_id}}">
+              <RestaurantCard
+                :name="restaurants[3].name"
+                :imgPath="restaurants[3].logo"
+                :bgImgPath="restaurants[3].bgCard"
+                :description="restaurants[3].description"
+                :summary="restaurants[3].summary"
+                :rating="restaurants[3].rating"
+                :reviewCount="restaurants[3].reviewCount"
+              ></RestaurantCard>
+            </RouterLink>
           </div>
         </div>
       </div>
@@ -91,40 +94,52 @@ export default {
         <div class="title">The latest craze spots around.</div>
         <div class="flex-row gap-3">
           <div class="flex-col gap-3">
-            <RestaurantCard
-              :name="restaurants[0].name"
-              :imgPath="restaurants[0].logo"
-              :description="restaurants[0].description"
-              :summary="restaurants[0].summary"
-              :rating="restaurants[0].rating"
-              :reviewCount="restaurants[0].reviewCount"
-            ></RestaurantCard>
-            <RestaurantCard
-              :name="restaurants[0].name"
-              :imgPath="restaurants[0].logo"
-              :description="restaurants[0].description"
-              :summary="restaurants[0].summary"
-              :rating="restaurants[0].rating"
-              :reviewCount="restaurants[0].reviewCount"
-            ></RestaurantCard>
+            <RouterLink :to="{name: 'establishment', params: {id: restaurants[4].restaurant_id}}">
+              <RestaurantCard
+                :name="restaurants[4].name"
+                :imgPath="restaurants[4].logo"
+                :bgImgPath="restaurants[4].bgCard"
+                :description="restaurants[4].description"
+                :summary="restaurants[4].summary"
+                :rating="restaurants[4].rating"
+                :reviewCount="restaurants[4].reviewCount"
+              ></RestaurantCard>
+            </RouterLink>
+            <RouterLink :to="{name: 'establishment', params: {id: restaurants[0].restaurant_id}}">
+              <RestaurantCard
+                :name="restaurants[0].name"
+                :imgPath="restaurants[0].logo"
+                :bgImgPath="restaurants[0].bgCard"
+                :description="restaurants[0].description"
+                :summary="restaurants[0].summary"
+                :rating="restaurants[0].rating"
+                :reviewCount="restaurants[0].reviewCount"
+              ></RestaurantCard>
+            </RouterLink>
           </div>
           <div class="flex-col gap-3">
-            <RestaurantCard
-              :name="restaurants[0].name"
-              :imgPath="restaurants[0].logo"
-              :description="restaurants[0].description"
-              :summary="restaurants[0].summary"
-              :rating="restaurants[0].rating"
-              :reviewCount="restaurants[0].reviewCount"
-            ></RestaurantCard>
-            <RestaurantCard
-              :name="restaurants[0].name"
-              :imgPath="restaurants[0].logo"
-              :description="restaurants[0].description"
-              :summary="restaurants[0].summary"
-              :rating="restaurants[0].rating"
-              :reviewCount="restaurants[0].reviewCount"
-            ></RestaurantCard>
+            <RouterLink :to="{name: 'establishment', params: {id: restaurants[3].restaurant_id}}">
+              <RestaurantCard
+                :name="restaurants[3].name"
+                :imgPath="restaurants[3].logo"
+                :bgImgPath="restaurants[3].bgCard"
+                :description="restaurants[3].description"
+                :summary="restaurants[3].summary"
+                :rating="restaurants[3].rating"
+                :reviewCount="restaurants[3].reviewCount"
+              ></RestaurantCard>
+            </RouterLink>
+            <RouterLink :to="{name: 'establishment', params: {id: restaurants[2].restaurant_id}}">
+              <RestaurantCard
+                :name="restaurants[2].name"
+                :imgPath="restaurants[2].logo"
+                :bgImgPath="restaurants[2].bgCard"
+                :description="restaurants[2].description"
+                :summary="restaurants[2].summary"
+                :rating="restaurants[2].rating"
+                :reviewCount="restaurants[2].reviewCount"
+              ></RestaurantCard>
+            </RouterLink>
           </div>
         </div>
       </div>
@@ -139,4 +154,9 @@ export default {
   background-size: cover;
   min-height: 130vh;
 }
+a {
+  all: unset; 
+  cursor: pointer;
+}
+
 </style>
