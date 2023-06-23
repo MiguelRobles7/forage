@@ -1,12 +1,12 @@
 <script>
-import HomeViewNav from '../components/navbars/HomeViewNav.vue'
+import DefaultBarLoggedIn from '../components/navbars/DefaultBarLoggedIn.vue'
 import ProfileReview from '../components/ProfileReview.vue'
 import Profiles from '../views/JSON/profiles.json'
 
 export default {
   props: { id: Number },
   components: {
-    HomeViewNav,
+    DefaultBarLoggedIn,
     ProfileReview
   },
   data() {
@@ -72,7 +72,7 @@ export default {
 
 <template>
   <main>
-    <HomeViewNav></HomeViewNav>
+    <DefaultBarLoggedIn name="Johndayll Arizala" image="/public/profile/pfps/1.png"></DefaultBarLoggedIn>
     <div class="profile-view">
       <div class="socials">
         <img src="/src/assets/profile-view/facebook.png" alt="" />
