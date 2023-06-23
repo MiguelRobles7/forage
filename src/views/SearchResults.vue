@@ -2,6 +2,9 @@
 import DefaultBarLoggedIn from '../components/navbars/HomeViewNav.vue'
 import RestaurantCard from '../components/RestaurantCard.vue'
 export default {
+  props: {
+    phrase: String
+  },
   components: {
     DefaultBarLoggedIn,
     RestaurantCard
@@ -9,7 +12,6 @@ export default {
 
   data() {
     return {
-      phrase: 'Coffee',
       restaurants: [
         {
           restaurant_id: 1,
@@ -124,7 +126,7 @@ export default {
             :rating="restaurant.rating"
             :reviewCount="restaurant.reviewCount"
             :price="restaurant.price_range"
-            v-if="restaurant.name.includes(phrase)"
+            v-if="restaurant.name.toLowerCase().includes(phrase)"
           ></RestaurantCard>
         </div>
       </div>
