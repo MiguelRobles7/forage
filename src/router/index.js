@@ -57,6 +57,14 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/SearchResults.vue')
+    },
+    {
+      path: '/profile-manage-reviews',
+      name: 'profile-manage-reviews',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/ProfileManageReviews.vue')
     }
   ]
 })
