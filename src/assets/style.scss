@@ -752,6 +752,28 @@ $background-color: #1d1d1f;
   }
 }
 
+.search {
+  background-color: #1d1d1f;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h1 {
+    color: #fff;
+    font-size: 1.5rem;
+    font-family: SpaceGrotesk;
+    font-weight: 700;
+    margin: 0;
+  }
+  .results {
+    display: flex;
+    flex-direction: column;
+
+    width: 40%;
+    gap: 1em;
+  }
+}
+
 .manage-review {
   width: 65vw;
   display: flex;
