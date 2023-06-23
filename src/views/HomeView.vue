@@ -40,24 +40,28 @@ export default {
         <div class="title">The latest craze spots around.</div>
         <div class="flex-row gap-3">
           <div class="flex-col gap-3">
-            <RestaurantCard
-              :name="restaurants[0].name"
-              :imgPath="restaurants[0].logo"
-              :bgImgPath="restaurants[0].bgCard"
-              :description="restaurants[0].description"
-              :summary="restaurants[0].summary"
-              :rating="restaurants[0].rating"
-              :reviewCount="restaurants[0].reviewCount"
-            ></RestaurantCard>
-            <RestaurantCard
-              :name="restaurants[1].name"
-              :imgPath="restaurants[1].logo"
-              :bgImgPath="restaurants[1].bgCard"
-              :description="restaurants[1].description"
-              :summary="restaurants[1].summary"
-              :rating="restaurants[1].rating"
-              :reviewCount="restaurants[1].reviewCount"
-            ></RestaurantCard>
+            <RouterLink :to="{name: 'establishment', params: {id: restaurants[0].restaurant_id}}">
+              <RestaurantCard
+                :name="restaurants[0].name"
+                :imgPath="restaurants[0].logo"
+                :bgImgPath="restaurants[0].bgCard"
+                :description="restaurants[0].description"
+                :summary="restaurants[0].summary"
+                :rating="restaurants[0].rating"
+                :reviewCount="restaurants[0].reviewCount"
+              ></RestaurantCard>
+            </RouterLink>
+            <RouterLink :to="{name: 'establishment', params: {id: restaurants[1].restaurant_id}}">
+              <RestaurantCard
+                :name="restaurants[1].name"
+                :imgPath="restaurants[1].logo"
+                :bgImgPath="restaurants[1].bgCard"
+                :description="restaurants[1].description"
+                :summary="restaurants[1].summary"
+                :rating="restaurants[1].rating"
+                :reviewCount="restaurants[1].reviewCount"
+              ></RestaurantCard>
+            </RouterLink>
           </div>
           <div class="flex-col gap-3">
             <RestaurantCard
@@ -138,4 +142,8 @@ export default {
   background-size: cover;
   min-height: 130vh;
 }
+a {
+  all: unset; 
+}
+
 </style>
