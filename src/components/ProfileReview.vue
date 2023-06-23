@@ -14,7 +14,7 @@ export default {
 </script>
 
 <template>
-  <div class="review">
+  <div class="profile-review">
     <div class="review-item">
       <span>{{ title }}</span>
       <!-- Phase 2 TODO: Innovative way for starring -->

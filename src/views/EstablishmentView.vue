@@ -34,8 +34,33 @@ export default {
         }
       ],
       reviews: [
-        { user_id: 1, restaurant_id: 1, rating: 5, upvotes: 30, review: 'Is good, is chill' },
-        { user_id: 2, restaurant_id: 2, rating: 5, upvotes: 30, review: 'Is good, is chill' }
+        {
+          user_name: 'Jadnel',
+          user_image: '/src/assets/profile-edit-display/user.png',
+          title: 'Fantastic Experience',
+          rating: 5,
+          body: 'I had a fantastic experience at this restaurant. The food was delicious, the service was excellent, and the ambiance was great. Highly recommended!',
+          images: [],
+          upvotes: 23,
+          downvotes: 1,
+          owner_response: [
+            'Coffee Time',
+            '/src/assets/coffee-time-logo.png',
+            'Thanks!',
+            'Thank you for your kind words! We hope to see you again soon.',
+            '12'
+          ]
+        },
+        {
+          user_name: 'Jadnel',
+          user_image: '/src/assets/profile-edit-display/user.png',
+          title: 'Fantastic Experience',
+          rating: 5,
+          body: 'I had a fantastic experience at this restaurant. The food was delicious, the service was excellent, and the ambiance was great. Highly recommended!',
+          images: [],
+          upvotes: 23,
+          downvotes: 1
+        }
       ],
       review_images: [
         { user_id: 1, restaurant_id: 1, rating: 5, upvotes: 30, review: 'Is good, is chill' },
@@ -244,11 +269,61 @@ export default {
           <AddReviewModal v-if="modal" :restaurant="restaurant.name"></AddReviewModal>
         </button>
       </div>
-      <div class="flex-col gap-3">
-        <div class="flex-row gap-3">
-          <EstablishmentReview></EstablishmentReview>
-          <Review></Review>
-          <Review></Review>
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 1.25rem;
+        "
+      >
+        <!-- TODO: Replace this with unique views per column -->
+        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; flex: 1 0 0">
+          <EstablishmentReview
+            v-for="review in reviews"
+            :key="review"
+            :ownerReply="review.owner_response"
+            :userImg="review.user_image"
+            :userID="review.user_name"
+            :title="review.title"
+            :content="review.body"
+            :stars="review.rating"
+            :upvotes="review.upvotes"
+            :downvotes="review.downvotes"
+          >
+          </EstablishmentReview>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; flex: 1 0 0">
+          <EstablishmentReview
+            v-for="review in reviews"
+            :key="review"
+            :ownerReply="review.owner_response"
+            :userImg="review.user_image"
+            :userID="review.user_name"
+            :title="review.title"
+            :content="review.body"
+            :stars="review.rating"
+            :upvotes="review.upvotes"
+            :downvotes="review.downvotes"
+          >
+          </EstablishmentReview>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; flex: 1 0 0">
+          <EstablishmentReview
+            v-for="review in reviews"
+            :key="review"
+            :ownerReply="review.owner_response"
+            :userImg="review.user_image"
+            :userID="review.user_name"
+            :title="review.title"
+            :content="review.body"
+            :stars="review.rating"
+            :upvotes="review.upvotes"
+            :downvotes="review.downvotes"
+          >
+          </EstablishmentReview>
         </div>
       </div>
     </div>
