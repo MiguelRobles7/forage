@@ -1,14 +1,16 @@
 <script>
 export default {
     props: {
-        isReply: Boolean,
-        userImg: String,
         UserID: Number,
+        userImg: String,
+        restaurant_id: Number,
         title: String, 
-        content: String,
-        stars: Number,
+        body: String,
+        images: Array,
+        rating: Number,
         upvotes: Number, 
-        downvotes: Number
+        downvotes: Number,
+        isReply: Boolean
     }
 }
 </script>
