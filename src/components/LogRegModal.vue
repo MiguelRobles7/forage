@@ -16,29 +16,28 @@ export default {
 </script>
 
 <template>
-    <div class="backdrop" @click.self="closeModal">
-      <div class="modal">
-        <div class="left">
-          <div class="flex-col">
-            <span class="main-text">Welcome to Forage</span>
-            <div class="sub-text">
-              Once you've made an account, you'll be able to write your own reviews, upvote or
-              downvote others' reviews, register your own establishment, and get a personalized
-              feed.
-            </div>
-          </div>
-        </div>
-        <div class="right">
-          <span class="head">
-            <span style="color: #2a7e58">{{ type }} </span>
-            {{ typeText }}
-          </span>
-          <div class="title-margin">
-            <slot name="content"></slot>
+  <div class="backdrop" @click.self="closeModal">
+    <div class="modal">
+      <div class="left">
+        <div class="flex-col">
+          <span class="main-text">Welcome to Forage</span>
+          <div class="sub-text">
+            Once you've made an account, you'll be able to write your own reviews, upvote or downvote others' reviews,
+            register your own establishment, and get a personalized feed.
           </div>
         </div>
       </div>
+      <div class="right">
+        <span class="head">
+          <span style="color: #2a7e58">{{ type }} </span>
+          {{ typeText }}
+        </span>
+        <div class="title-margin">
+          <slot name="content"></slot>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <style scoped>
@@ -51,6 +50,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #f8f9fa;
 }
 .title-margin {
   margin-top: 20px;

@@ -26,7 +26,13 @@ export default {
             <div class="display-text">Explore New Flavors</div>
             <div class="display-text">Find New Favorites</div>
           </div>
-          <input type="text" class="col index-search" placeholder="Search..." />
+          <div>
+            <input type="text" class="col index-search" placeholder="Search..." />
+            <button style="margin-left: -2.5em; background: none; border: none">
+              <RouterLink to="/search-results/coffee">🔎︎</RouterLink>
+            </button>
+          </div>
+
           <div class="font-default" style="width: 35%">
             With Forage, you can access a vast community of passionate food enthusiasts who share their honest reviews
             and recommendations.
