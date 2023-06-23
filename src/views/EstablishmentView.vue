@@ -46,8 +46,20 @@ export default {
           owner_response: [
             'Coffee Time',
             '/src/assets/coffee-time-logo.png',
-            'Thank you for your kind words! We hope to see you again soon.'
+            'Thanks!',
+            'Thank you for your kind words! We hope to see you again soon.',
+            '12'
           ]
+        },
+        {
+          user_name: 'Jadnel',
+          user_image: '/src/assets/profile-edit-display/user.png',
+          title: 'Fantastic Experience',
+          rating: 5,
+          body: 'I had a fantastic experience at this restaurant. The food was delicious, the service was excellent, and the ambiance was great. Highly recommended!',
+          images: [],
+          upvotes: 23,
+          downvotes: 1
         }
       ],
       review_images: [
@@ -257,19 +269,59 @@ export default {
           <AddReviewModal v-if="modal" :restaurant="restaurant.name"></AddReviewModal>
         </button>
       </div>
-      <div class="flex-col gap-3">
-        <div class="flex-row gap-3">
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 1.25rem;
+        "
+      >
+        <!-- TODO: Replace this with unique views per column -->
+        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; flex: 1 0 0">
           <EstablishmentReview
             v-for="review in reviews"
             :key="review"
-            :ownerReply="reviews[0].owner_response"
-            :userImg="reviews[0].user_image"
-            :userID="reviews[0].user_name"
-            :title="reviews[0].title"
-            :content="reviews[0].body"
-            :stars="reviews[0].rating"
-            :upvotes="reviews[0].upvotes"
-            :downvotes="reviews[0].downvotes"
+            :ownerReply="review.owner_response"
+            :userImg="review.user_image"
+            :userID="review.user_name"
+            :title="review.title"
+            :content="review.body"
+            :stars="review.rating"
+            :upvotes="review.upvotes"
+            :downvotes="review.downvotes"
+          >
+          </EstablishmentReview>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; flex: 1 0 0">
+          <EstablishmentReview
+            v-for="review in reviews"
+            :key="review"
+            :ownerReply="review.owner_response"
+            :userImg="review.user_image"
+            :userID="review.user_name"
+            :title="review.title"
+            :content="review.body"
+            :stars="review.rating"
+            :upvotes="review.upvotes"
+            :downvotes="review.downvotes"
+          >
+          </EstablishmentReview>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; flex: 1 0 0">
+          <EstablishmentReview
+            v-for="review in reviews"
+            :key="review"
+            :ownerReply="review.owner_response"
+            :userImg="review.user_image"
+            :userID="review.user_name"
+            :title="review.title"
+            :content="review.body"
+            :stars="review.rating"
+            :upvotes="review.upvotes"
+            :downvotes="review.downvotes"
           >
           </EstablishmentReview>
         </div>
