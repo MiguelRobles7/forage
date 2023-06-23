@@ -4,6 +4,8 @@ import AddReviewModal from '../components/AddReviewModal.vue'
 
 import MenuItem from '../components/MenuItem.vue'
 import EstablishmentReview from '../components/EstablishmentReview.vue'
+import Restaurants from './JSON/restaurants.json'
+import MenuItems from './JSON/menu.json'
 
 export default {
   props: ['id'],
@@ -16,22 +18,7 @@ export default {
   data() {
     return {
       modal: false,
-      restaurants: [
-        {
-          restaurant_id: 1,
-          logo: '../../public/coffee-time-logo.png',
-          name: 'Coffee Time',
-          summary: 'Coffee • Tea • Pastry • Cafe',
-          description:
-            'Savor our exquisite handcrafted beverages, meticulously prepared by our skilled artisans. From delicate latte art to carefully infused flavors, each cup is a masterpiece that not only delights your taste buds but also captivates your eyes. At Coffee Time, we believe that coffee should be a symphony of aesthetics and taste. Let every sip transport you to a world of flavor and aesthetic in perfect harmony.',
-          reviewCount: 421,
-          rating: 4.8,
-          backgroundImg: '../../public/restaurant-bg/coffee-time-bg-l.png',
-          location: 'Shangrila Plaza',
-          openingTime: '9:00AM',
-          closingTime: '9:00PM'
-        }
-      ],
+      restaurants: Restaurants,
       reviews: [
         {
           user_name: 'Jadnel',
@@ -75,16 +62,7 @@ export default {
           description: 'Sya parin bro'
         }
       ],
-      menu: [
-        {
-          restaurant_id: 1,
-          item_name: 'Original Latte',
-          price: 139.0,
-          image: '../../public/menu-item/original-latte.png'
-        },
-        { restaurant_id: 1, item_name: 'Caramel Latte', price: 149.0, image: '' },
-        { restaurant_id: 2, item_name: 'Vanilla Latte', price: 149.0, image: '' }
-      ]
+      menu: MenuItems
     }
   },
 
@@ -172,88 +150,21 @@ export default {
     <div class="menu-box">
       <div class="title">What's in the menu?</div>
       <div class="flex-col gap-3">
-        <div class="flex-row gap-3 justify-content-center">
+        <div class="flex-row gap-3">
           <MenuItem
-            :imgPath="menu_items[0].image"
-            :name="menu_items[0].item_name"
+            :imgPath="menu_items[0].imgPath"
+            :name="menu_items[0].name"
             :price="menu_items[0].price"
           ></MenuItem>
           <MenuItem
-            :imgPath="menu_items[0].image"
-            :name="menu_items[0].item_name"
-            :price="menu_items[0].price"
+            :imgPath="menu_items[1].imgPath"
+            :name="menu_items[1].name"
+            :price="menu_items[1].price"
           ></MenuItem>
           <MenuItem
-            :imgPath="menu_items[0].image"
-            :name="menu_items[0].item_name"
-            :price="menu_items[0].price"
-          ></MenuItem>
-          <MenuItem
-            :imgPath="menu_items[0].image"
-            :name="menu_items[0].item_name"
-            :price="menu_items[0].price"
-          ></MenuItem>
-          <MenuItem
-            :imgPath="menu_items[0].image"
-            :name="menu_items[0].item_name"
-            :price="menu_items[0].price"
-          ></MenuItem>
-          <MenuItem
-            :imgPath="menu_items[0].image"
-            :name="menu_items[0].item_name"
-            :price="menu_items[0].price"
-          ></MenuItem>
-          <MenuItem
-            :imgPath="menu_items[0].image"
-            :name="menu_items[0].item_name"
-            :price="menu_items[0].price"
-          ></MenuItem>
-          <MenuItem
-            :imgPath="menu_items[0].image"
-            :name="menu_items[0].item_name"
-            :price="menu_items[0].price"
-          ></MenuItem>
-        </div>
-        <div class="flex-row gap-3 justify-content-center">
-          <MenuItem
-            :imgPath="menu_items[0].image"
-            :name="menu_items[0].item_name"
-            :price="menu_items[0].price"
-          ></MenuItem>
-          <MenuItem
-            :imgPath="menu_items[0].image"
-            :name="menu_items[0].item_name"
-            :price="menu_items[0].price"
-          ></MenuItem>
-          <MenuItem
-            :imgPath="menu_items[0].image"
-            :name="menu_items[0].item_name"
-            :price="menu_items[0].price"
-          ></MenuItem>
-          <MenuItem
-            :imgPath="menu_items[0].image"
-            :name="menu_items[0].item_name"
-            :price="menu_items[0].price"
-          ></MenuItem>
-          <MenuItem
-            :imgPath="menu_items[0].image"
-            :name="menu_items[0].item_name"
-            :price="menu_items[0].price"
-          ></MenuItem>
-          <MenuItem
-            :imgPath="menu_items[0].image"
-            :name="menu_items[0].item_name"
-            :price="menu_items[0].price"
-          ></MenuItem>
-          <MenuItem
-            :imgPath="menu_items[0].image"
-            :name="menu_items[0].item_name"
-            :price="menu_items[0].price"
-          ></MenuItem>
-          <MenuItem
-            :imgPath="menu_items[0].image"
-            :name="menu_items[0].item_name"
-            :price="menu_items[0].price"
+            :imgPath="menu_items[2].imgPath"
+            :name="menu_items[2].name"
+            :price="menu_items[2].price"
           ></MenuItem>
         </div>
       </div>

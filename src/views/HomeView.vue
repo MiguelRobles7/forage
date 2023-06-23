@@ -1,7 +1,7 @@
 <script>
 import HomeViewNav from '../components/navbars/HomeViewNav.vue'
 import RestaurantCard from '../components/RestaurantCard.vue'
-import restoCard from '../views/JSON/establishment.json'
+import restoCard from '../views/JSON/restaurants.json'
 export default {
   components: {
     HomeViewNav,
@@ -145,5 +145,9 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 130vh;
+}
+a {
+  all: unset;
+  cursor: pointer;
 }
 </style>
