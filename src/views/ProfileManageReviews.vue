@@ -11,7 +11,7 @@ export default {
   },
   data() {
     return {
-      profile_picture: '/src/assets/profile-edit-display/user.png',
+      profile_picture: '/public/profile/pfps/1.png',
       banner: '/src/assets/profile-edit-display/cover.png',
       name: 'I miss you balik ka na',
       account_type: 'personal ',
