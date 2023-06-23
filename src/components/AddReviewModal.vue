@@ -1,11 +1,7 @@
 <script>
 export default {
   props: {
-    restaurant: String,
-    title: String,
-    rating: Number,
-    body: String,
-    images: Array
+    restaurant: String
   },
   data() {
     return {}
@@ -20,11 +16,11 @@ export default {
 
 <template>
   <main>
-    <div class="review-modal modal" id="edit-modal">
+    <div class="review-modal modal" id="add-modal">
       <div class="modal-main">
         <div class="flex-row" style="width: 100%">
-          <span class="title">Edit your review for {{ restaurant }}</span>
-          <div class="stars" style="width: auto">
+          <span class="title">Write a review for {{ restaurant }}</span>
+          <div class="stars" style="margin: 0 0 0 auto">
             <img class="star" src="/src/assets/star.png" alt="" />
             <img class="star" src="/src/assets/star.png" alt="" />
             <img class="star" src="/src/assets/star.png" alt="" />
@@ -35,11 +31,11 @@ export default {
         <div class="inner">
           <div class="item">
             <span>Title</span>
-            <input class="text-input" type="text" :placeholder="title" />
+            <input class="text-input" type="text" placeholder="Title" />
           </div>
           <div class="item">
             <span>Body</span>
-            <textarea class="text-input" type="text" :placeholder="body"></textarea>
+            <textarea class="text-input" type="text" placeholder="Body Text"></textarea>
           </div>
 
           <div class="item">
@@ -53,14 +49,14 @@ export default {
                 <img class="media-icon" src="/src/assets/review-modal/video.svg" alt="" />
                 <span class="media-span">Add Videos</span>
               </button>
-              <!-- Phase 2 TODO: Make delete on click -->
-              <img v-for="image in images" :key="image" class="media-image" :src="image" alt="" />
             </div>
           </div>
           <div class="button-row">
-            <button class="cancel-button" @click="reloadPage" value="view">Cancel</button>
+            <button class="cancel-button" @click="reloadPage" value="view" style="padding: 0.625rem 1.5rem">
+              Cancel
+            </button>
             <!-- Phase 2 TODO: Make post function for this (diretso na mongo) -->
-            <button class="save-button">Save Changes</button>
+            <button class="save-button" style="padding: 0.625rem 1.5rem">Save Changes</button>
           </div>
         </div>
       </div>

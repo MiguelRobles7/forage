@@ -45,7 +45,7 @@ export default {
         <p class="body">{{ body }}</p>
       </div>
     </div>
-    <button @click="edit" value="view">
+    <button class="panel-button" @click="edit" value="view">
       <img src="/src/assets/profile-edit-redirect/manage-edit.svg" alt="" />
       <EditReviewModal
         v-if="modal"
@@ -56,7 +56,7 @@ export default {
         :images="images"
       ></EditReviewModal>
     </button>
-    <button>
+    <button class="panel-button">
       <img src="/src/assets/profile-edit-redirect/manage-delete.svg" alt="" />
     </button>
   </div>
