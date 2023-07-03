@@ -128,6 +128,13 @@ h1 {
     }
   }
 }
+
+.gradient-bg {
+  background: linear-gradient(-7.28deg, #1d1d1f 24.57%, rgba(29, 29, 31, 0.2) 90.45%), url('~/assets/home-bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 130vh;
+}
 .nav-link {
   font-size: $font-regular;
   font-family: SpaceGrotesk;
@@ -557,8 +564,7 @@ h1 {
     align-items: center;
     gap: 1em;
     .banner {
-      background: linear-gradient(180deg, rgba(38, 38, 42, 0) 0%, #26262a 84.17%),
-        url('/profile/banners/1.png');
+      background: linear-gradient(180deg, rgba(38, 38, 42, 0) 0%, #26262a 84.17%), url('/profile/banners/1.png');
       width: 100%;
       height: 30vh;
       background-size: cover;

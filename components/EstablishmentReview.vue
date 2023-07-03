@@ -1,16 +1,16 @@
 <script>
 export default {
-    props: {
-        ownerReply: Array,
-        userImg: String,
-        userName: String,
-        userID: Number,
-        title: String,
-        content: String,
-        stars: Number,
-        upvotes: Number,
-        downvotes: Number
-    },
+  props: {
+    ownerReply: Array,
+    userImg: String,
+    userName: String,
+    userID: Number,
+    title: String,
+    content: String,
+    stars: Number,
+    upvotes: Number,
+    downvotes: Number
+  }
 }
 </script>
 
@@ -57,11 +57,11 @@ export default {
           <span class="tag">{{ ownerReply[0] }}</span>
           <!-- Phase 2 TODO: Innovative way for starring -->
           <div class="stars">
-              <img class="star" src="~/assets/icons/star.png" alt="" />
-              <img class="star" src="~/assets/icons/star.png" alt="" />
-              <img class="star" src="~/assets/icons/star.png" alt="" />
-              <img class="star" src="~/assets/icons/star.png" alt="" />
-              <img class="star" src="~/assets/icons/star.png" alt="" />
+            <img class="star" src="~/assets/icons/star.png" alt="" />
+            <img class="star" src="~/assets/icons/star.png" alt="" />
+            <img class="star" src="~/assets/icons/star.png" alt="" />
+            <img class="star" src="~/assets/icons/star.png" alt="" />
+            <img class="star" src="~/assets/icons/star.png" alt="" />
           </div>
         </div>
         <div class="review-item">

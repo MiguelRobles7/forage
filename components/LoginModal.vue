@@ -1,53 +1,52 @@
 <template>
-    <LoginRegisterSlot type="Login" typeText="your account.">
-      <template v-slot:content>
-        <form @submit.prevent="submitForm">
-          <div class="flex-col">
-            <div class="input-parent">
-              <img src="~/assets/LoginRegister/Email.png" />
-              <input
-                v-model="email"
-                type="Email"
-                @focus="hidePlaceholder"
-                @blur="showPlaceholder"
-                placeholder="Email"
-                class="input-def input"
-                required
-              />
-            </div>
-            <label v-if="emailText">{{ emailText }}</label>
-
-            <div class="input-parent">
-              <img src="~/assets/LoginRegister/Key.png" />
-              <input
-                v-model="password"
-                type="Password"
-                @focus="hidePlaceholder"
-                @blur="showPlaceholder"
-                placeholder="Password"
-                class="input-def input"
-                required
-              />
-            </div>
-            <label v-if="passwordText">{{ passwordText }}</label>
-
-            <div class="margin-top keep-signed">
-              <input v-model="keepLoggedIn" type="checkbox" />
-              <label @click="toggleKeepLogin">Keep me logged in</label>
-            </div>
-
-            <button class="modal-button">LOGIN</button>
-
-            <div class="font-default margin-top">
-              <div>Don't have an account?</div>
-              <!--TODO: Refactor Login Register Structure-->
-              <RouterLink to="/" style="color: #2a7e58; text-decoration: underline">
-              Sign up here</RouterLink>
-            </div>
+  <LoginRegisterSlot type="Login" typeText="your account.">
+    <template v-slot:content>
+      <form @submit.prevent="submitForm">
+        <div class="flex-col">
+          <div class="input-parent">
+            <img src="~/assets/LoginRegister/Email.png" />
+            <input
+              v-model="email"
+              type="Email"
+              @focus="hidePlaceholder"
+              @blur="showPlaceholder"
+              placeholder="Email"
+              class="input-def input"
+              required
+            />
           </div>
-        </form>
-      </template>
-    </LoginRegisterSlot>
+          <label v-if="emailText">{{ emailText }}</label>
+
+          <div class="input-parent">
+            <img src="~/assets/LoginRegister/Key.png" />
+            <input
+              v-model="password"
+              type="Password"
+              @focus="hidePlaceholder"
+              @blur="showPlaceholder"
+              placeholder="Password"
+              class="input-def input"
+              required
+            />
+          </div>
+          <label v-if="passwordText">{{ passwordText }}</label>
+
+          <div class="margin-top keep-signed">
+            <input v-model="keepLoggedIn" type="checkbox" />
+            <label @click="toggleKeepLogin">Keep me logged in</label>
+          </div>
+
+          <button class="modal-button">LOGIN</button>
+
+          <div class="font-default margin-top">
+            <div>Don't have an account?</div>
+            <!--TODO: Refactor Login Register Structure-->
+            <RouterLink to="/" style="color: #2a7e58; text-decoration: underline"> Sign up here</RouterLink>
+          </div>
+        </div>
+      </form>
+    </template>
+  </LoginRegisterSlot>
 </template>
 
 <script>
@@ -72,9 +71,7 @@ export default {
     submitForm() {
       this.emailText = ''
       this.passwordText = ''
-      const emailExists = this.accounts.find(
-        (account) => account.email.toLowerCase() === this.email
-      )
+      const emailExists = this.accounts.find((account) => account.email.toLowerCase() === this.email)
       if (!emailExists) {
         this.emailText = 'Account does not exist!'
       } else {
@@ -90,9 +87,7 @@ export default {
       e.target.placeholder = ''
     },
     showPlaceholder(e) {
-      e.target.type === 'email'
-        ? (e.target.placeholder = 'Email')
-        : (e.target.placeholder = 'Password')
+      e.target.type === 'email' ? (e.target.placeholder = 'Email') : (e.target.placeholder = 'Password')
     },
     toggleKeepLogin() {
       this.keepLoggedIn = !this.keepLoggedIn

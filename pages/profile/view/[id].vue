@@ -4,10 +4,10 @@ import Profiles from '~/assets/JSON/profiles.json'
 export default {
   methods: {
     review() {
-      navigateTo('/owner/manage-reviews/' + this.id); 
+      navigateTo('/owner/manage-reviews/' + this.id)
     },
     setting() {
-      navigateTo('/profile/edit/' + this.id); 
+      navigateTo('/profile/edit/' + this.id)
     }
   },
   data() {
@@ -71,17 +71,6 @@ export default {
   <main>
     <NavbarDefaultLoggedIn name="Johndayll Arizala" image="/profile/pfps/1.png"></NavbarDefaultLoggedIn>
     <div class="profile-view">
-      <div class="socials">
-        <button @click="review" style="border: none; border-radius: 8px; padding: 0 !important; margin: none">
-          <img src="/review.png" alt="" style="width: 2.3em; height: auto" />
-        </button>
-        <button @click="setting" style="border: none; border-radius: 8px; padding: 0 !important; margin: none">
-          <img src="/setting.png" alt="" style="width: 2.3em; height: auto" />
-        </button>
-        <img src="~/assets/profile-view/facebook.png" alt="" />
-        <img src="~/assets/profile-view/instagram.png" alt="" />
-        <img src="~/assets/profile-view/twitter.png" alt="" />
-      </div>
       <div
         class="banner"
         :style="`background: linear-gradient(180deg, rgba(29, 29, 31, 0) 0%, #1d1d1f 84.17%),

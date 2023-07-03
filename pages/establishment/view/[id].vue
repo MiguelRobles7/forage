@@ -7,7 +7,7 @@ import Reviews from '~/assets/JSON/reviews.json'
 export default {
   data() {
     return {
-      id: useRoute().params.id,  
+      id: useRoute().params.id,
       modal: false,
       restaurants: Restaurants,
       users: Users,
@@ -118,7 +118,8 @@ export default {
   </div>
   <div
     class="establishment-bg d-flex justify-content-end"
-    :style="`background:linear-gradient(180deg, rgba(29, 29, 31, 0.00) 0%, #1D1D1F 100%), url(${restaurant.backgroundImg}); background-size:cover; background-position: center center; min-height:40vh`"
+    :style="`background:linear-gradient(180deg, rgba(29, 29, 31, 0.00) 0%, #1D1D1F 100%), 
+    url(${restaurant.backgroundImg}); background-size:cover; background-position: center center; min-height:40vh`"
   ></div>
   <div class="establishment-card container rounded-3 mb-5">
     <div class="row">
