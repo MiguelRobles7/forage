@@ -42,7 +42,7 @@ export default {
       </div>
     </div>
     <button class="panel-button" @click="edit" value="view">
-      <img src="~/assets/profile-edit-redirect/manage-edit.svg" alt="" />
+      <img src="~/assets/icons/manage-edit.svg" alt="" />
       <EditReviewModal
         v-if="modal"
         :restaurant="restaurant"
@@ -53,7 +53,7 @@ export default {
       ></EditReviewModal>
     </button>
     <button class="panel-button">
-      <img src="~/assets/profile-edit-redirect/manage-delete.svg" alt="" />
+      <img src="~/assets/icons/manage-delete.svg" alt="" />
     </button>
   </div>
 </template>

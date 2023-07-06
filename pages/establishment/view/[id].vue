@@ -170,7 +170,7 @@ export default {
       <div class="title">
         <span> Top Reviews </span>
         <button class="review-button" @click="edit" value="view">
-          <img class="review-icon" src="~/assets/edit-w.svg" alt="" />
+          <img class="review-icon" src="~/assets/icons/edit-w.svg" alt="" />
           <span class="review-span"> Write a Review </span>
           <AddReviewModal v-if="modal" :restaurant="restaurant.name"></AddReviewModal>
         </button>

@@ -46,11 +46,11 @@ export default {
             <span>Media</span>
             <div class="flex-row" style="gap: 0.9rem">
               <button class="media-button">
-                <img class="media-icon" src="~/assets/review-modal/camera.svg" alt="" />
+                <img class="media-icon" src="~/assets/icons/camera.svg" alt="" />
                 <span class="media-span">Add Photos</span>
               </button>
               <button class="media-button">
-                <img class="media-icon" src="~/assets/review-modal/video.svg" alt="" />
+                <img class="media-icon" src="~/assets/icons/video.svg" alt="" />
                 <span class="media-span">Add Videos</span>
               </button>
               <!-- Phase 2 TODO: Make delete on click -->

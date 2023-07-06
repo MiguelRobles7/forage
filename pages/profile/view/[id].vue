@@ -41,7 +41,7 @@ export default {
           title: 'Simply the best latte in town',
           rating: 5,
           body: 'The latte at your coffee shop is an exquisite work of art, perfectly crafted to delight the senses. Its velvety smoothness dances with the rich aroma of freshly brewed espresso, creating a symphony of flavors that caress the palate with each sip. Savoring your latte is like embarking on a blissful journey, where the harmonious balance of steamed milk and espresso transports me to a realm of pure indulgence. Thank you for creating such a divine elixir that elevates my coffee experience to new heights.',
-          images: ['/review-cards/userimage.png'],
+          images: ['/icons/userimage.png'],
           upvotes: 301,
           downvotes: 0
         },
@@ -49,7 +49,7 @@ export default {
           title: 'The pastries are a must try',
           rating: 5,
           body: "Your coffee shop's pastries are a delectable delight that brings sheer joy to my taste buds.",
-          images: ['/review-cards/userimage.png'],
+          images: ['/icons/userimage.png'],
           upvotes: 73,
           downvotes: 0
         }
@@ -102,10 +102,10 @@ export default {
           <div class="info">
             <h1>{{ Profile.name }}</h1>
             <div class="stats">
-              <img src="~/assets/profile-view/comments.svg" alt="" />
+              <img src="~/assets/icons/comments.png" alt="" />
               <span>Wrote {{ reviews.length }} Reviews</span>
               <span>•</span>
-              <img src="~/assets/profile-view/location.svg" alt="" />
+              <img src="~/assets/icons/location.png" alt="" />
               <span>{{ Profile.street }} {{ Profile.city }}, {{ Profile.province }}, {{ Profile.country }} </span>
             </div>
             <p style="min-height: 17.5vh">{{ Profile.description }}</p>

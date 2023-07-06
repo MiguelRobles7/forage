@@ -19,7 +19,7 @@ export default {
           title: 'The pastries are a must try',
           rating: 5,
           body: "Your coffee shop's pastries are a delectable delight that brings sheer joy to my taste buds.",
-          images: ['/review-cards/userimage.png'],
+          images: ['/icons/userimage.png'],
           upvotes: 73,
           downvotes: 0
         }
