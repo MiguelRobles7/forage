@@ -1,5 +1,6 @@
 <script>
 export default {
+  props: { name: String, addresses: Array, addresses_links: Array, has_search: Boolean },
   data() {
     return {
       showLogin: false,
@@ -34,13 +35,20 @@ export default {
   <RegisterModal v-if="showRegister" @close="toggleRegister"></RegisterModal>
   <Dropdown class="dropdown" style="max-width: 18.75rem" v-if="showDropdown" v></Dropdown>
 
-  <nav class="navbar">
+  <nav class="navbar nav-default">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/"> Forage </a>
+      <div class="nav-left">
+        <a class="navbar-brand" href="/"> Forage </a>
+        <div v-if="has_search" class="search-container">
+          <input type="text" class="search" placeholder="Search" />
+          <img class="search-icon" src="~/assets/icons/search.svg" alt="search" />
+        </div>
+      </div>
       <div class="nav-right">
         <div class="links">
-          <a href="#highlights" class="nav-link font-default"> Latest Craze Spots </a>
-          <a href="#top" class="nav-link font-default"> Community Favorites </a>
+          <a v-for="(ad, index) in addresses" :key="index" :href="addresses_links[index]" class="nav-link font-default">
+            {{ ad }}
+          </a>
         </div>
         <div class="buttons-container">
           <button v-if="!isLoggedIn" class="nav-button" @click="toggleRegister">Sign Up</button>
@@ -48,7 +56,7 @@ export default {
 
           <div v-if="isLoggedIn" class="dropdown-container" @click="toggleDropdown">
             <img class="pfp" src="/profile/pfps/1.png" alt="" />
-            <span> Johndayll Arizala</span>
+            <span> {{ name }}</span>
             <img class="drop-icon" src="~/assets/icons/chev_down.svg" alt="" />
           </div>
         </div>

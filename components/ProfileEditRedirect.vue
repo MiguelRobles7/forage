@@ -16,10 +16,6 @@
         <span>Account Settings </span>
       </div>
       <div class="redirect-item">
-        <img class="icon" src="~/assets/icons/establishments.svg" alt="" />
-        <span>Your Establishments </span>
-      </div>
-      <div class="redirect-item">
         <img class="icon" src="~/assets/icons/manage-reviews.svg" alt="" />
         <span> <NuxtLink to="/profile/manage-reviews/1"> Manage Reviews </NuxtLink> </span>
       </div>

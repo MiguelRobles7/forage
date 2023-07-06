@@ -69,7 +69,7 @@ export default {
 
 <template>
   <main>
-    <NavbarDefaultLoggedIn name="Johndayll Arizala" image="/profile/pfps/1.png"></NavbarDefaultLoggedIn>
+    <NavbarDefault name="Johndayll Arizala" :has_search="true"></NavbarDefault>
     <div class="profile-view">
       <div
         class="banner"

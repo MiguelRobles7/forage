@@ -7,6 +7,8 @@ import Reviews from '~/assets/JSON/reviews.json'
 export default {
   data() {
     return {
+      addresses: ['Menu', 'Top Reviews'],
+      addresses_links: ['#menu', '#reviews'],
       id: useRoute().params.id,
       modal: false,
       restaurants: Restaurants,
@@ -110,7 +112,12 @@ export default {
 </script>
 
 <template>
-  <NavbarSearchLoggedIn name="Johndayll Arizala" image="/profile/pfps/1.png"></NavbarSearchLoggedIn>
+  <NavbarDefault
+    name="Johndayll Arizala"
+    :has_search="true"
+    :addresses="addresses"
+    :addresses_links="addresses_links"
+  ></NavbarDefault>
   <div
     class="establishment-bg d-flex justify-content-end"
     :style="`background:linear-gradient(180deg, rgba(29, 29, 31, 0.00) 0%, #1D1D1F 100%), 
@@ -154,7 +161,7 @@ export default {
     </div>
   </div>
 
-  <div class="establishment-content d-flex flex-col align-items-center gap-4">
+  <div class="establishment-content d-flex flex-col align-items-center gap-4" id="menu">
     <div class="menu-box">
       <div class="title">What's in the menu?</div>
       <div class="flex-col gap-3">
@@ -166,7 +173,7 @@ export default {
       </div>
     </div>
 
-    <div class="review-box" style="margin-bottom: 5vh">
+    <div class="review-box" style="margin-bottom: 5vh" id="reviews">
       <div class="title">
         <span> Top Reviews </span>
         <button class="review-button" @click="edit" value="view">
