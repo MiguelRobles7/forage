@@ -1,10 +1,16 @@
 <script>
+import vClickOutside from 'v-click-outside'
 
 export default {
+  directives: {
+    clickOutside: vClickOutside.directive
+  },
   data() {
     return {
       showLogin: false,
-      showRegister: false
+      showRegister: false,
+      isLoggedIn: true,
+      showDropdown: false
     }
   },
 
@@ -15,6 +21,14 @@ export default {
 
     toggleRegister() {
       this.showRegister = !this.showRegister
+    },
+
+    toggleDropdown() {
+      this.showDropdown = !this.showDropdown
+    },
+    hideDropdown() {
+      this.showDropdown = false
+      console.log('Hide dropdown')
     }
   }
 }
@@ -23,15 +37,26 @@ export default {
 <template>
   <LoginModal v-if="showLogin" @close="toggleLogin"></LoginModal>
   <RegisterModal v-if="showRegister" @close="toggleRegister"></RegisterModal>
+  <Dropdown class="dropdown" style="max-width: 18.75rem" v-if="showDropdown" v></Dropdown>
+
   <nav class="navbar">
     <div class="container-fluid">
       <a class="navbar-brand" href="/"> Forage </a>
-      <div class="d-flex column-gap-3 align-items-center">
-        <a href="" class="nav-link font-default"> Home </a>
-        <a href="#highlights" class="nav-link font-default"> Highlights </a>
-        <a href="#top" class="nav-link font-default"> Top Reviews </a>
-        <button class="nav-button" @click="toggleRegister">Sign Up</button>
-        <button class="nav-button" @click="toggleLogin">Log In</button>
+      <div class="nav-right">
+        <div class="links">
+          <a href="#highlights" class="nav-link font-default"> Latest Craze Spots </a>
+          <a href="#top" class="nav-link font-default"> Community Favorites </a>
+        </div>
+        <div class="buttons-container">
+          <button v-if="!isLoggedIn" class="nav-button" @click="toggleRegister">Sign Up</button>
+          <button v-if="!isLoggedIn" class="nav-button" @click="toggleLogin">Log In</button>
+
+          <div v-if="isLoggedIn" class="dropdown-container" @click="toggleDropdown">
+            <img class="pfp" src="/profile/pfps/1.png" alt="" />
+            <span> Johndayll Arizala</span>
+            <img class="drop-icon" src="~/assets/icons/chev_down.svg" alt="" />
+          </div>
+        </div>
       </div>
     </div>
   </nav>
