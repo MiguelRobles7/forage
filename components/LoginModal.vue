@@ -4,7 +4,7 @@
       <form @submit.prevent="submitForm">
         <div class="flex-col">
           <div class="input-parent">
-            <img src="~/assets/LoginRegister/Email.png" />
+            <img src="~/assets/icons/Email.png" />
             <input
               v-model="email"
               type="Email"
@@ -18,7 +18,7 @@
           <label v-if="emailText">{{ emailText }}</label>
 
           <div class="input-parent">
-            <img src="~/assets/LoginRegister/Key.png" />
+            <img src="~/assets/icons/Key.png" />
             <input
               v-model="password"
               type="Password"
