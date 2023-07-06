@@ -111,11 +111,6 @@ export default {
 
 <template>
   <NavbarSearchLoggedIn name="Johndayll Arizala" image="/profile/pfps/1.png"></NavbarSearchLoggedIn>
-  <div class="socials">
-    <img src="~/assets/profile-view/facebook.png" alt="" />
-    <img src="~/assets/profile-view/instagram.png" alt="" />
-    <img src="~/assets/profile-view/twitter.png" alt="" />
-  </div>
   <div
     class="establishment-bg d-flex justify-content-end"
     :style="`background:linear-gradient(180deg, rgba(29, 29, 31, 0.00) 0%, #1D1D1F 100%), 

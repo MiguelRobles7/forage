@@ -1,0 +1,60 @@
+@import 'variables';
+
+.restaurant-card {
+  background: #fff;
+  box-shadow: 6px 4px 12px 2px rgba(0, 0, 0, 0.16);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+
+  .restaurant-card-image {
+    max-width: auto;
+    height: 100%;
+  }
+
+  .restaurant-card-inner {
+    background-size: cover;
+    width: 100%;
+    padding: 1.2em;
+    gap: 0.2em;
+
+    .name {
+      font-size: 1.4rem;
+      font-family: TTInterphases;
+      font-weight: bold;
+      line-height: 0.9;
+    }
+
+    .summary {
+      font-weight: 400;
+      font-size: 0.85em;
+      /* identical to box height */
+
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .description {
+      font-weight: 400;
+      font-size: 0.85em;
+      line-height: 1.2em;
+    }
+
+    .image {
+      max-width: 30%;
+      height: auto;
+    }
+
+    .icon-font {
+      font-weight: 400;
+      font-size: 0.8em;
+      line-height: 15px;
+      /* identical to box height */
+    }
+
+    .stats {
+      width: 100%;
+      justify-content: end;
+    }
+  }
+}

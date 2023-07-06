@@ -19,7 +19,7 @@ export default {
   <div class="restaurant-card">
     <img :src="imgPath" alt="" class="restaurant-card-image" />
     <div
-      class="flex-col rcard"
+      class="flex-col restaurant-card-inner"
       :style="`background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(${bgImgPath});`"
     >
       <div class="flex-row def-gap stats">
