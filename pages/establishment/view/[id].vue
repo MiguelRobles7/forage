@@ -129,30 +129,35 @@ export default {
         <img :src="restaurant.logo" alt="" class="rounded-3" />
       </div>
       <div class="col restaurant-info">
-        <div class="summary">
-          {{ restaurant.summary }}
+        <div class="info">
+          <div class="info-pill" style="background: linear-gradient(180deg, #edcc78 0%, #e5b351 100%)">
+            <img src="~/assets/icons/star_empty.svg" alt="" class="info-icon" />
+            <div class="info-text">{{ restaurant.rating }} Rating</div>
+          </div>
+          <div class="info-pill" style="background: linear-gradient(180deg, #78c6ff 0%, #4291ca 100%)">
+            <img src="~/assets/icons/comments.png" alt="" class="info-icon" />
+            <div class="info-text">{{ restaurant.reviewCount }} Reviews</div>
+          </div>
+          <div class="info-pill" style="background: linear-gradient(180deg, #5ddb8f 0%, #2aa15a 100%)">
+            <img src="~/assets/icons/wallet.svg" alt="" class="info-icon" />
+            <div class="info-text">{{ restaurant.price_range }} PHP</div>
+          </div>
+          <div class="info-pill" style="background: linear-gradient(180deg, #d2d2d2 0%, #a3a3a3 100%)">
+            <img src="~/assets/icons/clock.png" alt="" class="info-icon" />
+            <div class="info-text">{{ restaurant.openingTime }} - {{ restaurant.closingTime }}</div>
+          </div>
+          <div class="info-pill" style="background: linear-gradient(180deg, #b0b6f1 0%, #9399d4 100%)">
+            <img src="~/assets/icons/location.png" alt="" class="info-icon" />
+            <div class="info-text">{{ restaurant.location }}</div>
+          </div>
         </div>
         <div class="name">
           {{ restaurant.name }}
         </div>
-        <div class="d-flex align-items-center mb-1">
-          <img src="~/assets/icons/star.png" alt="" class="icon" />
-          <div class="info">{{ restaurant.rating }} Rating</div>
-          <div class="dot">•</div>
-
-          <img src="~/assets/icons/comments.png" alt="" class="icon" />
-          <div class="info">{{ restaurant.reviewCount }} Reviews</div>
-          <div class="dot">•</div>
-
-          <div class="info">{{ restaurant.price_range }}</div>
-          <div class="dot">•</div>
-
-          <img src="~/assets/icons/clock.png" alt="" class="icon" />
-          <div class="info">{{ restaurant.openingTime }} - {{ restaurant.closingTime }}</div>
-        </div>
-        <div class="d-flex location align-items-center">
-          <img src="~/assets/icons/location.png" alt="" class="icon" />
-          <div>{{ restaurant.location }}</div>
+        <div class="tags">
+          <div class="info-pill" v-for="t in restaurant.summary">
+            <div class="info-text">{{ t }}</div>
+          </div>
         </div>
         <div class="description">
           {{ restaurant.description }}
