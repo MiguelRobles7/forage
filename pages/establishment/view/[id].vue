@@ -20,26 +20,59 @@ export default {
           title: Reviews[5].title,
           rating: 5,
           body: Reviews[5].body,
-          images: [],
+          images: ['Amogus'],
           upvotes: Reviews[5].upvotes,
           downvotes: 1,
-          owner_response: [
-            'Coffee Time',
-            '/coffee-time-logo.png',
-            'Thanks!',
-            'Thank you for your kind words! We hope to see you again soon.',
-            '12'
+          is_edited: false,
+          owner_responded: true,
+          comments: [
+            {
+              user_name: Users[1].name,
+              user_image: Users[1].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            },
+            {
+              user_name: Users[2].name,
+              user_image: Users[2].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            }
           ]
         },
         {
-          user_name: Users[1].name + ' • Edited',
+          user_name: Users[1].name,
           user_image: Users[1].profile_picture,
           title: Reviews[3].title,
-          rating: 5,
+          rating: 2,
           body: Reviews[3].body,
           images: [],
           upvotes: Reviews[3].upvotes,
-          downvotes: 1
+          downvotes: 1,
+          is_edited: true,
+          owner_responded: true,
+          comments: [
+            {
+              user_name: Users[1].name,
+              user_image: Users[1].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            },
+            {
+              user_name: Users[2].name,
+              user_image: Users[2].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            }
+          ]
         },
         {
           user_name: Users[2].name,
@@ -49,7 +82,27 @@ export default {
           body: Reviews[0].body,
           images: [],
           upvotes: Reviews[0].upvotes,
-          downvotes: 1
+          downvotes: 1,
+          is_edited: false,
+          owner_responded: true,
+          comments: [
+            {
+              user_name: Users[1].name,
+              user_image: Users[1].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            },
+            {
+              user_name: Users[2].name,
+              user_image: Users[2].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            }
+          ]
         },
         {
           user_name: Users[3].name,
@@ -59,7 +112,27 @@ export default {
           body: Reviews[4].body,
           images: [],
           upvotes: Reviews[4].upvotes,
-          downvotes: 1
+          downvotes: 1,
+          is_edited: false,
+          owner_responded: true,
+          comments: [
+            {
+              user_name: Users[1].name,
+              user_image: Users[1].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            },
+            {
+              user_name: Users[2].name,
+              user_image: Users[2].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            }
+          ]
         },
         {
           user_name: Users[4].name,
@@ -69,7 +142,27 @@ export default {
           body: Reviews[3].body,
           images: [],
           upvotes: Reviews[3].upvotes,
-          downvotes: 1
+          downvotes: 1,
+          is_edited: true,
+          owner_responded: false,
+          comments: [
+            {
+              user_name: Users[1].name,
+              user_image: Users[1].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            },
+            {
+              user_name: Users[2].name,
+              user_image: Users[2].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            }
+          ]
         }
       ],
       review_images: [
@@ -210,6 +303,11 @@ export default {
             :stars="reviews[0].rating"
             :upvotes="reviews[0].upvotes"
             :downvotes="reviews[0].downvotes"
+            :isEdited="reviews[0].is_edited"
+            :images="reviews[0].images"
+            :comments="reviews[0].comments"
+            :owner_responded="reviews[0].owner_responded"
+            :owner_image="restaurant.logo"
           >
           </EstablishmentReview>
         </div>
@@ -225,6 +323,11 @@ export default {
             :stars="reviews[1].rating"
             :upvotes="reviews[1].upvotes"
             :downvotes="reviews[1].downvotes"
+            :isEdited="reviews[1].is_edited"
+            :images="reviews[1].images"
+            :comments="reviews[1].comments"
+            :owner_responded="reviews[1].owner_responded"
+            :owner_image="restaurant.logo"
           >
           </EstablishmentReview>
           <EstablishmentReview
@@ -238,6 +341,11 @@ export default {
             :stars="reviews[2].rating"
             :upvotes="reviews[2].upvotes"
             :downvotes="reviews[2].downvotes"
+            :isEdited="reviews[2].is_edited"
+            :images="reviews[2].images"
+            :comments="reviews[2].comments"
+            :owner_responded="reviews[2].owner_responded"
+            :owner_image="restaurant.logo"
           >
           </EstablishmentReview>
         </div>
@@ -253,6 +361,11 @@ export default {
             :stars="reviews[3].rating"
             :upvotes="reviews[3].upvotes"
             :downvotes="reviews[3].downvotes"
+            :isEdited="reviews[3].is_edited"
+            :images="reviews[3].images"
+            :comments="reviews[3].comments"
+            :owner_responded="reviews[3].owner_responded"
+            :owner_image="restaurant.logo"
           >
           </EstablishmentReview>
           <EstablishmentReview
@@ -266,6 +379,11 @@ export default {
             :stars="reviews[4].rating"
             :upvotes="reviews[4].upvotes"
             :downvotes="reviews[4].downvotes"
+            :isEdited="reviews[4].is_edited"
+            :images="reviews[4].images"
+            :comments="reviews[4].comments"
+            :owner_responded="reviews[4].owner_responded"
+            :owner_image="restaurant.logo"
           >
           </EstablishmentReview>
         </div>

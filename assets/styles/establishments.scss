@@ -114,9 +114,9 @@
   .review-box {
     padding: 1.5rem;
     width: 85%;
-    background: linear-gradient(180deg, #212124 0%, #111112 100%);
-    border-radius: 8px;
+    border-radius: 0.5rem;
     border: 4px solid #26262a;
+    background: linear-gradient(180deg, #151518 0%, #111112 100%);
     box-shadow: 2px 4px 16px 6px rgba(0, 0, 0, 0.08);
     .review-button {
       border: none;
@@ -182,7 +182,7 @@
   align-items: flex-start;
   gap: 0.625rem;
   align-self: stretch;
-  padding: 1.25rem 1.25rem 0.9375rem 1.25rem;
+  padding: 1.25rem 1.25rem 0.75rem 1.25rem;
 
   border-radius: 6px;
   border: 2px solid var(--panel-panel-border-2, #323237);
@@ -190,8 +190,8 @@
   box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.2);
 
   .reviewer-pfp {
-    width: 3em;
-    height: 3em;
+    width: 2.25em;
+    height: 2.25em;
     flex-shrink: 0;
     padding: 0;
     margin: 0;
@@ -214,11 +214,80 @@
   .title-span {
     align-self: flex-start;
     justify-self: flex-start;
+    color: #e6e6e6;
+    font-family: TTInterphases;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
   }
   .review-item {
     display: inline-flex;
     align-items: center;
     width: 100%;
+    gap: 0.5rem;
+    .review-elements {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 0.25rem;
+      align-self: stretch;
+    }
+    .vote-pill {
+      display: flex;
+      width: 2.125rem;
+      height: 2.125rem;
+      padding: 0.625rem;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+      border-radius: 1.875rem;
+      border: 2px solid var(--base-base-main-border, #2c2c31);
+      background: var(--base-base-main-base-2, #212124);
+      box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.2);
+      .review-icon {
+        width: 0.875rem;
+        height: 0.875rem;
+        flex-shrink: 0;
+      }
+    }
+    .vote-count {
+      color: #c7c7d9;
+      font-family: SpaceGrotesk;
+      font-size: 0.875rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 113%;
+    }
+    .review-pill {
+      display: flex;
+      padding: 0.4rem 0.6rem;
+      justify-content: center;
+      align-items: center;
+      gap: 0.625rem;
+      border-radius: 0.625rem;
+      border: 2px solid var(--base-base-main-border, #2c2c31);
+      background: var(--base-base-main-base-2, #212124);
+      box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.2);
+
+      .owner-image {
+        width: 0.875rem;
+        height: 0.875rem;
+        flex-shrink: 0;
+        border-radius: 100rem;
+      }
+      .review-icon {
+        width: 1rem;
+        height: 1rem;
+      }
+      .review-pill-span {
+        color: #c7c7d9;
+        font-family: SpaceGrotesk;
+        font-size: 0.6875rem;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 113%;
+      }
+    }
   }
   .stars {
     display: flex;
@@ -248,7 +317,7 @@
     color: #e6e6e6 !important;
     font-size: 0.75rem !important;
     font-family: TTInterphases !important;
-    line-height: 113% !important;
+    line-height: 125% !important;
     width: 100% !important;
   }
   .review-voting {
