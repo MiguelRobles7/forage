@@ -33,7 +33,7 @@ export default {
 <template>
   <LoginModal v-if="showLogin" @close="toggleLogin"></LoginModal>
   <RegisterModal v-if="showRegister" @close="toggleRegister"></RegisterModal>
-  <Dropdown class="dropdown" style="max-width: 18.75rem" v-if="showDropdown" v></Dropdown>
+  <Dropdown class="dropdown" style="max-width: 18.75rem" v-if="showDropdown"></Dropdown>
 
   <nav class="navbar nav-default">
     <div class="container-fluid">
