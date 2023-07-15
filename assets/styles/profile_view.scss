@@ -1,5 +1,11 @@
 @import 'variables';
-
+.profile-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 1 0 0;
+}
 .profile-view {
   width: 100vw;
   display: flex;
