@@ -69,7 +69,7 @@ const restaurants = restoCard
       </div>
 
       <div class="gradient-box-type-2" id="top">
-        <div class="title">The latest craze spots around.</div>
+        <div class="title">Everyone's Favorites</div>
         <div class="flex-col gap-3">
           <div class="flex-row gap-3">
             <div v-for="(r, i) in restaurants" :key="r" style="flex-basis: 25%">
