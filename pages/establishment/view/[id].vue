@@ -280,112 +280,75 @@ export default {
           <AddReviewModal v-if="modal" :restaurant="restaurant.name"></AddReviewModal>
         </button>
       </div>
-      <div
-        style="
-          display: flex;
-          flex-direction: row;
-          width: 100%;
-          justify-content: center;
-          align-items: flex-start;
-          gap: 1.25rem;
-        "
-      >
-        <!-- TODO: Replace this with unique views per column -->
-        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; flex: 1 0 0">
-          <EstablishmentReview
-            :key="reviews[0]"
-            :ownerReply="reviews[0].owner_response"
-            :userImg="reviews[0].user_image"
-            :userID="users[0].id"
-            :userName="reviews[0].user_name"
-            :title="reviews[0].title"
-            :content="reviews[0].body"
-            :stars="reviews[0].rating"
-            :upvotes="reviews[0].upvotes"
-            :downvotes="reviews[0].downvotes"
-            :isEdited="reviews[0].is_edited"
-            :images="reviews[0].images"
-            :comments="reviews[0].comments"
-            :owner_responded="reviews[0].owner_responded"
-            :owner_image="restaurant.logo"
-          >
-          </EstablishmentReview>
+      <div class="reviews-container">
+        <div class="review-column">
+          <div v-for="(r, i) in reviews" :key="r">
+            <EstablishmentReview
+              v-if="i % 2 == 0"
+              :key="r"
+              :ownerReply="r.owner_response"
+              :userImg="r.user_image"
+              :userID="users[i].id"
+              :userName="r.user_name"
+              :title="r.title"
+              :content="r.body"
+              :stars="r.rating"
+              :upvotes="r.upvotes"
+              :downvotes="r.downvotes"
+              :isEdited="r.is_edited"
+              :images="r.images"
+              :comments="r.comments"
+              :owner_responded="r.owner_responded"
+              :owner_image="restaurant.logo"
+            >
+            </EstablishmentReview>
+          </div>
         </div>
-        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; flex: 1 0 0">
-          <EstablishmentReview
-            :key="reviews[1]"
-            :ownerReply="reviews[1].owner_response"
-            :userImg="reviews[1].user_image"
-            :userID="users[1].id"
-            :userName="reviews[1].user_name"
-            :title="reviews[1].title"
-            :content="reviews[1].body"
-            :stars="reviews[1].rating"
-            :upvotes="reviews[1].upvotes"
-            :downvotes="reviews[1].downvotes"
-            :isEdited="reviews[1].is_edited"
-            :images="reviews[1].images"
-            :comments="reviews[1].comments"
-            :owner_responded="reviews[1].owner_responded"
-            :owner_image="restaurant.logo"
-          >
-          </EstablishmentReview>
-          <EstablishmentReview
-            :key="reviews[2]"
-            :ownerReply="reviews[2].owner_response"
-            :userImg="reviews[2].user_image"
-            :userID="users[2].id"
-            :userName="reviews[2].user_name"
-            :title="reviews[2].title"
-            :content="reviews[2].body"
-            :stars="reviews[2].rating"
-            :upvotes="reviews[2].upvotes"
-            :downvotes="reviews[2].downvotes"
-            :isEdited="reviews[2].is_edited"
-            :images="reviews[2].images"
-            :comments="reviews[2].comments"
-            :owner_responded="reviews[2].owner_responded"
-            :owner_image="restaurant.logo"
-          >
-          </EstablishmentReview>
+        <div class="review-column">
+          <div v-for="(r, i) in reviews" :key="r">
+            <EstablishmentReview
+              v-if="i % 2 == 1"
+              :key="r"
+              :ownerReply="r.owner_response"
+              :userImg="r.user_image"
+              :userID="users[i].id"
+              :userName="r.user_name"
+              :title="r.title"
+              :content="r.body"
+              :stars="r.rating"
+              :upvotes="r.upvotes"
+              :downvotes="r.downvotes"
+              :isEdited="r.is_edited"
+              :images="r.images"
+              :comments="r.comments"
+              :owner_responded="r.owner_responded"
+              :owner_image="restaurant.logo"
+            >
+            </EstablishmentReview>
+          </div>
         </div>
-        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; flex: 1 0 0">
-          <EstablishmentReview
-            :key="reviews[3]"
-            :ownerReply="reviews[3].owner_response"
-            :userImg="reviews[3].user_image"
-            :userID="users[3].id"
-            :userName="reviews[3].user_name"
-            :title="reviews[3].title"
-            :content="reviews[3].body"
-            :stars="reviews[3].rating"
-            :upvotes="reviews[3].upvotes"
-            :downvotes="reviews[3].downvotes"
-            :isEdited="reviews[3].is_edited"
-            :images="reviews[3].images"
-            :comments="reviews[3].comments"
-            :owner_responded="reviews[3].owner_responded"
-            :owner_image="restaurant.logo"
-          >
-          </EstablishmentReview>
-          <EstablishmentReview
-            :key="reviews[4]"
-            :ownerReply="reviews[4].owner_response"
-            :userImg="reviews[4].user_image"
-            :userID="this.users[4].id"
-            :userName="reviews[4].user_name"
-            :title="reviews[4].title"
-            :content="reviews[4].body"
-            :stars="reviews[4].rating"
-            :upvotes="reviews[4].upvotes"
-            :downvotes="reviews[4].downvotes"
-            :isEdited="reviews[4].is_edited"
-            :images="reviews[4].images"
-            :comments="reviews[4].comments"
-            :owner_responded="reviews[4].owner_responded"
-            :owner_image="restaurant.logo"
-          >
-          </EstablishmentReview>
+        <div class="review-column">
+          <div v-for="(r, i) in reviews" :key="r">
+            <EstablishmentReview
+              v-if="i % 2 == 0"
+              :key="r"
+              :ownerReply="r.owner_response"
+              :userImg="r.user_image"
+              :userID="users[i].id"
+              :userName="r.user_name"
+              :title="r.title"
+              :content="r.body"
+              :stars="r.rating"
+              :upvotes="r.upvotes"
+              :downvotes="r.downvotes"
+              :isEdited="r.is_edited"
+              :images="r.images"
+              :comments="r.comments"
+              :owner_responded="r.owner_responded"
+              :owner_image="restaurant.logo"
+            >
+            </EstablishmentReview>
+          </div>
         </div>
       </div>
     </div>
