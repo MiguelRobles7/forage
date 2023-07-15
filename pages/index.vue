@@ -17,6 +17,7 @@ const restaurants = restoCard
           <div>
             <input type="text" class="col index-search" placeholder="Search..." />
             <button style="margin-left: -2.5em; background: none; border: none">
+              <!-- TODO: Make this based on what is typed -->
               <NuxtLink to="/establishment/search/coffee">🔎︎</NuxtLink>
             </button>
           </div>
