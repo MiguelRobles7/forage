@@ -31,80 +31,76 @@ const restaurants = restoCard
     <div class="gradient-wrapper">
       <div class="gradient-box-type-1" id="highlights">
         <div class="title">The latest craze spots around.</div>
-        <div class="flex-row gap-3">
-          <div class="flex-col gap-3">
-            <NuxtLink :to="`/establishment/view/${restaurants[0].restaurant_id}`">
-              <RestaurantCard
-                :name="restaurants[0].name"
-                :imgPath="restaurants[0].logo"
-                :bgImgPath="restaurants[0].bgCard"
-                :description="restaurants[0].description"
-                :summary="restaurants[0].summary"
-                :rating="restaurants[0].rating"
-                :reviewCount="restaurants[0].reviewCount"
-                :price="restaurants[0].price_range"
-              ></RestaurantCard>
-            </NuxtLink>
-            <NuxtLink :to="`/establishment/view/${restaurants[1].restaurant_id}`">
-              <RestaurantCard
-                :name="restaurants[1].name"
-                :imgPath="restaurants[1].logo"
-                :bgImgPath="restaurants[1].bgCard"
-                :description="restaurants[1].description"
-                :summary="restaurants[1].summary"
-                :rating="restaurants[1].rating"
-                :reviewCount="restaurants[1].reviewCount"
-                :price="restaurants[1].price_range"
-              ></RestaurantCard>
-            </NuxtLink>
+        <div class="flex-col gap-3">
+          <div class="flex-row gap-3">
+            <div v-for="(r, i) in restaurants" :key="r" style="flex-basis: 25%">
+              <NuxtLink :to="`/establishment/view/${r.restaurant_id}`" v-if="i < 6">
+                <RestaurantCard
+                  :name="r.name"
+                  :imgPath="r.logo"
+                  :bgImgPath="r.bgCard"
+                  :description="r.description"
+                  :tags="r.summary"
+                  :rating="r.rating"
+                  :reviewCount="r.reviewCount"
+                  :price="r.price_range"
+                ></RestaurantCard>
+              </NuxtLink>
+            </div>
           </div>
-          <div class="flex-col gap-3">
-            <NuxtLink :to="`/establishment/view/${restaurants[2].restaurant_id}`">
-              <RestaurantCard
-                :name="restaurants[2].name"
-                :imgPath="restaurants[2].logo"
-                :bgImgPath="restaurants[2].bgCard"
-                :description="restaurants[2].description"
-                :summary="restaurants[2].summary"
-                :rating="restaurants[2].rating"
-                :reviewCount="restaurants[2].reviewCount"
-                :price="restaurants[2].price_range"
-              ></RestaurantCard>
-            </NuxtLink>
+          <div class="flex-row gap-3">
+            <div v-for="(r, i) in restaurants" :key="r" style="flex-basis: 25%">
+              <NuxtLink :to="`/establishment/view/${r.restaurant_id}`" v-if="i < 6">
+                <RestaurantCard
+                  :name="r.name"
+                  :imgPath="r.logo"
+                  :bgImgPath="r.bgCard"
+                  :description="r.description"
+                  :tags="r.summary"
+                  :rating="r.rating"
+                  :reviewCount="r.reviewCount"
+                  :price="r.price_range"
+                ></RestaurantCard>
+              </NuxtLink>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="gradient-box-type-2" id="top">
         <div class="title">The latest craze spots around.</div>
-        <div class="flex-row gap-3">
-          <div class="flex-col gap-3">
-            <NuxtLink :to="`/establishment/view/${restaurants[4].restaurant_id}`">
-              <RestaurantCard
-                :name="restaurants[4].name"
-                :imgPath="restaurants[4].logo"
-                :bgImgPath="restaurants[4].bgCard"
-                :description="restaurants[4].description"
-                :summary="restaurants[4].summary"
-                :rating="restaurants[4].rating"
-                :reviewCount="restaurants[4].reviewCount"
-                :price="restaurants[4].price_range"
-              ></RestaurantCard>
-            </NuxtLink>
+        <div class="flex-col gap-3">
+          <div class="flex-row gap-3">
+            <div v-for="(r, i) in restaurants" :key="r" style="flex-basis: 25%">
+              <NuxtLink :to="`/establishment/view/${r.restaurant_id}`" v-if="i < 6">
+                <RestaurantCard
+                  :name="r.name"
+                  :imgPath="r.logo"
+                  :bgImgPath="r.bgCard"
+                  :description="r.description"
+                  :tags="r.summary"
+                  :rating="r.rating"
+                  :reviewCount="r.reviewCount"
+                  :price="r.price_range"
+                ></RestaurantCard>
+              </NuxtLink>
+            </div>
           </div>
-          <div class="flex-col gap-3">
-            <NuxtLink :to="`/establishment/view/${restaurants[3].restaurant_id}`">
-              <RestaurantCard
-                :name="restaurants[3].name"
-                :imgPath="restaurants[3].logo"
-                :bgImgPath="restaurants[3].bgCard"
-                :description="restaurants[3].description"
-                :summary="restaurants[3].summary"
-                :rating="restaurants[3].rating"
-                :reviewCount="restaurants[3].reviewCount"
-                :price="restaurants[3].price_range"
-              ></RestaurantCard>
-            </NuxtLink>
+          <div class="flex-row gap-3">
+            <div v-for="(r, i) in restaurants" :key="r" style="flex-basis: 25%">
+              <NuxtLink :to="`/establishment/view/${r.restaurant_id}`" v-if="i < 6">
+                <RestaurantCard
+                  :name="r.name"
+                  :imgPath="r.logo"
+                  :bgImgPath="r.bgCard"
+                  :description="r.description"
+                  :tags="r.summary"
+                  :rating="r.rating"
+                  :reviewCount="r.reviewCount"
+                  :price="r.price_range"
+                ></RestaurantCard>
+              </NuxtLink>
+            </div>
           </div>
         </div>
       </div>

@@ -7,7 +7,7 @@ export default {
     bgImgPath: String,
     name: String,
     description: String,
-    tags: String,
+    tags: Array,
     reviewCount: Number,
     rating: Number,
     price: String
@@ -17,25 +17,35 @@ export default {
 
 <template>
   <div class="restaurant-card">
-    <img :src="imgPath" alt="" class="restaurant-card-image" />
-    <div
-      class="flex-col restaurant-card-inner"
-      :style="`background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(${bgImgPath});`"
-    >
-      <div class="flex-row def-gap stats">
-        <img src="~/assets/icons/star.png" alt="" class="def-icon" />
-        <div class="icon-font">{{ rating }} rating</div>
-        <div class="icon-font">●</div>
-
-        <img src="~/assets/icons/comments.png" alt="" class="def-icon" />
-        <div class="icon-font">{{ reviewCount }} reviews</div>
-        <div class="icon-font">●</div>
-        <!-- TODO: Replace with innovative way to make some dollars greyer based on price range  -->
-        <div class="icon-font">{{ price }}</div>
+    <div class="stats">
+      <div class="info-pill" style="background: linear-gradient(180deg, #edcc78 0%, #e5b351 100%)">
+        <img src="~/assets/icons/star_empty.svg" alt="" class="info-icon" />
+        <div class="info-text">{{ rating }}</div>
       </div>
-      <div class="name">{{ name }}</div>
-      <div class="summary">{{ tags }}</div>
-      <div class="description">{{ description }}</div>
+      <div class="info-pill" style="background: linear-gradient(180deg, #78c6ff 0%, #4291ca 100%)">
+        <img src="~/assets/icons/comments.png" alt="" class="info-icon" />
+        <div class="info-text">{{ reviewCount }}</div>
+      </div>
+      <div class="info-pill" style="background: linear-gradient(180deg, #5ddb8f 0%, #2aa15a 100%)">
+        <img src="~/assets/icons/wallet.svg" alt="" class="info-icon" />
+        <div class="info-text">{{ price }}</div>
+      </div>
+    </div>
+    <img :src="imgPath" alt="" class="restaurant-card-image" />
+    <div class="name">{{ name }}</div>
+    <div class="description">{{ description }}</div>
+    <div class="tags" v-if="tags.length < 3">
+      <div class="info-pill" v-for="i in 2" :key="i">
+        <div class="info-text" style="text-decoration-line: underline">{{ tags[i - 1] }}</div>
+      </div>
+    </div>
+    <div class="tags" v-if="tags.length > 2">
+      <div class="info-pill" v-for="i in 2" :key="i">
+        <div class="info-text" style="text-decoration-line: underline">{{ tags[i - 1] }}</div>
+      </div>
+      <div class="info-pill">
+        <div class="info-text" style="text-decoration-line: underline">+{{ tags.length - 2 }} others</div>
+      </div>
     </div>
   </div>
 </template>
