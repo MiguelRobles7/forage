@@ -219,7 +219,7 @@ export default {
   <div class="establishment-card container rounded-3 mb-5">
     <div class="row">
       <div class="col-auto">
-        <img :src="restaurant.logo" alt="" class="rounded-3" />
+        <img :src="restaurant.logo" alt="" class="establishment-picture" />
       </div>
       <div class="col restaurant-info">
         <div class="info">
@@ -239,21 +239,21 @@ export default {
             <img src="~/assets/icons/clock.png" alt="" class="info-icon" />
             <div class="info-text">{{ restaurant.openingTime }} - {{ restaurant.closingTime }}</div>
           </div>
-          <div class="info-pill" style="background: linear-gradient(180deg, #b0b6f1 0%, #9399d4 100%)">
-            <img src="~/assets/icons/location.png" alt="" class="info-icon" />
-            <div class="info-text">{{ restaurant.location }}</div>
-          </div>
         </div>
         <div class="name">
           {{ restaurant.name }}
         </div>
-        <div class="tags">
-          <div class="info-pill" v-for="t in restaurant.summary">
-            <div class="info-text">{{ t }}</div>
-          </div>
+        <div style="display: flex; gap: 0.2rem">
+          <img src="~/assets/icons/location.png" alt="" class="info-icon" />
+          <div class="info-text">{{ restaurant.location }}</div>
         </div>
         <div class="description">
           {{ restaurant.description }}
+        </div>
+        <div class="tags">
+          <div class="info-pill" v-for="t in restaurant.summary">
+            <div class="info-text" style="text-decoration-line: underline">{{ t }}</div>
+          </div>
         </div>
       </div>
     </div>
