@@ -1,34 +1,88 @@
 <script>
 import Users from '~/assets/JSON/profiles.json'
 import Reviews from '~/assets/JSON/reviews.json'
+import Restaurants from '~/assets/JSON/restaurants.json'
 
 export default {
+  props: {
+    restaurant: {
+      type: Object,
+      required: true
+    }
+  },
+  computed: {
+    restaurant() {
+      const obj = this.restaurants.filter((restaurant) => {
+        return restaurant.restaurant_id === Number(this.id)
+      })[0]
+
+      return this.restaurants.filter((restaurant) => {
+        return restaurant.restaurant_id === Number(this.id)
+      })[0]
+    },
+
+    menu_items() {
+      return this.menu.filter((row) => {
+        return row.restaurant_id === Number(this.id)
+      })
+    },
+
+    current_reviews() {
+      return this.reviews.filter((review) => {
+        return review.restaurant_id === Number(this.id)
+      })
+    }
+  },
+  methods: {
+    edit: function () {
+      this.modal = true
+    }
+  },
   data() {
     return {
-      profile_picture: '/profile/pfps/1.png',
-      banner: '/profile-edit-display/cover.png',
-      name: 'I miss you balik ka na',
-      account_type: 'personal ',
-      description:
-        "Nakatitig sa malayo, may lungkot na bumabalot sa'king puso. Sa mundong puno ng tawa at ngiti, ako'y tila isang tanging damo sa disyerto ng kaligayahan. Ang saklap ng pag-ibig, ito ang aking laging kasama. Sa bawat tibok ng puso, ramdam ko ang pagkirot ng nakaraan. Isang alaala ng mga pangakong binitawan, mga sandaling puno ng tamis, ngunit wala nang natira kundi mga pagsisisi.",
-      street: 'n/a',
-      city: 'Mandaluyong City',
-      province: 'Metro Manila',
-      country: 'Philippines',
-      zip_code: '1550',
+      restaurants: Restaurants,
+      id: useRoute().params.id,
+
+      users: Users,
+      modal: false,
+
       reviews: [
         {
-          user_name: 'Users[0].name',
+          user_name: Users[0].name,
           user_image: Users[0].profile_picture,
           title: Reviews[5].title,
           rating: 5,
           body: Reviews[5].body,
-          images: ['Amogus'],
+          images: ['/assets/images/home-bg.png', '/assets/images/home-bg.png', '/assets/images/home-bg.png'],
           upvotes: Reviews[5].upvotes,
           downvotes: 1,
           is_edited: false,
           owner_responded: true,
           comments: [
+            {
+              user_name: Users[1].name,
+              user_image: Users[1].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            },
+            {
+              user_name: Users[1].name,
+              user_image: Users[1].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            },
+            {
+              user_name: Users[1].name,
+              user_image: Users[1].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            },
             {
               user_name: Users[1].name,
               user_image: Users[1].profile_picture,
@@ -176,24 +230,38 @@ export default {
 <template>
   <main>
     <NavbarDefault name="Johndayll Arizala" :has_search="true"></NavbarDefault>
-    <div class="profile-edit">
+    <div class="establishment-all-reviews">
       <div class="left">
-        <div class="banner"></div>
-        <div class="profile">
-          <img :src="profile_picture" alt="profile image" class="profile-image" />
-          <div class="profile-info">
-            <span class="name">{{ name }}</span>
-            <span class="subtext">Your {{ account_type }} account</span>
-          </div>
-        </div>
-        <ProfileEditRedirect></ProfileEditRedirect>
+        <RestaurantCard
+          :name="restaurant.name"
+          :imgPath="restaurant.logo"
+          :bgImgPath="restaurant.bgCard"
+          :description="restaurant.description"
+          :tags="restaurant.summary"
+          :rating="restaurant.rating"
+          :reviewCount="restaurant.reviewCount"
+          :price="restaurant.price_range"
+        ></RestaurantCard>
       </div>
       <div class="right">
         <div class="review-settings">
-          <h1>Manage Your Reviews</h1>
+          <div class="review-head">
+            <h1>{{ restaurant.name }}'s Reviews</h1>
+            <NuxtLink :to="`/establishment/review/${this.id}`">
+              <button class="see-reviews-button" @click="edit" value="view">
+                <span class="review-span"> Write a Review + </span>
+                <AddReviewModal v-if="modal" :restaurant="restaurant.name"></AddReviewModal>
+              </button>
+            </NuxtLink>
+          </div>
+
           <div class="review-container">
-            <div v-for="r in reviews" :key="r">
-              <ProfileManageReview
+            <div v-for="(r, i) in reviews" :key="r">
+              <EstablishmentReviewAll
+                :ownerReply="r.owner_response"
+                :userImg="r.user_image"
+                :userID="users[i].id"
+                :userName="r.user_name"
                 :title="r.title"
                 :content="r.body"
                 :stars="r.rating"
@@ -203,8 +271,8 @@ export default {
                 :images="r.images"
                 :comments="r.comments"
                 :owner_responded="r.owner_responded"
-                owner_image="/_nuxt/assets/icons/clock.png"
-              ></ProfileManageReview>
+                :owner_image="restaurant.logo"
+              ></EstablishmentReviewAll>
             </div>
           </div>
         </div>

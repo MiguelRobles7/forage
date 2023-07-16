@@ -28,7 +28,7 @@
     background-size: 100% 100%;
     display: flex;
     flex-direction: row;
-    padding: 3.5em;
+    padding: 2.5em;
     .setting-span {
       font-family: TTInterphases;
       font-weight: bold;
@@ -37,7 +37,7 @@
     h1 {
       margin: 0;
       font-weight: bold;
-      font-size: 1.7em;
+      font-size: 1.5em;
     }
     .image-settings {
       padding: 2.8em;
@@ -100,13 +100,39 @@
       width: 30vw;
       display: flex;
       flex-direction: column;
-      gap: 0.8em;
+      gap: 0.7em;
       .profile-input {
         background: #26262a;
         border-radius: 10px;
         border: none;
         padding: 4px 13px;
         font-size: 0.9rem;
+        color: #e6e6e6;
+      }
+      ::-ms-reveal {
+        filter: invert(100%);
+      }
+      .main-text {
+        font-family: TTInterphases;
+        font-weight: bold;
+        font-size: 2rem;
+      }
+      .secondary-text {
+        color: #fff;
+        font-family: TTInterphases;
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 70%; /* 0.875rem */
+      }
+      p {
+        color: #fff;
+        font-family: SpaceGrotesk;
+        font-size: 0.6875rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        letter-spacing: 0.06875rem;
       }
     }
     .setting-item {
@@ -140,8 +166,8 @@
       letter-spacing: 0.1em;
 
       color: #ffffff;
-
       border: none;
+      margin-top: -1em;
     }
     .cancel-button {
       background: linear-gradient(180deg, #cccccc 0%, #a3a3a3 100%);
@@ -161,11 +187,35 @@
       color: #ffffff;
 
       border: none;
+      margin-top: -1em;
+    }
+
+    .delete-button {
+      display: inline-flex;
+      padding: 0.625rem 1.5rem;
+      justify-content: center;
+      align-items: center;
+      gap: 0.625rem;
+
+      border-radius: 1.1875rem;
+      background: linear-gradient(180deg, #ff5b5b 0%, #d63d3d 100%);
+      box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+
+      color: #fff;
+      font-family: SpaceGrotesk;
+      font-size: 0.6875rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      letter-spacing: 0.06875rem;
+
+      border: none;
+      margin-top: -1.5em;
     }
   }
   .left {
     width: 25vw;
-    background: linear-gradient(180deg, #26262a 28.44%, #1f1f22 100%);
+    background: linear-gradient(180deg, #26262a 28.44%, #1d1d1f 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
