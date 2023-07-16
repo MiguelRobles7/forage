@@ -1,7 +1,7 @@
 <template>
   <LoginRegisterSlot type="Login" typeText="your account.">
     <template v-slot:content>
-      <form @submit.prevent="submitForm">
+      <form @submit.prevent="signInWithEmail">
         <div class="flex-col">
           <div class="input-parent">
             <img src="~/assets/icons/Email.png" />
@@ -50,6 +50,8 @@
 </template>
 
 <script>
+const supabase = useSupabaseClient()
+
 import { RouterLink } from 'vue-router'
 export default {
   data() {
@@ -68,19 +70,18 @@ export default {
     }
   },
   methods: {
-    submitForm() {
-      this.emailText = ''
-      this.passwordText = ''
-      const emailExists = this.accounts.find((account) => account.email.toLowerCase() === this.email)
-      if (!emailExists) {
-        this.emailText = 'Account does not exist!'
-      } else {
-        const passwordMatch = this.accounts.find((account) => account.password === this.password)
-        if (!passwordMatch) {
-          this.passwordText = 'Password is incorrect!'
-        } else {
-          this.$emit('close')
-        }
+    async signInWithEmail() {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: this.email,
+        password: this.password,
+      })
+      console.log(error);
+      if (error) {
+        this.passwordText = 'Email or password is incorrect'
+      }
+      else {
+        console.log('logged in');
+        this.$emit('close')
       }
     },
     hidePlaceholder(e) {
