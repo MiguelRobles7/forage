@@ -53,12 +53,36 @@ export default {
           title: Reviews[5].title,
           rating: 5,
           body: Reviews[5].body,
-          images: ['Amogus'],
+          images: ['/assets/images/home-bg.png', '/assets/images/home-bg.png', '/assets/images/home-bg.png'],
           upvotes: Reviews[5].upvotes,
           downvotes: 1,
           is_edited: false,
           owner_responded: true,
           comments: [
+            {
+              user_name: Users[1].name,
+              user_image: Users[1].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            },
+            {
+              user_name: Users[1].name,
+              user_image: Users[1].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            },
+            {
+              user_name: Users[1].name,
+              user_image: Users[1].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            },
             {
               user_name: Users[1].name,
               user_image: Users[1].profile_picture,
