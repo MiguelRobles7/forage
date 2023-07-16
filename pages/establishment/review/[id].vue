@@ -33,12 +33,18 @@ export default {
       })
     }
   },
+  methods: {
+    edit: function () {
+      this.modal = true
+    }
+  },
   data() {
     return {
       restaurants: Restaurants,
       id: useRoute().params.id,
 
       users: Users,
+      modal: false,
 
       reviews: [
         {
@@ -215,7 +221,15 @@ export default {
       </div>
       <div class="right">
         <div class="review-settings">
-          <h1>{{ restaurant.name }}'s Reviews</h1>
+          <div class="review-head">
+            <h1>{{ restaurant.name }}'s Reviews</h1>
+            <NuxtLink :to="`/establishment/review/${this.id}`">
+              <button class="see-reviews-button" @click="edit" value="view">
+                <span class="review-span"> Write a Review + </span>
+                <AddReviewModal v-if="modal" :restaurant="restaurant.name"></AddReviewModal>
+              </button>
+            </NuxtLink>
+          </div>
 
           <div class="review-container">
             <div v-for="(r, i) in reviews" :key="r">
