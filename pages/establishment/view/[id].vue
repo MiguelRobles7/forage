@@ -272,13 +272,11 @@ export default {
     </div>
 
     <div class="review-box" style="margin-bottom: 5vh" id="reviews">
-      <div class="title">
+      <div class="review-box-head">
         <span> Top Reviews </span>
-        <button class="review-button" @click="edit" value="view">
-          <img class="review-icon" src="~/assets/icons/edit-w.svg" alt="" />
-          <span class="review-span"> Write a Review </span>
-          <AddReviewModal v-if="modal" :restaurant="restaurant.name"></AddReviewModal>
-        </button>
+        <NuxtLink :to="`/establishment/review/${this.id}`">
+          <button class="see-reviews-button">See All Reviews →</button>
+        </NuxtLink>
       </div>
       <div class="reviews-container">
         <div class="review-column">

@@ -105,7 +105,47 @@
     }
   }
 }
-
+.establishment-all-reviews {
+  background: linear-gradient(180deg, rgba(29, 29, 31, 0) 0%, #1d1d1f 100%);
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  .left {
+    width: 25vw;
+    background: linear-gradient(180deg, #26262a 28.44%, #1d1d1f 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    padding: 2.5em;
+  }
+  .right {
+    width: 75vw;
+    background: linear-gradient(180deg, rgba(29, 29, 31, 0) 0%, #1d1d1f 100%),
+      url('~/assets/images/profile-edit-right-background.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 2.5em;
+  }
+  h1 {
+    color: #fff;
+    font-family: TTInterphases;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  .review-container {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9375rem;
+  }
+}
 .establishment-content {
   background: linear-gradient(180deg, #1d1d1f 0%, #000 100%);
 
@@ -119,12 +159,55 @@
   }
 
   .review-box {
-    padding: 1.5rem;
-    width: 85%;
+    display: inline-flex;
+    padding: 1.875rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.625rem;
+
     border-radius: 0.5rem;
     border: 4px solid #26262a;
     background: linear-gradient(180deg, #151518 0%, #111112 100%);
     box-shadow: 2px 4px 16px 6px rgba(0, 0, 0, 0.08);
+    width: 85%;
+    .review-box-head {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      align-self: stretch;
+      span {
+        color: #f0f1f1;
+        font-family: TTInterphases;
+        font-size: 1.5rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        flex: 1 0 0;
+      }
+    }
+    .see-reviews-button {
+      display: inline-flex;
+      padding: 0.5rem 1.125rem;
+      justify-content: center;
+      align-items: center;
+      gap: 0.625rem;
+
+      border-radius: 1.1875rem;
+      background: linear-gradient(180deg, #5ddb8f 0%, #35c56f 100%);
+      box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+
+      color: #fff;
+      text-align: right;
+      font-family: SpaceGrotesk;
+      font-size: 0.6875rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      letter-spacing: 0.06875rem;
+
+      border: none;
+      justify-self: flex-end;
+    }
     .reviews-container {
       display: flex;
       flex-direction: row;
