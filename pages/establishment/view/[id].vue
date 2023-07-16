@@ -20,26 +20,59 @@ export default {
           title: Reviews[5].title,
           rating: 5,
           body: Reviews[5].body,
-          images: [],
+          images: ['Amogus'],
           upvotes: Reviews[5].upvotes,
           downvotes: 1,
-          owner_response: [
-            'Coffee Time',
-            '/coffee-time-logo.png',
-            'Thanks!',
-            'Thank you for your kind words! We hope to see you again soon.',
-            '12'
+          is_edited: false,
+          owner_responded: true,
+          comments: [
+            {
+              user_name: Users[1].name,
+              user_image: Users[1].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            },
+            {
+              user_name: Users[2].name,
+              user_image: Users[2].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            }
           ]
         },
         {
-          user_name: Users[1].name + ' • Edited',
+          user_name: Users[1].name,
           user_image: Users[1].profile_picture,
           title: Reviews[3].title,
-          rating: 5,
+          rating: 2,
           body: Reviews[3].body,
           images: [],
           upvotes: Reviews[3].upvotes,
-          downvotes: 1
+          downvotes: 1,
+          is_edited: true,
+          owner_responded: true,
+          comments: [
+            {
+              user_name: Users[1].name,
+              user_image: Users[1].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            },
+            {
+              user_name: Users[2].name,
+              user_image: Users[2].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            }
+          ]
         },
         {
           user_name: Users[2].name,
@@ -49,7 +82,27 @@ export default {
           body: Reviews[0].body,
           images: [],
           upvotes: Reviews[0].upvotes,
-          downvotes: 1
+          downvotes: 1,
+          is_edited: false,
+          owner_responded: true,
+          comments: [
+            {
+              user_name: Users[1].name,
+              user_image: Users[1].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            },
+            {
+              user_name: Users[2].name,
+              user_image: Users[2].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            }
+          ]
         },
         {
           user_name: Users[3].name,
@@ -59,7 +112,27 @@ export default {
           body: Reviews[4].body,
           images: [],
           upvotes: Reviews[4].upvotes,
-          downvotes: 1
+          downvotes: 1,
+          is_edited: false,
+          owner_responded: true,
+          comments: [
+            {
+              user_name: Users[1].name,
+              user_image: Users[1].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            },
+            {
+              user_name: Users[2].name,
+              user_image: Users[2].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            }
+          ]
         },
         {
           user_name: Users[4].name,
@@ -69,7 +142,27 @@ export default {
           body: Reviews[3].body,
           images: [],
           upvotes: Reviews[3].upvotes,
-          downvotes: 1
+          downvotes: 1,
+          is_edited: true,
+          owner_responded: false,
+          comments: [
+            {
+              user_name: Users[1].name,
+              user_image: Users[1].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            },
+            {
+              user_name: Users[2].name,
+              user_image: Users[2].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            }
+          ]
         }
       ],
       review_images: [
@@ -126,36 +219,41 @@ export default {
   <div class="establishment-card container rounded-3 mb-5">
     <div class="row">
       <div class="col-auto">
-        <img :src="restaurant.logo" alt="" class="rounded-3" />
+        <img :src="restaurant.logo" alt="" class="establishment-picture" />
       </div>
       <div class="col restaurant-info">
-        <div class="summary">
-          {{ restaurant.summary }}
+        <div class="info">
+          <div class="info-pill" style="background: linear-gradient(180deg, #edcc78 0%, #e5b351 100%)">
+            <img src="~/assets/icons/star_empty.svg" alt="" class="info-icon" />
+            <div class="info-text">{{ restaurant.rating }} Rating</div>
+          </div>
+          <div class="info-pill" style="background: linear-gradient(180deg, #78c6ff 0%, #4291ca 100%)">
+            <img src="~/assets/icons/comments.png" alt="" class="info-icon" />
+            <div class="info-text">{{ restaurant.reviewCount }} Reviews</div>
+          </div>
+          <div class="info-pill" style="background: linear-gradient(180deg, #5ddb8f 0%, #2aa15a 100%)">
+            <img src="~/assets/icons/wallet.svg" alt="" class="info-icon" />
+            <div class="info-text">{{ restaurant.price_range }} PHP</div>
+          </div>
+          <div class="info-pill" style="background: linear-gradient(180deg, #d2d2d2 0%, #a3a3a3 100%)">
+            <img src="~/assets/icons/clock.png" alt="" class="info-icon" />
+            <div class="info-text">{{ restaurant.openingTime }} - {{ restaurant.closingTime }}</div>
+          </div>
         </div>
         <div class="name">
           {{ restaurant.name }}
         </div>
-        <div class="d-flex align-items-center mb-1">
-          <img src="~/assets/icons/star.png" alt="" class="icon" />
-          <div class="info">{{ restaurant.rating }} Rating</div>
-          <div class="dot">•</div>
-
-          <img src="~/assets/icons/comments.png" alt="" class="icon" />
-          <div class="info">{{ restaurant.reviewCount }} Reviews</div>
-          <div class="dot">•</div>
-
-          <div class="info">{{ restaurant.price_range }}</div>
-          <div class="dot">•</div>
-
-          <img src="~/assets/icons/clock.png" alt="" class="icon" />
-          <div class="info">{{ restaurant.openingTime }} - {{ restaurant.closingTime }}</div>
-        </div>
-        <div class="d-flex location align-items-center">
-          <img src="~/assets/icons/location.png" alt="" class="icon" />
-          <div>{{ restaurant.location }}</div>
+        <div style="display: flex; gap: 0.2rem">
+          <img src="~/assets/icons/location.png" alt="" class="info-icon" />
+          <div class="info-text">{{ restaurant.location }}</div>
         </div>
         <div class="description">
           {{ restaurant.description }}
+        </div>
+        <div class="tags">
+          <div class="info-pill" v-for="t in restaurant.summary">
+            <div class="info-text" style="text-decoration-line: underline">{{ t }}</div>
+          </div>
         </div>
       </div>
     </div>
@@ -182,87 +280,75 @@ export default {
           <AddReviewModal v-if="modal" :restaurant="restaurant.name"></AddReviewModal>
         </button>
       </div>
-      <div
-        style="
-          display: flex;
-          flex-direction: row;
-          width: 100%;
-          justify-content: center;
-          align-items: flex-start;
-          gap: 1.25rem;
-        "
-      >
-        <!-- TODO: Replace this with unique views per column -->
-        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; flex: 1 0 0">
-          <EstablishmentReview
-            :key="reviews[0]"
-            :ownerReply="reviews[0].owner_response"
-            :userImg="reviews[0].user_image"
-            :userID="users[0].id"
-            :userName="reviews[0].user_name"
-            :title="reviews[0].title"
-            :content="reviews[0].body"
-            :stars="reviews[0].rating"
-            :upvotes="reviews[0].upvotes"
-            :downvotes="reviews[0].downvotes"
-          >
-          </EstablishmentReview>
+      <div class="reviews-container">
+        <div class="review-column">
+          <div v-for="(r, i) in reviews" :key="r">
+            <EstablishmentReview
+              v-if="i % 2 == 0"
+              :key="r"
+              :ownerReply="r.owner_response"
+              :userImg="r.user_image"
+              :userID="users[i].id"
+              :userName="r.user_name"
+              :title="r.title"
+              :content="r.body"
+              :stars="r.rating"
+              :upvotes="r.upvotes"
+              :downvotes="r.downvotes"
+              :isEdited="r.is_edited"
+              :images="r.images"
+              :comments="r.comments"
+              :owner_responded="r.owner_responded"
+              :owner_image="restaurant.logo"
+            >
+            </EstablishmentReview>
+          </div>
         </div>
-        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; flex: 1 0 0">
-          <EstablishmentReview
-            :key="reviews[1]"
-            :ownerReply="reviews[1].owner_response"
-            :userImg="reviews[1].user_image"
-            :userID="users[1].id"
-            :userName="reviews[1].user_name"
-            :title="reviews[1].title"
-            :content="reviews[1].body"
-            :stars="reviews[1].rating"
-            :upvotes="reviews[1].upvotes"
-            :downvotes="reviews[1].downvotes"
-          >
-          </EstablishmentReview>
-          <EstablishmentReview
-            :key="reviews[2]"
-            :ownerReply="reviews[2].owner_response"
-            :userImg="reviews[2].user_image"
-            :userID="users[2].id"
-            :userName="reviews[2].user_name"
-            :title="reviews[2].title"
-            :content="reviews[2].body"
-            :stars="reviews[2].rating"
-            :upvotes="reviews[2].upvotes"
-            :downvotes="reviews[2].downvotes"
-          >
-          </EstablishmentReview>
+        <div class="review-column">
+          <div v-for="(r, i) in reviews" :key="r">
+            <EstablishmentReview
+              v-if="i % 2 == 1"
+              :key="r"
+              :ownerReply="r.owner_response"
+              :userImg="r.user_image"
+              :userID="users[i].id"
+              :userName="r.user_name"
+              :title="r.title"
+              :content="r.body"
+              :stars="r.rating"
+              :upvotes="r.upvotes"
+              :downvotes="r.downvotes"
+              :isEdited="r.is_edited"
+              :images="r.images"
+              :comments="r.comments"
+              :owner_responded="r.owner_responded"
+              :owner_image="restaurant.logo"
+            >
+            </EstablishmentReview>
+          </div>
         </div>
-        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; flex: 1 0 0">
-          <EstablishmentReview
-            :key="reviews[3]"
-            :ownerReply="reviews[3].owner_response"
-            :userImg="reviews[3].user_image"
-            :userID="users[3].id"
-            :userName="reviews[3].user_name"
-            :title="reviews[3].title"
-            :content="reviews[3].body"
-            :stars="reviews[3].rating"
-            :upvotes="reviews[3].upvotes"
-            :downvotes="reviews[3].downvotes"
-          >
-          </EstablishmentReview>
-          <EstablishmentReview
-            :key="reviews[4]"
-            :ownerReply="reviews[4].owner_response"
-            :userImg="reviews[4].user_image"
-            :userID="this.users[4].id"
-            :userName="reviews[4].user_name"
-            :title="reviews[4].title"
-            :content="reviews[4].body"
-            :stars="reviews[4].rating"
-            :upvotes="reviews[4].upvotes"
-            :downvotes="reviews[4].downvotes"
-          >
-          </EstablishmentReview>
+        <div class="review-column">
+          <div v-for="(r, i) in reviews" :key="r">
+            <EstablishmentReview
+              v-if="i % 2 == 0"
+              :key="r"
+              :ownerReply="r.owner_response"
+              :userImg="r.user_image"
+              :userID="users[i].id"
+              :userName="r.user_name"
+              :title="r.title"
+              :content="r.body"
+              :stars="r.rating"
+              :upvotes="r.upvotes"
+              :downvotes="r.downvotes"
+              :isEdited="r.is_edited"
+              :images="r.images"
+              :comments="r.comments"
+              :owner_responded="r.owner_responded"
+              :owner_image="restaurant.logo"
+            >
+            </EstablishmentReview>
+          </div>
         </div>
       </div>
     </div>

@@ -69,17 +69,6 @@
             <div class="addrInput">
               <div class="input-parent">
                 <input
-                  id="street"
-                  v-model="street"
-                  type="text"
-                  @focus="hidePlaceholder"
-                  @blur="showPlaceholder"
-                  placeholder="Street Address"
-                  class="input-def"
-                />
-              </div>
-              <div class="input-parent">
-                <input
                   id="city"
                   v-model="city"
                   type="text"
@@ -103,12 +92,12 @@
                 </div>
                 <div class="input-parent">
                   <input
-                    id="zip"
-                    v-model="zip"
+                    id="province"
+                    v-model="province"
                     type="text"
                     @focus="hidePlaceholder"
                     @blur="showPlaceholder"
-                    placeholder="ZIP Code"
+                    placeholder="Province"
                     class="input-def"
                   />
                 </div>

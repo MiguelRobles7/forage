@@ -44,18 +44,10 @@ export default {
             <span class="setting-span">Description</span>
             <textarea class="profile-input" name="" id="" cols="30" rows="10" :placeholder="description"></textarea>
           </div>
-          <div class="setting-item">
-            <span class="setting-span">Street Name</span>
-            <input class="profile-input" type="text" :placeholder="street" />
-          </div>
           <div class="setting-pair">
             <div class="setting-item">
               <span class="setting-span">City</span>
               <input class="profile-input" type="text" :placeholder="city" />
-            </div>
-            <div class="setting-item">
-              <span class="setting-span">Province</span>
-              <input class="profile-input" type="text" :placeholder="province" />
             </div>
           </div>
           <div class="setting-pair">
@@ -64,8 +56,8 @@ export default {
               <input class="profile-input" type="text" :placeholder="country" />
             </div>
             <div class="setting-item">
-              <span class="setting-span">ZIP Code</span>
-              <input class="profile-input" type="text" :placeholder="zip_code" style="width: 28%" />
+              <span class="setting-span">Province</span>
+              <input class="profile-input" type="text" :placeholder="province" />
             </div>
           </div>
           <div class="flex-row" style="gap: 1em; margin-top: 0.8em">
