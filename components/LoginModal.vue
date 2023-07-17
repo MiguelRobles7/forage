@@ -1,7 +1,7 @@
 <template>
   <LoginRegisterSlot type="Login" typeText="your account.">
     <template v-slot:content>
-      <form @submit.prevent="submitForm">
+      <form @submit.prevent="signInWithEmail">
         <div class="flex-col">
           <div class="input-parent">
             <img src="~/assets/icons/Email.png" />
@@ -15,7 +15,7 @@
               required
             />
           </div>
-          <label v-if="emailText">{{ emailText }}</label>
+          <!-- <label v-if="emailText">{{ emailText }}</label> -->
 
           <div class="input-parent">
             <img src="~/assets/icons/Key.png" />
@@ -41,7 +41,7 @@
           <div class="font-default margin-top">
             <div>Don't have an account?</div>
             <!--TODO: Refactor Login Register Structure-->
-            <RouterLink to="/" style="color: #2a7e58; text-decoration: underline"> Sign up here</RouterLink>
+            <span @click="this.$emit('goReg')" style="color: #2a7e58; text-decoration: underline; cursor: pointer; font-weight: bold;"> Sign up here</span>
           </div>
         </div>
       </form>
@@ -50,6 +50,8 @@
 </template>
 
 <script>
+
+
 import { RouterLink } from 'vue-router'
 export default {
   data() {
@@ -68,19 +70,19 @@ export default {
     }
   },
   methods: {
-    submitForm() {
-      this.emailText = ''
-      this.passwordText = ''
-      const emailExists = this.accounts.find((account) => account.email.toLowerCase() === this.email)
-      if (!emailExists) {
-        this.emailText = 'Account does not exist!'
-      } else {
-        const passwordMatch = this.accounts.find((account) => account.password === this.password)
-        if (!passwordMatch) {
-          this.passwordText = 'Password is incorrect!'
-        } else {
-          this.$emit('close')
-        }
+    async signInWithEmail() {
+      const supabase = useSupabaseClient()
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: this.email,
+        password: this.password,
+      })
+      console.log(error);
+      if (error) {
+        this.passwordText = 'Email or password is incorrect'
+      }
+      else {
+        alert('logged in');
+        this.$emit('close')
       }
     },
     hidePlaceholder(e) {

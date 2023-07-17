@@ -119,13 +119,13 @@
               class="input-def"
             ></textarea>
 
-            <div class="labels margin-top">
+            <!-- <div class="labels margin-top">
               <img src="~/assets/icons/camera_black.svg" />
               <label class="input-def">Upload an image (optional)</label>
             </div>
             <div class="img margin-top">
               <img src="~/assets/icons/plus.svg" />
-            </div>
+            </div> -->
           </div>
 
           <button class="modal-button">
@@ -136,9 +136,9 @@
           <div class="margin-top">
             <div>Already have an account?</div>
             <!--TODO: Refactor Login Register Structure-->
-            <RouterLink to="/" style="color: #2a7e58; text-decoration: underline; font-weight: bold">
+            <span @click="this.$emit('goLog')" style="color: #2a7e58; text-decoration: underline; font-weight: bold; cursor: pointer;">
               Log in here
-            </RouterLink>
+            </span>
           </div>
         </div>
       </form>
@@ -154,12 +154,10 @@ export default {
       password: '',
       passwordConfirm: '',
       username: '',
-      street: '',
+      province: '',
       city: '',
       country: '',
-      zip: '',
       desc: '',
-      image: '',
       passwordText: '',
       currPage: 1
     }
@@ -185,8 +183,8 @@ export default {
         case 'username':
           e.target.placeholder = 'Display Name'
           break
-        case 'street':
-          e.target.placeholder = 'Street Address'
+        case 'province':
+          e.target.placeholder = 'Province'
           break
         case 'city':
           e.target.placeholder = 'City'
@@ -194,12 +192,9 @@ export default {
         case 'country':
           e.target.placeholder = 'Country'
           break
-        case 'zip':
-          e.target.placeholder = 'ZIP Code'
-          break
       }
     },
-    nextPage() {
+    async nextPage() {
       if (this.currPage === 1) {
         if (this.password !== this.passwordConfirm) {
           this.passwordText = 'Passwords do not match'
@@ -207,9 +202,31 @@ export default {
         }
       }
       if (this.currPage === 3) {
+        console.log(this.username);
+        const supabase = useSupabaseClient()
+        const { data, error } = await supabase.auth.signUp({
+          email: this.email,
+          password: this.password,
+          options: {
+            data: {
+              username: this.username,
+              desc: this.desc,
+              country: this.country,
+              province: this.province,
+              city: this.city
+            }
+          }
+        })
+        if (error) {
+          console.log(error);
+        }
+        else {
+          alert('Registered! Please check your email for verification');
+        }
         this.closeModal()
       }
-      this.currPage++
+      else
+        this.currPage++
     }
   }
 }

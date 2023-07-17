@@ -1,20 +1,26 @@
 <script>
 export default {
+  props: {
+    isLoggedIn: Boolean
+  },
   data() {
     return {
       showLogin: false,
       showRegister: false,
-      isLoggedIn: true,
       showDropdown: false
     }
   },
 
   methods: {
     toggleLogin() {
+      if (this.showRegister) 
+        this.showRegister = false
       this.showLogin = !this.showLogin
     },
 
     toggleRegister() {
+      if (this.showLogin) 
+        this.showLogin = false
       this.showRegister = !this.showRegister
     },
 
@@ -30,13 +36,13 @@ export default {
 </script>
 
 <template>
-  <LoginModal v-if="showLogin" @close="toggleLogin"></LoginModal>
-  <RegisterModal v-if="showRegister" @close="toggleRegister"></RegisterModal>
+  <LoginModal v-if="showLogin" @close="toggleLogin" @goReg="toggleRegister"></LoginModal>
+  <RegisterModal v-if="showRegister" @close="toggleRegister" @goLog="toggleLogin"></RegisterModal>
   <Dropdown class="dropdown" style="max-width: 18.75rem" v-if="showDropdown" v></Dropdown>
 
   <nav class="navbar">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/"> Forage </a>
+      <NuxtLink class="navbar-brand" to="/"> Forage </NuxtLink>
       <div class="nav-right">
         <div class="links">
           <a href="#highlights" class="nav-link font-default"> Latest Craze Spots </a>
