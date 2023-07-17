@@ -107,5 +107,4 @@ const restaurants = restoCard
       </div>
     </div>
   </main>
-  <Footer></Footer>
 </template>

@@ -1,10 +1,12 @@
 <script>
 export default {
+  props: {
+    isLoggedIn: Boolean
+  },
   data() {
     return {
       showLogin: false,
       showRegister: false,
-      isLoggedIn: false,
       showDropdown: false
     }
   },
@@ -40,7 +42,7 @@ export default {
 
   <nav class="navbar">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/"> Forage </a>
+      <NuxtLink class="navbar-brand" to="/"> Forage </NuxtLink>
       <div class="nav-right">
         <div class="links">
           <a href="#highlights" class="nav-link font-default"> Latest Craze Spots </a>
