@@ -1,5 +1,7 @@
 <script>
 import Profiles from '~/assets/JSON/profiles.json'
+import Users from '~/assets/JSON/profiles.json'
+import Reviews from '~/assets/JSON/reviews.json'
 
 export default {
   methods: {
@@ -38,20 +40,154 @@ export default {
       ],
       reviews: [
         {
-          title: 'Simply the best latte in town',
+          user_name: 'Users[0].name',
+          user_image: Users[0].profile_picture,
+          title: Reviews[5].title,
           rating: 5,
-          body: 'The latte at your coffee shop is an exquisite work of art, perfectly crafted to delight the senses. Its velvety smoothness dances with the rich aroma of freshly brewed espresso, creating a symphony of flavors that caress the palate with each sip. Savoring your latte is like embarking on a blissful journey, where the harmonious balance of steamed milk and espresso transports me to a realm of pure indulgence. Thank you for creating such a divine elixir that elevates my coffee experience to new heights.',
-          images: ['/review-cards/userimage.png'],
-          upvotes: 301,
-          downvotes: 0
+          body: Reviews[5].body,
+          images: ['Amogus'],
+          upvotes: Reviews[5].upvotes,
+          downvotes: 1,
+          is_edited: false,
+          owner_responded: true,
+          comments: [
+            {
+              user_name: Users[1].name,
+              user_image: Users[1].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            },
+            {
+              user_name: Users[2].name,
+              user_image: Users[2].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            }
+          ]
         },
         {
-          title: 'The pastries are a must try',
+          user_name: Users[1].name,
+          user_image: Users[1].profile_picture,
+          title: Reviews[3].title,
+          rating: 2,
+          body: Reviews[3].body,
+          images: [],
+          upvotes: Reviews[3].upvotes,
+          downvotes: 1,
+          is_edited: true,
+          owner_responded: true,
+          comments: [
+            {
+              user_name: Users[1].name,
+              user_image: Users[1].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            },
+            {
+              user_name: Users[2].name,
+              user_image: Users[2].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            }
+          ]
+        },
+        {
+          user_name: Users[2].name,
+          user_image: Users[2].profile_picture,
+          title: Reviews[0].title,
           rating: 5,
-          body: "Your coffee shop's pastries are a delectable delight that brings sheer joy to my taste buds.",
-          images: ['/review-cards/userimage.png'],
-          upvotes: 73,
-          downvotes: 0
+          body: Reviews[0].body,
+          images: [],
+          upvotes: Reviews[0].upvotes,
+          downvotes: 1,
+          is_edited: false,
+          owner_responded: true,
+          comments: [
+            {
+              user_name: Users[1].name,
+              user_image: Users[1].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            },
+            {
+              user_name: Users[2].name,
+              user_image: Users[2].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            }
+          ]
+        },
+        {
+          user_name: Users[3].name,
+          user_image: Users[3].profile_picture,
+          title: Reviews[4].title,
+          rating: 5,
+          body: Reviews[4].body,
+          images: [],
+          upvotes: Reviews[4].upvotes,
+          downvotes: 1,
+          is_edited: false,
+          owner_responded: true,
+          comments: [
+            {
+              user_name: Users[1].name,
+              user_image: Users[1].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            },
+            {
+              user_name: Users[2].name,
+              user_image: Users[2].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            }
+          ]
+        },
+        {
+          user_name: Users[4].name,
+          user_image: Users[4].profile_picture,
+          title: Reviews[3].title,
+          rating: 5,
+          body: Reviews[3].body,
+          images: [],
+          upvotes: Reviews[3].upvotes,
+          downvotes: 1,
+          is_edited: true,
+          owner_responded: false,
+          comments: [
+            {
+              user_name: Users[1].name,
+              user_image: Users[1].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            },
+            {
+              user_name: Users[2].name,
+              user_image: Users[2].profile_picture,
+              body: 'This is a comment',
+              upvotes: 5,
+              downvotes: 1,
+              is_edited: false
+            }
+          ]
         }
       ]
     }
@@ -69,7 +205,7 @@ export default {
 
 <template>
   <main>
-    <NavbarDefaultLoggedIn name="Johndayll Arizala" image="/profile/pfps/1.png"></NavbarDefaultLoggedIn>
+    <NavbarDefault name="Johndayll Arizala" :has_search="true"></NavbarDefault>
     <div class="profile-view">
       <div
         class="banner"
@@ -102,10 +238,10 @@ export default {
           <div class="info">
             <h1>{{ Profile.name }}</h1>
             <div class="stats">
-              <img src="~/assets/profile-view/comments.svg" alt="" />
+              <img src="~/assets/icons/comments.png" alt="" />
               <span>Wrote {{ reviews.length }} Reviews</span>
               <span>•</span>
-              <img src="~/assets/profile-view/location.svg" alt="" />
+              <img src="~/assets/icons/location.png" alt="" />
               <span>{{ Profile.street }} {{ Profile.city }}, {{ Profile.province }}, {{ Profile.country }} </span>
             </div>
             <p style="min-height: 17.5vh">{{ Profile.description }}</p>
@@ -120,49 +256,38 @@ export default {
             <h1>{{ Profile.name }}'s Latest Reviews</h1>
             <div class="review-box">
               <div class="review-col">
-                <!-- MCO2 TODO: Dynamically load these -->
-                <ProfileReview
-                  :title="reviews[0].title"
-                  :rating="reviews[0].rating"
-                  :body="reviews[0].body"
-                  :images="reviews[0].images"
-                  :upvotes="reviews[0].upvotes"
-                  :downvotes="reviews[0].downvotes"
-                ></ProfileReview>
-                <ProfileReview
-                  :title="reviews[0].title"
-                  :rating="reviews[0].rating"
-                  :body="reviews[0].body"
-                  :images="reviews[0].images"
-                  :upvotes="reviews[0].upvotes"
-                  :downvotes="reviews[0].downvotes"
-                ></ProfileReview>
+                <div v-for="(r, i) in reviews" :key="r">
+                  <ProfileReview
+                    v-if="i % 2 == 0"
+                    :title="r.title"
+                    :content="r.body"
+                    :stars="r.rating"
+                    :upvotes="r.upvotes"
+                    :downvotes="r.downvotes"
+                    :isEdited="r.is_edited"
+                    :images="r.images"
+                    :comments="r.comments"
+                    :owner_responded="r.owner_responded"
+                    owner_image="/_nuxt/assets/icons/clock.png"
+                  ></ProfileReview>
+                </div>
               </div>
               <div class="review-col">
-                <ProfileReview
-                  :title="reviews[1].title"
-                  :rating="reviews[1].rating"
-                  :body="reviews[1].body"
-                  :images="reviews[1].images"
-                  :upvotes="reviews[1].upvotes"
-                  :downvotes="reviews[1].downvotes"
-                ></ProfileReview>
-                <ProfileReview
-                  :title="reviews[1].title"
-                  :rating="reviews[1].rating"
-                  :body="reviews[1].body"
-                  :images="reviews[1].images"
-                  :upvotes="reviews[1].upvotes"
-                  :downvotes="reviews[1].downvotes"
-                ></ProfileReview>
-                <ProfileReview
-                  :title="reviews[0].title"
-                  :rating="reviews[0].rating"
-                  :body="reviews[0].body"
-                  :images="reviews[0].images"
-                  :upvotes="reviews[0].upvotes"
-                  :downvotes="reviews[0].downvotes"
-                ></ProfileReview>
+                <div v-for="(r, i) in reviews" :key="i" style="margin: 0; padding: 0">
+                  <ProfileReview
+                    v-if="i % 2 == 1"
+                    :title="r.title"
+                    :content="r.body"
+                    :stars="r.rating"
+                    :upvotes="r.upvotes"
+                    :downvotes="r.downvotes"
+                    :isEdited="r.is_edited"
+                    :images="r.images"
+                    :comments="r.comments"
+                    :owner_responded="r.owner_responded"
+                    owner_image="/_nuxt/assets/icons/userimage.svg"
+                  ></ProfileReview>
+                </div>
               </div>
             </div>
           </div>

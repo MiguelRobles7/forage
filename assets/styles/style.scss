@@ -1,0 +1,76 @@
+@import 'variables';
+
+a {
+  all: unset;
+  cursor: pointer;
+}
+
+body {
+  font-family: 'TTInterphases';
+  font-weight: normal;
+  background-color: $background-color;
+  color: white;
+  overflow-x: hidden;
+}
+h1 {
+  /* font-size: 20rem; */
+  color: white;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row-right {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.font-default {
+  font-size: $font-regular;
+  font-family: TTInterphases;
+  font-weight: 600;
+}
+
+.def-icon {
+  min-width: 1em;
+  width: 1em;
+  max-width: 1em;
+  min-height: 1em;
+  height: 1em;
+  max-height: 1em;
+}
+
+.center {
+  align-items: center;
+  justify-content: center;
+}
+
+.def-gap {
+  gap: 0.5em;
+}
+
+.title {
+  font-size: 1.4rem;
+  font-family: TTInterphases;
+  font-weight: bold;
+}
+
+/* PUT THESE AT THE END ALWAYS */
+@import 'establishments';
+@import 'index';
+@import 'modals';
+@import 'navbar';
+@import 'profile_edit';
+@import 'profile_view';
+@import 'restaurant';
+@import 'review';
+@import 'search';
+@import 'footer';
+@import 'discussion';

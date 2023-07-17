@@ -9,7 +9,12 @@ export default {
     content: String,
     stars: Number,
     upvotes: Number,
-    downvotes: Number
+    downvotes: Number,
+    isEdited: Boolean,
+    images: Array,
+    comments: Array,
+    owner_responded: Boolean,
+    owner_image: String
   }
 }
 </script>
@@ -21,14 +26,12 @@ export default {
     </NuxtLink>
     <div class="cont">
       <div class="review-item" style="margin-bottom: -0.5vh">
-        <span class="tag">{{ userName }}</span>
-        <!-- Phase 2 TODO: Innovative way for starring -->
+        <div>
+          <span class="tag">{{ userName }}</span>
+          <span v-if="isEdited" class="tag"> • Edited </span>
+        </div>
         <div class="stars">
-          <img class="star" src="~/assets/icons/star.png" alt="" />
-          <img class="star" src="~/assets/icons/star.png" alt="" />
-          <img class="star" src="~/assets/icons/star.png" alt="" />
-          <img class="star" src="~/assets/icons/star.png" alt="" />
-          <img class="star" src="~/assets/icons/star.png" alt="" />
+          <img v-for="index in stars" :key="index" class="star" src="~/assets/icons/star.png" alt="" />
         </div>
       </div>
       <div class="review-item">
@@ -37,46 +40,30 @@ export default {
       <div class="review-item">
         <p class="body">{{ content }}</p>
       </div>
-      <div class="review-item" style="justify-content: flex-end; gap: 0.625rem">
-        <!-- Phase 2 TODO: innovative way to load all images dynamically -->
-        <img class="review-icon" src="~/assets/review-cards/userimage.png" alt="" />
-        <div class="review-voting">
-          <img class="review-icon" src="~/assets/review-cards/upvote.svg" alt="" />
-          {{ upvotes - downvotes }}
-          <img class="review-icon" src="~/assets/review-cards/downvote.svg" alt="" />
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="reply" v-if="Array.isArray(ownerReply) && ownerReply.length">
-    <img src="/reply.svg" alt="" />
-    <div class="review" style="flex-basis: 100%">
-      <img class="reviewer-pfp" :src="ownerReply[1]" alt="" />
-      <div class="cont">
-        <div class="review-item" style="margin-bottom: -0.5vh">
-          <span class="tag">{{ ownerReply[0] }}</span>
-          <!-- Phase 2 TODO: Innovative way for starring -->
-          <div class="stars">
-            <img class="star" src="~/assets/icons/star.png" alt="" />
-            <img class="star" src="~/assets/icons/star.png" alt="" />
-            <img class="star" src="~/assets/icons/star.png" alt="" />
-            <img class="star" src="~/assets/icons/star.png" alt="" />
-            <img class="star" src="~/assets/icons/star.png" alt="" />
+      <div class="review-item" style="justify-content: flex-end; gap: 0.4rem">
+        <div class="review-elements">
+          <div class="review-pill" v-if="images.length > 0">
+            <img class="review-icon" src="~/assets/icons/userimage.svg" alt="" />
+            <span class="review-pill-span">{{ images.length }}</span>
+          </div>
+          <div class="review-pill" v-if="comments.length > 0 && owner_responded" style="gap: 0.4rem">
+            <img class="review-icon" src="~/assets/icons/comment_square.svg" alt="" />
+            <img class="owner-image" :src="owner_image" alt="" />
+            <span class="review-pill-span">+ {{ comments.length }}</span>
+          </div>
+          <div class="review-pill" v-if="comments.length > 0 && !owner_responded">
+            <img class="review-icon" src="~/assets/icons/comment_square.svg" alt="" />
+            <span class="review-pill-span">{{ comments.length }}</span>
           </div>
         </div>
-        <div class="review-item">
-          <span class="title-span">{{ ownerReply[2] }}</span>
-        </div>
-        <div class="review-item">
-          <p class="body">{{ ownerReply[3] }}</p>
-        </div>
-        <div class="review-item" style="justify-content: flex-end; gap: 0.625rem">
-          <!-- Phase 2 TODO: innovative way to load all images dynamically -->
-          <img class="review-icon" src="~/assets/review-cards/userimage.png" alt="" />
-          <div class="review-voting">
-            <img class="review-icon" src="~/assets/review-cards/upvote.svg" alt="" />
-            {{ ownerReply[4] }}
-            <img class="review-icon" src="~/assets/review-cards/downvote.svg" alt="" />
+
+        <div class="review-voting">
+          <div class="vote-pill">
+            <img class="review-icon" src="~/assets/icons/upvote.svg" alt="" />
+          </div>
+          <span class="vote-count">{{ upvotes - downvotes }}</span>
+          <div class="vote-pill">
+            <img class="review-icon" src="~/assets/icons/downvote.svg" alt="" />
           </div>
         </div>
       </div>

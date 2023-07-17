@@ -1,0 +1,306 @@
+@import 'variables';
+
+.profile-edit {
+  background: linear-gradient(180deg, rgba(29, 29, 31, 0) 0%, #1d1d1f 100%);
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+
+  .review-container {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9375rem;
+  }
+  .review-settings {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9375rem;
+  }
+  .right {
+    width: 75vw;
+    background: linear-gradient(180deg, rgba(29, 29, 31, 0) 0%, #1d1d1f 100%),
+      url('~/assets/images/profile-edit-right-background.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 2.5em;
+    .setting-span {
+      font-family: TTInterphases;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+    h1 {
+      margin: 0;
+      font-weight: bold;
+      font-size: 1.5em;
+    }
+    .image-settings {
+      padding: 2.8em;
+      display: flex;
+      flex-direction: column;
+      .profile-image {
+        max-width: 10em;
+        border-radius: 10px;
+      }
+      .banner-image {
+        max-width: 25em;
+        border-radius: 10px;
+      }
+      .banner-image-button {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 0.8em;
+        background: linear-gradient(180deg, #1a2228 0%, #191920 100%);
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        border: none;
+        padding: 10px 24px;
+        letter-spacing: 0.1em;
+        color: #e6e6e6;
+        font-family: 'SpaceGrotesk';
+
+        font-size: 0.8em;
+        font-weight: 500;
+        color: #e6e6e6;
+        width: fit-content;
+        align-self: flex-end;
+        margin: -1.8em -1.2em 0 0;
+      }
+      .profile-image-button {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 0.8em;
+        background: linear-gradient(180deg, #1a2228 0%, #191920 100%);
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        border: none;
+        padding: 10px 24px;
+        letter-spacing: 0.1em;
+        color: #e6e6e6;
+        font-family: 'SpaceGrotesk';
+
+        font-size: 0.8em;
+        font-weight: 500;
+        color: #e6e6e6;
+        width: fit-content;
+        align-self: flex-end;
+        margin: -1.8em 17em 0 0;
+      }
+    }
+    .main-settings {
+      width: 30vw;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7em;
+      .profile-input {
+        background: #26262a;
+        border-radius: 10px;
+        border: none;
+        padding: 4px 13px;
+        font-size: 0.9rem;
+        color: #e6e6e6;
+      }
+      ::-ms-reveal {
+        filter: invert(100%);
+      }
+      .main-text {
+        font-family: TTInterphases;
+        font-weight: bold;
+        font-size: 2rem;
+      }
+      .secondary-text {
+        color: #fff;
+        font-family: TTInterphases;
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 70%; /* 0.875rem */
+      }
+      p {
+        color: #fff;
+        font-family: SpaceGrotesk;
+        font-size: 0.6875rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        letter-spacing: 0.06875rem;
+      }
+    }
+    .setting-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3em;
+    }
+    .setting-pair {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      gap: 1em;
+      align-items: center;
+      .setting-item {
+        width: inherit;
+      }
+    }
+    .save-button {
+      background: linear-gradient(180deg, #5ddb8f 0%, #35c56f 100%);
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 19px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 1em 2em;
+      height: fit-content;
+      font-family: 'SpaceGrotesk';
+      font-weight: 500;
+      font-size: 0.7em;
+      letter-spacing: 0.1em;
+
+      color: #ffffff;
+      border: none;
+      margin-top: -1em;
+    }
+    .cancel-button {
+      background: linear-gradient(180deg, #cccccc 0%, #a3a3a3 100%);
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 19px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 1em 2em;
+      height: fit-content;
+      font-family: 'SpaceGrotesk';
+      font-weight: 500;
+      font-size: 0.7em;
+      letter-spacing: 0.1em;
+
+      color: #ffffff;
+
+      border: none;
+      margin-top: -1em;
+    }
+
+    .delete-button {
+      display: inline-flex;
+      padding: 0.625rem 1.5rem;
+      justify-content: center;
+      align-items: center;
+      gap: 0.625rem;
+
+      border-radius: 1.1875rem;
+      background: linear-gradient(180deg, #ff5b5b 0%, #d63d3d 100%);
+      box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+
+      color: #fff;
+      font-family: SpaceGrotesk;
+      font-size: 0.6875rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      letter-spacing: 0.06875rem;
+
+      border: none;
+      margin-top: -1.5em;
+    }
+  }
+  .left {
+    width: 25vw;
+    background: linear-gradient(180deg, #26262a 28.44%, #1d1d1f 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    .banner {
+      background: linear-gradient(180deg, rgba(38, 38, 42, 0) 0%, #26262a 84.17%), url('/profile/banners/1.png');
+      width: 100%;
+      height: 30vh;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .profile {
+      margin-top: -15vh;
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      align-items: center;
+      .profile-image {
+        width: 8em;
+        height: 8em;
+        border-radius: 8px;
+      }
+      .profile-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .name {
+        font-family: 'SpaceGrotesk';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 1.5em;
+        line-height: 1.3em;
+      }
+      .subtext {
+        font-family: 'SpaceGrotesk';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 0.9em;
+        line-height: 1.2em;
+        color: rgba(255, 255, 255, 0.6);
+      }
+    }
+  }
+}
+
+.redirects {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.5em;
+  gap: 0.7em;
+  background: #212124;
+  border: 2px solid #2c2c31;
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+
+  width: 80%;
+
+  .redirect-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    gap: 1em;
+  }
+  .redirect-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0.5em;
+    gap: 0.3em;
+    align-items: flex-start;
+  }
+  .icon {
+    width: 1.7em;
+    height: 1.7em;
+  }
+  span {
+    font-weight: 500;
+    font-size: 0.9em;
+    line-height: 15px;
+    letter-spacing: 0.02em;
+    color: #e6e6e6;
+  }
+}

@@ -45,8 +45,8 @@ export default {
   top: 0;
   position: fixed;
   background: rgba(0, 0, 0, 0.9);
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;

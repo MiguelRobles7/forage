@@ -1,0 +1,70 @@
+$color-primary: #0000;
+$font-small: 0.5rem;
+$font-regular: 1rem;
+$font-medium: 1.5rem;
+$font-large: 2rem;
+$font-xlarge: 2.5rem;
+$background-color: #1d1d1f;
+
+@font-face {
+  font-family: 'Rowdies';
+  src: url('~/assets/fonts/rowdies/Rowdies-Regular.ttf');
+}
+@font-face {
+  font-family: 'Rowdies';
+  src: url('~/assets/fonts/rowdies/Rowdies-Bold.ttf');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'Rowdies';
+  src: url('~/assets/fonts/rowdies/Rowdies-Light.ttf');
+  font-weight: 100;
+}
+@font-face {
+  font-family: 'SpaceGrotesk';
+  src: url('~/assets/fonts/space-grotesk/SpaceGrotesk-Regular.ttf');
+}
+@font-face {
+  font-family: 'SpaceGrotesk';
+  src: url('~/assets/fonts/space-grotesk/SpaceGrotesk-Light.ttf');
+  font-weight: 100;
+}
+@font-face {
+  font-family: 'SpaceGrotesk';
+  src: url('~/assets/fonts/space-grotesk/SpaceGrotesk-Medium.ttf');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'SpaceGrotesk';
+  src: url('~/assets/fonts/space-grotesk/SpaceGrotesk-Bold.ttf');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'TTInterphases';
+  src: url('~/assets/fonts/tt-interphases/TT Interphases Pro Trial Regular.ttf');
+}
+@font-face {
+  font-family: 'TTInterphases';
+  src: url('~/assets/fonts/tt-interphases/TT Interphases Pro Trial Medium.ttf');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'TTInterphases';
+  src: url('~/assets/fonts/tt-interphases/TT Interphases Pro Trial Light.ttf');
+  font-weight: 100;
+}
+@font-face {
+  font-family: 'TTInterphases';
+  src: url('~/assets/fonts/tt-interphases/TT Interphases Pro Trial DemiBold.ttf');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'TTInterphases';
+  src: url('~/assets/fonts/tt-interphases/TT Interphases Pro Trial Bold.ttf');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'TTInterphases';
+  src: url('~/assets/fonts/tt-interphases/TT Interphases Pro Trial Black.ttf');
+  font-weight: 900;
+}

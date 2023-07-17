@@ -5,7 +5,7 @@
         <div class="flex-col">
           <div v-if="currPage === 1">
             <div class="input-parent">
-              <img src="~/assets/LoginRegister/Email.png" />
+              <img src="~/assets/icons/Email.png" />
               <input
                 id="email"
                 v-model="email"
@@ -20,7 +20,7 @@
             <!-- <label v-if="emailText">{{ emailText }}</label> -->
 
             <div class="input-parent">
-              <img src="~/assets/LoginRegister/Key.png" />
+              <img src="~/assets/icons/Key.png" />
               <input
                 id="password"
                 v-model="password"
@@ -34,7 +34,7 @@
             </div>
 
             <div class="input-parent">
-              <img src="~/assets/LoginRegister/Lock.png" />
+              <img src="~/assets/icons/Lock.png" />
               <input
                 id="confirm"
                 v-model="passwordConfirm"
@@ -50,7 +50,7 @@
           </div>
           <div v-if="currPage === 2">
             <div class="input-parent">
-              <img src="~/assets/LoginRegister/User.svg" />
+              <img src="~/assets/icons/user_black.svg" />
               <input
                 id="username"
                 v-model="username"
@@ -63,21 +63,10 @@
               />
             </div>
             <div class="labels">
-              <img src="~/assets/LoginRegister/Location.svg" />
+              <img src="~/assets/icons/location_black.svg" />
               <label class="input-def">Address (optional)</label>
             </div>
             <div class="addrInput">
-              <div class="input-parent">
-                <input
-                  id="street"
-                  v-model="street"
-                  type="text"
-                  @focus="hidePlaceholder"
-                  @blur="showPlaceholder"
-                  placeholder="Street Address"
-                  class="input-def"
-                />
-              </div>
               <div class="input-parent">
                 <input
                   id="city"
@@ -103,12 +92,12 @@
                 </div>
                 <div class="input-parent">
                   <input
-                    id="zip"
-                    v-model="zip"
+                    id="province"
+                    v-model="province"
                     type="text"
                     @focus="hidePlaceholder"
                     @blur="showPlaceholder"
-                    placeholder="ZIP Code"
+                    placeholder="Province"
                     class="input-def"
                   />
                 </div>
@@ -117,7 +106,7 @@
           </div>
           <div v-if="currPage === 3">
             <div class="labels">
-              <img src="~/assets/LoginRegister/Note.svg" />
+              <img src="~/assets/icons/Note.svg" />
               <label class="input-def">Describe yourself (optional)</label>
             </div>
             <!-- Textbox input -->
@@ -131,11 +120,11 @@
             ></textarea>
 
             <div class="labels margin-top">
-              <img src="~/assets/LoginRegister/Camera.svg" />
+              <img src="~/assets/icons/camera_black.svg" />
               <label class="input-def">Upload an image (optional)</label>
             </div>
             <div class="img margin-top">
-              <img src="~/assets/LoginRegister/Plus Math.svg" />
+              <img src="~/assets/icons/plus.svg" />
             </div>
           </div>
 
