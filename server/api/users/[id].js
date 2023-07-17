@@ -1,21 +1,14 @@
-import { users } from "~/server/model/index.js";
+import { serverSupabaseClient  } from '#supabase/server'
 
 export default defineEventHandler(async (event) => {
     console.log("Getting a certain user..");
+    const model = serverSupabaseClient(event)
     const id = event.context.params.id;
-
-    try {
-        const user = await users.findOne(
-            {"id": id,}
-        );
-
-        if(!user) {
-           console.log("User does not exist...");
-           return;
-        }
-
-        return user; 
-    } catch(error) {
-        console.log("Endpoint got an error...", error);
+    const { data, error } = await model.from('profiles').select().eq('id', id);
+    if(error) {
+        console.log(error);
+        return "";
     }
+
+    return { users: data };
 })

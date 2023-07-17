@@ -1,12 +1,13 @@
-import { reviews } from "~/server/model/index.js";
+import { serverSupabaseClient  } from '#supabase/server'
 
 export default defineEventHandler(async (event) => {
-    console.log("Getting all reviews..");
-
-    try {
-        const allReviews = await reviews.find();
-        return allReviews;  
-    } catch(error) {
-        console.log("Endpoint got an error...", error);
+    console.log("Getting all reviews");
+    const model = serverSupabaseClient(event)
+    const { data, error } = await model.from('reviews').select();
+    if(error) {
+        console.log(error);
+        return "";
     }
+
+    return { reviews: data };
 })

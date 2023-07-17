@@ -1,20 +1,14 @@
-import { restaurants } from "~/server/model/index.js";
+import { serverSupabaseClient  } from '#supabase/server'
 
 export default defineEventHandler(async (event) => {
     console.log("Getting a certain restaurant..");
+    const model = serverSupabaseClient(event)
     const id = event.context.params.id;
-    try {
-        const restaurant = await restaurants.findOne(
-            {"id": id,}
-        );
-
-        if(!restaurant) {
-           console.log("Restaurant does not exist...");
-           return;
-        }
-
-        return restaurant;  
-    } catch(error) {
-        console.log("Endpoint got an error...", error);
+    const { data, error } = await model.from('restaurants').select().eq('id', id);
+    if(error) {
+        console.log(error);
+        return "";
     }
+
+    return { restaurants: data };
 })
