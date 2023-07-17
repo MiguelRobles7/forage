@@ -15,7 +15,7 @@
               required
             />
           </div>
-          <label v-if="emailText">{{ emailText }}</label>
+          <!-- <label v-if="emailText">{{ emailText }}</label> -->
 
           <div class="input-parent">
             <img src="~/assets/icons/Key.png" />
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-const supabase = useSupabaseClient()
+
 
 import { RouterLink } from 'vue-router'
 export default {
@@ -71,6 +71,7 @@ export default {
   },
   methods: {
     async signInWithEmail() {
+      const supabase = useSupabaseClient()
       const { data, error } = await supabase.auth.signInWithPassword({
         email: this.email,
         password: this.password,

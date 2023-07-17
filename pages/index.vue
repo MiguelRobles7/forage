@@ -6,7 +6,6 @@ const restaurants = restoCard
 
 <template>
   <main>
-    <LoginModal></LoginModal>
     <div class="gradient-bg">
       <NavbarHome></NavbarHome>
       <div class="container-fluid index-land">

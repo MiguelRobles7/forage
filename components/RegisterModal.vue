@@ -147,7 +147,6 @@
 </template>
 
 <script>
-  const supabase = useSupabaseClient()
 export default {
   data() {
     return {
@@ -159,7 +158,6 @@ export default {
       city: '',
       country: '',
       desc: '',
-      image: '',
       passwordText: '',
       currPage: 1
     }
@@ -204,16 +202,26 @@ export default {
         }
       }
       if (this.currPage === 3) {
+        console.log(this.username);
+        const supabase = useSupabaseClient()
         const { data, error } = await supabase.auth.signUp({
           email: this.email,
           password: this.password,
-
+          options: {
+            data: {
+              username: this.username,
+              desc: this.desc,
+              country: this.country,
+              province: this.province,
+              city: this.city
+            }
+          }
         })
         if (error) {
           console.log(error);
         }
         else {
-          console.log('registered');
+          alert('Registered! Please check your email for verification');
         }
         this.closeModal()
       }
