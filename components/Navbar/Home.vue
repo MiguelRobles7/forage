@@ -4,17 +4,21 @@ export default {
     return {
       showLogin: false,
       showRegister: false,
-      isLoggedIn: true,
+      isLoggedIn: false,
       showDropdown: false
     }
   },
 
   methods: {
     toggleLogin() {
+      if (this.showRegister) 
+        this.showRegister = false
       this.showLogin = !this.showLogin
     },
 
     toggleRegister() {
+      if (this.showLogin) 
+        this.showLogin = false
       this.showRegister = !this.showRegister
     },
 
@@ -30,8 +34,8 @@ export default {
 </script>
 
 <template>
-  <LoginModal v-if="showLogin" @close="toggleLogin"></LoginModal>
-  <RegisterModal v-if="showRegister" @close="toggleRegister"></RegisterModal>
+  <LoginModal v-if="showLogin" @close="toggleLogin" @goReg="toggleRegister"></LoginModal>
+  <RegisterModal v-if="showRegister" @close="toggleRegister" @goLog="toggleLogin"></RegisterModal>
   <Dropdown class="dropdown" style="max-width: 18.75rem" v-if="showDropdown" v></Dropdown>
 
   <nav class="navbar">

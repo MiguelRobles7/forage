@@ -41,7 +41,7 @@
           <div class="font-default margin-top">
             <div>Don't have an account?</div>
             <!--TODO: Refactor Login Register Structure-->
-            <RouterLink to="/" style="color: #2a7e58; text-decoration: underline"> Sign up here</RouterLink>
+            <span @click="this.$emit('goReg')" style="color: #2a7e58; text-decoration: underline; cursor: pointer; font-weight: bold;"> Sign up here</span>
           </div>
         </div>
       </form>
@@ -81,7 +81,7 @@ export default {
         this.passwordText = 'Email or password is incorrect'
       }
       else {
-        console.log('logged in');
+        alert('logged in');
         this.$emit('close')
       }
     },

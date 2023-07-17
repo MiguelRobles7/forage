@@ -136,9 +136,9 @@
           <div class="margin-top">
             <div>Already have an account?</div>
             <!--TODO: Refactor Login Register Structure-->
-            <RouterLink to="/" style="color: #2a7e58; text-decoration: underline; font-weight: bold">
+            <span @click="this.$emit('goLog')" style="color: #2a7e58; text-decoration: underline; font-weight: bold; cursor: pointer;">
               Log in here
-            </RouterLink>
+            </span>
           </div>
         </div>
       </form>
