@@ -205,12 +205,6 @@ export default {
 </script>
 
 <template>
-  <NavbarDefault
-    name="Johndayll Arizala"
-    :has_search="true"
-    :addresses="addresses"
-    :addresses_links="addresses_links"
-  ></NavbarDefault>
   <div
     class="establishment-bg d-flex justify-content-end"
     :style="`background:linear-gradient(180deg, rgba(29, 29, 31, 0.00) 0%, #1D1D1F 100%), 

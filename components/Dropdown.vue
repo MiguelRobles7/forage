@@ -2,6 +2,14 @@
 export default {
   data() {
     return {}
+  },
+  methods : {
+    async logout() {
+      const supabase = useSupabaseClient();
+      const { error } = await supabase.auth.signOut();
+      this.$emit('close');
+      this.$emit('logout');
+    }
   }
 }
 </script>
@@ -38,12 +46,12 @@ export default {
         </div>
       </NuxtLink>
 
-      <NuxtLink to="" style="display: contents">
+      <a @click="logout">
         <div class="dropdown-item">
-          <img class="icon" src="~/assets/icons/logout.svg" alt="" />
+          <img class="icon" src="~/assets/icons/logout.svg" alt=""/>
           <span class="text"> Logout </span>
         </div>
-      </NuxtLink>
+      </a>
     </div>
   </div>
 </template>

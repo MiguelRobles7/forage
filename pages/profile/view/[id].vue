@@ -205,7 +205,6 @@ export default {
 
 <template>
   <main>
-    <NavbarDefault name="Johndayll Arizala" :has_search="true"></NavbarDefault>
     <div class="profile-view">
       <div
         class="banner"

@@ -1,11 +1,10 @@
 <script>
 export default {
-  props: { name: String, addresses: Array, addresses_links: Array, has_search: Boolean },
+  props: { name: String, addresses: Array, addresses_links: Array, has_search: Boolean, isLoggedIn: Boolean },
   data() {
     return {
       showLogin: false,
       showRegister: false,
-      isLoggedIn: true,
       showDropdown: false
     }
   },
@@ -25,15 +24,21 @@ export default {
     hideDropdown() {
       this.showDropdown = false
       console.log('Hide dropdown')
+    },
+    emitLogin() {
+      this.$emit('login');
+    },
+    emitLogout() {
+      this.$emit('logout');
     }
   }
 }
 </script>
 
 <template>
-  <LoginModal v-if="showLogin" @close="toggleLogin"></LoginModal>
+  <LoginModal v-if="showLogin" @close="toggleLogin" @login="emitLogin"></LoginModal>
   <RegisterModal v-if="showRegister" @close="toggleRegister"></RegisterModal>
-  <Dropdown class="dropdown" style="max-width: 18.75rem" v-if="showDropdown"></Dropdown>
+  <Dropdown class="dropdown" style="max-width: 18.75rem" v-if="showDropdown" @logout="emitLogout" @close="toggleDropdown"></Dropdown>
 
   <nav class="navbar nav-default">
     <div class="container-fluid">

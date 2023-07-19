@@ -25,7 +25,6 @@ export default {
 
 <template>
   <main>
-    <NavbarDefault name="Johndayll Arizala" :has_search="true"></NavbarDefault>
     <div class="search-wrapper">
       <div class="search-left">Search Results</div>
       <div class="search-right">

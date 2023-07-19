@@ -229,7 +229,6 @@ export default {
 
 <template>
   <main>
-    <NavbarDefault name="Johndayll Arizala" :has_search="true"></NavbarDefault>
     <div class="establishment-all-reviews">
       <div class="left">
         <RestaurantCard
