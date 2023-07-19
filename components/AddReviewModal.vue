@@ -63,7 +63,7 @@ export default {
       <div class="modal-main">
         <div class="flex-row" style="width: 100%">
           <span class="title">Write a review for {{ restaurant }}</span>
-          <!-- TODO: Turn into radio button -->
+          <!-- TODO: MCO3 Turn into radio button -->
           <div class="stars" style="margin: 0 0 0 auto">
             <input
               class="text-input"
@@ -94,7 +94,7 @@ export default {
           <div class="item">
             <span>Media</span>
             <div class="flex-row" style="gap: 0.9rem">
-              <!-- TODO: Add images (waiting for image handling) -->
+              <!-- TODO: (GET WAIT) Add images (waiting for image handling) -->
               <button class="media-button">
                 <img class="media-icon" src="~/assets/icons/camera.svg" alt="" />
                 <span class="media-span">Add Photos</span>

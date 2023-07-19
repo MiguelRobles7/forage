@@ -6,10 +6,11 @@
       <img style="height: 1.1em; width: 1.1em" src="~/assets/icons/general.svg" alt="" />
       <span>General Settings </span>
     </div>
-    <!-- TODO: Change this from hard link -->
     <div class="redirect-container">
       <div class="redirect-item">
         <img class="icon" src="~/assets/icons/display.svg" alt="" />
+        <!-- TODO: (GET WAIT) Change this from hard link -->
+
         <span> <NuxtLink to="/profile/edit/display/1"> Display Settings </NuxtLink> </span>
       </div>
       <!-- TODO: MCO3 Add back after functionalities are made -->

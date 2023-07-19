@@ -221,7 +221,7 @@ export default {
               <div class="pair" v-for="establishment in establishments" :key="establishment">
                 <img :src="establishment.image" alt="" />
                 <p>{{ establishment.name }}</p>
-                <!-- Phase 2 TODO: way to dynamically change star count -->
+                <!-- TODO: (GET WAIT) dynamically change star count based on get -->
                 <div class="stars">
                   <img class="star" src="~/assets/icons/star.png" alt="" />
                   <img class="star" src="~/assets/icons/star.png" alt="" />

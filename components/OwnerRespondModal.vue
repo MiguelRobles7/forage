@@ -55,7 +55,7 @@ export default {
             <button class="cancel-button" @click="reloadPage" value="view" style="padding: 0.625rem 1.5rem">
               Cancel
             </button>
-            <!-- Phase 2 TODO: Make post function for this (diretso na mongo) -->
+            <!-- Phase 2 TODO: (DISCONTINUE) Make post function for this (diretso na mongo) -->
             <button class="save-button" style="padding: 0.625rem 1.5rem">Save Changes</button>
           </div>
         </div>

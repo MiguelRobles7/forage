@@ -21,7 +21,7 @@ export default {
     edit: function () {
       this.modal = true
     },
-    // TODO: Pass actual parameters after GET methods implemented
+    // TODO: (GET WAIT) Pass actual parameters after GET methods implemented, uncomment once done
     async deleteReviews(restaurantId, userId) {
       const supabase = useSupabaseClient()
       // const { data, error } = await supabase
@@ -47,7 +47,7 @@ export default {
     <div class="cont">
       <div class="review-item" style="margin-bottom: -0.5vh">
         <div>
-          <!-- TODO: Get functions to change to actual name -->
+          <!-- TODO: (GET WAIT) Get functions to change to actual name -->
           <span class="tag">Review for Amogus</span>
           <span v-if="isEdited" class="tag"> • Edited </span>
         </div>
@@ -90,7 +90,7 @@ export default {
           <button class="review-pill" @click="edit">
             <img class="review-icon" style="height: 0.9rem; width: 0.9rem" src="~/assets/icons/edit-02.svg" alt="" />
             <span class="review-pill-span" style="font-size: 0.75rem">Edit</span>
-            <!-- TODO: Get functions to pass actual parameters -->
+            <!-- TODO: (GET WAIT) Get functions to pass actual parameters -->
             <EditReviewModal
               v-if="modal"
               restaurant="Amogus"
@@ -102,7 +102,7 @@ export default {
               :images="images"
             ></EditReviewModal>
           </button>
-          <!-- TODO: Update delete function once get functions are implemented -->
+          <!-- TODO: (GET WAIT) Update delete function once get functions are implemented -->
           <button class="review-pill" @click="deleteReviews">
             <img class="review-icon" style="height: 0.9rem; width: 0.9rem" src="~/assets/icons/delete.svg" alt="" />
             <span
