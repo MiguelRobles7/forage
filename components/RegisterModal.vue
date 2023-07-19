@@ -135,8 +135,10 @@
 
           <div class="margin-top">
             <div>Already have an account?</div>
-            <!--TODO: Refactor Login Register Structure-->
-            <span @click="this.$emit('goLog')" style="color: #2a7e58; text-decoration: underline; font-weight: bold; cursor: pointer;">
+            <span
+              @click="this.$emit('goLog')"
+              style="color: #2a7e58; text-decoration: underline; font-weight: bold; cursor: pointer"
+            >
               Log in here
             </span>
           </div>
@@ -202,7 +204,7 @@ export default {
         }
       }
       if (this.currPage === 3) {
-        console.log(this.username);
+        console.log(this.username)
         const supabase = useSupabaseClient()
         const { data, error } = await supabase.auth.signUp({
           email: this.email,
@@ -218,15 +220,12 @@ export default {
           }
         })
         if (error) {
-          console.log(error);
-        }
-        else {
-          alert('Registered! Please check your email for verification');
+          console.log(error)
+        } else {
+          alert('Registered! Please check your email for verification')
         }
         this.closeModal()
-      }
-      else
-        this.currPage++
+      } else this.currPage++
     }
   }
 }

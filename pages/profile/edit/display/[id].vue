@@ -26,7 +26,7 @@ export default {
         .from('profiles')
         .update([
           {
-            // TODO: Waiting for get before this
+            // TODO: (GET WAIT) Waiting for get before this
             // displayPicture: this.formData.profile_picture,
             // banner: this.formData.banner,
             name: this.formData.name,
@@ -95,7 +95,7 @@ export default {
             <button class="cancel-button">Cancel</button>
           </div>
         </div>
-        <!-- TODO: Waiting for get and image functionality -->
+        <!-- TODO: (GET WAIT) Waiting for get and image functionality -->
         <div class="image-settings">
           <div class="setting-item">
             <span class="setting-span">Profile Picture</span>

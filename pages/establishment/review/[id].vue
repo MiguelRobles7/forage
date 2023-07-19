@@ -249,7 +249,7 @@ export default {
             <NuxtLink :to="`/establishment/review/${this.id}`">
               <button class="see-reviews-button" @click="edit" value="view">
                 <span class="review-span"> Write a Review + </span>
-                <!-- TODO: Get data and pass data from Supabase 
+                <!-- TODO: (GET WAIT) Get data and pass data from Supabase 
                   and get user ID from session -->
                 <AddReviewModal
                   v-if="modal"
