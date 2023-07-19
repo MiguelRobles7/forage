@@ -1,8 +1,13 @@
-<script setup>
+<script>
 import restoCard from '~/assets/JSON/restaurants.json'
 
-const supabase = useSupabaseClient();
-const restaurants = restoCard
+export default {
+  data() {
+    return {
+      restaurants: restoCard
+    }
+  }
+}
 </script>
 
 <template>
@@ -29,7 +34,7 @@ const restaurants = restoCard
       </div>
     </div>
 
-    <div class="gradient-wrapper">
+    <div class="gradient-wrapper" @click="getRestaurants">
       <div class="gradient-box-type-1" id="highlights">
         <div class="title">The latest craze spots around.</div>
         <div class="flex-col gap-3">

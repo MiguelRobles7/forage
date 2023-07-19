@@ -11,6 +11,33 @@ export default {
     comments: Array,
     owner_responded: Boolean,
     owner_image: String
+  },
+  data() {
+    return {
+      modal: false
+    }
+  },
+  methods: {
+    edit: function () {
+      this.modal = true
+    },
+    // TODO: Pass actual parameters after GET methods implemented
+    async deleteReviews(restaurantId, userId) {
+      const supabase = useSupabaseClient()
+      // const { data, error } = await supabase
+      //   .from('reviews')
+      //   .delete()
+      //   .eq('restaurantId', restaurantId)
+      //   .eq('userId', userId)
+      //   .select()
+
+      // if (error) {
+      //   console.log(error)
+      // } else {
+      //   console.log('Success!')
+      //   console.log(data)
+      // }
+    }
   }
 }
 </script>
@@ -20,6 +47,7 @@ export default {
     <div class="cont">
       <div class="review-item" style="margin-bottom: -0.5vh">
         <div>
+          <!-- TODO: Get functions to change to actual name -->
           <span class="tag">Review for Amogus</span>
           <span v-if="isEdited" class="tag"> • Edited </span>
         </div>
@@ -59,11 +87,23 @@ export default {
           </div>
         </div>
         <div class="profile-actions">
-          <button class="review-pill">
+          <button class="review-pill" @click="edit">
             <img class="review-icon" style="height: 0.9rem; width: 0.9rem" src="~/assets/icons/edit-02.svg" alt="" />
             <span class="review-pill-span" style="font-size: 0.75rem">Edit</span>
+            <!-- TODO: Get functions to pass actual parameters -->
+            <EditReviewModal
+              v-if="modal"
+              restaurant="Amogus"
+              restaurantId="1"
+              userId="1"
+              :title="title"
+              :body="content"
+              :rating="stars"
+              :images="images"
+            ></EditReviewModal>
           </button>
-          <button class="review-pill">
+          <!-- TODO: Update delete function once get functions are implemented -->
+          <button class="review-pill" @click="deleteReviews">
             <img class="review-icon" style="height: 0.9rem; width: 0.9rem" src="~/assets/icons/delete.svg" alt="" />
             <span
               class="review-pill-span"
