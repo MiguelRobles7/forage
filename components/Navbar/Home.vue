@@ -1,7 +1,7 @@
 <script>
 export default {
   props: {
-    isLoggedIn: Boolean,
+    isLoggedIn: Boolean
   },
   data() {
     return {
@@ -13,14 +13,12 @@ export default {
 
   methods: {
     toggleLogin() {
-      if (this.showRegister) 
-        this.showRegister = false
+      if (this.showRegister) this.showRegister = false
       this.showLogin = !this.showLogin
     },
 
     toggleRegister() {
-      if (this.showLogin) 
-        this.showLogin = false
+      if (this.showLogin) this.showLogin = false
       this.showRegister = !this.showRegister
     },
 
@@ -32,10 +30,10 @@ export default {
       console.log('Hide dropdown')
     },
     emitLogin() {
-      this.$emit('login');
+      this.$emit('login')
     },
     emitLogout() {
-      this.$emit('logout');
+      this.$emit('logout')
     }
   }
 }
@@ -44,9 +42,15 @@ export default {
 <template>
   <LoginModal v-if="showLogin" @close="toggleLogin" @goReg="toggleRegister" @login="emitLogin"></LoginModal>
   <RegisterModal v-if="showRegister" @close="toggleRegister" @goLog="toggleLogin"></RegisterModal>
-  <Dropdown @close="toggleDropdown" @logout="emitLogout" class="dropdown" style="max-width: 18.75rem" v-if="showDropdown"></Dropdown>
+  <Dropdown
+    @close="toggleDropdown"
+    @logout="emitLogout"
+    class="dropdown"
+    style="max-width: 18.75rem"
+    v-if="showDropdown"
+  ></Dropdown>
 
-  <nav class="navbar">
+  <nav class="navbar home-nav">
     <div class="container-fluid">
       <NuxtLink class="navbar-brand" to="/"> Forage </NuxtLink>
       <div class="nav-right">
