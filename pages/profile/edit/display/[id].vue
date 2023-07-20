@@ -28,7 +28,7 @@ export default {
       
       const supabase = useSupabaseClient()
       let uid = null
-      // upload image to bucket
+      // get user id (to be replaced in the future)
       try {
         const {data, error} = await supabase.auth.getSession()
         uid = data.session.user.id
@@ -41,7 +41,6 @@ export default {
 
       // profile picture upload
       if (this.formData.profile_file) {
-        if (this.formData.profile_file !== null) {
         try {
           const { data, error } = await supabase.storage
           .from('avatars')
@@ -58,7 +57,6 @@ export default {
         catch (error) {
           console.log(error)
         }
-      }
       }
       // banner upload
       if (this.formData.banner_file) {
