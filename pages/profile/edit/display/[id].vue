@@ -5,7 +5,11 @@ export default {
       name: 'Johndayll Arizala',
       formData: {
         profile_picture: '/profile/pfps/1.png',
+        profile_picture_old: '/profile/pfps/1.png',
+        profile_file: null,
         banner: '/profile/banners/1.png',
+        banner_old: '/profile/banners/1.png',
+        banner_file: null,
         name: 'Johndayll Arizala',
         account_type: 'personal ',
         description:
@@ -21,28 +25,90 @@ export default {
     async editProfile() {
       console.log(this.formData)
       console.log(this.$route.params.id)
+      
       const supabase = useSupabaseClient()
-      const { data, error } = await supabase
-        .from('profiles')
-        .update([
-          {
-            // TODO: (GET WAIT) Waiting for get before this
-            // displayPicture: this.formData.profile_picture,
-            // banner: this.formData.banner,
-            name: this.formData.name,
-            description: this.formData.description,
-            country: this.formData.country,
-            province: this.formData.province,
-            city: this.formData.city
-          }
-        ])
-        .eq('profile_id', this.$route.params.id)
-        .select()
-      if (error) {
+      let uid = null
+      // upload image to bucket
+      try {
+        const {data, error} = await supabase.auth.getSession()
+        uid = data.session.user.id
+        if (error)
+          throw error
+      }
+      catch (error) {
         console.log(error)
+      }
+
+      // profile picture upload
+      if (this.formData.profile_file) {
+        if (this.formData.profile_file !== null) {
+        try {
+          const { data, error } = await supabase.storage
+          .from('avatars')
+          .upload(`${uid}/dp.png`, this.formData.profile_file, {
+            cacheControl: ' 0',
+            upsert: true
+          })
+          if (error) {
+            throw error
+          } else {
+            console.log('Uploaded profile picture!')
+          }
+        }
+        catch (error) {
+          console.log(error)
+        }
+      }
+      }
+      // banner upload
+      if (this.formData.banner_file) {
+        try {
+          const { data, error } = await supabase.storage
+          .from('avatars')
+          .upload(`${uid}/banner.png`, this.formData.banner_file, {
+            cacheControl: ' 0',
+            upsert: true
+          })
+          if (error) {
+            throw error
+          } else {
+            console.log('Uploaded banner!')
+          }
+        }
+        catch (error) {
+          console.log(error)
+        }
+      }
+      // const { data, error } = await supabase
+      //   .from('profiles')
+      //   .update([
+      //     {
+      //       // TODO: (GET WAIT) Waiting for get before this
+      //       // displayPicture: this.formData.profile_picture,
+      //       // banner: this.formData.banner,
+      //       name: this.formData.name,
+      //       description: this.formData.description,
+      //       country: this.formData.country,
+      //       province: this.formData.province,
+      //       city: this.formData.city
+      //     }
+      //   ])
+      //   .eq('id', uid)
+      //   .select()
+      // if (error) {
+      //   console.log(error)
+      // } else {
+      //   console.log('Success!')
+      //   console.log(data)
+      // }
+    },
+    changeImage(e) {
+      if (e.target.id == 'profile-img') {
+        this.formData.profile_picture = URL.createObjectURL(e.target.files[0])
+        this.formData.profile_file = e.target.files[0]
       } else {
-        console.log('Success!')
-        console.log(data)
+        this.formData.banner = URL.createObjectURL(e.target.files[0])
+        this.formData.banner_file = e.target.files[0]
       }
     }
   }
@@ -55,7 +121,7 @@ export default {
       <div class="left">
         <div class="banner"></div>
         <div class="profile">
-          <img :src="formData.profile_picture" alt="profile image" class="profile-image" />
+          <img :src="formData.profile_picture_old" alt="profile image" class="profile-image" />
           <div class="profile-info">
             <span class="name">{{ name }}</span>
             <span class="subtext">Your {{ formData.account_type }} account</span>
@@ -100,21 +166,32 @@ export default {
           <div class="setting-item">
             <span class="setting-span">Profile Picture</span>
             <img :src="formData.profile_picture" alt="profile image" class="profile-image" />
-            <button class="profile-image-button">
+            <label for="profile-img" class="profile-image-button">
               <img src="~\assets\icons\general.svg" alt="" />
               CHANGE
-            </button>
+            </label>
+            <input type="file" id="profile-img" accept=".png, .jpg, .jpeg" @change="changeImage">
           </div>
           <div class="setting-item">
             <span class="setting-span">Banner Picture</span>
             <img :src="formData.banner" alt="banner image" class="banner-image" />
-            <button class="banner-image-button">
+            <label for="banner-img" class="banner-image-button">
               <img src="~\assets\icons\general.svg" alt="" />
               CHANGE
-            </button>
+            </label>
+            <input type="file" id="banner-img" accept=".png, .jpg, .jpeg" @change="changeImage">
           </div>
         </div>
       </div>
     </div>
   </main>
 </template>
+
+<style scoped>
+input[type='file'] {
+  display: none;
+}
+label {
+  cursor: pointer;
+}
+</style>
