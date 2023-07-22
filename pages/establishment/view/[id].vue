@@ -169,30 +169,58 @@ export default {
         { user_id: 1, restaurant_id: 1, rating: 5, upvotes: 30, review: 'Is good, is chill' },
         { user_id: 2, restaurant_id: 2, rating: 5, upvotes: 30, review: 'Is good, is chill' }
       ],
-      menu: MenuItems
+      menu: [],
+      restaurant: {
+        backgroundImg: String, 
+        logo: String, 
+        name: String,
+        desc: String,
+        summary: String,
+        location: String,
+        openingTime: String,
+        closingTime: String,
+        rating: Number,
+        reviewCount: Number
+      },
+      doneLoading: false
     }
+  },
+  async mounted() {
+    const restaurantFetch = useFetch(`/api/restaurants/${useRoute().params.id}`, {immediate: false});   
+    await restaurantFetch.execute({ _initial: true });
+    const restaurantData = restaurantFetch.data.value.restaurants[0];
+    this.restaurant.backgroundImg = restaurantData.banner;
+    this.restaurant.logo = restaurantData.logo;
+    this.restaurant.name = restaurantData.name;
+    this.restaurant.desc = restaurantData.description; 
+    this.restaurant.summary = restaurantData.summary;
+    this.restaurant.location = restaurantData.location;
+    this.restaurant.openingTime = restaurantData.openingTime; 
+    this.restaurant.closingTime = restaurantData.closingTime; 
+    this.restaurant.rating = restaurantData.rating; 
+    this.restaurant.reviewCount = restaurantData.reviewCount; 
+    this.doneLoading = true;
+
+    const menuFetch= useFetch(`/api/menu/${useRoute().params.id}`, {immediate: false});   
+    await menuFetch.execute({ _initial: true });
+
+    const menuData = menuFetch.data.value.menu_items;
+    this.menu = menuData;
+    
   },
 
   computed: {
     restaurant() {
-      const obj = this.restaurants.filter((restaurant) => {
-        return restaurant.restaurant_id === Number(this.id)
-      })[0]
-
-      return this.restaurants.filter((restaurant) => {
-        return restaurant.restaurant_id === Number(this.id)
-      })[0]
+      return this.restaurant;
     },
 
     menu_items() {
-      return this.menu.filter((row) => {
-        return row.restaurant_id === Number(this.id)
-      })
+      return this.menu
     },
 
     current_reviews() {
       return this.reviews.filter((review) => {
-        return review.restaurant_id === Number(this.id)
+        return review.restaurant_id === Number(1)
       })
     }
   },
@@ -205,141 +233,146 @@ export default {
 </script>
 
 <template>
-  <div
-    class="establishment-bg d-flex justify-content-end"
-    :style="`background:linear-gradient(180deg, rgba(29, 29, 31, 0.00) 0%, #1D1D1F 100%), 
-    url(${restaurant.backgroundImg}); background-size:cover; background-position: center center; min-height:40vh`"
-  ></div>
-  <div class="establishment-card container rounded-3 mb-5">
-    <div class="row">
-      <div class="col-auto">
-        <img :src="restaurant.logo" alt="" class="establishment-picture" />
-      </div>
-      <div class="col restaurant-info">
-        <div class="info">
-          <div class="info-pill" style="background: linear-gradient(180deg, #edcc78 0%, #e5b351 100%)">
-            <img src="~/assets/icons/star_empty.svg" alt="" class="info-icon" />
-            <div class="info-text">{{ restaurant.rating }} Rating</div>
-          </div>
-          <div class="info-pill" style="background: linear-gradient(180deg, #78c6ff 0%, #4291ca 100%)">
-            <img src="~/assets/icons/comments.png" alt="" class="info-icon" />
-            <div class="info-text">{{ restaurant.reviewCount }} Reviews</div>
-          </div>
-          <div class="info-pill" style="background: linear-gradient(180deg, #5ddb8f 0%, #2aa15a 100%)">
-            <img src="~/assets/icons/wallet.svg" alt="" class="info-icon" />
-            <div class="info-text">{{ restaurant.price_range }} PHP</div>
-          </div>
-          <div class="info-pill" style="background: linear-gradient(180deg, #d2d2d2 0%, #a3a3a3 100%)">
-            <img src="~/assets/icons/clock.png" alt="" class="info-icon" />
-            <div class="info-text">{{ restaurant.openingTime }} - {{ restaurant.closingTime }}</div>
-          </div>
+  <Loading v-if="!doneLoading"></Loading>
+  <div v-if="doneLoading">
+    <div
+      class="establishment-bg d-flex justify-content-end"
+      :style="`background:linear-gradient(180deg, rgba(29, 29, 31, 0.00) 0%, #1D1D1F 100%), 
+      url(${restaurant.backgroundImg}); background-size:cover; background-position: center center; min-height:40vh`"
+    ></div>
+    <div class="establishment-card container rounded-3 mb-5">
+      <div class="row">
+        <div class="col-auto">
+          <img :src="restaurant.logo" alt="" class="establishment-picture" />
         </div>
-        <div class="name">
-          {{ restaurant.name }}
-        </div>
-        <div style="display: flex; gap: 0.2rem">
-          <img src="~/assets/icons/location.png" alt="" class="info-icon" />
-          <div class="info-text">{{ restaurant.location }}</div>
-        </div>
-        <div class="description">
-          {{ restaurant.description }}
-        </div>
-        <div class="tags">
-          <div class="info-pill" v-for="t in restaurant.summary">
-            <div class="info-text" style="text-decoration-line: underline">{{ t }}</div>
+        <div class="col restaurant-info">
+          <div class="info">
+            <div class="info-pill" style="background: linear-gradient(180deg, #edcc78 0%, #e5b351 100%)">
+              <img src="~/assets/icons/star_empty.svg" alt="" class="info-icon" />
+              <div class="info-text">{{ restaurant.rating }} Rating</div>
+            </div>
+            <div class="info-pill" style="background: linear-gradient(180deg, #78c6ff 0%, #4291ca 100%)">
+              <img src="~/assets/icons/comments.png" alt="" class="info-icon" />
+              <div class="info-text">{{ restaurant.reviewCount }} Reviews</div>
+            </div>
+            <div class="info-pill" style="background: linear-gradient(180deg, #5ddb8f 0%, #2aa15a 100%)">
+              <img src="~/assets/icons/wallet.svg" alt="" class="info-icon" />
+              <div class="info-text">{{ restaurant.price_range }} PHP</div>
+            </div>
+            <div class="info-pill" style="background: linear-gradient(180deg, #d2d2d2 0%, #a3a3a3 100%)">
+              <img src="~/assets/icons/clock.png" alt="" class="info-icon" />
+              <div class="info-text">{{ restaurant.openingTime }} - {{ restaurant.closingTime }}</div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="establishment-content d-flex flex-col align-items-center gap-4" id="menu">
-    <div class="menu-box">
-      <div class="title">What's in the menu?</div>
-      <div class="flex-col gap-3">
-        <div class="flex-row gap-3">
-          <MenuItem :imgPath="menu_items[0].imgPath" :name="menu_items[0].name" :price="menu_items[0].price"></MenuItem>
-          <MenuItem :imgPath="menu_items[1].imgPath" :name="menu_items[1].name" :price="menu_items[1].price"></MenuItem>
-          <MenuItem :imgPath="menu_items[2].imgPath" :name="menu_items[2].name" :price="menu_items[2].price"></MenuItem>
+          <div class="name">
+            {{ restaurant.name }}
+          </div>
+          <div style="display: flex; gap: 0.2rem">
+            <img src="~/assets/icons/location.png" alt="" class="info-icon" />
+            <div class="info-text">{{ restaurant.location }}</div>
+          </div>
+          <div class="description">
+            {{ restaurant.desc }}
+          </div>
+          <div class="tags">
+            <!-- TODO: FIX SUMMARY
+            <div class="info-pill" v-for="t in restaurant.summary">
+              <div class="info-text" style="text-decoration-line: underline">{{ t }}</div>
+            </div>
+            -->
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="review-box" style="margin-bottom: 5vh" id="reviews">
-      <div class="review-box-head">
-        <span> Top Reviews </span>
-        <NuxtLink :to="`/establishment/review/${this.id}`">
-          <button class="see-reviews-button">See All Reviews →</button>
-        </NuxtLink>
+    <div class="establishment-content d-flex flex-col align-items-center gap-4" id="menu">
+      <div class="menu-box">
+        <div class="title">What's in the menu?</div>
+        <div class="flex-col gap-3">
+          <div class="flex-row gap-3">
+            <MenuItem :imgPath="menu_items[0].image" :name="menu_items[0].name" :price="menu_items[0].price"></MenuItem>
+            <MenuItem :imgPath="menu_items[1].image" :name="menu_items[1].name" :price="menu_items[1].price"></MenuItem>
+            <MenuItem :imgPath="menu_items[2].image" :name="menu_items[2].name" :price="menu_items[2].price"></MenuItem>
+          </div>
+        </div>
       </div>
-      <div class="reviews-container">
-        <div class="review-column">
-          <div v-for="(r, i) in reviews" :key="r">
-            <EstablishmentReview
-              v-if="i % 2 == 0"
-              :key="r"
-              :ownerReply="r.owner_response"
-              :userImg="r.user_image"
-              :userID="users[i].id"
-              :userName="r.user_name"
-              :title="r.title"
-              :content="r.body"
-              :stars="r.rating"
-              :upvotes="r.upvotes"
-              :downvotes="r.downvotes"
-              :isEdited="r.is_edited"
-              :images="r.images"
-              :comments="r.comments"
-              :owner_responded="r.owner_responded"
-              :owner_image="restaurant.logo"
-            >
-            </EstablishmentReview>
-          </div>
+
+      <div class="review-box" style="margin-bottom: 5vh" id="reviews">
+        <div class="review-box-head">
+          <span> Top Reviews </span>
+          <NuxtLink :to="`/establishment/review/${this.id}`">
+            <button class="see-reviews-button">See All Reviews →</button>
+          </NuxtLink>
         </div>
-        <div class="review-column">
-          <div v-for="(r, i) in reviews" :key="r">
-            <EstablishmentReview
-              v-if="i % 2 == 1"
-              :key="r"
-              :ownerReply="r.owner_response"
-              :userImg="r.user_image"
-              :userID="users[i].id"
-              :userName="r.user_name"
-              :title="r.title"
-              :content="r.body"
-              :stars="r.rating"
-              :upvotes="r.upvotes"
-              :downvotes="r.downvotes"
-              :isEdited="r.is_edited"
-              :images="r.images"
-              :comments="r.comments"
-              :owner_responded="r.owner_responded"
-              :owner_image="restaurant.logo"
-            >
-            </EstablishmentReview>
+        <div class="reviews-container">
+          <div class="review-column">
+            <div v-for="(r, i) in reviews" :key="r">
+              <EstablishmentReview
+                v-if="i % 2 == 0"
+                :key="r"
+                :ownerReply="r.owner_response"
+                :userImg="r.user_image"
+                :userID="users[i].id"
+                :userName="r.user_name"
+                :title="r.title"
+                :content="r.body"
+                :stars="r.rating"
+                :upvotes="r.upvotes"
+                :downvotes="r.downvotes"
+                :isEdited="r.is_edited"
+                :images="r.images"
+                :comments="r.comments"
+                :owner_responded="r.owner_responded"
+                :owner_image="restaurant.logo"
+              >
+              </EstablishmentReview>
+            </div>
           </div>
-        </div>
-        <div class="review-column">
-          <div v-for="(r, i) in reviews" :key="r">
-            <EstablishmentReview
-              v-if="i % 2 == 0"
-              :key="r"
-              :ownerReply="r.owner_response"
-              :userImg="r.user_image"
-              :userID="users[i].id"
-              :userName="r.user_name"
-              :title="r.title"
-              :content="r.body"
-              :stars="r.rating"
-              :upvotes="r.upvotes"
-              :downvotes="r.downvotes"
-              :isEdited="r.is_edited"
-              :images="r.images"
-              :comments="r.comments"
-              :owner_responded="r.owner_responded"
-              :owner_image="restaurant.logo"
-            >
-            </EstablishmentReview>
+          <div class="review-column">
+            <div v-for="(r, i) in reviews" :key="r">
+              <EstablishmentReview
+                v-if="i % 2 == 1"
+                :key="r"
+                :ownerReply="r.owner_response"
+                :userImg="r.user_image"
+                :userID="users[i].id"
+                :userName="r.user_name"
+                :title="r.title"
+                :content="r.body"
+                :stars="r.rating"
+                :upvotes="r.upvotes"
+                :downvotes="r.downvotes"
+                :isEdited="r.is_edited"
+                :images="r.images"
+                :comments="r.comments"
+                :owner_responded="r.owner_responded"
+                :owner_image="restaurant.logo"
+              >
+              </EstablishmentReview>
+            </div>
+          </div>
+          <div class="review-column">
+            <div v-for="(r, i) in reviews" :key="r">
+              <EstablishmentReview
+                v-if="i % 2 == 0"
+                :key="r"
+                :ownerReply="r.owner_response"
+                :userImg="r.user_image"
+                :userID="users[i].id"
+                :userName="r.user_name"
+                :title="r.title"
+                :content="r.body"
+                :stars="r.rating"
+                :upvotes="r.upvotes"
+                :downvotes="r.downvotes"
+                :isEdited="r.is_edited"
+                :images="r.images"
+                :comments="r.comments"
+                :owner_responded="r.owner_responded"
+                :owner_image="restaurant.logo"
+              >
+              </EstablishmentReview>
+            </div>
           </div>
         </div>
       </div>

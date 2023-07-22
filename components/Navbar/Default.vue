@@ -31,13 +31,10 @@ export default {
       this.user.name = userData.name;
       this.user.dpLink = userData.displayPicture;
     }
-    console.log("done nav...");
     this.$emit('doneNav');
     this.doneLoading = true;
   },
   mounted() {
-    console.log("done nav");
-    this.$emit('doneNav');
   },
   methods: {
     toggleLoginModal() {
