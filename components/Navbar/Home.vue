@@ -2,6 +2,10 @@
 export default {
   data() {
     return {
+      user: {
+        name: String, 
+        dpLink: String
+      },
       doneLoading: false,
       showLogin: false,
       showRegister: false,
@@ -12,20 +16,26 @@ export default {
 
   async created() {
     const supabase = useSupabaseClient();
-    var supabaseSession = ref(await supabase.auth.getSession());
-    var userData = ref(null)
+    var supabaseSession = await supabase.auth.getSession();
+    var userSession = null;
+    var userId = "";
 
-    if (!supabaseSession.value.data.session) {
+    if (!supabaseSession.data.session) {
       this.isLoggedIn = false
     } else {
       this.isLoggedIn = true
-      userData.value = supabaseSession.value.data.session.user
+      userSession = supabaseSession.data.session.user
+      userId = userSession.id;
+      const userRequest = await useFetch(`/api/users/${userId}`);
+      const userData = userRequest.data.value.users[0];
+      this.user.name = userData.name;
+      this.user.dpLink = userData.displayPicture;
     }
+    console.log("done nav...");
+    this.$emit('doneNav');
     this.doneLoading = true;
   },
   mounted() {
-    console.log("done nav...");
-    this.$emit('doneNav');
   },
   methods: {
     toggleLoginModal() {
@@ -46,10 +56,10 @@ export default {
       console.log('Hide dropdown')
     },
     toggleLogin() {
-      this.isLoggedIn = true;
+      location.reload();
     },
     toggleLogout() {
-      this.isLoggedIn = false;
+      location.reload();
     }
   }
 }
@@ -64,7 +74,7 @@ export default {
     @logout="toggleLogout"
     class="dropdown"
     style="max-width: 18.75rem"
-    v-if="showDropdown"
+    v-show="showDropdown"
   ></Dropdown>
 
   <nav class="navbar home-nav">
@@ -80,8 +90,8 @@ export default {
           <button v-if="!isLoggedIn" class="nav-button" @click="toggleLoginModal">Log In</button>
 
           <div v-if="isLoggedIn" class="dropdown-container" @click="toggleDropdown">
-            <img class="pfp" src="/profile/pfps/1.png" alt="" />
-            <span> Johndayll Arizala</span>
+            <img class="pfp" :src="user.dpLink" alt="" />
+            <span> {{ user.name }}</span>
             <img class="drop-icon" src="~/assets/icons/chev_down.svg" alt="" />
           </div>
         </div>

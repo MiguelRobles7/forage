@@ -1,7 +1,33 @@
 <script>
 export default {
   data() {
-    return {}
+    return {
+      user: {
+        name: String, 
+        dpLink: String,
+      },
+    }
+  },
+  async setup()  {
+
+  },
+  async created() {
+    const supabase = useSupabaseClient();
+    var supabaseSession = await supabase.auth.getSession();
+    var userSession = null;
+    var userId = "";
+
+    if (!supabaseSession.data.session) {
+      this.isLoggedIn = false
+    } else {
+      this.isLoggedIn = true
+      userSession = supabaseSession.data.session.user
+      userId = userSession.id;
+      const userRequest = await useFetch(`/api/users/${userId}`);
+      const userData = userRequest.data.value.users[0];
+      this.user.name = userData.name;
+      this.user.dpLink = userData.displayPicture;
+    }
   },
   methods : {
     async logout() {
@@ -17,8 +43,8 @@ export default {
   <div class="dropdown">
     <NuxtLink to="/profile/view/1" style="display: contents">
       <div class="dropdown-head">
-        <img class="head-pfp" src="/profile/pfps/1.png" alt="" />
-        <span class="head-span"> Johndayll Arizala</span>
+        <img class="head-pfp" :src="user.dpLink" alt="" />
+        <span class="head-span">{{ user.name }} </span>
       </div>
     </NuxtLink>
 
