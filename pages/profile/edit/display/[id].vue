@@ -34,6 +34,7 @@ export default {
       try {
         const {data, error} = await supabase.auth.getSession()
         uid = data.session.user.id
+        console.log(uid);
         if (error)
           throw error
       }
