@@ -7,9 +7,11 @@ export default {
         profile_picture: '/profile/pfps/1.png',
         profile_picture_old: '/profile/pfps/1.png',
         profile_file: null,
+        profile_link: null,
         banner: '/profile/banners/1.png',
         banner_old: '/profile/banners/1.png',
         banner_file: null,
+        banner_link: null,
         name: 'Johndayll Arizala',
         account_type: 'personal ',
         description:
@@ -77,28 +79,51 @@ export default {
           console.log(error)
         }
       }
-      // const { data, error } = await supabase
-      //   .from('profiles')
-      //   .update([
-      //     {
-      //       // TODO: (GET WAIT) Waiting for get before this
-      //       // displayPicture: this.formData.profile_picture,
-      //       // banner: this.formData.banner,
-      //       name: this.formData.name,
-      //       description: this.formData.description,
-      //       country: this.formData.country,
-      //       province: this.formData.province,
-      //       city: this.formData.city
-      //     }
-      //   ])
-      //   .eq('id', uid)
-      //   .select()
-      // if (error) {
-      //   console.log(error)
-      // } else {
-      //   console.log('Success!')
-      //   console.log(data)
-      // }
+      try {
+        const { data, error } = await supabase
+        .from('profiles')
+        .select('displayPicture, banner')
+        .eq('id', uid)
+        if (error) {
+          throw error
+        } else {
+          this.formData.profile_link = data[0].displayPicture
+          this.formData.banner_link = data[0].banner
+          if (this.formData.profile_link === 'https://ybdgcrjtuhafbgnuangd.supabase.co/storage/v1/object/public/avatars/default.png' && this.formData.profile_file) {
+            this.formData.profile_link = `https://ybdgcrjtuhafbgnuangd.supabase.co/storage/v1/object/public/avatars/${uid}/dp.png`
+          }
+          if (this.formData.banner_link === 'https://ybdgcrjtuhafbgnuangd.supabase.co/storage/v1/object/public/avatars/default_banner.png' && this.formData.banner_file) {
+            this.formData.banner_link = `https://ybdgcrjtuhafbgnuangd.supabase.co/storage/v1/object/public/avatars/${uid}/banner.png`
+          }
+          console.log('Success!')
+          console.log(data)
+        }
+      }
+      catch (error) {
+        console.log(error)
+      }
+      const { data, error } = await supabase
+        .from('profiles')
+        .update([
+          {
+            // TODO: (GET WAIT) Waiting for get before this
+            displayPicture: this.formData.profile_link,
+            banner: this.formData.banner_link,
+            name: this.formData.name,
+            description: this.formData.description,
+            country: this.formData.country,
+            province: this.formData.province,
+            city: this.formData.city
+          }
+        ])
+        .eq('id', uid)
+        .select()
+      if (error) {
+        console.log(error)
+      } else {
+        console.log('Success!')
+        console.log(data)
+      }
     },
     changeImage(e) {
       if (e.target.id == 'profile-img') {
