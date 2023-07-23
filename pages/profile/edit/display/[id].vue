@@ -2,6 +2,17 @@
 export default {
   data() {
     return {
+      user: {
+        dpLink : String, 
+        bannerLink : String, 
+        name: String, 
+        account_type: String, 
+        description: String,
+        city: String, 
+        province:  String,
+        country: String 
+      },
+      doneLoading: false,
       name: 'Johndayll Arizala',
       formData: {
         profile_picture: '/profile/pfps/1.png',
@@ -135,20 +146,45 @@ export default {
         this.formData.banner_file = e.target.files[0]
       }
     }
+  },
+  async created() {
+    const supabase = useSupabaseClient();
+    var supabaseSession = await supabase.auth.getSession();
+    var userSession = null;
+    var userId = "";
+
+    if (!supabaseSession.data.session) {
+      this.isLoggedIn = false
+    } else {
+      this.isLoggedIn = true
+      userSession = supabaseSession.data.session.user
+      userId = userSession.id;
+      const userRequest = await useFetch(`/api/users/session/${userId}`);
+      const userData = userRequest.data.value.users[0];
+      this.user.name = userData.name;
+      this.user.dpLink = userData.displayPicture;
+      this.user.bannerLink = userData.banner;
+      this.user.description = userData.description;
+      this.user.city = userData.city;
+      this.user.country = userData.country;
+      this.user.province = userData.province;
+    }
+    this.doneLoading = true;
   }
 }
 </script>
 
 <template>
+  <Loading v-if="!doneLoading"></Loading>
   <main>
     <div class="profile-edit">
       <div class="left">
-        <div class="banner"></div>
+        <div class="banner" :style="`background: url(${user.bannerLink})`"></div>
         <div class="profile">
-          <img :src="formData.profile_picture_old" alt="profile image" class="profile-image" />
+          <img :src="user.dpLink" alt="profile image" class="profile-image" />
           <div class="profile-info">
-            <span class="name">{{ name }}</span>
-            <span class="subtext">Your {{ formData.account_type }} account</span>
+            <span class="name">{{ user.name }}</span>
+            <span class="subtext">Your {{ formData.account_type }}account</span>
           </div>
         </div>
         <ProfileEditRedirect></ProfileEditRedirect>
@@ -158,26 +194,26 @@ export default {
           <h1>Display Settings</h1>
           <div class="setting-item">
             <span class="setting-span">Display Name</span>
-            <input class="profile-input" type="text" v-model="formData.name" />
+            <input class="profile-input" type="text" :placeholder="user.name" />
           </div>
           <div class="setting-item">
             <span class="setting-span">Description</span>
-            <textarea class="profile-input" name="" id="" cols="30" rows="10" v-model="formData.description"></textarea>
+            <textarea class="profile-input" name="" id="" cols="30" rows="10" :placeholder="user.description"></textarea>
           </div>
           <div class="setting-pair">
             <div class="setting-item">
               <span class="setting-span">City</span>
-              <input class="profile-input" type="text" v-model="formData.city" />
+              <input class="profile-input" type="text" :placeholder="user.city" />
             </div>
           </div>
           <div class="setting-pair">
             <div class="setting-item">
               <span class="setting-span">Country</span>
-              <input class="profile-input" type="text" v-model="formData.country" />
+              <input class="profile-input" type="text" :placeholder="user.country" />
             </div>
             <div class="setting-item">
               <span class="setting-span">Province</span>
-              <input class="profile-input" type="text" v-model="formData.province" />
+              <input class="profile-input" type="text" :placeholder="user.province" />
             </div>
           </div>
           <div class="flex-row" style="gap: 1em; margin-top: 0.8em">
@@ -189,8 +225,8 @@ export default {
         <div class="image-settings">
           <div class="setting-item">
             <span class="setting-span">Profile Picture</span>
-            <img :src="formData.profile_picture" alt="profile image" class="profile-image" />
-            <label for="profile-img" class="profile-image-button">
+            <img :src="user.dpLink" alt="profile image" class="profile-image" />
+            <button class="profile-image-button">
               <img src="~\assets\icons\general.svg" alt="" />
               CHANGE
             </label>
@@ -198,8 +234,8 @@ export default {
           </div>
           <div class="setting-item">
             <span class="setting-span">Banner Picture</span>
-            <img :src="formData.banner" alt="banner image" class="banner-image" />
-            <label for="banner-img" class="banner-image-button">
+            <img :src="user.bannerLink" alt="banner image" class="banner-image" />
+            <button class="banner-image-button">
               <img src="~\assets\icons\general.svg" alt="" />
               CHANGE
             </label>

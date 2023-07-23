@@ -1,23 +1,48 @@
 <script>
 export default {
-  props: {
-    isLoggedIn: Boolean
-  },
   data() {
     return {
+      user: {
+        name: String, 
+        dpLink: String
+      },
+      doneLoading: false,
       showLogin: false,
       showRegister: false,
-      showDropdown: false
+      showDropdown: false,
+      isLoggedIn: false
     }
   },
 
+  async created() {
+    const supabase = useSupabaseClient();
+    var supabaseSession = await supabase.auth.getSession();
+    var userSession = null;
+    var userId = "";
+
+    if (!supabaseSession.data.session) {
+      this.isLoggedIn = false
+    } else {
+      this.isLoggedIn = true
+      userSession = supabaseSession.data.session.user
+      userId = userSession.id;
+      const userRequest = await useFetch(`/api/users/session/${userId}`);
+      const userData = userRequest.data.value.users[0];
+      this.user.name = userData.name;
+      this.user.dpLink = userData.displayPicture;
+    }
+    this.$emit('doneNav');
+    this.doneLoading = true;
+  },
+  mounted() {
+  },
   methods: {
-    toggleLogin() {
+    toggleLoginModal() {
       if (this.showRegister) this.showRegister = false
       this.showLogin = !this.showLogin
     },
 
-    toggleRegister() {
+    toggleRegisterModal() {
       if (this.showLogin) this.showLogin = false
       this.showRegister = !this.showRegister
     },
@@ -29,25 +54,26 @@ export default {
       this.showDropdown = false
       console.log('Hide dropdown')
     },
-    emitLogin() {
-      this.$emit('login')
+    toggleLogin() {
+      location.reload();
     },
-    emitLogout() {
-      this.$emit('logout')
+    toggleLogout() {
+      location.reload();
     }
   }
 }
 </script>
 
 <template>
-  <LoginModal v-if="showLogin" @close="toggleLogin" @goReg="toggleRegister" @login="emitLogin"></LoginModal>
-  <RegisterModal v-if="showRegister" @close="toggleRegister" @goLog="toggleLogin"></RegisterModal>
+  <Loading v-if="!doneLoading"></Loading>
+  <LoginModal v-if="showLogin" @close="toggleLoginModal" @goReg="toggleRegisterModal" @login="toggleLogin"></LoginModal>
+  <RegisterModal v-if="showRegister" @close="toggleRegisterModal" @goLog="toggleLoginModal"></RegisterModal>
   <Dropdown
     @close="toggleDropdown"
-    @logout="emitLogout"
+    @logout="toggleLogout"
     class="dropdown"
     style="max-width: 18.75rem"
-    v-if="showDropdown"
+    v-show="showDropdown"
   ></Dropdown>
 
   <nav class="navbar home-nav">
@@ -59,12 +85,12 @@ export default {
           <a href="#top" class="nav-link font-default"> Community Favorites </a>
         </div>
         <div class="buttons-container">
-          <button v-if="!isLoggedIn" class="nav-button" @click="toggleRegister">Sign Up</button>
-          <button v-if="!isLoggedIn" class="nav-button" @click="toggleLogin">Log In</button>
+          <button v-if="!isLoggedIn" class="nav-button" @click="toggleRegisterModal">Sign Up</button>
+          <button v-if="!isLoggedIn" class="nav-button" @click="toggleLoginModal">Log In</button>
 
           <div v-if="isLoggedIn" class="dropdown-container" @click="toggleDropdown">
-            <img class="pfp" src="/profile/pfps/1.png" alt="" />
-            <span> Johndayll Arizala</span>
+            <img class="pfp" :src="user.dpLink" alt="" />
+            <span> {{ user.name }}</span>
             <img class="drop-icon" src="~/assets/icons/chev_down.svg" alt="" />
           </div>
         </div>

@@ -7,7 +7,7 @@ export default {
     bgImgPath: String,
     name: String,
     description: String,
-    tags: Array,
+    tags: String,
     reviewCount: Number,
     rating: Number,
     price: String
@@ -43,17 +43,10 @@ export default {
     <img :src="imgPath" alt="" class="restaurant-card-image" />
     <div class="name">{{ name }}</div>
     <div class="description">{{ description }}</div>
-    <div class="tags" v-if="tags.length < 3">
-      <div class="info-pill" v-for="i in 2" :key="i">
-        <div class="info-text" style="text-decoration-line: underline">{{ tags[i - 1] }}</div>
-      </div>
-    </div>
-    <div class="tags" v-if="tags.length > 2">
-      <div class="info-pill" v-for="i in 2" :key="i">
-        <div class="info-text" style="text-decoration-line: underline">{{ tags[i - 1] }}</div>
-      </div>
+    <!--TODO : Fix Tags-->
+    <div class="tags">
       <div class="info-pill">
-        <div class="info-text" style="text-decoration-line: underline">+{{ tags.length - 2 }} others</div>
+        <div class="info-text" style="text-decoration-line: underline">{{ tags }}</div>
       </div>
     </div>
   </div>

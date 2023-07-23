@@ -1,5 +1,4 @@
 <script>
-import Profiles from '~/assets/JSON/profiles.json'
 import Users from '~/assets/JSON/profiles.json'
 import Reviews from '~/assets/JSON/reviews.json'
 
@@ -15,7 +14,17 @@ export default {
   data() {
     return {
       id: useRoute().params.id,
-      profiles: Profiles,
+      profile: {
+        dpLink : String, 
+        bannerLink : String, 
+        name: String, 
+        account_type: String, 
+        description: String,
+        city: String, 
+        province:  String,
+        country: String 
+      },
+      doneLoading: false,
       establishments: [
         {
           name: 'Sussé Cafe',
@@ -192,28 +201,34 @@ export default {
       ]
     }
   },
-
-  computed: {
-    Profile() {
-      return this.profiles.filter((profile) => {
-        return profile.id === Number(this.id)
-      })[0]
-    }
-  }
+  async mounted() {
+    const userRequest = useFetch(`/api/users/public/${this.id}`, {immediate: false});
+    await userRequest.execute({_initial: true});
+    const userData = userRequest.data.value.users[0];
+    this.profile.name = userData.name;
+    this.profile.dpLink = userData.displayPicture;
+    this.profile.bannerLink = userData.banner;
+    this.profile.description = userData.description;
+    this.profile.city = userData.city;
+    this.profile.country = userData.country;
+    this.profile.province = userData.province;
+    this.doneLoading = true;
+  },
 }
 </script>
 
 <template>
   <main>
+    <Loading v-if="!doneLoading"></Loading>
     <div class="profile-view">
       <div
         class="banner"
         :style="`background: linear-gradient(180deg, rgba(29, 29, 31, 0) 0%, #1d1d1f 84.17%),
-      url(${Profile.banner});`"
+      url(${profile.bannerLink});`"
       ></div>
       <div class="content">
         <div class="left">
-          <img class="profile-image" :src="Profile.profile_picture" alt="" />
+          <img class="profile-image" :src="profile.dpLink" alt="" />
           <div class="left-panel">
             <!-- Phase 2 TODO: show  only when user is business owner -->
             <span>Owned Establishments</span>
@@ -235,15 +250,15 @@ export default {
         </div>
         <div class="right">
           <div class="info">
-            <h1>{{ Profile.name }}</h1>
+            <h1>{{ profile.name }}</h1>
             <div class="stats">
               <img src="~/assets/icons/comments.png" alt="" />
               <span>Wrote {{ reviews.length }} Reviews</span>
               <span>•</span>
               <img src="~/assets/icons/location.png" alt="" />
-              <span>{{ Profile.street }} {{ Profile.city }}, {{ Profile.province }}, {{ Profile.country }} </span>
+              <span> {{ profile.city }}, {{ profile.province}}, {{ profile.country }} </span>
             </div>
-            <p style="min-height: 17.5vh">{{ Profile.description }}</p>
+            <p style="min-height: 17.5vh">{{ profile.description }}</p>
           </div>
           <div class="filter">
             <span class="selected"> Latest </span>
@@ -252,7 +267,7 @@ export default {
             <span> Lowest </span>
           </div>
           <div class="review-container">
-            <h1>{{ Profile.name }}'s Latest Reviews</h1>
+            <h1>{{ profile.name }}'s Latest Reviews</h1>
             <div class="review-box">
               <div class="review-col">
                 <div v-for="(r, i) in reviews" :key="r">

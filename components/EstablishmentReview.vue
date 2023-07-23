@@ -42,6 +42,8 @@ export default {
       </div>
       <div class="review-item" style="justify-content: flex-end; gap: 0.4rem">
         <div class="review-elements">
+          <!--Eheh empty images array and comments(replies) breaks this code-->
+          <!--
           <div class="review-pill" v-if="images.length > 0">
             <img class="review-icon" src="~/assets/icons/userimage.svg" alt="" />
             <span class="review-pill-span">{{ images.length }}</span>
@@ -55,8 +57,9 @@ export default {
             <img class="review-icon" src="~/assets/icons/comment_square.svg" alt="" />
             <span class="review-pill-span">{{ comments.length }}</span>
           </div>
-        </div>
+          -->
 
+        </div>
         <div class="review-voting">
           <div class="vote-pill">
             <img class="review-icon" src="~/assets/icons/upvote.svg" alt="" />
