@@ -169,6 +169,9 @@ export default {
         { user_id: 1, restaurant_id: 1, rating: 5, upvotes: 30, review: 'Is good, is chill' },
         { user_id: 2, restaurant_id: 2, rating: 5, upvotes: 30, review: 'Is good, is chill' }
       ],
+      reviewCol1: [],
+      reviewCol2: [],
+      reviewCol3: [],
       menu: [],
       restaurant: {
         backgroundImg: String, 
@@ -205,6 +208,39 @@ export default {
 
     const menuData = menuFetch.data.value.menu_items;
     this.menu = menuData;
+
+    const reviewFetch= useFetch(`/api/reviews/restaurant/${useRoute().params.id}`, {immediate: false});   
+    await reviewFetch.execute({ _initial: true });
+    const reviewData = reviewFetch.data.value.reviews;
+    var reviewCount = reviewData.length;
+
+    if(reviewCount < 3) {
+      for(var i = 0; i < 2; i++) {
+      const userFetch = useFetch(`/api/users/public/${reviewData[i].userId}`, {immediate: false});   
+      await userFetch.execute({ _initial: true });
+      const userData = userFetch.data.value.users[0];
+      const review = {
+        user_image: userData.displayPicture,
+        userID: userData.profile_id,
+        user_name: userData.name,
+        title: reviewData[i].title,
+        body: reviewData[i].body,
+        rating: reviewData[i].rating,
+        upvotes: reviewData[i].upvotes,
+        //walang comments 
+        downvotes: reviewData[i].downvotes,
+        isEdited: reviewData[i].isEdited,
+        //no images breaks da code
+        images: reviewData[i].images,
+      };
+      if (review.images === null) {
+        review.images = [];
+      }
+      this.reviewCol1.push(review);
+      reviewCount -= 1;
+      }
+    }
+
     this.doneLoading = true;
   },
 
@@ -301,13 +337,12 @@ export default {
         </div>
         <div class="reviews-container">
           <div class="review-column">
-            <div v-for="(r, i) in reviews" :key="r">
+            <div v-for="(r, i) in reviewCol1" :key="r">
               <EstablishmentReview
-                v-if="i % 2 == 0"
                 :key="r"
                 :ownerReply="r.owner_response"
                 :userImg="r.user_image"
-                :userID="users[i].id"
+                :userID="r.userID"
                 :userName="r.user_name"
                 :title="r.title"
                 :content="r.body"
@@ -315,7 +350,6 @@ export default {
                 :upvotes="r.upvotes"
                 :downvotes="r.downvotes"
                 :isEdited="r.is_edited"
-                :images="r.images"
                 :comments="r.comments"
                 :owner_responded="r.owner_responded"
                 :owner_image="restaurant.logo"
