@@ -174,8 +174,8 @@ export default {
       reviewCol3: [],
       menu: [],
       restaurant: {
-        backgroundImg: String, 
-        logo: String, 
+        backgroundImg: String,
+        logo: String,
         name: String,
         desc: String,
         summary: String,
@@ -189,59 +189,60 @@ export default {
     }
   },
   async mounted() {
-    const restaurantFetch = useFetch(`/api/restaurants/${useRoute().params.id}`, {immediate: false});   
-    await restaurantFetch.execute({ _initial: true });
-    const restaurantData = restaurantFetch.data.value.restaurants[0];
-    this.restaurant.backgroundImg = restaurantData.banner;
-    this.restaurant.logo = restaurantData.logo;
-    this.restaurant.name = restaurantData.name;
-    this.restaurant.desc = restaurantData.description; 
-    this.restaurant.summary = restaurantData.summary;
-    this.restaurant.location = restaurantData.location;
-    this.restaurant.openingTime = restaurantData.openingTime; 
-    this.restaurant.closingTime = restaurantData.closingTime; 
-    this.restaurant.rating = restaurantData.rating; 
-    this.restaurant.reviewCount = restaurantData.reviewCount; 
+    const restaurantFetch = useFetch(`/api/restaurants/${useRoute().params.id}`, { immediate: false })
+    await restaurantFetch.execute({ _initial: true })
+    const restaurantData = restaurantFetch.data.value.restaurants[0]
+    this.restaurant.backgroundImg = restaurantData.banner
+    this.restaurant.price_range = restaurantData.price_range
+    this.restaurant.logo = restaurantData.logo
+    this.restaurant.name = restaurantData.name
+    this.restaurant.desc = restaurantData.description
+    this.restaurant.summary = restaurantData.summary
+    this.restaurant.location = restaurantData.location
+    this.restaurant.openingTime = restaurantData.openingTime.slice(0, -3)
+    this.restaurant.closingTime = restaurantData.closingTime.slice(0, -3)
+    this.restaurant.rating = restaurantData.rating
+    this.restaurant.reviewCount = restaurantData.reviewCount
 
-    const menuFetch= useFetch(`/api/menu/${useRoute().params.id}`, {immediate: false});   
-    await menuFetch.execute({ _initial: true });
+    const menuFetch = useFetch(`/api/menu/${useRoute().params.id}`, { immediate: false })
+    await menuFetch.execute({ _initial: true })
 
-    const menuData = menuFetch.data.value.menu_items;
-    this.menu = menuData;
+    const menuData = menuFetch.data.value.menu_items
+    this.menu = menuData
 
-    const reviewFetch= useFetch(`/api/reviews/restaurant/${useRoute().params.id}`, {immediate: false});   
-    await reviewFetch.execute({ _initial: true });
-    const reviewData = reviewFetch.data.value.reviews;
-    var reviewCount = reviewData.length;
+    const reviewFetch = useFetch(`/api/reviews/restaurant/${useRoute().params.id}`, { immediate: false })
+    await reviewFetch.execute({ _initial: true })
+    const reviewData = reviewFetch.data.value.reviews
+    var reviewCount = reviewData.length
 
-    if(reviewCount < 3) {
-      for(var i = 0; i < 2; i++) {
-      const userFetch = useFetch(`/api/users/public/${reviewData[i].userId}`, {immediate: false});   
-      await userFetch.execute({ _initial: true });
-      const userData = userFetch.data.value.users[0];
-      const review = {
-        user_image: userData.displayPicture,
-        userID: userData.profile_id,
-        user_name: userData.name,
-        title: reviewData[i].title,
-        body: reviewData[i].body,
-        rating: reviewData[i].rating,
-        upvotes: reviewData[i].upvotes,
-        //walang comments 
-        downvotes: reviewData[i].downvotes,
-        isEdited: reviewData[i].isEdited,
-        //no images breaks da code
-        images: reviewData[i].images,
-      };
-      if (review.images === null) {
-        review.images = [];
-      }
-      this.reviewCol1.push(review);
-      reviewCount -= 1;
+    if (reviewCount < 3) {
+      for (var i = 0; i < 2; i++) {
+        const userFetch = useFetch(`/api/users/public/${reviewData[i].userId}`, { immediate: false })
+        await userFetch.execute({ _initial: true })
+        const userData = userFetch.data.value.users[0]
+        const review = {
+          user_image: userData.displayPicture,
+          userID: userData.profile_id,
+          user_name: userData.name,
+          title: reviewData[i].title,
+          body: reviewData[i].body,
+          rating: reviewData[i].rating,
+          upvotes: reviewData[i].upvotes,
+          //walang comments
+          downvotes: reviewData[i].downvotes,
+          isEdited: reviewData[i].isEdited,
+          //no images breaks da code
+          images: reviewData[i].images
+        }
+        if (review.images === null) {
+          review.images = []
+        }
+        this.reviewCol1.push(review)
+        reviewCount -= 1
       }
     }
 
-    this.doneLoading = true;
+    this.doneLoading = true
   },
 
   computed: {
@@ -288,7 +289,7 @@ export default {
             </div>
             <div class="info-pill" style="background: linear-gradient(180deg, #5ddb8f 0%, #2aa15a 100%)">
               <img src="~/assets/icons/wallet.svg" alt="" class="info-icon" />
-              <div class="info-text">{{ restaurant.price_range }} PHP</div>
+              <div class="info-text">{{ restaurant.price_range }}</div>
             </div>
             <div class="info-pill" style="background: linear-gradient(180deg, #d2d2d2 0%, #a3a3a3 100%)">
               <img src="~/assets/icons/clock.png" alt="" class="info-icon" />
