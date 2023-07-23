@@ -199,21 +199,16 @@ export default {
     this.restaurant.closingTime = restaurantData.closingTime; 
     this.restaurant.rating = restaurantData.rating; 
     this.restaurant.reviewCount = restaurantData.reviewCount; 
-    this.doneLoading = true;
 
     const menuFetch= useFetch(`/api/menu/${useRoute().params.id}`, {immediate: false});   
     await menuFetch.execute({ _initial: true });
 
     const menuData = menuFetch.data.value.menu_items;
     this.menu = menuData;
-    
+    this.doneLoading = true;
   },
 
   computed: {
-    restaurant() {
-      return this.restaurant;
-    },
-
     menu_items() {
       return this.menu
     },

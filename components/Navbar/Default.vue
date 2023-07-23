@@ -53,10 +53,10 @@ export default {
       console.log('Hide dropdown')
     },
     toggleLogin() {
-      this.isLoggedIn = true;
+      location.reload();
     },
     toggleLogout() {
-      this.isLoggedIn = false;
+      location.reload();
     }
   }
 }
