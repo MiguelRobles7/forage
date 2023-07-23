@@ -29,7 +29,7 @@ export default {
     <div class="review-main">
       <div class="review-item">
         <span>{{ title }}</span>
-        <!-- Phase 2 TODO: Innovative way for starring -->
+        <!-- Phase 2 TODO: (DISCONTINUE) Innovative way for starring -->
         <div class="stars">
           <img class="star" src="~/assets/icons/star.png" alt="" />
           <img class="star" src="~/assets/icons/star.png" alt="" />

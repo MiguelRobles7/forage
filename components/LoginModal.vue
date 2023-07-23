@@ -40,8 +40,12 @@
 
           <div class="font-default margin-top">
             <div>Don't have an account?</div>
-            <!--TODO: Refactor Login Register Structure-->
-            <span @click="this.$emit('goReg')" style="color: #2a7e58; text-decoration: underline; cursor: pointer; font-weight: bold;"> Sign up here</span>
+            <span
+              @click="this.$emit('goReg')"
+              style="color: #2a7e58; text-decoration: underline; cursor: pointer; font-weight: bold"
+            >
+              Sign up here</span
+            >
           </div>
         </div>
       </form>
@@ -50,8 +54,6 @@
 </template>
 
 <script>
-
-
 import { RouterLink } from 'vue-router'
 export default {
   data() {
@@ -74,25 +76,24 @@ export default {
       const supabase = useSupabaseClient()
       const { data, error } = await supabase.auth.signInWithPassword({
         email: this.email,
-        password: this.password,
+        password: this.password
       })
-      console.log(error);
+      console.log(error)
       if (error) {
-        this.passwordText = 'Email or password is incorrect';
-      }
-      else {
-        this.$emit('login');
-        this.$emit('close');
+        this.passwordText = 'Email or password is incorrect'
+      } else {
+        this.$emit('login')
+        this.$emit('close')
       }
     },
     hidePlaceholder(e) {
-      e.target.placeholder = '';
+      e.target.placeholder = ''
     },
     showPlaceholder(e) {
-      e.target.type === 'email' ? (e.target.placeholder = 'Email') : (e.target.placeholder = 'Password');
+      e.target.type === 'email' ? (e.target.placeholder = 'Email') : (e.target.placeholder = 'Password')
     },
     toggleKeepLogin() {
-      this.keepLoggedIn = !this.keepLoggedIn;
+      this.keepLoggedIn = !this.keepLoggedIn
     }
   }
 }

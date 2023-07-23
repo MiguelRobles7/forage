@@ -40,7 +40,7 @@ export default {
       </div>
     </div>
 
-    <div class="gradient-wrapper">
+    <div class="gradient-wrapper" @click="getRestaurants">
       <div class="gradient-box-type-1" id="highlights">
         <div class="title">The latest craze spots around.</div>
         <div class="flex-col gap-3">
