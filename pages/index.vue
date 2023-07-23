@@ -1,13 +1,13 @@
 <script setup>
 import restoCard from '~/assets/JSON/restaurants.json'
 
+const supabase = useSupabaseClient();
 const restaurants = restoCard
 </script>
 
 <template>
   <main>
     <div class="gradient-bg">
-      <NavbarHome></NavbarHome>
       <div class="container-fluid index-land">
         <div style="display: grid; gap: 1rem">
           <div style="padding: 0; margin: 0">

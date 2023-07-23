@@ -78,21 +78,21 @@ export default {
       })
       console.log(error);
       if (error) {
-        this.passwordText = 'Email or password is incorrect'
+        this.passwordText = 'Email or password is incorrect';
       }
       else {
-        alert('logged in');
-        this.$emit('close')
+        this.$emit('login');
+        this.$emit('close');
       }
     },
     hidePlaceholder(e) {
-      e.target.placeholder = ''
+      e.target.placeholder = '';
     },
     showPlaceholder(e) {
-      e.target.type === 'email' ? (e.target.placeholder = 'Email') : (e.target.placeholder = 'Password')
+      e.target.type === 'email' ? (e.target.placeholder = 'Email') : (e.target.placeholder = 'Password');
     },
     toggleKeepLogin() {
-      this.keepLoggedIn = !this.keepLoggedIn
+      this.keepLoggedIn = !this.keepLoggedIn;
     }
   }
 }
