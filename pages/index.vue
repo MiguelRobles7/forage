@@ -1,12 +1,23 @@
-<script setup>
-import restoCard from '~/assets/JSON/restaurants.json'
-
-const supabase = useSupabaseClient();
-const restaurants = restoCard
+<script>
+export default {
+  data() {
+    return {
+      restaurants: [],
+      doneLoading: false
+    }
+  },
+  async mounted() {
+    const restaurantsFetch = useFetch('/api/restaurants/');   
+    await restaurantsFetch.execute({ _initial: true });
+    this.restaurants = restaurantsFetch.data.value.restaurants;
+    this.doneLoading = true;
+  }
+}
 </script>
 
 <template>
   <main>
+    <Loading v-if="!doneLoading"></Loading>
     <div class="gradient-bg">
       <div class="container-fluid index-land">
         <div style="display: grid; gap: 1rem">
@@ -35,7 +46,7 @@ const restaurants = restoCard
         <div class="flex-col gap-3">
           <div class="flex-row gap-3">
             <div v-for="(r, i) in restaurants" :key="r" style="flex-basis: 25%">
-              <NuxtLink :to="`/establishment/view/${r.restaurant_id}`" v-if="i < 6">
+              <NuxtLink :to="`/establishment/view/${r.id}`" v-if="i < 6">
                 <RestaurantCard
                   :name="r.name"
                   :imgPath="r.logo"
@@ -51,7 +62,7 @@ const restaurants = restoCard
           </div>
           <div class="flex-row gap-3">
             <div v-for="(r, i) in restaurants" :key="r" style="flex-basis: 25%">
-              <NuxtLink :to="`/establishment/view/${r.restaurant_id}`" v-if="i < 6">
+              <NuxtLink :to="`/establishment/view/${r.id}`" v-if="i < 6">
                 <RestaurantCard
                   :name="r.name"
                   :imgPath="r.logo"
@@ -73,7 +84,7 @@ const restaurants = restoCard
         <div class="flex-col gap-3">
           <div class="flex-row gap-3">
             <div v-for="(r, i) in restaurants" :key="r" style="flex-basis: 25%">
-              <NuxtLink :to="`/establishment/view/${r.restaurant_id}`" v-if="i < 6">
+              <NuxtLink :to="`/establishment/view/${r.id}`" v-if="i < 6">
                 <RestaurantCard
                   :name="r.name"
                   :imgPath="r.logo"
@@ -89,7 +100,7 @@ const restaurants = restoCard
           </div>
           <div class="flex-row gap-3">
             <div v-for="(r, i) in restaurants" :key="r" style="flex-basis: 25%">
-              <NuxtLink :to="`/establishment/view/${r.restaurant_id}`" v-if="i < 6">
+              <NuxtLink :to="`/establishment/view/${r.id}`" v-if="i < 6">
                 <RestaurantCard
                   :name="r.name"
                   :imgPath="r.logo"
