@@ -35,7 +35,38 @@ export default {
   },
   methods: {
     edit: function () {
+      this.getUserID()
       this.modal = true
+    },
+    async getUserID() {
+      const supabase = useSupabaseClient()
+      let uid = null
+      try {
+        const {data, error} = await supabase.auth.getSession()
+        uid = data.session.user.id
+        console.log(uid);
+        if (error)
+          throw error
+      }
+      catch (error) {
+        console.log(error)
+      }
+      
+      try {
+        const { data, error } = await supabase
+        .from('profiles')
+        .select('profile_id')
+        .eq('id', uid)
+        if (error) {
+          throw error
+        } else {
+          this.userID = data[0].profile_id
+          console.log(this.userID)
+        }
+      }
+      catch (error) {
+        console.log(error)
+      }
     }
   },
   data() {
@@ -45,6 +76,7 @@ export default {
 
       users: Users,
       modal: false,
+      userID: null,
 
       reviews: [
         {
@@ -258,7 +290,7 @@ export default {
               v-if="modal"
               :restaurant="restaurant.name"
               :restaurantId="id"
-              userId="1"
+              userId="{{ userID }}"
             ></AddReviewModal>
 
           <div class="review-container">
