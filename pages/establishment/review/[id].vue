@@ -251,15 +251,15 @@ export default {
                 <span class="review-span"> Write a Review + </span>
                 <!-- TODO: (GET WAIT) Get data and pass data from Supabase 
                   and get user ID from session -->
-                <AddReviewModal
-                  v-if="modal"
-                  :restaurant="restaurant.name"
-                  :restaurantId="id"
-                  userId="1"
-                ></AddReviewModal>
-              </button>
-            </NuxtLink>
-          </div>
+                </button>
+              </NuxtLink>
+            </div>
+            <AddReviewModal
+              v-if="modal"
+              :restaurant="restaurant.name"
+              :restaurantId="id"
+              userId="1"
+            ></AddReviewModal>
 
           <div class="review-container">
             <div v-for="(r, i) in reviews" :key="r">
