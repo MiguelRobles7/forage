@@ -23,18 +23,53 @@ export default {
         banner_old: '/profile/banners/1.png',
         banner_file: null,
         banner_link: null,
-        name: 'Johndayll Arizala',
-        account_type: 'personal ',
-        description:
-          "Nakatitig sa malayo, may lungkot na bumabalot sa'king puso. Sa mundong puno ng tawa at ngiti, ako'y tila isang tanging damo sa disyerto ng kaligayahan. Ang saklap ng pag-ibig, ito ang aking laging kasama. Sa bawat tibok ng puso, ramdam ko ang pagkirot ng nakaraan. Isang alaala ng mga pangakong binitawan, mga sandaling puno ng tamis, ngunit wala nang natira kundi mga pagsisisi.",
-        street: 'n/a',
-        city: 'Mandaluyong City',
-        province: 'Metro Manila',
-        country: 'Philippines'
+        name: 'a',
+        account_type: 'personal',
+        description: 'a',
+        street: 'a',
+        city: 'a',
+        province: 'a',
+        country: 'a'
       }
     }
   },
   methods: {
+    async updateProfile() {
+      console.log(this.formData)
+      const supabase = useSupabaseClient()
+      let uid = null
+      // get user id (to be replaced in the future)
+      try {
+        const { data, error } = await supabase.auth.getSession()
+        uid = data.session.user.id
+        console.log(uid)
+        if (error) throw error
+      } catch (error) {
+        console.log(error)
+      }
+      const { data, error } = await supabase
+        .from('profiles')
+        .update([
+          {
+            name: this.formData.name,
+            description: this.formData.description,
+            country: this.formData.country,
+            province: this.formData.province,
+            city: this.formData.city
+          }
+        ])
+        .eq('id', uid)
+        .select()
+
+      if (error) {
+        console.log(error)
+      } else {
+        console.log('Success!')
+        console.log(data)
+      }
+
+      window.location.reload()
+    },
     async editProfile() {
       console.log(this.formData)
       console.log(this.$route.params.id)
@@ -69,6 +104,7 @@ export default {
           console.log(error)
         }
       }
+
       // banner upload
       if (this.formData.banner_file) {
         try {
@@ -118,14 +154,8 @@ export default {
         .from('profiles')
         .update([
           {
-            // TODO: (GET WAIT) Waiting for get before this
             displayPicture: this.formData.profile_link,
-            banner: this.formData.banner_link,
-            name: this.formData.name,
-            description: this.formData.description,
-            country: this.formData.country,
-            province: this.formData.province,
-            city: this.formData.city
+            banner: this.formData.banner_link
           }
         ])
         .eq('id', uid)
@@ -161,6 +191,7 @@ export default {
       userId = userSession.id
       const userRequest = await useFetch(`/api/users/session/${userId}`)
       const userData = userRequest.data.value.users[0]
+      this.name = userData.name
       this.user.name = userData.name
       this.user.dpLink = userData.displayPicture
       this.user.bannerLink = userData.banner
@@ -168,6 +199,12 @@ export default {
       this.user.city = userData.city
       this.user.country = userData.country
       this.user.province = userData.province
+
+      this.formData.name = userData.name
+      this.formData.description = userData.description
+      this.formData.city = userData.city
+      this.formData.country = userData.country
+      this.formData.province = userData.province
     }
     this.doneLoading = true
   }
@@ -183,8 +220,8 @@ export default {
         <div class="profile">
           <img :src="user.dpLink" alt="profile image" class="profile-image" />
           <div class="profile-info">
-            <span class="name">{{ user.name }}</span>
-            <span class="subtext">Your {{ formData.account_type }}account</span>
+            <span class="name">{{ name }}</span>
+            <span class="subtext">Your {{ formData.account_type }} account</span>
           </div>
         </div>
         <ProfileEditRedirect></ProfileEditRedirect>
@@ -194,37 +231,30 @@ export default {
           <h1>Display Settings</h1>
           <div class="setting-item">
             <span class="setting-span">Display Name</span>
-            <input class="profile-input" type="text" :placeholder="user.name" />
+            <input class="profile-input" type="text" v-model="formData.name" />
           </div>
           <div class="setting-item">
             <span class="setting-span">Description</span>
-            <textarea
-              class="profile-input"
-              name=""
-              id=""
-              cols="30"
-              rows="10"
-              :placeholder="user.description"
-            ></textarea>
+            <textarea class="profile-input" name="" id="" cols="30" rows="10" v-model="formData.description"></textarea>
           </div>
           <div class="setting-pair">
             <div class="setting-item">
               <span class="setting-span">City</span>
-              <input class="profile-input" type="text" :placeholder="user.city" />
+              <input class="profile-input" type="text" v-model="formData.city" />
             </div>
           </div>
           <div class="setting-pair">
             <div class="setting-item">
               <span class="setting-span">Country</span>
-              <input class="profile-input" type="text" :placeholder="user.country" />
+              <input class="profile-input" type="text" v-model="formData.country" />
             </div>
             <div class="setting-item">
               <span class="setting-span">Province</span>
-              <input class="profile-input" type="text" :placeholder="user.province" />
+              <input class="profile-input" type="text" v-model="formData.province" />
             </div>
           </div>
           <div class="flex-row" style="gap: 1em; margin-top: 0.8em">
-            <button class="save-button" @click="editProfile">Save Changes</button>
+            <button class="save-button" @click="updateProfile">Save Changes</button>
             <button class="cancel-button">Cancel</button>
           </div>
         </div>
