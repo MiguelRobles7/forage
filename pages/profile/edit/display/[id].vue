@@ -27,7 +27,7 @@ export default {
       this.isLoggedIn = true
       userSession = supabaseSession.data.session.user
       userId = userSession.id;
-      const userRequest = await useFetch(`/api/users/${userId}`);
+      const userRequest = await useFetch(`/api/users/session/${userId}`);
       const userData = userRequest.data.value.users[0];
       this.user.name = userData.name;
       this.user.dpLink = userData.displayPicture;
