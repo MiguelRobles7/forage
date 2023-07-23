@@ -7,7 +7,7 @@ export default {
     }
   },
   async mounted() {
-    const restaurantsFetch = useFetch('/api/restaurants/');   
+    const restaurantsFetch = useFetch('/api/restaurants/', {immediate: false});   
     await restaurantsFetch.execute({ _initial: true });
     this.restaurants = restaurantsFetch.data.value.restaurants;
     this.doneLoading = true;
@@ -50,7 +50,6 @@ export default {
                 <RestaurantCard
                   :name="r.name"
                   :imgPath="r.logo"
-                  :bgImgPath="r.bgCard"
                   :description="r.description"
                   :tags="r.summary"
                   :rating="r.rating"
@@ -66,7 +65,6 @@ export default {
                 <RestaurantCard
                   :name="r.name"
                   :imgPath="r.logo"
-                  :bgImgPath="r.bgCard"
                   :description="r.description"
                   :tags="r.summary"
                   :rating="r.rating"
@@ -88,7 +86,6 @@ export default {
                 <RestaurantCard
                   :name="r.name"
                   :imgPath="r.logo"
-                  :bgImgPath="r.bgCard"
                   :description="r.description"
                   :tags="r.summary"
                   :rating="r.rating"
@@ -104,7 +101,6 @@ export default {
                 <RestaurantCard
                   :name="r.name"
                   :imgPath="r.logo"
-                  :bgImgPath="r.bgCard"
                   :description="r.description"
                   :tags="r.summary"
                   :rating="r.rating"
