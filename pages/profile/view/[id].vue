@@ -15,14 +15,14 @@ export default {
     return {
       id: useRoute().params.id,
       profile: {
-        dpLink : String, 
-        bannerLink : String, 
-        name: String, 
-        account_type: String, 
+        dpLink: String,
+        bannerLink: String,
+        name: String,
+        account_type: String,
         description: String,
-        city: String, 
-        province:  String,
-        country: String 
+        city: String,
+        province: String,
+        country: String
       },
       doneLoading: false,
       establishments: [
@@ -202,18 +202,18 @@ export default {
     }
   },
   async mounted() {
-    const userRequest = useFetch(`/api/users/public/${this.id}`, {immediate: false});
-    await userRequest.execute({_initial: true});
-    const userData = userRequest.data.value.users[0];
-    this.profile.name = userData.name;
-    this.profile.dpLink = userData.displayPicture;
-    this.profile.bannerLink = userData.banner;
-    this.profile.description = userData.description;
-    this.profile.city = userData.city;
-    this.profile.country = userData.country;
-    this.profile.province = userData.province;
-    this.doneLoading = true;
-  },
+    const userRequest = useFetch(`/api/users/public/${this.id}`, { immediate: false })
+    await userRequest.execute({ _initial: true })
+    const userData = userRequest.data.value.users[0]
+    this.profile.name = userData.name
+    this.profile.dpLink = userData.displayPicture
+    this.profile.bannerLink = userData.banner
+    this.profile.description = userData.description
+    this.profile.city = userData.city
+    this.profile.country = userData.country
+    this.profile.province = userData.province
+    this.doneLoading = true
+  }
 }
 </script>
 
@@ -256,15 +256,9 @@ export default {
               <span>Wrote {{ reviews.length }} Reviews</span>
               <span>•</span>
               <img src="~/assets/icons/location.png" alt="" />
-              <span> {{ profile.city }}, {{ profile.province}}, {{ profile.country }} </span>
+              <span> {{ profile.city }}, {{ profile.province }}, {{ profile.country }} </span>
             </div>
             <p style="min-height: 17.5vh">{{ profile.description }}</p>
-          </div>
-          <div class="filter">
-            <span class="selected"> Latest </span>
-            <span> Oldest Reviews </span>
-            <span> Highest </span>
-            <span> Lowest </span>
           </div>
           <div class="review-container">
             <h1>{{ profile.name }}'s Latest Reviews</h1>

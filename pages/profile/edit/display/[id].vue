@@ -3,14 +3,14 @@ export default {
   data() {
     return {
       user: {
-        dpLink : String, 
-        bannerLink : String, 
-        name: String, 
-        account_type: String, 
+        dpLink: String,
+        bannerLink: String,
+        name: String,
+        account_type: String,
         description: String,
-        city: String, 
-        province:  String,
-        country: String 
+        city: String,
+        province: String,
+        country: String
       },
       doneLoading: false,
       name: 'Johndayll Arizala',
@@ -38,18 +38,16 @@ export default {
     async editProfile() {
       console.log(this.formData)
       console.log(this.$route.params.id)
-      
+
       const supabase = useSupabaseClient()
       let uid = null
       // get user id (to be replaced in the future)
       try {
-        const {data, error} = await supabase.auth.getSession()
+        const { data, error } = await supabase.auth.getSession()
         uid = data.session.user.id
-        console.log(uid);
-        if (error)
-          throw error
-      }
-      catch (error) {
+        console.log(uid)
+        if (error) throw error
+      } catch (error) {
         console.log(error)
       }
 
@@ -57,18 +55,17 @@ export default {
       if (this.formData.profile_file) {
         try {
           const { data, error } = await supabase.storage
-          .from('avatars')
-          .upload(`${uid}/dp.png`, this.formData.profile_file, {
-            cacheControl: ' 0',
-            upsert: true
-          })
+            .from('avatars')
+            .upload(`${uid}/dp.png`, this.formData.profile_file, {
+              cacheControl: ' 0',
+              upsert: true
+            })
           if (error) {
             throw error
           } else {
             console.log('Uploaded profile picture!')
           }
-        }
-        catch (error) {
+        } catch (error) {
           console.log(error)
         }
       }
@@ -76,42 +73,45 @@ export default {
       if (this.formData.banner_file) {
         try {
           const { data, error } = await supabase.storage
-          .from('avatars')
-          .upload(`${uid}/banner.png`, this.formData.banner_file, {
-            cacheControl: ' 0',
-            upsert: true
-          })
+            .from('avatars')
+            .upload(`${uid}/banner.png`, this.formData.banner_file, {
+              cacheControl: ' 0',
+              upsert: true
+            })
           if (error) {
             throw error
           } else {
             console.log('Uploaded banner!')
           }
-        }
-        catch (error) {
+        } catch (error) {
           console.log(error)
         }
       }
       try {
-        const { data, error } = await supabase
-        .from('profiles')
-        .select('displayPicture, banner')
-        .eq('id', uid)
+        const { data, error } = await supabase.from('profiles').select('displayPicture, banner').eq('id', uid)
         if (error) {
           throw error
         } else {
           this.formData.profile_link = data[0].displayPicture
           this.formData.banner_link = data[0].banner
-          if (this.formData.profile_link === 'https://ybdgcrjtuhafbgnuangd.supabase.co/storage/v1/object/public/avatars/default.png' && this.formData.profile_file) {
+          if (
+            this.formData.profile_link ===
+              'https://ybdgcrjtuhafbgnuangd.supabase.co/storage/v1/object/public/avatars/default.png' &&
+            this.formData.profile_file
+          ) {
             this.formData.profile_link = `https://ybdgcrjtuhafbgnuangd.supabase.co/storage/v1/object/public/avatars/${uid}/dp.png`
           }
-          if (this.formData.banner_link === 'https://ybdgcrjtuhafbgnuangd.supabase.co/storage/v1/object/public/avatars/default_banner.png' && this.formData.banner_file) {
+          if (
+            this.formData.banner_link ===
+              'https://ybdgcrjtuhafbgnuangd.supabase.co/storage/v1/object/public/avatars/default_banner.png' &&
+            this.formData.banner_file
+          ) {
             this.formData.banner_link = `https://ybdgcrjtuhafbgnuangd.supabase.co/storage/v1/object/public/avatars/${uid}/banner.png`
           }
           console.log('Success!')
           console.log(data)
         }
-      }
-      catch (error) {
+      } catch (error) {
         console.log(error)
       }
       const { data, error } = await supabase
@@ -148,28 +148,28 @@ export default {
     }
   },
   async created() {
-    const supabase = useSupabaseClient();
-    var supabaseSession = await supabase.auth.getSession();
-    var userSession = null;
-    var userId = "";
+    const supabase = useSupabaseClient()
+    var supabaseSession = await supabase.auth.getSession()
+    var userSession = null
+    var userId = ''
 
     if (!supabaseSession.data.session) {
       this.isLoggedIn = false
     } else {
       this.isLoggedIn = true
       userSession = supabaseSession.data.session.user
-      userId = userSession.id;
-      const userRequest = await useFetch(`/api/users/session/${userId}`);
-      const userData = userRequest.data.value.users[0];
-      this.user.name = userData.name;
-      this.user.dpLink = userData.displayPicture;
-      this.user.bannerLink = userData.banner;
-      this.user.description = userData.description;
-      this.user.city = userData.city;
-      this.user.country = userData.country;
-      this.user.province = userData.province;
+      userId = userSession.id
+      const userRequest = await useFetch(`/api/users/session/${userId}`)
+      const userData = userRequest.data.value.users[0]
+      this.user.name = userData.name
+      this.user.dpLink = userData.displayPicture
+      this.user.bannerLink = userData.banner
+      this.user.description = userData.description
+      this.user.city = userData.city
+      this.user.country = userData.country
+      this.user.province = userData.province
     }
-    this.doneLoading = true;
+    this.doneLoading = true
   }
 }
 </script>
@@ -198,7 +198,14 @@ export default {
           </div>
           <div class="setting-item">
             <span class="setting-span">Description</span>
-            <textarea class="profile-input" name="" id="" cols="30" rows="10" :placeholder="user.description"></textarea>
+            <textarea
+              class="profile-input"
+              name=""
+              id=""
+              cols="30"
+              rows="10"
+              :placeholder="user.description"
+            ></textarea>
           </div>
           <div class="setting-pair">
             <div class="setting-item">
@@ -226,20 +233,20 @@ export default {
           <div class="setting-item">
             <span class="setting-span">Profile Picture</span>
             <img :src="user.dpLink" alt="profile image" class="profile-image" />
-            <button class="profile-image-button">
+            <label class="profile-image-button">
               <img src="~\assets\icons\general.svg" alt="" />
               CHANGE
             </label>
-            <input type="file" id="profile-img" accept=".png, .jpg, .jpeg" @change="changeImage">
+            <input type="file" id="profile-img" accept=".png, .jpg, .jpeg" @change="changeImage" />
           </div>
           <div class="setting-item">
             <span class="setting-span">Banner Picture</span>
             <img :src="user.bannerLink" alt="banner image" class="banner-image" />
-            <button class="banner-image-button">
+            <label class="banner-image-button">
               <img src="~\assets\icons\general.svg" alt="" />
               CHANGE
             </label>
-            <input type="file" id="banner-img" accept=".png, .jpg, .jpeg" @change="changeImage">
+            <input type="file" id="banner-img" accept=".png, .jpg, .jpeg" @change="changeImage" />
           </div>
         </div>
       </div>
