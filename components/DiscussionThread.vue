@@ -106,6 +106,7 @@ export default {
       if (error3) {
         console.log(error3)
       } else {
+        location.reload()
         console.log('Success Adding to Comment Chain')
         console.log(data3)
       }
