@@ -231,7 +231,7 @@ export default {
                 <img class="media-icon" src="~/assets/icons/camera.svg" alt="" />
                 <span class="media-span">Add Photos</span>
               </label>
-              <input v-if="this.formData.imageCount + this.formData.videoCount < 5" type="file" id="add-photo" accept=".png, .jpg, .jpeg, .mp4" @change="addMedia">
+              <input v-if="this.formData.imageCount + this.formData.videoCount < 5" type="file" id="add-photo" accept=".png, .jpg, .jpeg" @change="addMedia">
             </div>
           </div>
           <div class="button-row">
