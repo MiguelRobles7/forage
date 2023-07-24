@@ -125,7 +125,7 @@ export default {
     }
 
     for (var i = 0; i < rv.length; i++) {
-      if (rv[i].restaurantId == this.$route.params.id && rv[i].isReply == false) {
+      if (rv[i].restaurantId == this.$route.params.id && rv[i].isReply == false && rv[i].isDeleted == false) {
         let { data: restoName, error } = await supabase.from('restaurants').select('name').eq('id', rv[i].restaurantId)
         if (error) {
           console.log(error)

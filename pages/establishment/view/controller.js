@@ -111,9 +111,9 @@ export default {
         downvotes: reviewData[i].downvotes,
         isEdited: reviewData[i].isEdited,
         //no images breaks da code
-        images: reviewData[i].images
+        images: reviewData[i].images,
+        isDeleted: reviewData[i].isDeleted
       }
-
       if(this.isReviewUpvoted(review)) {
         review.isUpvoted = true;
       };
@@ -121,7 +121,7 @@ export default {
       if (review.images === null) {
         review.images = []
       }
-      if (!reviewData[i].isReply) {
+      if (!reviewData[i].isReply && !reviewData[i].isDeleted) {
         this.reviews_holder[c].push(review)
         console.log(this.reviews_holder)
         console.log(c)
