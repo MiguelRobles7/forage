@@ -263,7 +263,7 @@ export default {
           <div class="setting-item">
             <span class="setting-span">Profile Picture</span>
             <img :src="user.dpLink" alt="profile image" class="profile-image" />
-            <label class="profile-image-button">
+            <label class="profile-image-button" for="profile-img">
               <img src="~\assets\icons\general.svg" alt="" />
               CHANGE
             </label>
@@ -272,7 +272,7 @@ export default {
           <div class="setting-item">
             <span class="setting-span">Banner Picture</span>
             <img :src="user.bannerLink" alt="banner image" class="banner-image" />
-            <label class="banner-image-button">
+            <label class="banner-image-button" for="banner-img">
               <img src="~\assets\icons\general.svg" alt="" />
               CHANGE
             </label>
