@@ -26,42 +26,42 @@ export default {
     images: Array,
     comments: Array,
     owner_responded: Boolean,
-    owner_image: String,
+    owner_image: String
   },
   mounted() {
-    this.clientUpvotes = this.upvotes;
-    this.clientDownvotes = this.downvotes;
-    this.clientisUpvoted = this.isUpvoted;
+    this.clientUpvotes = this.upvotes
+    this.clientDownvotes = this.downvotes
+    this.clientisUpvoted = this.isUpvoted
   },
   methods: {
     async triggerUpvote() {
       if (!this.isLoggedIn || this.isUpvoted || this.clientisUpvoted) {
-        console.log("Upvote discontinued");
-        return;
+        console.log('Upvote discontinued')
+        return
       }
-      const upvotes = this.upvotes;
-      const reviewID = this.reviewID;
-      const restaurantID = this.restaurantID;
-      const loggedUserID = this.loggedUserID;
+      const upvotes = this.upvotes
+      const reviewID = this.reviewID
+      const restaurantID = this.restaurantID
+      const loggedUserID = this.loggedUserID
 
       const data = {
-        count: upvotes, 
+        count: upvotes,
         loggedUserID: loggedUserID,
         reviewID: reviewID,
-        restaurantID:  restaurantID
+        restaurantID: restaurantID
       }
 
       await useFetch('/api/reviews/', {
         method: 'POST',
         body: data
-      });
+      })
       await useFetch('/api/user_upvotes/', {
         method: 'POST',
         body: data
-      });
+      })
 
-      this.clientUpvotes = this.clientUpvotes + 1;
-      this.clientisUpvoted = true; 
+      this.clientUpvotes = this.clientUpvotes + 1
+      this.clientisUpvoted = true
     }
   }
 }
@@ -70,7 +70,7 @@ export default {
 <template>
   <div class="review">
     <NuxtLink :to="`/profile/view/${this.userID}`">
-      <img class="reviewer-pfp" :src="userImg" alt=""/>
+      <img class="reviewer-pfp" :src="userImg" alt="" />
     </NuxtLink>
     <div class="cont">
       <div class="review-item" style="margin-bottom: -0.5vh">
@@ -91,7 +91,7 @@ export default {
       <div class="review-item" style="justify-content: flex-end; gap: 0.4rem">
         <div class="review-elements">
           <!--Eheh empty images array and comments(replies) breaks this code-->
-          <!--
+          <!-- 
           <div class="review-pill" v-if="images.length > 0">
             <img class="review-icon" src="~/assets/icons/userimage.svg" alt="" />
             <span class="review-pill-span">{{ images.length }}</span>
@@ -104,13 +104,11 @@ export default {
           <div class="review-pill" v-if="comments.length > 0 && !owner_responded">
             <img class="review-icon" src="~/assets/icons/comment_square.svg" alt="" />
             <span class="review-pill-span">{{ comments.length }}</span>
-          </div>
-          -->
-
+          </div> -->
         </div>
         <div class="review-voting">
           <div :class="clientisUpvoted ? 'vote-pill-upvoted' : 'vote-pill'">
-            <img @click="triggerUpvote" class="review-icon" src="~/assets/icons/upvote.svg" alt=""/>
+            <img @click="triggerUpvote" class="review-icon" src="~/assets/icons/upvote.svg" alt="" />
           </div>
           <span class="vote-count">{{ clientUpvotes - clientDownvotes }}</span>
           <div class="vote-pill">

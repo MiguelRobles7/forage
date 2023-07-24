@@ -48,8 +48,9 @@
                 :isEdited="r.is_edited"
                 :images="r.images"
                 :comments="r.restaurantComments"
-                :owner_responded="r.owner_responded"
+                :owner_responded="r.ownerResponded"
                 :owner_image="restaurant.logo"
+                :restaurant_id="id"
               ></EstablishmentReviewAll>
             </div>
           </div>

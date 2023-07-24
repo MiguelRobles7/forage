@@ -15,7 +15,8 @@ export default {
     images: Array,
     comments: Array,
     owner_responded: Boolean,
-    owner_image: String
+    owner_image: String,
+    restaurant_id: Number
   },
 
   methods: {
@@ -25,7 +26,29 @@ export default {
   },
   data() {
     return {
-      modal: false
+      modal: false,
+      restaurant: Object
+    }
+  },
+  async mounted() {
+    const supabase = useSupabaseClient()
+
+    let { data: resto, error } = await supabase.from('restaurants').select()
+    if (error) {
+      console.log(error)
+    } else {
+      console.log('Success Getting Restaurant Data')
+      console.log(resto)
+
+      for (let i = 0; i < resto.length; i++) {
+        console.log('restoid ', resto[i].id)
+        console.log('this id ', parseInt(this.restaurant_id))
+        if (resto[i].id == parseInt(this.restaurant_id)) {
+          this.restaurant = resto[i]
+          console.log('Success ', this.restaurant)
+          break
+        } else console.log('Failed')
+      }
     }
   }
 }
@@ -86,6 +109,8 @@ export default {
               :isEdited="isEdited"
               :images="images"
               :comments="comments"
+              :logo="restaurant.logo"
+              :owner_responded="owner_responded"
             ></DiscussionThread>
           </button>
         </div>
