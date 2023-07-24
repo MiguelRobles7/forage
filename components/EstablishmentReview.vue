@@ -1,6 +1,18 @@
 <script>
 export default {
+  data() {
+    return {
+      clientUpvotes: Number,
+      clientDownvotes: Number,
+      clientisUpvoted: Boolean
+    }
+  },
   props: {
+    isUpvoted: Boolean,
+    loggedUserID: String,
+    reviewID: Number,
+    restaurantID: Number,
+    isLoggedIn: Boolean,
     ownerReply: Array,
     userImg: String,
     userName: String,
@@ -14,7 +26,43 @@ export default {
     images: Array,
     comments: Array,
     owner_responded: Boolean,
-    owner_image: String
+    owner_image: String,
+  },
+  mounted() {
+    this.clientUpvotes = this.upvotes;
+    this.clientDownvotes = this.downvotes;
+    this.clientisUpvoted = this.isUpvoted;
+  },
+  methods: {
+    async triggerUpvote() {
+      if (!this.isLoggedIn || this.isUpvoted || this.clientisUpvoted) {
+        console.log("Upvote discontinued");
+        return;
+      }
+      const upvotes = this.upvotes;
+      const reviewID = this.reviewID;
+      const restaurantID = this.restaurantID;
+      const loggedUserID = this.loggedUserID;
+
+      const data = {
+        count: upvotes, 
+        loggedUserID: loggedUserID,
+        reviewID: reviewID,
+        restaurantID:  restaurantID
+      }
+
+      await useFetch('/api/reviews/', {
+        method: 'POST',
+        body: data
+      });
+      await useFetch('/api/user_upvotes/', {
+        method: 'POST',
+        body: data
+      });
+
+      this.clientUpvotes = this.clientUpvotes + 1;
+      this.clientisUpvoted = true; 
+    }
   }
 }
 </script>
@@ -22,7 +70,7 @@ export default {
 <template>
   <div class="review">
     <NuxtLink :to="`/profile/view/${this.userID}`">
-      <img class="reviewer-pfp" :src="userImg" alt="" />
+      <img class="reviewer-pfp" :src="userImg" alt=""/>
     </NuxtLink>
     <div class="cont">
       <div class="review-item" style="margin-bottom: -0.5vh">
@@ -61,10 +109,10 @@ export default {
 
         </div>
         <div class="review-voting">
-          <div class="vote-pill">
-            <img class="review-icon" src="~/assets/icons/upvote.svg" alt="" />
+          <div :class="clientisUpvoted ? 'vote-pill-upvoted' : 'vote-pill'">
+            <img @click="triggerUpvote" class="review-icon" src="~/assets/icons/upvote.svg" alt=""/>
           </div>
-          <span class="vote-count">{{ upvotes - downvotes }}</span>
+          <span class="vote-count">{{ clientUpvotes - clientDownvotes }}</span>
           <div class="vote-pill">
             <img class="review-icon" src="~/assets/icons/downvote.svg" alt="" />
           </div>

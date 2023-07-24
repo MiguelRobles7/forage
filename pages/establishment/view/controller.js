@@ -8,6 +8,7 @@ export default {
     return {
       addresses: ['Menu', 'Top Reviews'],
       addresses_links: ['#menu', '#reviews'],
+      upvotedReviews: [],
       id: useRoute().params.id,
       modal: false,
       restaurants: Restaurants,
@@ -15,6 +16,7 @@ export default {
       reviews_holder: [[], [], []],
       menu: [],
       restaurant: {
+        loggedUserID: String,
         backgroundImg: String,
         logo: String,
         name: String,
@@ -26,7 +28,8 @@ export default {
         rating: Number,
         reviewCount: Number
       },
-      doneLoading: false
+      doneLoading: false,
+      isLoggedIn: false
     }
   },
   async created() {
@@ -68,11 +71,34 @@ export default {
     var reviewCount = reviewData.length
     var c = 0
 
+    const supabase = useSupabaseClient();
+    var supabaseSession = await supabase.auth.getSession();
+    var userSession = null;
+    var userId = "";
+
+    if (!supabaseSession.data.session) {
+      this.isLoggedIn = false
+    } else {
+      this.isLoggedIn = true
+      userSession = supabaseSession.data.session.user
+      userId = userSession.id;
+      const userRequest = await useFetch(`/api/users/session/${userId}`);
+      const userData = userRequest.data.value.users[0];
+      this.loggedUserID  = userData.id;
+     
+      const userUpvotesFetch = useFetch(`/api/user_upvotes/${this.loggedUserID}`, { immediate: false, method: 'GET' })
+      await userUpvotesFetch.execute({ _initial: true });
+      const userUpvotesData = userUpvotesFetch.data.value.user_upvotes;
+
+      this.upvotedReviews = userUpvotesData;
+    }
+
     for (var i = 0; i < reviewData.length; i++) {
       const userFetch = useFetch(`/api/users/public/${reviewData[i].userId}`, { immediate: false })
       await userFetch.execute({ _initial: true })
       const userData = userFetch.data.value.users[0]
       const review = {
+        review_id: reviewData[i].id,
         user_image: userData.displayPicture,
         userID: userData.profile_id,
         user_name: userData.name,
@@ -80,12 +106,18 @@ export default {
         body: reviewData[i].body,
         rating: reviewData[i].rating,
         upvotes: reviewData[i].upvotes,
+        isUpvoted: false,
         //walang comments
         downvotes: reviewData[i].downvotes,
         isEdited: reviewData[i].isEdited,
         //no images breaks da code
         images: reviewData[i].images
       }
+
+      if(this.isReviewUpvoted(review)) {
+        review.isUpvoted = true;
+      };
+
       if (review.images === null) {
         review.images = []
       }
@@ -118,6 +150,15 @@ export default {
   methods: {
     edit: function () {
       this.modal = true
+    },
+
+    isReviewUpvoted(review) {
+      for(var i = 0; i < this.upvotedReviews.length; i++) {
+        if(this.upvotedReviews[i].reviewID === review.review_id) {
+          return true;
+        }
+      }
+      return false;
     }
   }
 }

@@ -1,41 +1,42 @@
 <script>
 export default {
-  props: { addresses: Array, addresses_links: Array, has_search: Boolean},
+  props: { addresses: Array, addresses_links: Array },
   data() {
     return {
       user: {
-        name: String, 
+        name: String,
         dpLink: String
       },
       doneLoading: false,
       showLogin: false,
       showRegister: false,
       showDropdown: false,
-      isLoggedIn: false
+      isLoggedIn: false,
+      has_search: true,
+      searchCriteria: ''
     }
   },
   async created() {
-    const supabase = useSupabaseClient();
-    var supabaseSession = await supabase.auth.getSession();
-    var userSession = null;
-    var userId = "";
+    const supabase = useSupabaseClient()
+    var supabaseSession = await supabase.auth.getSession()
+    var userSession = null
+    var userId = ''
 
     if (!supabaseSession.data.session) {
       this.isLoggedIn = false
     } else {
       this.isLoggedIn = true
       userSession = supabaseSession.data.session.user
-      userId = userSession.id;
-      const userRequest = await useFetch(`/api/users/session/${userId}`);
-      const userData = userRequest.data.value.users[0];
-      this.user.name = userData.name;
-      this.user.dpLink = userData.displayPicture;
+      userId = userSession.id
+      const userRequest = await useFetch(`/api/users/session/${userId}`)
+      const userData = userRequest.data.value.users[0]
+      this.user.name = userData.name
+      this.user.dpLink = userData.displayPicture
     }
-    this.$emit('doneNav');
-    this.doneLoading = true;
+    this.$emit('doneNav')
+    this.doneLoading = true
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
     toggleLoginModal() {
       this.showLogin = !this.showLogin
@@ -53,10 +54,13 @@ export default {
       console.log('Hide dropdown')
     },
     toggleLogin() {
-      location.reload();
+      location.reload()
     },
     toggleLogout() {
-      location.reload();
+      location.reload()
+    },
+    enter_search() {
+      this.$router.push('/establishment/search/' + this.searchCriteria)
     }
   }
 }
@@ -66,14 +70,26 @@ export default {
   <Loading v-if="!doneLoading"></Loading>
   <LoginModal v-if="showLogin" @close="toggleLoginModal" @login="toggleLogin"></LoginModal>
   <RegisterModal v-if="showRegister" @close="toggleRegisterModal"></RegisterModal>
-  <Dropdown class="dropdown" style="max-width: 18.75rem" v-show="showDropdown" @logout="toggleLogout" @close="toggleDropdown"></Dropdown>
+  <Dropdown
+    class="dropdown"
+    style="max-width: 18.75rem"
+    v-show="showDropdown"
+    @logout="toggleLogout"
+    @close="toggleDropdown"
+  ></Dropdown>
 
   <nav class="navbar nav-default">
     <div class="container-fluid">
       <div class="nav-left">
         <a class="navbar-brand" href="/"> Forage </a>
         <div v-if="has_search" class="search-container">
-          <input type="text" class="search" placeholder="Search" />
+          <input
+            type="text"
+            class="search"
+            placeholder="Search"
+            v-model="searchCriteria"
+            @keyup.enter="enter_search()"
+          />
           <img class="search-icon" src="~/assets/icons/search.svg" alt="search" />
         </div>
       </div>

@@ -1,4 +1,4 @@
-<script src="./controller.js"/>
+<script src="./controller.js" />
 
 <template>
   <Loading v-if="!doneLoading"></Loading>
@@ -74,9 +74,14 @@
         </div>
         <div class="reviews-container">
           <div class="review-column">
-            <div v-for="(r, i) in reviews_holder[0]" :key="r">
+            <div class="abox" v-for="(r, i) in reviews_holder[0]" :key="r">
               <EstablishmentReview
                 :key="r"
+                :loggedUserID="loggedUserID"
+                :restaurantID="id"
+                :reviewID="r.review_id"
+                :isUpvoted="r.isUpvoted"
+                :isLoggedIn="isLoggedIn"
                 :ownerReply="r.owner_response"
                 :userImg="r.user_image"
                 :userID="r.userID"
@@ -95,9 +100,14 @@
             </div>
           </div>
           <div class="review-column">
-            <div v-for="(r, i) in reviews_holder[1]" :key="r">
+            <div class="abox" v-for="(r, i) in reviews_holder[1]" :key="r">
               <EstablishmentReview
                 :key="r"
+                :loggedUserID="loggedUserID"
+                :restaurantID="id"
+                :reviewID="r.review_id"
+                :isUpvoted="r.isUpvoted"
+                :isLoggedIn="isLoggedIn"
                 :ownerReply="r.owner_response"
                 :userImg="r.user_image"
                 :userID="r.userID"
@@ -116,9 +126,14 @@
             </div>
           </div>
           <div class="review-column">
-            <div v-for="(r, i) in reviews_holder[2]" :key="r">
+            <div class="abox" v-for="(r, i) in reviews_holder[2]" :key="r">
               <EstablishmentReview
                 :key="r"
+                :loggedUserID="loggedUserID"
+                :restaurantID="id"
+                :reviewID="r.review_id"
+                :isUpvoted="r.isUpvoted"
+                :isLoggedIn="isLoggedIn"
                 :ownerReply="r.owner_response"
                 :userImg="r.user_image"
                 :userID="r.userID"

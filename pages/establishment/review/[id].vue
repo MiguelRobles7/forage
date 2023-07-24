@@ -1,4 +1,4 @@
-<script src="./controller.js"/>
+<script src="./controller.js" />
 
 <template>
   <main>
@@ -22,8 +22,6 @@
             <NuxtLink :to="`/establishment/review/${this.id}`">
               <button class="see-reviews-button" @click="edit" value="view" v-if="!this.reviewed">
                 <span class="review-span"> Write a Review + </span>
-                <!-- TODO: (GET WAIT) Get data and pass data from Supabase 
-                  and get user ID from session -->
               </button>
             </NuxtLink>
           </div>
@@ -37,6 +35,7 @@
           <div class="review-container">
             <div v-for="(r, i) in reviews" :key="r">
               <EstablishmentReviewAll
+                :reviewId="r.id"
                 :ownerReply="r.owner_response"
                 :userImg="r.userImage"
                 :userID="r.userId"
