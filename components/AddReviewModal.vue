@@ -1,7 +1,4 @@
 <script>
-import { ref } from 'vue'
-// TODO: MCO3 Add Reply to Review
-
 export default {
   props: {
     restaurant: String,
@@ -32,98 +29,83 @@ export default {
     },
     async uploadMedia() {
       const supabase = useSupabaseClient()
-      
+
       // get id of latest review
       let reviewId = null
       try {
-        const { data, error } = await supabase
-          .from('reviews')
-          .select('id')
-          .order('id', { ascending: false })
-          .limit(1)
-          if (error)
-            throw error
-          else {
-            reviewId = data[0].id
-            console.log(reviewId)
-          }
+        const { data, error } = await supabase.from('reviews').select('id').order('id', { ascending: false }).limit(1)
+        if (error) throw error
+        else {
+          reviewId = data[0].id
+          console.log(reviewId)
+        }
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
 
       // upload images
       try {
         for (let i = 0; i < this.formData.imageCount; i++) {
-          const element = this.formData.images[i];
-          const { data, error } = supabase.storage
-            .from('reviews')
-            .upload(`${reviewId}/${i}.png`, element.file, {
-              cacheControl: '0',
-            })
-            if (error)
-              throw error
-            else {
-              console.log('Uploaded image!');
-            }
+          const element = this.formData.images[i]
+          const { data, error } = supabase.storage.from('reviews').upload(`${reviewId}/${i}.png`, element.file, {
+            cacheControl: '0'
+          })
+          if (error) throw error
+          else {
+            console.log('Uploaded image!')
           }
+        }
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
       // upload videos
       try {
         for (let i = 0; i < this.formData.videoCount; i++) {
-          const element = this.formData.videos[i];
-          const { data, error } = supabase.storage
-            .from('reviews')
-            .upload(`${reviewId}/${i}.mp4`, element.file, {
-              cacheControl: ' 0',
-            })
-            if (error)
-              throw error
-            else {
-              console.log('Uploaded video!');
-            }
+          const element = this.formData.videos[i]
+          const { data, error } = supabase.storage.from('reviews').upload(`${reviewId}/${i}.mp4`, element.file, {
+            cacheControl: ' 0'
+          })
+          if (error) throw error
+          else {
+            console.log('Uploaded video!')
           }
+        }
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
 
       // update review images
       try {
         var imageLinks = []
         for (let i = 0; i < this.formData.imageCount; i++) {
-          imageLinks.push(`https://ybdgcrjtuhafbgnuangd.supabase.co/storage/v1/object/public/reviews/${reviewId}/${i}.png`);
+          imageLinks.push(
+            `https://ybdgcrjtuhafbgnuangd.supabase.co/storage/v1/object/public/reviews/${reviewId}/${i}.png`
+          )
         }
-        console.log(imageLinks);
-        const { data, error } = await supabase
-          .from('reviews')
-          .update({ images: imageLinks })
-          .eq('id', reviewId)
-          if (error)
-            throw error
-          else {
-            console.log('Updated review images!');
-          }
+        console.log(imageLinks)
+        const { data, error } = await supabase.from('reviews').update({ images: imageLinks }).eq('id', reviewId)
+        if (error) throw error
+        else {
+          console.log('Updated review images!')
+        }
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
       // update review videos
       try {
         var videoLinks = []
         for (let i = 0; i < this.formData.videoCount; i++) {
-          videoLinks.push(`https://ybdgcrjtuhafbgnuangd.supabase.co/storage/v1/object/public/reviews/${reviewId}/${i}.mp4`);
+          videoLinks.push(
+            `https://ybdgcrjtuhafbgnuangd.supabase.co/storage/v1/object/public/reviews/${reviewId}/${i}.mp4`
+          )
         }
-        const { data, error } = await supabase
-          .from('reviews')
-          .update({ videos: videoLinks })
-          .eq('id', reviewId)
-          if (error)
-            throw error
-          else {
-            console.log('Updated review videos!');
-          }
+        const { data, error } = await supabase.from('reviews').update({ videos: videoLinks }).eq('id', reviewId)
+        if (error) throw error
+        else {
+          console.log('Updated review videos!')
+        }
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
     },
     async addReview() {
@@ -135,40 +117,46 @@ export default {
           .insert([
             {
               restaurantId: this.formData.restaurantId,
-              userId: this.formData.userId,
+              userId: this.userId,
               rating: this.formData.rating,
               title: this.formData.title,
               body: this.formData.body,
-              upvotes: this.formData.upvotes,
-              downvotes: this.formData.downvotes,
-              isReply: this.formData.isReply
+              upvotes: 0,
+              downvotes: 0,
+              isReply: false,
+              isDeleted: false,
+              isEdited: false,
+              images: [],
+              comments: [],
+              videos: [],
+              ownerResponded: false
             }
           ])
           .select()
-          if (error)
-            throw error
-          else {
-            console.log('Added review!')
-            if (this.formData.imageCount + this.formData.videoCount > 0)
-              this.uploadMedia()
-          }
-      }
-      catch(error) {
+        if (error) throw error
+        else {
+          console.log('Added review!')
+          if (this.formData.imageCount + this.formData.videoCount > 0) this.uploadMedia()
+        }
+      } catch (error) {
         console.log(error)
       }
-      this.reloadPage()
+      setTimeout(function () {
+        window.location.reload()
+      }, 5000)
     },
     addMedia(e) {
       if (e.target.files[0].type.split('/')[0] === 'image') {
         this.formData.images.push({
           file: e.target.files[0],
-          link: URL.createObjectURL(e.target.files[0])})
+          link: URL.createObjectURL(e.target.files[0])
+        })
         this.formData.imageCount++
-      }
-      else {
+      } else {
         this.formData.videos.push({
           file: e.target.files[0],
-          link: URL.createObjectURL(e.target.files[0])})
+          link: URL.createObjectURL(e.target.files[0])
+        })
         this.formData.videoCount++
       }
     },
@@ -177,8 +165,7 @@ export default {
       if (e.target.tagName === 'VIDEO') {
         this.formData.videos.splice(id, 1)
         this.formData.videoCount--
-      }
-      else {
+      } else {
         this.formData.images.splice(id, 1)
         this.formData.imageCount--
       }
@@ -225,13 +212,35 @@ export default {
             <span>Media</span>
             <div class="flex-row" style="gap: 0.9rem">
               <!-- TODO: (GET WAIT) Add images (waiting for image handling) -->
-              <img v-for="(image, index) in this.formData.images" class="media-image" :id="index" :src="image.link" @click="removeMedia">
-              <video v-for="(video, index) in this.formData.videos" class="media-image" :id="index" :src="video.link" @click="removeMedia"></video>
-              <label v-if="this.formData.imageCount + this.formData.videoCount < 5"  for="add-photo" class="media-button">
+              <img
+                v-for="(image, index) in this.formData.images"
+                class="media-image"
+                :id="index"
+                :src="image.link"
+                @click="removeMedia"
+              />
+              <video
+                v-for="(video, index) in this.formData.videos"
+                class="media-image"
+                :id="index"
+                :src="video.link"
+                @click="removeMedia"
+              ></video>
+              <label
+                v-if="this.formData.imageCount + this.formData.videoCount < 5"
+                for="add-photo"
+                class="media-button"
+              >
                 <img class="media-icon" src="~/assets/icons/camera.svg" alt="" />
                 <span class="media-span">Add Photos</span>
               </label>
-              <input v-if="this.formData.imageCount + this.formData.videoCount < 5" type="file" id="add-photo" accept=".png, .jpg, .jpeg" @change="addMedia">
+              <input
+                v-if="this.formData.imageCount + this.formData.videoCount < 5"
+                type="file"
+                id="add-photo"
+                accept=".png, .jpg, .jpeg"
+                @change="addMedia"
+              />
             </div>
           </div>
           <div class="button-row">

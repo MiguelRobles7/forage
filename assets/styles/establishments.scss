@@ -172,6 +172,26 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 0.9375rem;
+    overflow-y: auto;
+    max-height: 85vh;
+  }
+  .review-container::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  /* Track */
+  .review-container::-webkit-scrollbar-track {
+    background: black;
+  }
+
+  /* Handle */
+  .review-container::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  /* Handle on hover */
+  .review-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
 }
 .establishment-content {

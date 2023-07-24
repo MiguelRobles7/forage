@@ -1,31 +1,8 @@
 export default {
-  props: {  
+  props: {
     restaurant: {
       type: Object,
       required: true
-    }
-  },
-  computed: {
-    restaurant() {
-      const obj = this.restaurants.filter((restaurant) => {
-        return restaurant.restaurant_id === Number(this.id)
-      })[0]
-
-      return this.restaurants.filter((restaurant) => {
-        return restaurant.restaurant_id === Number(this.id)
-      })[0]
-    },
-
-    menu_items() {
-      return this.menu.filter((row) => {
-        return row.restaurant_id === Number(this.id)
-      })
-    },
-
-    current_reviews() {
-      return this.reviews.filter((review) => {
-        return review.restaurant_id === Number(this.id)
-      })
     }
   },
   methods: {
