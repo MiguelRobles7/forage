@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-  <div class="review">
+  <div class="review" style="width: 27vw">
     <div class="cont">
       <div class="review-item" style="margin-bottom: -0.5vh">
         <div>
@@ -25,7 +25,7 @@ export default {
       <div class="review-item">
         <p class="body">{{ review.body }}</p>
       </div>
-      <div class="review-item" style="justify-content: flex-end; gap: 0.4rem">
+      <div class="review-item" style="justify-content: flex-end; gap: 0.4rem; flex: 1 0 0; align-self: stretch">
         <div class="review-elements">
           <div class="review-pill" v-if="review.images.length > 0">
             <img class="review-icon" src="~/assets/icons/userimage.svg" alt="" />

@@ -1,4 +1,4 @@
-<script src="./indexController.js"/>
+<script src="./indexController.js" />
 
 <template>
   <main>
@@ -11,10 +11,16 @@
             <div class="display-text">Find New Favorites</div>
           </div>
           <div>
-            <input type="text" class="col index-search" placeholder="Search..." />
+            <input
+              v-model="searchCriteria"
+              type="text"
+              class="col index-search"
+              placeholder="Search..."
+              @keyup.enter="searchClick()"
+            />
             <button style="margin-left: -2.5em; background: none; border: none">
               <!-- TODO: Make this based on what is typed -->
-              <NuxtLink to="/establishment/search/coffee">🔎︎</NuxtLink>
+              <span>🔎︎</span>
             </button>
           </div>
           <div class="font-default" style="width: 35%">

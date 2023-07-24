@@ -335,6 +335,7 @@
     align-items: flex-start;
     gap: 0.7vh;
     align-self: stretch;
+    flex: 1 0 0;
   }
   .tag {
     color: var(--text-text-h-1-text, #e6e6e6);
