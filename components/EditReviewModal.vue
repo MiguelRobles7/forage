@@ -199,7 +199,8 @@ export default {
           body: this.formData.body,
           upvotes: this.formData.upvotes,
           downvotes: this.formData.downvotes,
-          isReply: this.formData.isReply
+          isReply: this.formData.isReply,
+          isEdited: true
         })
         .eq('restaurantId', this.formData.restaurantId)
         .eq('userId', this.formData.userId)
