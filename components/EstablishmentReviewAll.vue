@@ -1,6 +1,7 @@
 <script>
 export default {
   props: {
+    reviewId: Number,
     ownerReply: Array,
     userImg: String,
     userName: String,
@@ -14,7 +15,8 @@ export default {
     images: Array,
     comments: Array,
     owner_responded: Boolean,
-    owner_image: String
+    owner_image: String,
+    restaurant_id: Number
   },
 
   methods: {
@@ -24,7 +26,29 @@ export default {
   },
   data() {
     return {
-      modal: false
+      modal: false,
+      restaurant: Object
+    }
+  },
+  async mounted() {
+    const supabase = useSupabaseClient()
+
+    let { data: resto, error } = await supabase.from('restaurants').select()
+    if (error) {
+      console.log(error)
+    } else {
+      console.log('Success Getting Restaurant Data')
+      console.log(resto)
+
+      for (let i = 0; i < resto.length; i++) {
+        console.log('restoid ', resto[i].id)
+        console.log('this id ', parseInt(this.restaurant_id))
+        if (resto[i].id == parseInt(this.restaurant_id)) {
+          this.restaurant = resto[i]
+          console.log('Success ', this.restaurant)
+          break
+        } else console.log('Failed')
+      }
     }
   }
 }
@@ -66,17 +90,14 @@ export default {
             <img class="review-icon" src="~/assets/icons/userimage.svg" alt="" />
             <span class="review-pill-span">{{ images.length }} Media Attached</span>
           </div>
-          <button
-            @click="view_discussion"
-            class="review-pill"
-            v-if="comments.length > 0 && owner_responded"
-            style="gap: 0.4rem"
-          >
+          <button @click="view_discussion" class="review-pill" style="gap: 0.4rem">
             <img class="review-icon" src="~/assets/icons/comment_square.svg" alt="" />
-            <img class="owner-image" :src="owner_image" alt="" />
-            <span class="review-pill-span">+ {{ comments.length }} Replies</span>
+            <img class="owner-image" :src="owner_image" alt="" v-if="owner_responded" />
+            <span class="review-pill-span" v-if="owner_responded">+ {{ comments.length }} Replies</span>
+            <span class="review-pill-span" v-else>{{ comments.length }} Replies</span>
             <DiscussionThread
               v-if="modal"
+              :reviewId="reviewId"
               :userImg="userImg"
               :userName="userName"
               :userID="userID"
@@ -88,24 +109,8 @@ export default {
               :isEdited="isEdited"
               :images="images"
               :comments="comments"
-            ></DiscussionThread>
-          </button>
-          <button @click="view_discussion" class="review-pill" v-if="comments.length > 0 && !owner_responded">
-            <img class="review-icon" src="~/assets/icons/comment_square.svg" alt="" />
-            <span class="review-pill-span">{{ comments.length }} Replies</span>
-            <DiscussionThread
-              v-if="modal"
-              :userImg="userImg"
-              :userName="userName"
-              :userID="userID"
-              :title="title"
-              :content="content"
-              :stars="stars"
-              :upvotes="upvotes"
-              :downvotes="downvotes"
-              :isEdited="isEdited"
-              :images="images"
-              :comments="comments"
+              :logo="restaurant.logo"
+              :owner_responded="owner_responded"
             ></DiscussionThread>
           </button>
         </div>

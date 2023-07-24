@@ -1,12 +1,8 @@
-<script setup>
-import restoCard from '~/assets/JSON/restaurants.json'
-
-const supabase = useSupabaseClient();
-const restaurants = restoCard
-</script>
+<script src="./indexController.js" />
 
 <template>
   <main>
+    <Loading v-if="!doneLoading"></Loading>
     <div class="gradient-bg">
       <div class="container-fluid index-land">
         <div style="display: grid; gap: 1rem">
@@ -15,10 +11,15 @@ const restaurants = restoCard
             <div class="display-text">Find New Favorites</div>
           </div>
           <div>
-            <input type="text" class="col index-search" placeholder="Search..." />
+            <input
+              v-model="searchCriteria"
+              type="text"
+              class="col index-search"
+              placeholder="Search..."
+              @keyup.enter="searchClick()"
+            />
             <button style="margin-left: -2.5em; background: none; border: none">
-              <!-- TODO: Make this based on what is typed -->
-              <NuxtLink to="/establishment/search/coffee">🔎︎</NuxtLink>
+              <span>🔎︎</span>
             </button>
           </div>
           <div class="font-default" style="width: 35%">
@@ -29,17 +30,16 @@ const restaurants = restoCard
       </div>
     </div>
 
-    <div class="gradient-wrapper">
+    <div class="gradient-wrapper" @click="getRestaurants">
       <div class="gradient-box-type-1" id="highlights">
         <div class="title">The latest craze spots around.</div>
         <div class="flex-col gap-3">
           <div class="flex-row gap-3">
             <div v-for="(r, i) in restaurants" :key="r" style="flex-basis: 25%">
-              <NuxtLink :to="`/establishment/view/${r.restaurant_id}`" v-if="i < 6">
+              <NuxtLink :to="`/establishment/view/${r.id}`" v-if="i < 6">
                 <RestaurantCard
                   :name="r.name"
                   :imgPath="r.logo"
-                  :bgImgPath="r.bgCard"
                   :description="r.description"
                   :tags="r.summary"
                   :rating="r.rating"
@@ -51,11 +51,10 @@ const restaurants = restoCard
           </div>
           <div class="flex-row gap-3">
             <div v-for="(r, i) in restaurants" :key="r" style="flex-basis: 25%">
-              <NuxtLink :to="`/establishment/view/${r.restaurant_id}`" v-if="i < 6">
+              <NuxtLink :to="`/establishment/view/${r.id}`" v-if="i < 6">
                 <RestaurantCard
                   :name="r.name"
                   :imgPath="r.logo"
-                  :bgImgPath="r.bgCard"
                   :description="r.description"
                   :tags="r.summary"
                   :rating="r.rating"
@@ -73,11 +72,10 @@ const restaurants = restoCard
         <div class="flex-col gap-3">
           <div class="flex-row gap-3">
             <div v-for="(r, i) in restaurants" :key="r" style="flex-basis: 25%">
-              <NuxtLink :to="`/establishment/view/${r.restaurant_id}`" v-if="i < 6">
+              <NuxtLink :to="`/establishment/view/${r.id}`" v-if="i < 6">
                 <RestaurantCard
                   :name="r.name"
                   :imgPath="r.logo"
-                  :bgImgPath="r.bgCard"
                   :description="r.description"
                   :tags="r.summary"
                   :rating="r.rating"
@@ -89,11 +87,10 @@ const restaurants = restoCard
           </div>
           <div class="flex-row gap-3">
             <div v-for="(r, i) in restaurants" :key="r" style="flex-basis: 25%">
-              <NuxtLink :to="`/establishment/view/${r.restaurant_id}`" v-if="i < 6">
+              <NuxtLink :to="`/establishment/view/${r.id}`" v-if="i < 6">
                 <RestaurantCard
                   :name="r.name"
                   :imgPath="r.logo"
-                  :bgImgPath="r.bgCard"
                   :description="r.description"
                   :tags="r.summary"
                   :rating="r.rating"

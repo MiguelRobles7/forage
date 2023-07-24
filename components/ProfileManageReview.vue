@@ -10,7 +10,37 @@ export default {
     images: Array,
     comments: Array,
     owner_responded: Boolean,
-    owner_image: String
+    owner_image: String,
+    restaurantId: Number,
+    userId: Number,
+    restaurantName: String
+  },
+  data() {
+    return {
+      modal: false
+    }
+  },
+  methods: {
+    edit: function () {
+      this.modal = true
+    },
+    async deleteReviews(restaurantId, userId) {
+      const supabase = useSupabaseClient()
+      const { data, error } = await supabase
+        .from('reviews')
+        .update({ isDeleted: true })
+        .eq('restaurantId', this.restaurantId)
+        .eq('userId', this.userId)
+        .select()
+
+      if (error) {
+        console.log(error)
+      } else {
+        console.log('Success!')
+        console.log(data)
+        window.location.reload()
+      }
+    }
   }
 }
 </script>
@@ -20,7 +50,7 @@ export default {
     <div class="cont">
       <div class="review-item" style="margin-bottom: -0.5vh">
         <div>
-          <span class="tag">Review for Amogus</span>
+          <span class="tag">Review for {{ restaurantName }}</span>
           <span v-if="isEdited" class="tag"> • Edited </span>
         </div>
         <div class="stars">
@@ -48,22 +78,29 @@ export default {
             <img class="review-icon" src="~/assets/icons/userimage.svg" alt="" />
             <span class="review-pill-span">{{ images.length }} Media Attached</span>
           </div>
-          <div class="review-pill" v-if="comments.length > 0 && owner_responded" style="gap: 0.4rem">
+          <div class="review-pill" style="gap: 0.4rem">
             <img class="review-icon" src="~/assets/icons/comment_square.svg" alt="" />
-            <img class="owner-image" :src="owner_image" alt="" />
-            <span class="review-pill-span">+ {{ comments.length }} Replies</span>
-          </div>
-          <div class="review-pill" v-if="comments.length > 0 && !owner_responded">
-            <img class="review-icon" src="~/assets/icons/comment_square.svg" alt="" />
-            <span class="review-pill-span">{{ comments.length }} Replies</span>
+            <img class="owner-image" :src="owner_image" alt="" v-if="owner_responded" />
+            <span class="review-pill-span" v-if="owner_responded">+ {{ comments.length }} Replies</span>
+            <span class="review-pill-span" v-else>+ {{ comments.length }} Replies</span>
           </div>
         </div>
         <div class="profile-actions">
-          <button class="review-pill">
+          <button class="review-pill" @click="edit">
             <img class="review-icon" style="height: 0.9rem; width: 0.9rem" src="~/assets/icons/edit-02.svg" alt="" />
             <span class="review-pill-span" style="font-size: 0.75rem">Edit</span>
+            <EditReviewModal
+              v-if="modal"
+              :restaurantName="restaurantName"
+              :restaurantId="restaurantId"
+              :userId="userId"
+              :title="title"
+              :body="content"
+              :rating="stars"
+              :images="images"
+            ></EditReviewModal>
           </button>
-          <button class="review-pill">
+          <button class="review-pill" @click="deleteReviews">
             <img class="review-icon" style="height: 0.9rem; width: 0.9rem" src="~/assets/icons/delete.svg" alt="" />
             <span
               class="review-pill-span"

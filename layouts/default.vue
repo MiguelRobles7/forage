@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- TODO: Account for each page parameters of `has_search` `addresses` & `addresses_links`-->
     <NavbarHome v-if="isHome"></NavbarHome>
     <NavbarDefault v-else></NavbarDefault>
     <NuxtPage></NuxtPage>
@@ -8,23 +7,20 @@
   </div>
 </template>
 
-<script >
+<script>
 export default {
   data() {
-    return {
-    }
+    return {}
   },
-  async created() {
-  },
+  async created() {},
   computed: {
     isHome() {
-      const route = useRoute();
-      const path = route.path;
-      return path === '/';
+      const route = useRoute()
+      const path = route.path
+      return path === '/'
     }
   },
-  methods: {
-  }
+  methods: {}
 }
 </script>
 

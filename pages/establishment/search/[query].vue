@@ -1,36 +1,13 @@
-<script>
-import Restaurants from '~/assets/JSON/restaurants.json'
-
-export default {
-  data() {
-    return {
-      phrase: useRoute().params.query,
-      restaurants: Restaurants
-    }
-  },
-  computed: {
-    // TODO: Handle more than 5 results
-    filteredRestaurants() {
-      let filtered = this.restaurants.filter((restaurant) => {
-        return restaurant.name.toLowerCase().includes(this.phrase.toLowerCase())
-      })
-      if (filtered.length > 5) {
-        return filtered.slice(0, 5)
-      }
-      return filtered
-    }
-  }
-}
-</script>
+<script src="./controller.js" />
 
 <template>
   <main>
     <div class="search-wrapper">
       <div class="search-left">Search Results</div>
       <div class="search-right">
-        <div class="results-row">
+        <div class="results-row" v-if="restaurants.length" v-for="row in filteredRestaurants">
           <NuxtLink
-            v-for="restaurant in filteredRestaurants"
+            v-for="restaurant in row"
             :key="restaurant"
             :to="`/establishment/view/${restaurant.restaurant_id}`"
             style="flex-basis: 25%"

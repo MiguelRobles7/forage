@@ -1,231 +1,4 @@
-<script>
-import Restaurants from '~/assets/JSON/restaurants.json'
-import MenuItems from '~/assets/JSON/menu.json'
-import Users from '~/assets/JSON/profiles.json'
-import Reviews from '~/assets/JSON/reviews.json'
-
-export default {
-  data() {
-    return {
-      addresses: ['Menu', 'Top Reviews'],
-      addresses_links: ['#menu', '#reviews'],
-      id: useRoute().params.id,
-      modal: false,
-      restaurants: Restaurants,
-      users: Users,
-      reviews: [
-        {
-          user_name: Users[0].name,
-          user_image: Users[0].profile_picture,
-          title: Reviews[5].title,
-          rating: 5,
-          body: Reviews[5].body,
-          images: ['Amogus'],
-          upvotes: Reviews[5].upvotes,
-          downvotes: 1,
-          is_edited: false,
-          owner_responded: true,
-          comments: [
-            {
-              user_name: Users[1].name,
-              user_image: Users[1].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            },
-            {
-              user_name: Users[2].name,
-              user_image: Users[2].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            }
-          ]
-        },
-        {
-          user_name: Users[1].name,
-          user_image: Users[1].profile_picture,
-          title: Reviews[3].title,
-          rating: 2,
-          body: Reviews[3].body,
-          images: [],
-          upvotes: Reviews[3].upvotes,
-          downvotes: 1,
-          is_edited: true,
-          owner_responded: true,
-          comments: [
-            {
-              user_name: Users[1].name,
-              user_image: Users[1].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            },
-            {
-              user_name: Users[2].name,
-              user_image: Users[2].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            }
-          ]
-        },
-        {
-          user_name: Users[2].name,
-          user_image: Users[2].profile_picture,
-          title: Reviews[0].title,
-          rating: 5,
-          body: Reviews[0].body,
-          images: [],
-          upvotes: Reviews[0].upvotes,
-          downvotes: 1,
-          is_edited: false,
-          owner_responded: true,
-          comments: [
-            {
-              user_name: Users[1].name,
-              user_image: Users[1].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            },
-            {
-              user_name: Users[2].name,
-              user_image: Users[2].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            }
-          ]
-        },
-        {
-          user_name: Users[3].name,
-          user_image: Users[3].profile_picture,
-          title: Reviews[4].title,
-          rating: 5,
-          body: Reviews[4].body,
-          images: [],
-          upvotes: Reviews[4].upvotes,
-          downvotes: 1,
-          is_edited: false,
-          owner_responded: true,
-          comments: [
-            {
-              user_name: Users[1].name,
-              user_image: Users[1].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            },
-            {
-              user_name: Users[2].name,
-              user_image: Users[2].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            }
-          ]
-        },
-        {
-          user_name: Users[4].name,
-          user_image: Users[4].profile_picture,
-          title: Reviews[3].title,
-          rating: 5,
-          body: Reviews[3].body,
-          images: [],
-          upvotes: Reviews[3].upvotes,
-          downvotes: 1,
-          is_edited: true,
-          owner_responded: false,
-          comments: [
-            {
-              user_name: Users[1].name,
-              user_image: Users[1].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            },
-            {
-              user_name: Users[2].name,
-              user_image: Users[2].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            }
-          ]
-        }
-      ],
-      review_images: [
-        { user_id: 1, restaurant_id: 1, rating: 5, upvotes: 30, review: 'Is good, is chill' },
-        { user_id: 2, restaurant_id: 2, rating: 5, upvotes: 30, review: 'Is good, is chill' }
-      ],
-      menu: [],
-      restaurant: {
-        backgroundImg: String, 
-        logo: String, 
-        name: String,
-        desc: String,
-        summary: String,
-        location: String,
-        openingTime: String,
-        closingTime: String,
-        rating: Number,
-        reviewCount: Number
-      },
-      doneLoading: false
-    }
-  },
-  async mounted() {
-    const restaurantFetch = useFetch(`/api/restaurants/${useRoute().params.id}`, {immediate: false});   
-    await restaurantFetch.execute({ _initial: true });
-    const restaurantData = restaurantFetch.data.value.restaurants[0];
-    this.restaurant.backgroundImg = restaurantData.banner;
-    this.restaurant.logo = restaurantData.logo;
-    this.restaurant.name = restaurantData.name;
-    this.restaurant.desc = restaurantData.description; 
-    this.restaurant.summary = restaurantData.summary;
-    this.restaurant.location = restaurantData.location;
-    this.restaurant.openingTime = restaurantData.openingTime; 
-    this.restaurant.closingTime = restaurantData.closingTime; 
-    this.restaurant.rating = restaurantData.rating; 
-    this.restaurant.reviewCount = restaurantData.reviewCount; 
-
-    const menuFetch= useFetch(`/api/menu/${useRoute().params.id}`, {immediate: false});   
-    await menuFetch.execute({ _initial: true });
-
-    const menuData = menuFetch.data.value.menu_items;
-    this.menu = menuData;
-    this.doneLoading = true;
-  },
-
-  computed: {
-    menu_items() {
-      return this.menu
-    },
-
-    current_reviews() {
-      return this.reviews.filter((review) => {
-        return review.restaurant_id === Number(1)
-      })
-    }
-  },
-  methods: {
-    edit: function () {
-      this.modal = true
-    }
-  }
-}
-</script>
+<script src="./controller.js" />
 
 <template>
   <Loading v-if="!doneLoading"></Loading>
@@ -252,7 +25,7 @@ export default {
             </div>
             <div class="info-pill" style="background: linear-gradient(180deg, #5ddb8f 0%, #2aa15a 100%)">
               <img src="~/assets/icons/wallet.svg" alt="" class="info-icon" />
-              <div class="info-text">{{ restaurant.price_range }} PHP</div>
+              <div class="info-text">{{ restaurant.price_range }}</div>
             </div>
             <div class="info-pill" style="background: linear-gradient(180deg, #d2d2d2 0%, #a3a3a3 100%)">
               <img src="~/assets/icons/clock.png" alt="" class="info-icon" />
@@ -301,13 +74,17 @@ export default {
         </div>
         <div class="reviews-container">
           <div class="review-column">
-            <div v-for="(r, i) in reviews" :key="r">
+            <div class="abox" v-for="(r, i) in reviews_holder[0]" :key="r">
               <EstablishmentReview
-                v-if="i % 2 == 0"
                 :key="r"
+                :loggedUserID="loggedUserID"
+                :restaurantID="id"
+                :reviewID="r.review_id"
+                :isUpvoted="r.isUpvoted"
+                :isLoggedIn="isLoggedIn"
                 :ownerReply="r.owner_response"
                 :userImg="r.user_image"
-                :userID="users[i].id"
+                :userID="r.userID"
                 :userName="r.user_name"
                 :title="r.title"
                 :content="r.body"
@@ -315,7 +92,6 @@ export default {
                 :upvotes="r.upvotes"
                 :downvotes="r.downvotes"
                 :isEdited="r.is_edited"
-                :images="r.images"
                 :comments="r.comments"
                 :owner_responded="r.owner_responded"
                 :owner_image="restaurant.logo"
@@ -324,13 +100,17 @@ export default {
             </div>
           </div>
           <div class="review-column">
-            <div v-for="(r, i) in reviews" :key="r">
+            <div class="abox" v-for="(r, i) in reviews_holder[1]" :key="r">
               <EstablishmentReview
-                v-if="i % 2 == 1"
                 :key="r"
+                :loggedUserID="loggedUserID"
+                :restaurantID="id"
+                :reviewID="r.review_id"
+                :isUpvoted="r.isUpvoted"
+                :isLoggedIn="isLoggedIn"
                 :ownerReply="r.owner_response"
                 :userImg="r.user_image"
-                :userID="users[i].id"
+                :userID="r.userID"
                 :userName="r.user_name"
                 :title="r.title"
                 :content="r.body"
@@ -338,7 +118,6 @@ export default {
                 :upvotes="r.upvotes"
                 :downvotes="r.downvotes"
                 :isEdited="r.is_edited"
-                :images="r.images"
                 :comments="r.comments"
                 :owner_responded="r.owner_responded"
                 :owner_image="restaurant.logo"
@@ -347,13 +126,17 @@ export default {
             </div>
           </div>
           <div class="review-column">
-            <div v-for="(r, i) in reviews" :key="r">
+            <div class="abox" v-for="(r, i) in reviews_holder[2]" :key="r">
               <EstablishmentReview
-                v-if="i % 2 == 0"
                 :key="r"
+                :loggedUserID="loggedUserID"
+                :restaurantID="id"
+                :reviewID="r.review_id"
+                :isUpvoted="r.isUpvoted"
+                :isLoggedIn="isLoggedIn"
                 :ownerReply="r.owner_response"
                 :userImg="r.user_image"
-                :userID="users[i].id"
+                :userID="r.userID"
                 :userName="r.user_name"
                 :title="r.title"
                 :content="r.body"
@@ -361,7 +144,6 @@ export default {
                 :upvotes="r.upvotes"
                 :downvotes="r.downvotes"
                 :isEdited="r.is_edited"
-                :images="r.images"
                 :comments="r.comments"
                 :owner_responded="r.owner_responded"
                 :owner_image="restaurant.logo"

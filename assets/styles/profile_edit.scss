@@ -13,6 +13,26 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 0.9375rem;
+    overflow-y: auto;
+    /* width */
+  }
+  .review-container::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  /* Track */
+  .review-container::-webkit-scrollbar-track {
+    background: black;
+  }
+
+  /* Handle */
+  .review-container::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  /* Handle on hover */
+  .review-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
   .review-settings {
     display: inline-flex;
@@ -43,13 +63,18 @@
       padding: 2.8em;
       display: flex;
       flex-direction: column;
+      overflow-y: auto;
       .profile-image {
         max-width: 10em;
         border-radius: 10px;
       }
       .banner-image {
-        max-width: 25em;
+        max-width: 15em;
+        max-height: 15pxem;
         border-radius: 10px;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        background-position: center !important;
       }
       .banner-image-button {
         display: flex;
@@ -224,9 +249,9 @@
       background: linear-gradient(180deg, rgba(38, 38, 42, 0) 0%, #26262a 84.17%);
       width: 100%;
       height: 30vh;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
+      background-size: cover !important;
+      background-repeat: no-repeat !important;
+      background-position: center !important;
     }
     .profile {
       margin-top: -15vh;
