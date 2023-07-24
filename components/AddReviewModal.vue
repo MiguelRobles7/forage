@@ -156,7 +156,7 @@ export default {
       catch(error) {
         console.log(error)
       }
-      // this.reloadPage()
+      this.reloadPage()
     },
     addMedia(e) {
       if (e.target.files[0].type.split('/')[0] === 'image') {
