@@ -11,7 +11,7 @@
         <img class="icon" src="~/assets/icons/display.svg" alt="" />
         <!-- TODO: (GET WAIT) Change this from hard link -->
 
-        <span> <NuxtLink to="/profile/edit/display/1"> Display Settings </NuxtLink> </span>
+        <span> <NuxtLink to="/profile/edit/display/"> Display Settings </NuxtLink> </span>
       </div>
       <!-- TODO: MCO3 Add back after functionalities are made -->
       <!-- <div class="redirect-item">
@@ -20,7 +20,7 @@
       </div> -->
       <div class="redirect-item">
         <img class="icon" src="~/assets/icons/manage-reviews.svg" alt="" />
-        <span> <NuxtLink to="/profile/manage-reviews/1"> Manage Reviews </NuxtLink> </span>
+        <span> <NuxtLink to="/profile/manage-reviews/"> Manage Reviews </NuxtLink> </span>
       </div>
     </div>
   </div>

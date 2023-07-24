@@ -51,7 +51,7 @@ export default {
     </NuxtLink>
 
     <div class="dropdown-items-container">
-      <NuxtLink :to="`/profile/edit/display/${id}`" style="display: contents">
+      <NuxtLink :to="`/profile/edit/display/`" style="display: contents">
         <div class="dropdown-item">
           <img class="icon" src="~/assets/icons/display.svg" alt="" />
           <span class="text"> Display Settings </span>
@@ -66,7 +66,7 @@ export default {
         </div>
       </NuxtLink> -->
 
-      <NuxtLink :to="`/profile/manage-reviews/${id}`" style="display: contents">
+      <NuxtLink :to="`/profile/manage-reviews/`" style="display: contents">
         <div class="dropdown-item">
           <img class="icon" src="~/assets/icons/manage-reviews.svg" alt="" />
           <span class="text"> Manage Reviews </span>
