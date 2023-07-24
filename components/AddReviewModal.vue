@@ -128,8 +128,7 @@ export default {
               isEdited: false,
               images: [],
               comments: [],
-              videos: [],
-              ownerResponded: false
+              videos: []
             }
           ])
           .select()
@@ -141,6 +140,7 @@ export default {
       } catch (error) {
         console.log(error)
       }
+      // TODO: Make proper alert
       alert('Please wait for the page to reload')
       setTimeout(function () {
         window.location.reload()

@@ -15,9 +15,9 @@
           <div class="left-panel">
             <!-- Phase 2 TODO: show  only when user is business owner -->
             <span>Owned Establishments</span>
-            <div class="establishments">
+            <div class="establishments" v-if="establishments.length > 0">
               <div class="pair" v-for="establishment in establishments" :key="establishment">
-                <img :src="establishment.image" alt="" />
+                <img :src="establishment.logo" alt="" />
                 <p>{{ establishment.name }}</p>
                 <div class="stars">
                   <img class="star" src="~/assets/icons/star.png" alt="" />
