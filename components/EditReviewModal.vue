@@ -51,6 +51,9 @@ export default {
         console.log('Success!')
         console.log(data)
       }
+      setTimeout(function () {
+        window.location.reload()
+      }, 8000)
     }
   }
 }
