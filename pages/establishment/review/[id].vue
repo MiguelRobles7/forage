@@ -1,10 +1,6 @@
 <script>
-import Users from '~/assets/JSON/profiles.json'
-import Reviews from '~/assets/JSON/reviews.json'
-import Restaurants from '~/assets/JSON/restaurants.json'
-
 export default {
-  props: {
+  props: {  
     restaurant: {
       type: Object,
       required: true
@@ -56,22 +52,115 @@ export default {
           throw error
         } else {
           this.userID = data[0].profile_id
-          console.log(this.userID)
         }
       } catch (error) {
         console.log(error)
       }
     }
   },
+
   data() {
     return {
-      restaurants: Restaurants,
+      doneLoading: false,
       id: useRoute().params.id,
+      restaurant: {
+        name: String,
+        logo: String,
+        bgCard: String,
+        description: String,
+        tags: String,
+        rating: Number,
+        reviewCount: Number,
+        price_range: String
+      },
 
-      users: Users,
       modal: false,
-      userID: null
+      userID: null,
+      reviews: [],
+      restaurantNames: [],
+      restaurantComments: []
     }
+  },
+
+  async mounted() {
+    const supabase = useSupabaseClient()
+
+    const restaurantFetch = useFetch(`/api/restaurants/${useRoute().params.id}`, { immediate: false })
+    await restaurantFetch.execute({ _initial: true })
+    const restaurantData = restaurantFetch.data.value.restaurants[0]
+    this.restaurant.bgCard = restaurantData.banner
+    this.restaurant.price_range = restaurantData.price_range
+    this.restaurant.logo = restaurantData.logo
+    this.restaurant.name = restaurantData.name
+    this.restaurant.description = restaurantData.description
+    this.restaurant.tags = restaurantData.summary
+    this.restaurant.rating = restaurantData.rating
+    this.restaurant.reviewCount = restaurantData.reviewCount
+
+    let { data: rv, error } = await supabase.from('reviews').select()
+    if (error) {
+      console.log(error)
+    } else {
+      console.log('Got Reviews')
+    }
+
+    for (var i = 0; i < rv.length; i++) {
+      if (rv[i].restaurantId == this.$route.params.id && rv[i].isReply == false) {
+        let { data: restoName, error } = await supabase.from('restaurants').select('name').eq('id', rv[i].restaurantId)
+        if (error) {
+          console.log(error)
+        } else {
+          console.log("Got Restaurant's Name")
+        }
+        let { data: restoUser, e } = await supabase.from('profiles').select().eq('profile_id', rv[i].userId)
+        if (e) {
+          console.log(e)
+        } else {
+          console.log('Got Restaurant User')
+        }
+
+        let rev = {
+          id: rv[i].id,
+          restaurantId: rv[i].restaurantId,
+          userId: rv[i].userId,
+          title: rv[i].title,
+          body: rv[i].body,
+          rating: rv[i].rating,
+          upvotes: rv[i].upvotes,
+          downvotes: rv[i].downvotes,
+          isEdited: rv[i].is_edited,
+          isReply: rv[i].is_reply,
+          isDeleted: rv[i].is_deleted,
+          images: rv[i].images,
+          comments: rv[i].comments,
+          ownerResponded: rv[i].owner_responded,
+
+          userImage: restoUser[0].displayPicture,
+          userName: restoUser[0].name
+        }
+        rev['restaurantComments'] = []
+        for (var j = 0; j < rv.length; j++) {
+          if (rv[j].isReply == true && rv[i].comments.includes(rv[j].id)) {
+            let { data: ru, e } = await supabase.from('profiles').select().eq('profile_id', rv[j].userId)
+
+            let subComment = {
+              body: rv[j].body,
+              upvotes: rv[j].upvotes,
+              downvotes: rv[j].downvotes,
+
+              userImage: ru[0].displayPicture,
+              userName: ru[0].name
+            }
+            rev['restaurantComments'].push(subComment)
+            console.log('Got Restaurant Comments', rv[j])
+          }
+        }
+        rev['restaurantName'] = restoName[0].name
+        this.reviews.push(rev)
+      }
+    }
+    console.log(this.reviews)
+    this.doneLoading = true
   }
 }
 </script>
@@ -85,7 +174,7 @@ export default {
           :imgPath="restaurant.logo"
           :bgImgPath="restaurant.bgCard"
           :description="restaurant.description"
-          :tags="restaurant.summary"
+          :tags="restaurant.tags"
           :rating="restaurant.rating"
           :reviewCount="restaurant.reviewCount"
           :price="restaurant.price_range"
@@ -114,9 +203,9 @@ export default {
             <div v-for="(r, i) in reviews" :key="r">
               <EstablishmentReviewAll
                 :ownerReply="r.owner_response"
-                :userImg="r.user_image"
-                :userID="users[i].id"
-                :userName="r.user_name"
+                :userImg="r.userImage"
+                :userID="r.userId"
+                :userName="r.userName"
                 :title="r.title"
                 :content="r.body"
                 :stars="r.rating"
@@ -124,7 +213,7 @@ export default {
                 :downvotes="r.downvotes"
                 :isEdited="r.is_edited"
                 :images="r.images"
-                :comments="r.comments"
+                :comments="r.restaurantComments"
                 :owner_responded="r.owner_responded"
                 :owner_image="restaurant.logo"
               ></EstablishmentReviewAll>

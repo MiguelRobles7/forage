@@ -40,7 +40,6 @@ export default {
       this.name = userData.name
       this.profile_picture = userData.displayPicture
     }
-    this.$emit('doneNav')
     this.doneLoading = true
   },
   async mounted() {
@@ -70,7 +69,6 @@ export default {
   }
 }
 </script>
-
 <template>
   <main>
     <div class="profile-edit">
