@@ -31,11 +31,6 @@
           </div>
           <label v-if="passwordText">{{ passwordText }}</label>
 
-          <div class="margin-top keep-signed">
-            <input v-model="keepLoggedIn" type="checkbox" />
-            <label @click="toggleKeepLogin">Keep me logged in</label>
-          </div>
-
           <button class="modal-button">LOGIN</button>
 
           <div class="font-default margin-top">
