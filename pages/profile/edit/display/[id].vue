@@ -33,6 +33,7 @@ export default {
       }
     }
   },
+
   methods: {
     async updateProfile() {
       console.log(this.formData)

@@ -8,7 +8,8 @@ export default {
     downvotes: Number,
     isEdited: Boolean,
     images: Array,
-    comments: Array,
+    // TODO: Incorporate comments
+    // comments: Array,
     owner_responded: Boolean,
     owner_image: String
   },
@@ -76,7 +77,7 @@ export default {
             <img class="review-icon" src="~/assets/icons/userimage.svg" alt="" />
             <span class="review-pill-span">{{ images.length }} Media Attached</span>
           </div>
-          <div class="review-pill" v-if="comments.length > 0 && owner_responded" style="gap: 0.4rem">
+          <!-- <div class="review-pill" v-if="comments.length > 0 && owner_responded" style="gap: 0.4rem">
             <img class="review-icon" src="~/assets/icons/comment_square.svg" alt="" />
             <img class="owner-image" :src="owner_image" alt="" />
             <span class="review-pill-span">+ {{ comments.length }} Replies</span>
@@ -84,7 +85,7 @@ export default {
           <div class="review-pill" v-if="comments.length > 0 && !owner_responded">
             <img class="review-icon" src="~/assets/icons/comment_square.svg" alt="" />
             <span class="review-pill-span">{{ comments.length }} Replies</span>
-          </div>
+          </div> -->
         </div>
         <div class="profile-actions">
           <button class="review-pill" @click="edit">
