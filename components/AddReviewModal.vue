@@ -21,7 +21,25 @@ export default {
         videos: [],
         videoCount: 0
       },
-      doneLoading: true
+      doneLoading: true,
+      newId: null
+    }
+  },
+  async mounted() {
+    const supabase = useSupabaseClient()
+    var supabaseSession = await supabase.auth.getSession()
+    var userSession = null
+    var userId = ''
+
+    if (!supabaseSession.data.session) {
+      this.isLoggedIn = false
+    } else {
+      this.isLoggedIn = true
+      userSession = supabaseSession.data.session.user
+      userId = userSession.id
+      const userRequest = await useFetch(`/api/users/session/${userId}`)
+      const userData = userRequest.data.value.users[0]
+      this.newId = userData.profile_id
     }
   },
   methods: {
@@ -118,7 +136,7 @@ export default {
           .insert([
             {
               restaurantId: this.formData.restaurantId,
-              userId: this.userId,
+              userId: this.newId,
               rating: this.formData.rating,
               title: this.formData.title,
               body: this.formData.body,

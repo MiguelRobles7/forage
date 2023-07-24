@@ -49,7 +49,7 @@ export default {
       },
 
       modal: false,
-      userID: null,
+      userID: '',
       uid: null,
       reviews: [],
       restaurantNames: [],
@@ -60,7 +60,25 @@ export default {
 
   async mounted() {
     const supabase = useSupabaseClient()
-    this.getUserID()
+    try {
+      const { data, error } = await supabase.auth.getSession()
+      this.uid = data.session.user.id
+      console.log(uid)
+      if (error) throw error
+    } catch (error) {
+      console.log(error)
+    }
+
+    try {
+      const { data, error } = await supabase.from('profiles').select('profile_id').eq('id', uid)
+      if (error) {
+        throw error
+      } else {
+        this.userID = data[0].profile_id
+      }
+    } catch (error) {
+      console.log(error)
+    }
 
     const restaurantFetch = useFetch(`/api/restaurants/${useRoute().params.id}`, { immediate: false })
     await restaurantFetch.execute({ _initial: true })
