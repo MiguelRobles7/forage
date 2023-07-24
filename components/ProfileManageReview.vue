@@ -27,19 +27,20 @@ export default {
     // TODO: (GET WAIT) Pass actual parameters after GET methods implemented, uncomment once done
     async deleteReviews(restaurantId, userId) {
       const supabase = useSupabaseClient()
-      // const { data, error } = await supabase
-      //   .from('reviews')
-      //   .delete()
-      //   .eq('restaurantId', restaurantId)
-      //   .eq('userId', userId)
-      //   .select()
+      const { data, error } = await supabase
+        .from('reviews')
+        .update({ isDeleted: true})
+        .eq('restaurantId', this.restaurantId)
+        .eq('userId', this.userId)
+        .select()
 
-      // if (error) {
-      //   console.log(error)
-      // } else {
-      //   console.log('Success!')
-      //   console.log(data)
-      // }
+      if (error) {
+        console.log(error)
+      } else {
+        console.log('Success!')
+        console.log(data)
+        window.location.reload()
+      }
     }
   }
 }
