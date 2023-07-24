@@ -1,6 +1,4 @@
 <script>
-import Users from '~/assets/JSON/profiles.json'
-
 export default {
   methods: {
     edit: function () {
@@ -48,7 +46,6 @@ export default {
         price_range: String
       },
 
-      users: Users,
       modal: false,
       userID: null,
       reviews: [],
@@ -87,6 +84,13 @@ export default {
         } else {
           console.log(restoName)
         }
+        let { data: restoUser, e } = await supabase.from('profiles').select().eq('profile_id', rv[i].userId)
+        if (e) {
+          console.log(e)
+        } else {
+          console.log(restoUser)
+        }
+
         let rev = {
           id: rv[i].id,
           restaurantId: rv[i].restaurantId,
@@ -101,7 +105,10 @@ export default {
           isDeleted: rv[i].is_deleted,
           images: rv[i].images,
           comments: rv[i].comments,
-          ownerResponded: rv[i].owner_responded
+          ownerResponded: rv[i].owner_responded,
+
+          userImage: restoUser[0].displayPicture,
+          userName: restoUser[0].name
         }
         rev['restaurantComments'] = []
         for (var j = 0; j < rv.length; j++) {
@@ -157,9 +164,9 @@ export default {
             <div v-for="(r, i) in reviews" :key="r">
               <EstablishmentReviewAll
                 :ownerReply="r.owner_response"
-                :userImg="r.user_image"
-                :userID="users[i].id"
-                :userName="r.user_name"
+                :userImg="r.userImage"
+                :userID="r.userId"
+                :userName="r.userName"
                 :title="r.title"
                 :content="r.body"
                 :stars="r.rating"
