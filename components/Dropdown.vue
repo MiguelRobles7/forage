@@ -32,9 +32,11 @@ export default {
   methods: {
     async logout() {
       const supabase = useSupabaseClient()
+      navigateTo('/')
       const { error } = await supabase.auth.signOut()
       this.$emit('close')
       this.$emit('logout')
+      window.location.reload()
     }
   }
 }
