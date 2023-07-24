@@ -1,13 +1,13 @@
-<script src="./controller.js"/>
+<script src="./controller.js" />
 
 <template>
   <main>
     <div class="search-wrapper">
       <div class="search-left">Search Results</div>
       <div class="search-right">
-        <div class="results-row">
+        <div class="results-row" v-if="restaurants.length" v-for="row in filteredRestaurants">
           <NuxtLink
-            v-for="restaurant in filteredRestaurants"
+            v-for="restaurant in row"
             :key="restaurant"
             :to="`/establishment/view/${restaurant.restaurant_id}`"
             style="flex-basis: 25%"
