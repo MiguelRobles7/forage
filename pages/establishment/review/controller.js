@@ -11,10 +11,9 @@ export default {
     },
     async getUserID() {
       const supabase = useSupabaseClient()
-      let uid = null
       try {
         const { data, error } = await supabase.auth.getSession()
-        uid = data.session.user.id
+        this.uid = data.session.user.id
         console.log(uid)
         if (error) throw error
       } catch (error) {
@@ -51,6 +50,7 @@ export default {
 
       modal: false,
       userID: null,
+      uid: null,
       reviews: [],
       restaurantNames: [],
       restaurantComments: [],
@@ -96,6 +96,20 @@ export default {
         throw error
       }
       if (data.length > 0) {
+        this.reviewed = true
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    
+    try {
+      const { data, error } = await supabase.from('restaurants')
+        .select('owner_id')
+        .eq('id', this.$route.params.id)
+      if (error) {
+        throw error
+      }
+      if (data[0].owner_id == this.uid) {
         this.reviewed = true
       }
     } catch (error) {
