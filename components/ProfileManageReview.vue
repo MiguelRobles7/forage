@@ -8,8 +8,7 @@ export default {
     downvotes: Number,
     isEdited: Boolean,
     images: Array,
-    // TODO: Incorporate comments
-    // comments: Array,
+    comments: Array,
     owner_responded: Boolean,
     owner_image: String,
     restaurantId: Number,
@@ -51,7 +50,6 @@ export default {
     <div class="cont">
       <div class="review-item" style="margin-bottom: -0.5vh">
         <div>
-          <!-- TODO: (GET WAIT) Get functions to change to actual name -->
           <span class="tag">Review for {{ restaurantName }}</span>
           <span v-if="isEdited" class="tag"> • Edited </span>
         </div>
@@ -80,15 +78,12 @@ export default {
             <img class="review-icon" src="~/assets/icons/userimage.svg" alt="" />
             <span class="review-pill-span">{{ images.length }} Media Attached</span>
           </div>
-          <!-- <div class="review-pill" v-if="comments.length > 0 && owner_responded" style="gap: 0.4rem">
+          <div class="review-pill" style="gap: 0.4rem">
             <img class="review-icon" src="~/assets/icons/comment_square.svg" alt="" />
-            <img class="owner-image" :src="owner_image" alt="" />
-            <span class="review-pill-span">+ {{ comments.length }} Replies</span>
+            <img class="owner-image" :src="owner_image" alt="" v-if="owner_responded" />
+            <span class="review-pill-span" v-if="owner_responded">+ {{ comments.length }} Replies</span>
+            <span class="review-pill-span" v-else>+ {{ comments.length }} Replies</span>
           </div>
-          <div class="review-pill" v-if="comments.length > 0 && !owner_responded">
-            <img class="review-icon" src="~/assets/icons/comment_square.svg" alt="" />
-            <span class="review-pill-span">{{ comments.length }} Replies</span>
-          </div> -->
         </div>
         <div class="profile-actions">
           <button class="review-pill" @click="edit">

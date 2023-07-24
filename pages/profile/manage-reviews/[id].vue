@@ -54,7 +54,7 @@ export default {
     }
 
     for (var i = 0; i < rv.length; i++) {
-      if (rv[i].userId == this.$route.params.id) {
+      if (rv[i].userId == this.$route.params.id && rv[i].isDeleted == false && rv[i].isReply == false) {
         let { data: restoName, error } = await supabase.from('restaurants').select('name').eq('id', rv[i].restaurantId)
         if (error) {
           console.log(error)
@@ -102,6 +102,7 @@ export default {
                 :isEdited="r.isEdited"
                 :images="r.images"
                 :owner_responded="r.ownerResponded"
+                :comments="r.comments"
                 owner_image="/_nuxt/assets/icons/clock.png"
               ></ProfileManageReview>
             </div>
