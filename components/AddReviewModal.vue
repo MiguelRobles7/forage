@@ -141,6 +141,7 @@ export default {
       } catch (error) {
         console.log(error)
       }
+      alert('Please wait for the page to reload')
       setTimeout(function () {
         window.location.reload()
       }, 5000)

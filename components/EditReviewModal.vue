@@ -51,6 +51,7 @@ export default {
         console.log('Success!')
         console.log(data)
       }
+      alert('Please wait for the page to reload')
       setTimeout(function () {
         window.location.reload()
       }, 8000)
