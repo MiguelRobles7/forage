@@ -169,9 +169,7 @@ export default {
         { user_id: 1, restaurant_id: 1, rating: 5, upvotes: 30, review: 'Is good, is chill' },
         { user_id: 2, restaurant_id: 2, rating: 5, upvotes: 30, review: 'Is good, is chill' }
       ],
-      reviewCol1: [],
-      reviewCol2: [],
-      reviewCol3: [],
+      reviews_holder: [[], [], []],
       menu: [],
       restaurant: {
         backgroundImg: String,
@@ -214,31 +212,36 @@ export default {
     await reviewFetch.execute({ _initial: true })
     const reviewData = reviewFetch.data.value.reviews
     var reviewCount = reviewData.length
+    var c = 0
 
-    if (reviewCount < 3) {
-      for (var i = 0; i < 2; i++) {
-        const userFetch = useFetch(`/api/users/public/${reviewData[i].userId}`, { immediate: false })
-        await userFetch.execute({ _initial: true })
-        const userData = userFetch.data.value.users[0]
-        const review = {
-          user_image: userData.displayPicture,
-          userID: userData.profile_id,
-          user_name: userData.name,
-          title: reviewData[i].title,
-          body: reviewData[i].body,
-          rating: reviewData[i].rating,
-          upvotes: reviewData[i].upvotes,
-          //walang comments
-          downvotes: reviewData[i].downvotes,
-          isEdited: reviewData[i].isEdited,
-          //no images breaks da code
-          images: reviewData[i].images
-        }
-        if (review.images === null) {
-          review.images = []
-        }
-        this.reviewCol1.push(review)
-        reviewCount -= 1
+    for (var i = 0; i < reviewData.length; i++) {
+      const userFetch = useFetch(`/api/users/public/${reviewData[i].userId}`, { immediate: false })
+      await userFetch.execute({ _initial: true })
+      const userData = userFetch.data.value.users[0]
+      const review = {
+        user_image: userData.displayPicture,
+        userID: userData.profile_id,
+        user_name: userData.name,
+        title: reviewData[i].title,
+        body: reviewData[i].body,
+        rating: reviewData[i].rating,
+        upvotes: reviewData[i].upvotes,
+        //walang comments
+        downvotes: reviewData[i].downvotes,
+        isEdited: reviewData[i].isEdited,
+        //no images breaks da code
+        images: reviewData[i].images
+      }
+      if (review.images === null) {
+        review.images = []
+      }
+      this.reviews_holder[c].push(review)
+      console.log(this.reviews_holder)
+      console.log(c)
+      if (c === 2) {
+        c = 0
+      } else {
+        c += 1
       }
     }
 
@@ -338,7 +341,7 @@ export default {
         </div>
         <div class="reviews-container">
           <div class="review-column">
-            <div v-for="(r, i) in reviewCol1" :key="r">
+            <div v-for="(r, i) in reviews_holder[0]" :key="r">
               <EstablishmentReview
                 :key="r"
                 :ownerReply="r.owner_response"
@@ -359,13 +362,12 @@ export default {
             </div>
           </div>
           <div class="review-column">
-            <div v-for="(r, i) in reviews" :key="r">
+            <div v-for="(r, i) in reviews_holder[1]" :key="r">
               <EstablishmentReview
-                v-if="i % 2 == 1"
                 :key="r"
                 :ownerReply="r.owner_response"
                 :userImg="r.user_image"
-                :userID="users[i].id"
+                :userID="r.userID"
                 :userName="r.user_name"
                 :title="r.title"
                 :content="r.body"
@@ -373,7 +375,6 @@ export default {
                 :upvotes="r.upvotes"
                 :downvotes="r.downvotes"
                 :isEdited="r.is_edited"
-                :images="r.images"
                 :comments="r.comments"
                 :owner_responded="r.owner_responded"
                 :owner_image="restaurant.logo"
@@ -382,13 +383,12 @@ export default {
             </div>
           </div>
           <div class="review-column">
-            <div v-for="(r, i) in reviews" :key="r">
+            <div v-for="(r, i) in reviews_holder[2]" :key="r">
               <EstablishmentReview
-                v-if="i % 2 == 0"
                 :key="r"
                 :ownerReply="r.owner_response"
                 :userImg="r.user_image"
-                :userID="users[i].id"
+                :userID="r.userID"
                 :userName="r.user_name"
                 :title="r.title"
                 :content="r.body"
@@ -396,7 +396,6 @@ export default {
                 :upvotes="r.upvotes"
                 :downvotes="r.downvotes"
                 :isEdited="r.is_edited"
-                :images="r.images"
                 :comments="r.comments"
                 :owner_responded="r.owner_responded"
                 :owner_image="restaurant.logo"
