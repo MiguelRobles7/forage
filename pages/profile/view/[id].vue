@@ -13,7 +13,6 @@
         <div class="left">
           <img class="profile-image" :src="profile.dpLink" alt="" />
           <div class="left-panel">
-            <!-- Phase 2 TODO: show  only when user is business owner -->
             <span>Owned Establishments</span>
             <div class="establishments" v-if="establishments.length > 0">
               <div class="pair" v-for="establishment in establishments" :key="establishment">

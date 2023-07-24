@@ -9,11 +9,9 @@
     <div class="redirect-container">
       <div class="redirect-item">
         <img class="icon" src="~/assets/icons/display.svg" alt="" />
-        <!-- TODO: (GET WAIT) Change this from hard link -->
-
         <span> <NuxtLink to="/profile/edit/display/"> Display Settings </NuxtLink> </span>
       </div>
-      <!-- TODO: MCO3 Add back after functionalities are made -->
+      <!-- TODO: Add back after functionalities are made -->
       <!-- <div class="redirect-item">
         <img class="icon" src="~/assets/icons/account-setting.svg" alt="" />
         <span><NuxtLink to="/profile/edit/account/1"> Account Settings </NuxtLink> </span>

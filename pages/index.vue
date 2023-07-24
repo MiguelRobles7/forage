@@ -19,7 +19,6 @@
               @keyup.enter="searchClick()"
             />
             <button style="margin-left: -2.5em; background: none; border: none">
-              <!-- TODO: Make this based on what is typed -->
               <span>🔎︎</span>
             </button>
           </div>

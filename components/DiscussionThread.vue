@@ -200,7 +200,7 @@ export default {
             <div class="review-item">
               <p>{{ content }}</p>
             </div>
-            <!-- TODO: Fix For Logic (Just made something quickly for now) -->
+
             <div class="image-container" v-if="images.length > 0">
               <div class="image-row" v-for="count in Math.ceil(images.length / 3)">
                 <img v-for="i in 3" :src="`/_nuxt${images[i * count - 1]}`" alt="" />

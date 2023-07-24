@@ -8,9 +8,7 @@ export default {
       filteredRestaurants: [[]]
     }
   },
-  computed: {
-    // TODO: Handle more than 5 results
-  },
+  computed: {},
   async mounted() {
     const restaurantsFetch = useFetch('/api/restaurants/', { immediate: false })
     await restaurantsFetch.execute({ _initial: true })

@@ -48,7 +48,6 @@
             <span v-if="waiting"> Please wait for a while as we update your information </span>
           </div>
         </div>
-        <!-- TODO: (GET WAIT) Waiting for get and image functionality -->
         <div class="image-settings">
           <div class="setting-item">
             <span class="setting-span">Profile Picture</span>
