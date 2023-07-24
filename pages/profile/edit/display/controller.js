@@ -64,6 +64,7 @@ export default {
       if (error) {
         console.log(error)
       } else {
+        this.editProfile()
         console.log('Success!')
         console.log(data)
       }
