@@ -1,6 +1,7 @@
 <script>
 export default {
   props: {
+    reviewId: Number,
     ownerReply: Array,
     userImg: String,
     userName: String,
@@ -73,6 +74,7 @@ export default {
             <span class="review-pill-span" v-else>{{ comments.length }} Replies</span>
             <DiscussionThread
               v-if="modal"
+              :reviewId="reviewId"
               :userImg="userImg"
               :userName="userName"
               :userID="userID"

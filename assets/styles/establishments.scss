@@ -1,5 +1,7 @@
 @import 'variables';
-
+.abox {
+  display: contents !important;
+}
 .see-reviews-button {
   display: inline-flex;
   padding: 0.5rem 1.125rem;
@@ -245,6 +247,7 @@
       .review-column {
         display: flex;
         flex-direction: column;
+        flex-basis: 33% !important;
         align-items: flex-start;
         gap: 0.5rem;
         flex: 1 0 0;
@@ -279,7 +282,6 @@
   }
 
   .review {
-    flex-basis: 33%;
     border-radius: 6px;
     border: 2px solid #323237;
     background: #2f2f33;

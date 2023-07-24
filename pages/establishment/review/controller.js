@@ -78,6 +78,7 @@ export default {
       console.log(error)
     } else {
       console.log('Got Reviews')
+      console.log(rv)
     }
 
     for (var i = 0; i < rv.length; i++) {
@@ -96,7 +97,7 @@ export default {
         }
 
         let rev = {
-          id: rv[i].id,
+          id: parseInt(rv[i].id),
           restaurantId: rv[i].restaurantId,
           userId: rv[i].userId,
           title: rv[i].title,
