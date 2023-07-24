@@ -4,12 +4,11 @@ import Reviews from '~/assets/JSON/reviews.json'
 import Restaurants from '~/assets/JSON/restaurants.json'
 
 export default {
-  props: {
-    /* Unused
+  props: {  
     restaurant: {
       type: Object,
       required: true
-    }*/
+    }
   },
   computed: {
     restaurant() {

@@ -31,7 +31,7 @@ export default {
     }
   },
   async mounted() {
-    const restaurantFetch = useFetch(`/api/restaurants/${useRoute().params.id}`, { immediate: false })
+    const restaurantFetch = useFetch(`/api/restaurants/${useRoute().params.id}`, { immediate: false})
     await restaurantFetch.execute({ _initial: true })
     const restaurantData = restaurantFetch.data.value.restaurants[0]
     this.restaurant.backgroundImg = restaurantData.banner
