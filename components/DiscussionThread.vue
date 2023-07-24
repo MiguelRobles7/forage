@@ -14,17 +14,22 @@ export default {
     images: Array,
     comments: Array,
     owner_responded: Boolean,
-    owner_image: String,
     comments: Object
   },
   data() {
     return {
       body: '',
       logId: '',
-      newComments: []
+      newComments: [],
+      isOwner: false,
+      user_real_id: '',
+      logo: '',
+
+      owner: false,
+      owner_name: ''
     }
   },
-  async created() {
+  async mounted() {
     const supabase = useSupabaseClient()
     var supabaseSession = await supabase.auth.getSession()
     var userSession = null
@@ -39,6 +44,31 @@ export default {
       const userRequest = await useFetch(`/api/users/session/${userId}`)
       const userData = userRequest.data.value.users[0]
       this.logId = userData.profile_id
+      this.user_real_id = userData.id
+    }
+
+    if (this.owner_responded == true) {
+      console.log('Auohabdfo')
+      const supabase = useSupabaseClient()
+      let { data: restaurantData, error4 } = await supabase.from('restaurants').select('*')
+      for (var i = 0; i < restaurantData.length; i++) {
+        console.log('Restaurant Data', restaurantData[i].id)
+        console.log('Route Params', parseInt(this.$route.params.id))
+
+        console.log('User Real ID', this.user_real_id)
+        console.log('Owner ID', restaurantData[i].owner_id)
+        if (
+          restaurantData[i].id == parseInt(this.$route.params.id) &&
+          restaurantData[i].owner_id == this.user_real_id
+        ) {
+          console.log('Owner')
+          this.owner = true
+          this.logo = restaurantData[i].logo
+          this.owner_name = restaurantData[i].name
+          console.log('Owner Name', this.owner_name)
+          console.log('isOwner', this.owner)
+        }
+      }
     }
   },
   methods: {
@@ -47,6 +77,25 @@ export default {
     },
     async addComment() {
       const supabase = useSupabaseClient()
+      // Check if owner
+
+      let { data: restaurantData, error4 } = await supabase.from('restaurants').select('*')
+      if (error4) {
+        console.log(error4)
+      } else {
+        console.log('Success Getting Restaurant Data')
+        console.log(restaurantData)
+        for (var i = 0; i < restaurantData.length; i++) {
+          if (
+            restaurantData[i].id == parseInt(this.$route.params.id) &&
+            restaurantData[i].owner_id == this.user_real_id
+          ) {
+            this.isOwner = true
+          }
+        }
+      }
+
+      // Add Comment
       console.log('Add Comment')
       const { data, error } = await supabase
         .from('reviews')
@@ -64,7 +113,8 @@ export default {
             isEdited: false,
             images: [],
             comments: [],
-            videos: []
+            videos: [],
+            ownerResponded: this.isOwner
           }
         ])
         .select()
@@ -84,8 +134,6 @@ export default {
         console.log('Success Getting Comment Chain')
 
         for (var i = 0; i < reviews.length; i++) {
-          console.log('Review ID', this.reviewId)
-          console.log('Review ID', reviews[i].id)
           if (reviews[i].id == this.reviewId) {
             console.log('Found', reviews[i])
             for (var j = 0; j < reviews[i].comments.length; j++) {
@@ -98,22 +146,32 @@ export default {
         console.log(this.newComments)
         console.log(data[0].id)
       }
-      const { data3, error3 } = await supabase
-        .from('reviews')
-        .update({ comments: this.newComments })
-        .eq('id', this.reviewId)
-        .select()
-      if (error3) {
-        console.log(error3)
+      if (this.isOwner == true) {
+        const { data3, error3 } = await supabase
+          .from('reviews')
+          .update({ comments: this.newComments, ownerResponded: true })
+          .eq('id', this.reviewId)
+          .select()
+        if (error3) {
+          console.log(error3)
+        } else {
+          console.log('Success Adding to Comment Chain')
+          console.log(data3)
+        }
       } else {
-        location.reload()
-        console.log('Success Adding to Comment Chain')
-        console.log(data3)
+        const { data3, error3 } = await supabase
+          .from('reviews')
+          .update({ comments: this.newComments })
+          .eq('id', this.reviewId)
+          .select()
+        if (error3) {
+          console.log(error3)
+        } else {
+          console.log('Success Adding to Comment Chain')
+          console.log(data3)
+        }
       }
     }
-  },
-  mounted() {
-    console.log('These Comments', this.comments)
   }
 }
 </script>
@@ -125,9 +183,7 @@ export default {
         <div class="head-row">
           <div style="display: flex; align-items: center; gap: 0.625rem; flex: 1 0 0">
             <img :src="userImg" alt="" />
-            <span>
-              {{ userName }}
-            </span>
+            <span> {{ userName }} </span>
           </div>
           <button class="cancel-button" @click="reloadPage" value="view">
             <img src="~/assets/icons/exit.svg" alt="" />
@@ -167,7 +223,7 @@ export default {
               </div>
               <div class="review-pill" v-if="comments.length > 0 && owner_responded" style="gap: 0.4rem">
                 <img class="review-icon" src="~/assets/icons/comment_square.svg" alt="" />
-                <img class="owner-image" :src="owner_image" alt="" />
+                <img class="owner-image" :src="this.logo" alt="" />
                 <span class="review-pill-span">+ {{ comments.length }} Replies</span>
               </div>
               <div class="review-pill" v-if="comments.length > 0 && !owner_responded">
@@ -177,7 +233,14 @@ export default {
             </div>
           </div>
           <div class="sub-comments" v-if="comments.length > 0">
-            <DiscussionSubreview v-for="comment in comments" :Comment="comment"> </DiscussionSubreview>
+            <DiscussionSubreview
+              v-for="comment in comments"
+              :Comment="comment"
+              :isOwner="this.owner"
+              :owner_logo="this.logo"
+              :owner_name="this.owner_name"
+            >
+            </DiscussionSubreview>
           </div>
           <div style="width: 100%; display: flex; flex-direction: row; gap: 0.8rem">
             <textarea

@@ -49,7 +49,7 @@ export default {
       },
 
       modal: false,
-      userID: null,
+      userID: '',
       uid: null,
       reviews: [],
       restaurantNames: [],
@@ -60,7 +60,25 @@ export default {
 
   async mounted() {
     const supabase = useSupabaseClient()
-    this.getUserID()
+    try {
+      const { data, error } = await supabase.auth.getSession()
+      this.uid = data.session.user.id
+      console.log(uid)
+      if (error) throw error
+    } catch (error) {
+      console.log(error)
+    }
+
+    try {
+      const { data, error } = await supabase.from('profiles').select('profile_id').eq('id', uid)
+      if (error) {
+        throw error
+      } else {
+        this.userID = data[0].profile_id
+      }
+    } catch (error) {
+      console.log(error)
+    }
 
     const restaurantFetch = useFetch(`/api/restaurants/${useRoute().params.id}`, { immediate: false })
     await restaurantFetch.execute({ _initial: true })
@@ -75,9 +93,11 @@ export default {
     this.restaurant.reviewCount = restaurantData.reviewCount
 
     try {
-      const { data: { user } } = await supabase.auth.getUser()
+      const {
+        data: { user }
+      } = await supabase.auth.getUser()
       if (user === null) {
-        console.log('User is not logged in');
+        console.log('User is not logged in')
         this.reviewed = true
       }
     } catch (error) {
@@ -85,13 +105,14 @@ export default {
     }
 
     try {
-      console.log('Getting reviews from user id '+this.userID)
-      const { data, error } = await supabase.from('reviews')
-       .select()
-       .eq('restaurantId', this.$route.params.id)
-       .eq('userId', this.userID)
-       .eq('isReply', false)
-      console.log('Reviewed data: '+data);
+      console.log('Getting reviews from user id ' + this.userID)
+      const { data, error } = await supabase
+        .from('reviews')
+        .select()
+        .eq('restaurantId', this.$route.params.id)
+        .eq('userId', this.userID)
+        .eq('isReply', false)
+      console.log('Reviewed data: ' + data)
       if (error) {
         throw error
       }
@@ -99,13 +120,11 @@ export default {
         this.reviewed = true
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-    
+
     try {
-      const { data, error } = await supabase.from('restaurants')
-        .select('owner_id')
-        .eq('id', this.$route.params.id)
+      const { data, error } = await supabase.from('restaurants').select('owner_id').eq('id', this.$route.params.id)
       if (error) {
         throw error
       }
@@ -113,7 +132,7 @@ export default {
         this.reviewed = true
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
 
     let { data: rv, error } = await supabase.from('reviews').select()
@@ -153,7 +172,7 @@ export default {
           isDeleted: rv[i].is_deleted,
           images: rv[i].images,
           comments: rv[i].comments,
-          ownerResponded: rv[i].owner_responded,
+          ownerResponded: rv[i].ownerResponded,
 
           userImage: restoUser[0].displayPicture,
           userName: restoUser[0].name
