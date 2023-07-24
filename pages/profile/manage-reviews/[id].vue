@@ -69,7 +69,6 @@ export default {
   }
 }
 </script>
-
 <template>
   <main>
     <div class="profile-edit">
