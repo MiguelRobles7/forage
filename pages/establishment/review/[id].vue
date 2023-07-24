@@ -107,7 +107,7 @@ export default {
             v-if="modal"
             :restaurant="restaurant.name"
             :restaurantId="id"
-            userId="{{ userID }}"
+            :userId="this.userID"
           ></AddReviewModal>
 
           <div class="review-container">
