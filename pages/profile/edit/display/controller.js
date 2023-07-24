@@ -70,6 +70,7 @@ export default {
         console.log(data)
       }
       this.waiting = true
+      this.doneLoading = false
       setTimeout(function () {
         window.location.reload()
       }, 20000)

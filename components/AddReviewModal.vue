@@ -20,7 +20,8 @@ export default {
         images: [],
         videos: [],
         videoCount: 0
-      }
+      },
+      doneLoading: true
     }
   },
   methods: {
@@ -142,6 +143,7 @@ export default {
       }
       // TODO: Make proper alert
       alert('Please wait for the page to reload')
+      this.doneLoading = false
       setTimeout(function () {
         window.location.reload()
       }, 5000)
@@ -178,6 +180,7 @@ export default {
 <template>
   <main>
     <div class="review-modal modal" id="add-modal">
+      <Loading v-if="!doneLoading"></Loading>
       <div class="modal-main">
         <div class="flex-row" style="width: 100%">
           <span class="title">Write a review for {{ restaurant }}</span>

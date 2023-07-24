@@ -25,7 +25,8 @@ export default {
         addedImages: [],
         imageCount: this.images.length,
         originalCount: this.images.length
-      }
+      },
+      doneLoading: true
     }
   },
   methods: {
@@ -212,6 +213,7 @@ export default {
       }
       this.deleteOldImages()
       alert('Please wait for the page to reload')
+      this.doneLoading = false
       setTimeout(function () {
         window.location.reload()
       }, 8000)
@@ -240,6 +242,7 @@ export default {
 <template>
   <main>
     <div class="review-modal modal" id="add-modal">
+      <Loading v-if="!doneLoading"></Loading>
       <div class="modal-main">
         <div class="flex-row" style="width: 100%">
           <span class="title">Write a review for {{ restaurantName }}</span>
