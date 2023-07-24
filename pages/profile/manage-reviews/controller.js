@@ -43,17 +43,17 @@ export default {
   },
   async mounted() {
     const supabase = useSupabaseClient()
+    const user = useSupabaseUser()
+    const userFetch = useFetch(`/api/users/session/${user.value.id}`, { immediate: false })
+    await userFetch.execute({ _initial: true })
+    const userID = userFetch.data.value.users[0].profile_id
 
-    let { data: rv, error } = await supabase.from('reviews').select()
-
-    if (error) {
-      console.log(error)
-    } else {
-      console.log(this.reviews)
-    }
+    const reviewsFetch = useFetch(`/api/reviews/user/${userID}`, { immediate: false })
+    await reviewsFetch.execute({ _initial: true })
+    const rv = reviewsFetch.data.value.reviews
 
     for (var i = 0; i < rv.length; i++) {
-      if (rv[i].userId == this.$route.params.id && rv[i].isDeleted == false && rv[i].isReply == false) {
+      if (rv[i].isDeleted === false && rv[i].isReply === false) {
         let { data: restoName, error } = await supabase.from('restaurants').select('name').eq('id', rv[i].restaurantId)
         if (error) {
           console.log(error)
@@ -64,6 +64,5 @@ export default {
         this.reviews.push(rv[i])
       }
     }
-    console.log(this.reviews)
   }
 }
