@@ -66,33 +66,11 @@ export default {
             <img class="review-icon" src="~/assets/icons/userimage.svg" alt="" />
             <span class="review-pill-span">{{ images.length }} Media Attached</span>
           </div>
-          <button
-            @click="view_discussion"
-            class="review-pill"
-            v-if="comments.length > 0 && owner_responded"
-            style="gap: 0.4rem"
-          >
+          <button @click="view_discussion" class="review-pill" style="gap: 0.4rem">
             <img class="review-icon" src="~/assets/icons/comment_square.svg" alt="" />
-            <img class="owner-image" :src="owner_image" alt="" />
-            <span class="review-pill-span">+ {{ comments.length }} Replies</span>
-            <DiscussionThread
-              v-if="modal"
-              :userImg="userImg"
-              :userName="userName"
-              :userID="userID"
-              :title="title"
-              :content="content"
-              :stars="stars"
-              :upvotes="upvotes"
-              :downvotes="downvotes"
-              :isEdited="isEdited"
-              :images="images"
-              :comments="comments"
-            ></DiscussionThread>
-          </button>
-          <button @click="view_discussion" class="review-pill" v-if="comments.length > 0 && !owner_responded">
-            <img class="review-icon" src="~/assets/icons/comment_square.svg" alt="" />
-            <span class="review-pill-span">{{ comments.length }} Replies</span>
+            <img class="owner-image" :src="owner_image" alt="" v-if="owner_responded" />
+            <span class="review-pill-span" v-if="owner_responded">+ {{ comments.length }} Replies</span>
+            <span class="review-pill-span" v-else>{{ comments.length }} Replies</span>
             <DiscussionThread
               v-if="modal"
               :userImg="userImg"
