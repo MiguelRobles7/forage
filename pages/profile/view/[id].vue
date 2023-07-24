@@ -1,4 +1,4 @@
-<script src="./controller.js"/>
+<script src="./controller.js" />
 
 <template>
   <main>
@@ -19,7 +19,6 @@
               <div class="pair" v-for="establishment in establishments" :key="establishment">
                 <img :src="establishment.image" alt="" />
                 <p>{{ establishment.name }}</p>
-                <!-- TODO: (GET WAIT) dynamically change star count based on get -->
                 <div class="stars">
                   <img class="star" src="~/assets/icons/star.png" alt="" />
                   <img class="star" src="~/assets/icons/star.png" alt="" />
@@ -48,36 +47,12 @@
             <div class="review-box">
               <div class="review-col">
                 <div v-for="(r, i) in reviews" :key="r">
-                  <ProfileReview
-                    v-if="i % 2 == 0"
-                    :title="r.title"
-                    :content="r.body"
-                    :stars="r.rating"
-                    :upvotes="r.upvotes"
-                    :downvotes="r.downvotes"
-                    :isEdited="r.is_edited"
-                    :images="r.images"
-                    :comments="r.comments"
-                    :owner_responded="r.owner_responded"
-                    owner_image="/_nuxt/assets/icons/clock.png"
-                  ></ProfileReview>
+                  <ProfileReview v-if="i % 2 == 0" :review="r" :restaurantName="reviewRestaurants[i]"></ProfileReview>
                 </div>
               </div>
               <div class="review-col">
                 <div v-for="(r, i) in reviews" :key="i" style="margin: 0; padding: 0">
-                  <ProfileReview
-                    v-if="i % 2 == 1"
-                    :title="r.title"
-                    :content="r.body"
-                    :stars="r.rating"
-                    :upvotes="r.upvotes"
-                    :downvotes="r.downvotes"
-                    :isEdited="r.is_edited"
-                    :images="r.images"
-                    :comments="r.comments"
-                    :owner_responded="r.owner_responded"
-                    owner_image="/_nuxt/assets/icons/userimage.svg"
-                  ></ProfileReview>
+                  <ProfileReview v-if="i % 2 == 1" :review="r" :restaurantName="reviewRestaurants[i]"></ProfileReview>
                 </div>
               </div>
             </div>

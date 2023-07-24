@@ -1,18 +1,11 @@
 import Users from '~/assets/JSON/profiles.json'
-import Reviews from '~/assets/JSON/reviews.json'
 
 export default {
-  methods: {
-    review() {
-      navigateTo('/owner/manage-reviews/' + this.id)
-    },
-    setting() {
-      navigateTo('/profile/edit/' + this.id)
-    }
-  },
   data() {
     return {
       id: useRoute().params.id,
+      reviews: [],
+      reviewRestaurants: [],
       profile: {
         dpLink: String,
         bannerLink: String,
@@ -45,159 +38,15 @@ export default {
           average_rating: 5,
           image: '/profile-view/bbb.png'
         }
-      ],
-      reviews: [
-        {
-          user_name: 'Users[0].name',
-          user_image: Users[0].profile_picture,
-          title: Reviews[5].title,
-          rating: 5,
-          body: Reviews[5].body,
-          images: ['Amogus'],
-          upvotes: Reviews[5].upvotes,
-          downvotes: 1,
-          is_edited: false,
-          owner_responded: true,
-          comments: [
-            {
-              user_name: Users[1].name,
-              user_image: Users[1].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            },
-            {
-              user_name: Users[2].name,
-              user_image: Users[2].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            }
-          ]
-        },
-        {
-          user_name: Users[1].name,
-          user_image: Users[1].profile_picture,
-          title: Reviews[3].title,
-          rating: 2,
-          body: Reviews[3].body,
-          images: [],
-          upvotes: Reviews[3].upvotes,
-          downvotes: 1,
-          is_edited: true,
-          owner_responded: true,
-          comments: [
-            {
-              user_name: Users[1].name,
-              user_image: Users[1].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            },
-            {
-              user_name: Users[2].name,
-              user_image: Users[2].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            }
-          ]
-        },
-        {
-          user_name: Users[2].name,
-          user_image: Users[2].profile_picture,
-          title: Reviews[0].title,
-          rating: 5,
-          body: Reviews[0].body,
-          images: [],
-          upvotes: Reviews[0].upvotes,
-          downvotes: 1,
-          is_edited: false,
-          owner_responded: true,
-          comments: [
-            {
-              user_name: Users[1].name,
-              user_image: Users[1].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            },
-            {
-              user_name: Users[2].name,
-              user_image: Users[2].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            }
-          ]
-        },
-        {
-          user_name: Users[3].name,
-          user_image: Users[3].profile_picture,
-          title: Reviews[4].title,
-          rating: 5,
-          body: Reviews[4].body,
-          images: [],
-          upvotes: Reviews[4].upvotes,
-          downvotes: 1,
-          is_edited: false,
-          owner_responded: true,
-          comments: [
-            {
-              user_name: Users[1].name,
-              user_image: Users[1].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            },
-            {
-              user_name: Users[2].name,
-              user_image: Users[2].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            }
-          ]
-        },
-        {
-          user_name: Users[4].name,
-          user_image: Users[4].profile_picture,
-          title: Reviews[3].title,
-          rating: 5,
-          body: Reviews[3].body,
-          images: [],
-          upvotes: Reviews[3].upvotes,
-          downvotes: 1,
-          is_edited: true,
-          owner_responded: false,
-          comments: [
-            {
-              user_name: Users[1].name,
-              user_image: Users[1].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            },
-            {
-              user_name: Users[2].name,
-              user_image: Users[2].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            }
-          ]
-        }
       ]
+    }
+  },
+  methods: {
+    review() {
+      navigateTo('/owner/manage-reviews/' + this.id)
+    },
+    setting() {
+      navigateTo('/profile/edit/' + this.id)
     }
   },
   async mounted() {
@@ -211,6 +60,26 @@ export default {
     this.profile.city = userData.city
     this.profile.country = userData.country
     this.profile.province = userData.province
+
+    const supabase = useSupabaseClient()
+    let { data: rev, error } = await supabase.from('reviews').select()
+    if (error) {
+      console.log(error)
+    } else {
+      let int_id = parseInt(this.id)
+      for (let i = 0; i < rev.length; i++) {
+        let { data: rest, error } = await supabase.from('restaurants').select().eq('id', rev[i].restaurantId)
+        if (error) {
+          console.log(error)
+        } else {
+          this.reviewRestaurants.push(rest[0].name)
+          if (rev[i].userId === int_id && rev[i].isReply === false) {
+            this.reviews.push(rev[i])
+          }
+        }
+      }
+    }
+
     this.doneLoading = true
   }
 }
