@@ -14,7 +14,7 @@ export default {
     comments: Array,
     owner_responded: Boolean,
     owner_image: String,
-    comment: Object
+    comments: Object
   },
   data() {
     return {}
@@ -23,6 +23,9 @@ export default {
     reloadPage() {
       window.location.reload()
     }
+  },
+  mounted() {
+    console.log('These Comments', this.comments)
   }
 }
 </script>
@@ -86,16 +89,7 @@ export default {
             </div>
           </div>
           <div class="sub-comments" v-if="comments.length > 0">
-            <DiscussionSubreview
-              v-for="comment in comments"
-              :userImg="comment.user_image"
-              :userName="comment.user_name"
-              :content="comment.body"
-              :upvotes="comment.upvotes"
-              :downvotes="comment.downvotes"
-              :isEdited="comment.is_edited"
-            >
-            </DiscussionSubreview>
+            <DiscussionSubreview v-for="comment in comments" :Comment="comment"> </DiscussionSubreview>
           </div>
         </div>
       </div>

@@ -23,7 +23,6 @@ export default {
           throw error
         } else {
           this.userID = data[0].profile_id
-          console.log(this.userID)
         }
       } catch (error) {
         console.log(error)
@@ -73,7 +72,7 @@ export default {
     if (error) {
       console.log(error)
     } else {
-      console.log(this.reviews)
+      console.log('Got Reviews')
     }
 
     for (var i = 0; i < rv.length; i++) {
@@ -82,13 +81,13 @@ export default {
         if (error) {
           console.log(error)
         } else {
-          console.log(restoName)
+          console.log("Got Restaurant's Name")
         }
         let { data: restoUser, e } = await supabase.from('profiles').select().eq('profile_id', rv[i].userId)
         if (e) {
           console.log(e)
         } else {
-          console.log(restoUser)
+          console.log('Got Restaurant User')
         }
 
         let rev = {
@@ -113,7 +112,18 @@ export default {
         rev['restaurantComments'] = []
         for (var j = 0; j < rv.length; j++) {
           if (rv[j].isReply == true && rv[i].comments.includes(rv[j].id)) {
-            rev['restaurantComments'].push(rv[j])
+            let { data: ru, e } = await supabase.from('profiles').select().eq('profile_id', rv[j].userId)
+
+            let subComment = {
+              body: rv[j].body,
+              upvotes: rv[j].upvotes,
+              downvotes: rv[j].downvotes,
+
+              userImage: ru[0].displayPicture,
+              userName: ru[0].name
+            }
+            rev['restaurantComments'].push(subComment)
+            console.log('Got Restaurant Comments', rv[j])
           }
         }
         rev['restaurantName'] = restoName[0].name
@@ -174,7 +184,7 @@ export default {
                 :downvotes="r.downvotes"
                 :isEdited="r.is_edited"
                 :images="r.images"
-                :comments="r.comments"
+                :comments="r.restaurantComments"
                 :owner_responded="r.owner_responded"
                 :owner_image="restaurant.logo"
               ></EstablishmentReviewAll>
