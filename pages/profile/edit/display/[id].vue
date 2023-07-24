@@ -171,9 +171,13 @@ export default {
       if (e.target.id == 'profile-img') {
         this.formData.profile_picture = URL.createObjectURL(e.target.files[0])
         this.formData.profile_file = e.target.files[0]
+        var image = document.getElementById('profile')
+        image.src = this.formData.profile_picture
       } else {
         this.formData.banner = URL.createObjectURL(e.target.files[0])
         this.formData.banner_file = e.target.files[0]
+        var image = document.getElementById('banner')
+        image.src = this.formData.banner
       }
     }
   },
@@ -262,7 +266,7 @@ export default {
         <div class="image-settings">
           <div class="setting-item">
             <span class="setting-span">Profile Picture</span>
-            <img :src="user.dpLink" alt="profile image" class="profile-image" />
+            <img id="profile" :src="user.dpLink" alt="profile image" class="profile-image" />
             <label class="profile-image-button" for="profile-img">
               <img src="~\assets\icons\general.svg" alt="" />
               CHANGE
@@ -271,7 +275,7 @@ export default {
           </div>
           <div class="setting-item">
             <span class="setting-span">Banner Picture</span>
-            <img :src="user.bannerLink" alt="banner image" class="banner-image" />
+            <img id="banner" :src="user.bannerLink" alt="banner image" class="banner-image" />
             <label class="banner-image-button" for="banner-img">
               <img src="~\assets\icons\general.svg" alt="" />
               CHANGE
