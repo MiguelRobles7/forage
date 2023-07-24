@@ -90,11 +90,12 @@ export default {
        .select()
        .eq('restaurantId', this.$route.params.id)
        .eq('userId', this.userID)
+       .eq('isReply', false)
       console.log('Reviewed data: '+data);
       if (error) {
         throw error
       }
-      if (data) {
+      if (data.length > 0) {
         this.reviewed = true
       }
     } catch (error) {
