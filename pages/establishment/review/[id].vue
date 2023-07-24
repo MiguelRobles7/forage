@@ -42,29 +42,23 @@ export default {
       const supabase = useSupabaseClient()
       let uid = null
       try {
-        const {data, error} = await supabase.auth.getSession()
+        const { data, error } = await supabase.auth.getSession()
         uid = data.session.user.id
-        console.log(uid);
-        if (error)
-          throw error
-      }
-      catch (error) {
+        console.log(uid)
+        if (error) throw error
+      } catch (error) {
         console.log(error)
       }
-      
+
       try {
-        const { data, error } = await supabase
-        .from('profiles')
-        .select('profile_id')
-        .eq('id', uid)
+        const { data, error } = await supabase.from('profiles').select('profile_id').eq('id', uid)
         if (error) {
           throw error
         } else {
           this.userID = data[0].profile_id
           console.log(this.userID)
         }
-      }
-      catch (error) {
+      } catch (error) {
         console.log(error)
       }
     }
@@ -76,184 +70,7 @@ export default {
 
       users: Users,
       modal: false,
-      userID: null,
-
-      reviews: [
-        {
-          user_name: Users[0].name,
-          user_image: Users[0].profile_picture,
-          title: Reviews[5].title,
-          rating: 5,
-          body: Reviews[5].body,
-          images: ['/assets/images/home-bg.png', '/assets/images/home-bg.png', '/assets/images/home-bg.png'],
-          upvotes: Reviews[5].upvotes,
-          downvotes: 1,
-          is_edited: false,
-          owner_responded: true,
-          comments: [
-            {
-              user_name: Users[1].name,
-              user_image: Users[1].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            },
-            {
-              user_name: Users[1].name,
-              user_image: Users[1].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            },
-            {
-              user_name: Users[1].name,
-              user_image: Users[1].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            },
-            {
-              user_name: Users[1].name,
-              user_image: Users[1].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            },
-            {
-              user_name: Users[2].name,
-              user_image: Users[2].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            }
-          ]
-        },
-        {
-          user_name: Users[1].name,
-          user_image: Users[1].profile_picture,
-          title: Reviews[3].title,
-          rating: 2,
-          body: Reviews[3].body,
-          images: [],
-          upvotes: Reviews[3].upvotes,
-          downvotes: 1,
-          is_edited: true,
-          owner_responded: true,
-          comments: [
-            {
-              user_name: Users[1].name,
-              user_image: Users[1].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            },
-            {
-              user_name: Users[2].name,
-              user_image: Users[2].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            }
-          ]
-        },
-        {
-          user_name: Users[2].name,
-          user_image: Users[2].profile_picture,
-          title: Reviews[0].title,
-          rating: 5,
-          body: Reviews[0].body,
-          images: [],
-          upvotes: Reviews[0].upvotes,
-          downvotes: 1,
-          is_edited: false,
-          owner_responded: true,
-          comments: [
-            {
-              user_name: Users[1].name,
-              user_image: Users[1].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            },
-            {
-              user_name: Users[2].name,
-              user_image: Users[2].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            }
-          ]
-        },
-        {
-          user_name: Users[3].name,
-          user_image: Users[3].profile_picture,
-          title: Reviews[4].title,
-          rating: 5,
-          body: Reviews[4].body,
-          images: [],
-          upvotes: Reviews[4].upvotes,
-          downvotes: 1,
-          is_edited: false,
-          owner_responded: true,
-          comments: [
-            {
-              user_name: Users[1].name,
-              user_image: Users[1].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            },
-            {
-              user_name: Users[2].name,
-              user_image: Users[2].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            }
-          ]
-        },
-        {
-          user_name: Users[4].name,
-          user_image: Users[4].profile_picture,
-          title: Reviews[3].title,
-          rating: 5,
-          body: Reviews[3].body,
-          images: [],
-          upvotes: Reviews[3].upvotes,
-          downvotes: 1,
-          is_edited: true,
-          owner_responded: false,
-          comments: [
-            {
-              user_name: Users[1].name,
-              user_image: Users[1].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            },
-            {
-              user_name: Users[2].name,
-              user_image: Users[2].profile_picture,
-              body: 'This is a comment',
-              upvotes: 5,
-              downvotes: 1,
-              is_edited: false
-            }
-          ]
-        }
-      ]
+      userID: null
     }
   }
 }
@@ -283,15 +100,15 @@ export default {
                 <span class="review-span"> Write a Review + </span>
                 <!-- TODO: (GET WAIT) Get data and pass data from Supabase 
                   and get user ID from session -->
-                </button>
-              </NuxtLink>
-            </div>
-            <AddReviewModal
-              v-if="modal"
-              :restaurant="restaurant.name"
-              :restaurantId="id"
-              userId="{{ userID }}"
-            ></AddReviewModal>
+              </button>
+            </NuxtLink>
+          </div>
+          <AddReviewModal
+            v-if="modal"
+            :restaurant="restaurant.name"
+            :restaurantId="id"
+            userId="{{ userID }}"
+          ></AddReviewModal>
 
           <div class="review-container">
             <div v-for="(r, i) in reviews" :key="r">
