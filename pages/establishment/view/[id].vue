@@ -30,6 +30,17 @@ export default {
       doneLoading: false
     }
   },
+  async created() {
+    const supabase = useSupabaseClient()
+    let { data: rv, error } = await supabase.from('reviews').select()
+
+    if (error) {
+      console.log(error)
+    } else {
+      console.log(this.reviews)
+    }
+  },
+
   async mounted() {
     const restaurantFetch = useFetch(`/api/restaurants/${useRoute().params.id}`, { immediate: false })
     await restaurantFetch.execute({ _initial: true })
@@ -79,13 +90,15 @@ export default {
       if (review.images === null) {
         review.images = []
       }
-      this.reviews_holder[c].push(review)
-      console.log(this.reviews_holder)
-      console.log(c)
-      if (c === 2) {
-        c = 0
-      } else {
-        c += 1
+      if (!reviewData[i].isReply) {
+        this.reviews_holder[c].push(review)
+        console.log(this.reviews_holder)
+        console.log(c)
+        if (c === 2) {
+          c = 0
+        } else {
+          c += 1
+        }
       }
     }
 

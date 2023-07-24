@@ -1,38 +1,7 @@
 <script>
 import Users from '~/assets/JSON/profiles.json'
-import Reviews from '~/assets/JSON/reviews.json'
-import Restaurants from '~/assets/JSON/restaurants.json'
 
 export default {
-  props: {
-    restaurant: {
-      type: Object,
-      required: true
-    }
-  },
-  computed: {
-    restaurant() {
-      const obj = this.restaurants.filter((restaurant) => {
-        return restaurant.restaurant_id === Number(this.id)
-      })[0]
-
-      return this.restaurants.filter((restaurant) => {
-        return restaurant.restaurant_id === Number(this.id)
-      })[0]
-    },
-
-    menu_items() {
-      return this.menu.filter((row) => {
-        return row.restaurant_id === Number(this.id)
-      })
-    },
-
-    current_reviews() {
-      return this.reviews.filter((review) => {
-        return review.restaurant_id === Number(this.id)
-      })
-    }
-  },
   methods: {
     edit: function () {
       this.getUserID()
@@ -63,15 +32,89 @@ export default {
       }
     }
   },
+
   data() {
     return {
-      restaurants: Restaurants,
+      doneLoading: false,
       id: useRoute().params.id,
+      restaurant: {
+        name: String,
+        logo: String,
+        bgCard: String,
+        description: String,
+        tags: String,
+        rating: Number,
+        reviewCount: Number,
+        price_range: String
+      },
 
       users: Users,
       modal: false,
-      userID: null
+      userID: null,
+      reviews: [],
+      restaurantNames: [],
+      restaurantComments: []
     }
+  },
+
+  async mounted() {
+    const supabase = useSupabaseClient()
+
+    const restaurantFetch = useFetch(`/api/restaurants/${useRoute().params.id}`, { immediate: false })
+    await restaurantFetch.execute({ _initial: true })
+    const restaurantData = restaurantFetch.data.value.restaurants[0]
+    this.restaurant.bgCard = restaurantData.banner
+    this.restaurant.price_range = restaurantData.price_range
+    this.restaurant.logo = restaurantData.logo
+    this.restaurant.name = restaurantData.name
+    this.restaurant.description = restaurantData.description
+    this.restaurant.tags = restaurantData.summary
+    this.restaurant.rating = restaurantData.rating
+    this.restaurant.reviewCount = restaurantData.reviewCount
+
+    let { data: rv, error } = await supabase.from('reviews').select()
+    if (error) {
+      console.log(error)
+    } else {
+      console.log(this.reviews)
+    }
+
+    for (var i = 0; i < rv.length; i++) {
+      if (rv[i].restaurantId == this.$route.params.id && rv[i].isReply == false) {
+        let { data: restoName, error } = await supabase.from('restaurants').select('name').eq('id', rv[i].restaurantId)
+        if (error) {
+          console.log(error)
+        } else {
+          console.log(restoName)
+        }
+        let rev = {
+          id: rv[i].id,
+          restaurantId: rv[i].restaurantId,
+          userId: rv[i].userId,
+          title: rv[i].title,
+          body: rv[i].body,
+          rating: rv[i].rating,
+          upvotes: rv[i].upvotes,
+          downvotes: rv[i].downvotes,
+          isEdited: rv[i].is_edited,
+          isReply: rv[i].is_reply,
+          isDeleted: rv[i].is_deleted,
+          images: rv[i].images,
+          comments: rv[i].comments,
+          ownerResponded: rv[i].owner_responded
+        }
+        rev['restaurantComments'] = []
+        for (var j = 0; j < rv.length; j++) {
+          if (rv[j].isReply == true && rv[i].comments.includes(rv[j].id)) {
+            rev['restaurantComments'].push(rv[j])
+          }
+        }
+        rev['restaurantName'] = restoName[0].name
+        this.reviews.push(rev)
+      }
+    }
+    console.log(this.reviews)
+    this.doneLoading = true
   }
 }
 </script>
@@ -85,7 +128,7 @@ export default {
           :imgPath="restaurant.logo"
           :bgImgPath="restaurant.bgCard"
           :description="restaurant.description"
-          :tags="restaurant.summary"
+          :tags="restaurant.tags"
           :rating="restaurant.rating"
           :reviewCount="restaurant.reviewCount"
           :price="restaurant.price_range"
