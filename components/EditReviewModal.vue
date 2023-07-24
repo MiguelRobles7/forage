@@ -1,7 +1,7 @@
 <script>
 export default {
   props: {
-    restaurant: String,
+    restaurantName: String,
     restaurantId: Number,
     userId: Number,
     title: String,
@@ -61,7 +61,7 @@ export default {
     <div class="review-modal modal" id="add-modal">
       <div class="modal-main">
         <div class="flex-row" style="width: 100%">
-          <span class="title">Write a review for {{ restaurant }}</span>
+          <span class="title">Write a review for {{ restaurantName }}</span>
           <!-- TODO:MCO3 Turn into radio button -->
           <div class="stars" style="margin: 0 0 0 auto">
             <input

@@ -11,7 +11,10 @@ export default {
     // TODO: Incorporate comments
     // comments: Array,
     owner_responded: Boolean,
-    owner_image: String
+    owner_image: String,
+    restaurantId: Number,
+    userId: Number,
+    restaurantName: String
   },
   data() {
     return {
@@ -49,7 +52,7 @@ export default {
       <div class="review-item" style="margin-bottom: -0.5vh">
         <div>
           <!-- TODO: (GET WAIT) Get functions to change to actual name -->
-          <span class="tag">Review for Amogus</span>
+          <span class="tag">Review for {{ restaurantName }}</span>
           <span v-if="isEdited" class="tag"> • Edited </span>
         </div>
         <div class="stars">
@@ -94,9 +97,9 @@ export default {
             <!-- TODO: (GET WAIT) Get functions to pass actual parameters -->
             <EditReviewModal
               v-if="modal"
-              restaurant="Amogus"
-              restaurantId="1"
-              userId="1"
+              :restaurantName="restaurantName"
+              :restaurantId="restaurantId"
+              :userId="userId"
               :title="title"
               :body="content"
               :rating="stars"

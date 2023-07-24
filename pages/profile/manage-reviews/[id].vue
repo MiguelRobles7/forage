@@ -17,6 +17,7 @@ export default {
       },
 
       reviews: [],
+      restaurantNames: [],
       profile_picture: String,
       name: String,
       account_type: 'personal'
@@ -55,11 +56,17 @@ export default {
 
     for (var i = 0; i < rv.length; i++) {
       if (rv[i].userId == this.$route.params.id) {
+        let { data: restoName, error } = await supabase.from('restaurants').select('name').eq('id', rv[i].restaurantId)
+        if (error) {
+          console.log(error)
+        } else {
+          console.log(restoName)
+        }
+        this.restaurantNames.push(restoName[0].name)
         this.reviews.push(rv[i])
       }
     }
     console.log(this.reviews)
-    console.log('Amogus')
   }
 }
 </script>
@@ -82,9 +89,12 @@ export default {
         <div class="review-settings">
           <h1>Manage Your Reviews</h1>
           <div class="review-container">
-            <div v-for="r in reviews" :key="r">
+            <div v-for="(r, i) in reviews" :key="r">
               {{ console.log(r) }}
               <ProfileManageReview
+                :restaurantId="r.restaurantId"
+                :restaurantName="restaurantNames[i]"
+                :userId="r.userId"
                 :title="r.title"
                 :content="r.body"
                 :stars="r.rating"
