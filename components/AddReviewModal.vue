@@ -225,8 +225,8 @@ export default {
             <span>Media</span>
             <div class="flex-row" style="gap: 0.9rem">
               <!-- TODO: (GET WAIT) Add images (waiting for image handling) -->
-              <img v-for="(image, index) in this.formData.images" class="media-button" :id="index" :src="image.link" @click="removeMedia">
-              <video v-for="(video, index) in this.formData.videos" class="media-button" :id="index" :src="video.link" @click="removeMedia"></video>
+              <img v-for="(image, index) in this.formData.images" class="media-image" :id="index" :src="image.link" @click="removeMedia">
+              <video v-for="(video, index) in this.formData.videos" class="media-image" :id="index" :src="video.link" @click="removeMedia"></video>
               <label v-if="this.formData.imageCount + this.formData.videoCount < 5"  for="add-photo" class="media-button">
                 <img class="media-icon" src="~/assets/icons/camera.svg" alt="" />
                 <span class="media-span">Add Photos</span>
@@ -255,19 +255,9 @@ label {
   cursor: pointer;
 }
 img {
-  max-height: 14vh;
-  max-width: 14vh;
-  object-fit: cover;
   cursor: pointer;
 }
-img.media-button {
-  padding: 0px;
-}
 video.media-button {
-  padding: 0px;
-  max-height: 14vh;
-  max-width: 14vh;
-  object-fit: cover;
   cursor: pointer;
 }
 </style>
