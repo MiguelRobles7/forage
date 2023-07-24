@@ -14,7 +14,9 @@
     width: 100vw;
     height: 60vh;
 
-    background-repeat: no-repeat;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
   }
   .content {
     margin-top: -58vh;

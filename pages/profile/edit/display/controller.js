@@ -13,6 +13,7 @@ export default {
       },
       doneLoading: false,
       name: 'Johndayll Arizala',
+      waiting: false,
       formData: {
         profile_picture: '/profile/pfps/1.png',
         profile_picture_old: '/profile/pfps/1.png',
@@ -68,8 +69,10 @@ export default {
         console.log('Success!')
         console.log(data)
       }
-
-      window.location.reload()
+      this.waiting = true
+      setTimeout(function () {
+        window.location.reload()
+      }, 20000)
     },
     async editProfile() {
       console.log(this.formData)

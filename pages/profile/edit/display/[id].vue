@@ -1,4 +1,4 @@
-<script src="./controller.js"/>
+<script src="./controller.js" />
 
 <template>
   <Loading v-if="!doneLoading"></Loading>
@@ -45,6 +45,7 @@
           <div class="flex-row" style="gap: 1em; margin-top: 0.8em">
             <button class="save-button" @click="updateProfile">Save Changes</button>
             <button class="cancel-button">Cancel</button>
+            <span v-if="waiting"> Please wait for a while as we update your information </span>
           </div>
         </div>
         <!-- TODO: (GET WAIT) Waiting for get and image functionality -->
