@@ -20,7 +20,7 @@
           <div class="review-head">
             <h1>{{ restaurant.name }}'s Reviews</h1>
             <NuxtLink :to="`/establishment/review/${this.id}`">
-              <button class="see-reviews-button" @click="edit" value="view">
+              <button class="see-reviews-button" @click="edit" value="view" v-if="!this.reviewed">
                 <span class="review-span"> Write a Review + </span>
                 <!-- TODO: (GET WAIT) Get data and pass data from Supabase 
                   and get user ID from session -->

@@ -7,7 +7,6 @@ export default {
   },
   methods: {
     edit: function () {
-      this.getUserID()
       this.modal = true
     },
     async getUserID() {
@@ -54,12 +53,14 @@ export default {
       userID: null,
       reviews: [],
       restaurantNames: [],
-      restaurantComments: []
+      restaurantComments: [],
+      reviewed: false
     }
   },
 
   async mounted() {
     const supabase = useSupabaseClient()
+    this.getUserID()
 
     const restaurantFetch = useFetch(`/api/restaurants/${useRoute().params.id}`, { immediate: false })
     await restaurantFetch.execute({ _initial: true })
@@ -72,6 +73,33 @@ export default {
     this.restaurant.tags = restaurantData.summary
     this.restaurant.rating = restaurantData.rating
     this.restaurant.reviewCount = restaurantData.reviewCount
+
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (user === null) {
+        console.log('User is not logged in');
+        this.reviewed = true
+      }
+    } catch (error) {
+      console.log(error)
+    }
+
+    try {
+      console.log('Getting reviews from user id '+this.userID)
+      const { data, error } = await supabase.from('reviews')
+       .select()
+       .eq('restaurantId', this.$route.params.id)
+       .eq('userId', this.userID)
+      console.log('Reviewed data: '+data);
+      if (error) {
+        throw error
+      }
+      if (data) {
+        this.reviewed = true
+      }
+    } catch (error) {
+      console.log(error);
+    }
 
     let { data: rv, error } = await supabase.from('reviews').select()
     if (error) {
@@ -136,6 +164,7 @@ export default {
       }
     }
     console.log(this.reviews)
+
     this.doneLoading = true
   }
 }
