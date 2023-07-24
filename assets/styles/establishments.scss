@@ -383,6 +383,24 @@
         flex-shrink: 0;
       }
     }
+    .vote-pill-upvoted {
+      display: flex;
+      width: 2.125rem;
+      height: 2.125rem;
+      padding: 0.625rem;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+      border-radius: 1.875rem;
+      border: 2px solid var(--base-base-main-border, #ffffff);
+      background: var(--base-base-main-base-2, #212124);
+      box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.2);
+      .review-icon {
+        width: 0.875rem;
+        height: 0.875rem;
+        flex-shrink: 0;
+      }
+    }
     .vote-count {
       color: #c7c7d9;
       font-family: SpaceGrotesk;

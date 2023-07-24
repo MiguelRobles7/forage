@@ -77,6 +77,11 @@
             <div v-for="(r, i) in reviews_holder[0]" :key="r">
               <EstablishmentReview
                 :key="r"
+                :loggedUserID="loggedUserID"
+                :restaurantID="id"
+                :reviewID="r.review_id"
+                :isUpvoted="r.isUpvoted"
+                :isLoggedIn="isLoggedIn"
                 :ownerReply="r.owner_response"
                 :userImg="r.user_image"
                 :userID="r.userID"
@@ -98,6 +103,11 @@
             <div v-for="(r, i) in reviews_holder[1]" :key="r">
               <EstablishmentReview
                 :key="r"
+                :loggedUserID="loggedUserID"
+                :restaurantID="id"
+                :reviewID="r.review_id"
+                :isUpvoted="r.isUpvoted"
+                :isLoggedIn="isLoggedIn"
                 :ownerReply="r.owner_response"
                 :userImg="r.user_image"
                 :userID="r.userID"
@@ -119,6 +129,11 @@
             <div v-for="(r, i) in reviews_holder[2]" :key="r">
               <EstablishmentReview
                 :key="r"
+                :loggedUserID="loggedUserID"
+                :restaurantID="id"
+                :reviewID="r.review_id"
+                :isUpvoted="r.isUpvoted"
+                :isLoggedIn="isLoggedIn"
                 :ownerReply="r.owner_response"
                 :userImg="r.user_image"
                 :userID="r.userID"
