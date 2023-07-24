@@ -17,28 +17,7 @@ export default {
         country: String
       },
       doneLoading: false,
-      establishments: [
-        {
-          name: 'Sussé Cafe',
-          average_rating: 5,
-          image: '/profile-view/susse.png'
-        },
-        {
-          name: 'Imissyou Tiramisù',
-          average_rating: 5,
-          image: '/profile-view/imy.png'
-        },
-        {
-          name: 'Akonlng Kainan',
-          average_rating: 5,
-          image: '/profile-view/akonlng.png'
-        },
-        {
-          name: 'Boy Besprend Bar',
-          average_rating: 5,
-          image: '/profile-view/bbb.png'
-        }
-      ]
+      establishments: []
     }
   },
   methods: {
@@ -66,20 +45,36 @@ export default {
     if (error) {
       console.log(error)
     } else {
+      console.log('Got Reviews')
+    }
+
+    for (let i = 0; i < rev.length; i++) {
       let int_id = parseInt(this.id)
-      for (let i = 0; i < rev.length; i++) {
-        let { data: rest, error } = await supabase.from('restaurants').select().eq('id', rev[i].restaurantId)
-        if (error) {
-          console.log(error)
+      if (rev[i].userId === int_id && rev[i].isReply === false) {
+        this.reviews.push(rev[i])
+        let { data: rest, e } = await supabase.from('restaurants').select().eq('id', rev[i].restaurantId)
+        if (e) {
+          console.log(e)
         } else {
           this.reviewRestaurants.push(rest[0].name)
-          if (rev[i].userId === int_id && rev[i].isReply === false) {
-            this.reviews.push(rev[i])
-          }
+          console.log('Got Restaurants')
         }
       }
     }
+    let { data: est, er } = await supabase.from('restaurants').select() //.eq('owner_id', userData.id)
+    if (er) {
+      console.log(er)
+    } else {
+      console.log(est)
+      for (let j = 0; j < est.length; j++) {
+        if (est[j].owner_id == userData.id) {
+          console.log('Establishment Owner ID: ', est[j].owner_id)
+          console.log('My ID: ', userData.id)
 
+          this.establishments.push(est[j])
+        }
+      }
+    }
     this.doneLoading = true
   }
 }
