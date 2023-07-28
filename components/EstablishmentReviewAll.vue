@@ -60,7 +60,7 @@ export default {
       <img class="reviewer-pfp" :src="userImg" alt="" />
     </NuxtLink>
     <div class="cont">
-      <div class="review-item" style="margin-bottom: -0.5vh">
+      <div class="review-item" style="margin: -0.5rem 0 -0.3rem 0">
         <div>
           <span class="tag">{{ userName }}</span>
           <span v-if="isEdited" class="tag"> • Edited </span>

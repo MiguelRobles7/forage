@@ -12,7 +12,7 @@
 .backdrop {
   position: fixed;
   top: 0;
-  background: black;
+  background: #040204;
   width: 100vw;
   height: 100vh;
   z-index: 50;

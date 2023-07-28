@@ -10,7 +10,7 @@ export default {
       formData: {
         restaurantId: this.restaurantId,
         userId: this.userId,
-        rating: 0,
+        rating: 5,
         title: '',
         body: '',
         upvotes: 0,
@@ -160,7 +160,6 @@ export default {
         console.log(error)
       }
       // TODO: Make proper alert
-      alert('Please wait for the page to reload')
       this.doneLoading = false
       setTimeout(function () {
         window.location.reload()
@@ -203,21 +202,21 @@ export default {
         <div class="flex-row" style="width: 100%">
           <span class="title">Write a review for {{ restaurant }}</span>
           <!-- TODO: MCO3 Turn into radio button -->
-          <div class="stars" style="margin: 0 0 0 auto">
-            <input
-              class="text-input"
-              type="number"
-              min="1"
-              max="5"
-              v-model="formData.rating"
-              placeholder="Star Number"
-              style="width: fit-content"
-            />
-            <img class="star" src="~/assets/icons/star.png" alt="" />
-            <img class="star" src="~/assets/icons/star.png" alt="" />
-            <img class="star" src="~/assets/icons/star.png" alt="" />
-            <img class="star" src="~/assets/icons/star.png" alt="" />
-            <img class="star" src="~/assets/icons/star.png" alt="" />
+          <div class="stars">
+            <input class="star-rating" id="star_rate_5" type="radio" value="5" v-model="formData.rating" />
+            <label for="star_rate_5">★</label>
+
+            <input class="star-rating" id="star_rate_4" type="radio" value="4" v-model="formData.rating" />
+            <label for="star_rate_4">★</label>
+
+            <input class="star-rating" id="star_rate_3" type="radio" value="3" v-model="formData.rating" />
+            <label for="star_rate_3">★</label>
+
+            <input class="star-rating" id="star_rate_2" type="radio" value="2" v-model="formData.rating" />
+            <label for="star_rate_2">★</label>
+
+            <input class="star-rating" id="star_rate_1" type="radio" value="1" v-model="formData.rating" />
+            <label for="star_rate_1">★</label>
           </div>
         </div>
         <div class="inner">

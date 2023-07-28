@@ -93,6 +93,45 @@
     box-shadow: 2px 4px 16px 6px rgba(0, 0, 0, 0.08);
 
     gap: 0.2vh;
+    .star-rating {
+      display: none;
+    }
+    .stars {
+      margin: 0 0 0 auto;
+      font-size: 1.5rem;
+      unicode-bidi: bidi-override;
+      direction: rtl;
+    }
+    .stars > input + label {
+      display: inline-block;
+      overflow: hidden;
+      width: 0.85em;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .stars > input + label:before {
+      content: '★';
+      display: inline-block;
+      color: #f0f1f1;
+    }
+    .stars > input:checked ~ label:before,
+    .stars > input + label:hover ~ label:before,
+    .stars > input + label:hover:before {
+      content: '★';
+      color: #edcc78;
+      text-shadow: 0 0 1px #333;
+    }
+    .stars:hover > input + label:before {
+      content: '★';
+      color: #f0f1f1;
+      text-shadow: none;
+    }
+    .stars:hover > input + label:hover ~ label:before,
+    .stars:hover > input + label:hover:before {
+      content: '★';
+      color: #edcc78;
+      text-shadow: 0 0 1px #333;
+    }
   }
   .title {
     color: #f0f1f1;
