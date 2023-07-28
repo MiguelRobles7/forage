@@ -3,7 +3,7 @@ export default {
   data() {
     return {
       user: {
-        name: String, 
+        name: String,
         dpLink: String
       },
       doneLoading: false,
@@ -15,27 +15,26 @@ export default {
   },
 
   async created() {
-    const supabase = useSupabaseClient();
-    var supabaseSession = await supabase.auth.getSession();
-    var userSession = null;
-    var userId = "";
+    const supabase = useSupabaseClient()
+    var supabaseSession = await supabase.auth.getSession()
+    var userSession = null
+    var userId = ''
 
     if (!supabaseSession.data.session) {
       this.isLoggedIn = false
     } else {
       this.isLoggedIn = true
       userSession = supabaseSession.data.session.user
-      userId = userSession.id;
-      const userRequest = await useFetch(`/api/users/session/${userId}`);
-      const userData = userRequest.data.value.users[0];
-      this.user.name = userData.name;
-      this.user.dpLink = userData.displayPicture;
+      userId = userSession.id
+      const userRequest = await useFetch(`/api/users/session/${userId}`)
+      const userData = userRequest.data.value.users[0]
+      this.user.name = userData.name
+      this.user.dpLink = userData.displayPicture
     }
-    this.$emit('doneNav');
-    this.doneLoading = true;
+    this.$emit('doneNav')
+    this.doneLoading = true
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
     toggleLoginModal() {
       if (this.showRegister) this.showRegister = false
@@ -55,10 +54,10 @@ export default {
       console.log('Hide dropdown')
     },
     toggleLogin() {
-      location.reload();
+      location.reload()
     },
     toggleLogout() {
-      location.reload();
+      location.reload()
     }
   }
 }
@@ -83,6 +82,7 @@ export default {
         <div class="links">
           <a href="#highlights" class="nav-link font-default"> Latest Craze Spots </a>
           <a href="#top" class="nav-link font-default"> Community Favorites </a>
+          <NuxtLink to="/about" class="nav-link font-default"> About Page </NuxtLink>
         </div>
         <div class="buttons-container">
           <button v-if="!isLoggedIn" class="nav-button" @click="toggleRegisterModal">Sign Up</button>
