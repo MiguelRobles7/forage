@@ -159,7 +159,6 @@ export default {
       } catch (error) {
         console.log(error)
       }
-      // TODO: Make proper alert
       this.doneLoading = false
       setTimeout(function () {
         window.location.reload()

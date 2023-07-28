@@ -211,7 +211,6 @@ export default {
         console.log(data)
       }
       this.deleteOldImages()
-      alert('Please wait for the page to reload')
       this.doneLoading = false
       setTimeout(function () {
         window.location.reload()
