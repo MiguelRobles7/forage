@@ -6,7 +6,7 @@
           <span class="about-head">About Page</span>
           <span class="about-sub">Main Stack</span>
           <span class="about-body">
-            <a class="about-link" href="https://getbootstrap.com/">Bootstrap - CCS Library</a> →
+            <a class="about-link" href="https://getbootstrap.com/">Bootstrap - CSS Library</a> →
             <br />
             <a class="about-link" href="https://supabase.com/">Supabase - Database</a> →
             <br />
