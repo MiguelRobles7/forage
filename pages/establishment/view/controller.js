@@ -1,8 +1,3 @@
-import Restaurants from '~/assets/JSON/restaurants.json'
-import MenuItems from '~/assets/JSON/menu.json'
-import Users from '~/assets/JSON/profiles.json'
-import Reviews from '~/assets/JSON/reviews.json'
-
 export default {
   data() {
     return {
@@ -11,8 +6,6 @@ export default {
       upvotedReviews: [],
       id: useRoute().params.id,
       modal: false,
-      restaurants: Restaurants,
-      users: Users,
       reviews_holder: [[], [], []],
       menu: [],
       restaurant: {

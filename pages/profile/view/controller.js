@@ -1,5 +1,3 @@
-import Users from '~/assets/JSON/profiles.json'
-
 export default {
   data() {
     return {
