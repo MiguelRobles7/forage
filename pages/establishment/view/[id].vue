@@ -43,11 +43,9 @@
             {{ restaurant.desc }}
           </div>
           <div class="tags">
-            <!-- TODO: FIX SUMMARY
-            <div class="info-pill" v-for="t in restaurant.summary">
+            <div class="info-pill" v-for="t in restaurant.tags">
               <div class="info-text" style="text-decoration-line: underline">{{ t }}</div>
             </div>
-            -->
           </div>
         </div>
       </div>
