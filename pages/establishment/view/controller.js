@@ -59,16 +59,7 @@ export default {
     const reviewFetch = useFetch(`/api/reviews/restaurant/${useRoute().params.id}`, { immediate: false })
     await reviewFetch.execute({ _initial: true })
     const reviewData = reviewFetch.data.value.reviews
-    let rCount = 0
-    let avRating = 0
-    for (let j = 0; j < reviewData.length; j++) {
-      if (!reviewData[j].isDeleted && !reviewData[j].isReply) {
-        rCount++
-        avRating += reviewData[j].rating
-      }
-    }
-    this.restaurant.reviewCount = rCount
-    this.restaurant.rating = Math.round((avRating / rCount) * 10) / 10
+
     var c = 0
 
     const supabase = useSupabaseClient()
