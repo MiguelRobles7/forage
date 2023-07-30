@@ -203,6 +203,8 @@ export default {
         })
         .eq('restaurantId', this.formData.restaurantId)
         .eq('userId', this.formData.userId)
+        .eq('isReply', false)
+        .eq('isDeleted', false)
         .select()
       if (error) {
         console.log(error)

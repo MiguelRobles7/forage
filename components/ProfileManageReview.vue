@@ -33,6 +33,8 @@ export default {
         .update({ isDeleted: true })
         .eq('restaurantId', this.restaurantId)
         .eq('userId', this.userId)
+        .eq('isReply', false)
+        .eq('isDeleted', false)
         .select()
 
       if (error) {
