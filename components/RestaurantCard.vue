@@ -44,8 +44,8 @@ export default {
     <div class="name">{{ name }}</div>
     <div class="description">{{ description }}</div>
     <div class="tags">
-      <div class="info-pill">
-        <div class="info-text" style="text-decoration-line: underline">{{ tags }}</div>
+      <div class="info-pill" v-for="t in tags">
+        <div class="info-text" style="text-decoration-line: underline">{{ t }}</div>
       </div>
     </div>
   </div>

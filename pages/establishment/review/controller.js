@@ -69,7 +69,7 @@ export default {
     this.restaurant.logo = restaurantData.logo
     this.restaurant.name = restaurantData.name
     this.restaurant.description = restaurantData.description
-    this.restaurant.tags = restaurantData.summary
+    this.restaurant.tags = restaurantData.tags
     this.restaurant.rating = restaurantData.rating
     this.restaurant.reviewCount = restaurantData.reviewCount
 

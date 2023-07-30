@@ -17,7 +17,7 @@
               :imgPath="restaurant.logo"
               :bgImgPath="restaurant.bgCard"
               :description="restaurant.description"
-              :tags="restaurant.summary"
+              :tags="restaurant.tags"
               :rating="restaurant.rating"
               :reviewCount="restaurant.reviewCount"
               :price="restaurant.price_range"
