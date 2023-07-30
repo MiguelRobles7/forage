@@ -1,10 +1,4 @@
 export default {
-  props: {
-    restaurant: {
-      type: Object,
-      required: true
-    }
-  },
   methods: {
     edit: function () {
       this.modal = true
@@ -99,7 +93,8 @@ export default {
         .eq('restaurantId', this.$route.params.id)
         .eq('userId', this.userID)
         .eq('isReply', false)
-      console.log('Reviewed data: ' + data)
+        .eq('isDeleted', false)
+      console.log('Reviewed data: ', data)
       if (error) {
         throw error
       }
@@ -183,6 +178,7 @@ export default {
             let { data: ru, e } = await supabase.from('profiles').select().eq('profile_id', rv[j].userId)
 
             let subComment = {
+              userId: rv[j].userId,
               body: rv[j].body,
               upvotes: rv[j].upvotes,
               downvotes: rv[j].downvotes,

@@ -20,7 +20,6 @@ export default {
     comments: Array,
     owner_responded: Boolean,
     owner_image: String,
-    restaurant_id: Number
   },
 
   methods: {
@@ -81,8 +80,8 @@ export default {
 
       for (let i = 0; i < resto.length; i++) {
         console.log('restoid ', resto[i].id)
-        console.log('this id ', parseInt(this.restaurant_id))
-        if (resto[i].id == parseInt(this.restaurant_id)) {
+        console.log('this id ', this.restaurantID)
+        if (resto[i].id === this.restaurantID) {
           this.restaurant = resto[i]
           console.log('Success ', this.restaurant)
           break

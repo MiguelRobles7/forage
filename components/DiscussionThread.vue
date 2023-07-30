@@ -14,7 +14,6 @@ export default {
     images: Array,
     comments: Array,
     owner_responded: Boolean,
-    comments: Object
   },
   data() {
     return {
@@ -235,10 +234,11 @@ export default {
           <div class="sub-comments" v-if="comments.length > 0">
             <DiscussionSubreview
               v-for="comment in comments"
+              :userID="comment.userId"
               :Comment="comment"
-              :isOwner="this.owner"
-              :owner_logo="this.logo"
-              :owner_name="this.owner_name"
+              :isOwner="owner"
+              :owner_logo="logo"
+              :owner_name="owner_name"
             >
             </DiscussionSubreview>
           </div>

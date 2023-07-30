@@ -2,7 +2,7 @@
 
 <template>
   <Loading v-if="!doneLoading"></Loading>
-  <main>
+  <main v-if="doneLoading">
     <div class="profile-edit">
       <div class="left">
         <div class="banner" :style="`background: url(${user.bannerLink})`"></div>

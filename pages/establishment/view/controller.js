@@ -38,8 +38,6 @@ export default {
 
     if (error) {
       console.log(error)
-    } else {
-      console.log(this.reviews)
     }
   },
 
@@ -123,8 +121,6 @@ export default {
       }
       if (!reviewData[i].isReply && !reviewData[i].isDeleted) {
         this.reviews_holder[c].push(review)
-        console.log(this.reviews_holder)
-        console.log(c)
         if (c === 2) {
           c = 0
         } else {

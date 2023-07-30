@@ -1,7 +1,8 @@
 <script src="./controller.js" />
 
 <template>
-  <main>
+  <Loading v-if="!doneLoading"></Loading>
+  <main v-if="doneLoading">
     <div class="establishment-all-reviews">
       <div class="left">
         <RestaurantCard
@@ -37,7 +38,7 @@
               <EstablishmentReviewAll
                 :isLoggedIn="isLoggedIn"
                 :loggedUserID="uid"
-                :restaurantID="id"
+                :restaurantID="Number(id)"
                 :reviewID="r.id"
                 :isUpvoted="r.isUpvoted"
                 :ownerReply="r.owner_response"
@@ -54,7 +55,6 @@
                 :comments="r.restaurantComments"
                 :owner_responded="r.ownerResponded"
                 :owner_image="restaurant.logo"
-                :restaurant_id="id"
               ></EstablishmentReviewAll>
             </div>
           </div>

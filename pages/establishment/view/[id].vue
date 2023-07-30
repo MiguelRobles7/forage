@@ -78,7 +78,7 @@
               <EstablishmentReview
                 :key="r"
                 :loggedUserID="loggedUserID"
-                :restaurantID="id"
+                :restaurantID="Number(id)"
                 :reviewID="r.review_id"
                 :isUpvoted="r.isUpvoted"
                 :isLoggedIn="isLoggedIn"
@@ -104,7 +104,7 @@
               <EstablishmentReview
                 :key="r"
                 :loggedUserID="loggedUserID"
-                :restaurantID="id"
+                :restaurantID="Number(id)"
                 :reviewID="r.review_id"
                 :isUpvoted="r.isUpvoted"
                 :isLoggedIn="isLoggedIn"
@@ -130,7 +130,7 @@
               <EstablishmentReview
                 :key="r"
                 :loggedUserID="loggedUserID"
-                :restaurantID="id"
+                :restaurantID="Number(id)"
                 :reviewID="r.review_id"
                 :isUpvoted="r.isUpvoted"
                 :isLoggedIn="isLoggedIn"

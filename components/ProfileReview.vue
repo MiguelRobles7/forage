@@ -3,7 +3,7 @@ export default {
   props: {
     review: Object,
     restaurantName: String
-  }
+  },
 }
 </script>
 
@@ -21,6 +21,7 @@ export default {
       </div>
       <div class="review-item">
         <span class="title-span">{{ review.title }}</span>
+            
       </div>
       <div class="review-item">
         <p class="body">{{ review.body }}</p>
@@ -29,7 +30,7 @@ export default {
         <div class="review-elements">
           <div class="review-pill" v-if="review.images.length > 0">
             <img class="review-icon" src="~/assets/icons/userimage.svg" alt="" />
-            <span class="review-pill-span">{{ images.length }}</span>
+            <span class="review-pill-span">{{ review.images.length }}</span>
           </div>
           <div class="review-pill" v-if="owner_responded" style="gap: 0.4rem">
             <img class="review-icon" src="~/assets/icons/comment_square.svg" alt="" />

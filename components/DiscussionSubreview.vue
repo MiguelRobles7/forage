@@ -1,6 +1,7 @@
 <script>
 export default {
   props: {
+    userID: Number,
     Comment: Object,
     isOwner: Boolean,
     owner_name: String,
