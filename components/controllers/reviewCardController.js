@@ -60,15 +60,9 @@ export default {
     if (error) {
       console.log(error)
     } else {
-      console.log('Success Getting Restaurant Data')
-      console.log(resto)
-
       for (let i = 0; i < resto.length; i++) {
-        console.log('restoid ', resto[i].id)
-        console.log('this id ', this.restaurantID)
         if (resto[i].id === this.restaurantID) {
           this.restaurant = resto[i]
-          console.log('Success ', this.restaurant)
           break
         } else console.log('Failed')
       }

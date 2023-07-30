@@ -5,7 +5,7 @@ export default {
     bgImgPath: String,
     name: String,
     description: String,
-    tags: String,
+    tags: Array,
     reviewCount: Number,
     rating: Number,
     price: String

@@ -17,7 +17,9 @@ export default {
   },
   data() {
     return {
-      modal: false
+      modal: false,
+      rCount: 0,
+      avRating: 0
     }
   },
   methods: {
@@ -38,8 +40,42 @@ export default {
       } else {
         console.log('Success!')
         console.log(data)
-        window.location.reload()
+        // Update Ratings and Comment Count
+        const restaurantsFetch = useFetch('/api/restaurants/', { immediate: false })
+        await restaurantsFetch.execute({ _initial: true })
+        let restos = restaurantsFetch.data.value.restaurants
+        for (let i = 0; i < restos.length; i++) {
+          if (restos[i].id == this.restaurantId) {
+            let { data: reviewQuery, reviewError } = await supabase
+              .from('reviews')
+              .select('*')
+              .eq('restaurantId', restos[i].id)
+            for (let j = 0; j < reviewQuery.length; j++) {
+              if (!reviewQuery[j].isDeleted && !reviewQuery[j].isReply) {
+                this.rCount++
+                this.avRating += reviewQuery[j].rating
+              }
+            }
+          }
+        }
+        this.avRating = Math.round((this.avRating / this.rCount) * 10) / 10
+        let { data: rst, error2 } = await supabase
+          .from('restaurants')
+          .update({
+            reviewCount: this.rCount,
+            rating: this.avRating
+          })
+          .eq('id', this.restaurantId)
+          .select()
+
+        if (error2) {
+          console.log(error2)
+        } else {
+          console.log(rst)
+        }
+        console.log('Updated Table')
       }
+      alert('Review Deleted!')
     }
   }
 }

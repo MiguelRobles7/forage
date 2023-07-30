@@ -22,7 +22,7 @@ export default {
         name: String,
         logo: String,
         description: String,
-        tags: String,
+        tags: Array,
         rating: Number,
         reviewCount: Number,
         price_range: String
