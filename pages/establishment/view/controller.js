@@ -76,6 +76,7 @@ export default {
 
     if (!supabaseSession.data.session) {
       this.isLoggedIn = false
+      this.loggedUserID=null
     } else {
       this.isLoggedIn = true
       userSession = supabaseSession.data.session.user
@@ -105,20 +106,15 @@ export default {
         rating: reviewData[i].rating,
         upvotes: reviewData[i].upvotes,
         isUpvoted: false,
-        //walang comments
         downvotes: reviewData[i].downvotes,
         isEdited: reviewData[i].isEdited,
-        //no images breaks da code
         images: reviewData[i].images,
-        isDeleted: reviewData[i].isDeleted
+        isDeleted: reviewData[i].isDeleted,
+        comments: reviewData[i].comments
       }
       if(this.isReviewUpvoted(review)) {
         review.isUpvoted = true;
       };
-
-      if (review.images === null) {
-        review.images = []
-      }
       if (!reviewData[i].isReply && !reviewData[i].isDeleted) {
         this.reviews_holder[c].push(review)
         if (c === 2) {

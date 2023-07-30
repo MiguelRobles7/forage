@@ -92,9 +92,10 @@
                 :upvotes="r.upvotes"
                 :downvotes="r.downvotes"
                 :isEdited="r.is_edited"
-                :comments="r.comments"
                 :owner_responded="r.owner_responded"
                 :owner_image="restaurant.logo"
+                :comments="r.comments"
+                :images="r.images"
               >
               </EstablishmentReview>
             </div>
@@ -121,6 +122,7 @@
                 :comments="r.comments"
                 :owner_responded="r.owner_responded"
                 :owner_image="restaurant.logo"
+                :images="r.images"
               >
               </EstablishmentReview>
             </div>
@@ -147,6 +149,7 @@
                 :comments="r.comments"
                 :owner_responded="r.owner_responded"
                 :owner_image="restaurant.logo"
+                :images="r.images"
               >
               </EstablishmentReview>
             </div>

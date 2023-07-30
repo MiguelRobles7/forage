@@ -73,16 +73,18 @@ export default {
   <div v-if="doneLoading">
     <LoginModal v-if="showLogin" @close="toggleLoginModal" @login="toggleLogin"></LoginModal>
     <RegisterModal v-if="showRegister" @close="toggleRegisterModal"></RegisterModal>
-    <Dropdown
-      :userName="user.name"
-      :userID="user.id"
-      :dpLink="user.dpLink"
-      class="dropdown"
-      style="max-width: 18.75rem"
-      v-show="showDropdown"
-      @logout="toggleLogout"
-      @close="toggleDropdown"
-    ></Dropdown>
+    <div v-if="isLoggedIn">
+      <Dropdown
+        :userName="user.name"
+        :userID="user.id"
+        :dpLink="user.dpLink"
+        class="dropdown"
+        style="max-width: 18.75rem"
+        v-show="showDropdown"
+        @logout="toggleLogout"
+        @close="toggleDropdown"
+      ></Dropdown>
+    </div>
 
     <nav class="navbar nav-default">
       <div class="container-fluid">

@@ -71,16 +71,18 @@ export default {
   <div v-if="doneLoading">
     <LoginModal v-if="showLogin" @close="toggleLoginModal" @goReg="toggleRegisterModal" @login="toggleLogin"></LoginModal>
     <RegisterModal v-if="showRegister" @close="toggleRegisterModal" @goLog="toggleLoginModal"></RegisterModal>
-    <Dropdown
-      :userName="user.name"
-      :userID="user.id"
-      :dpLink="user.dpLink"
-      @close="toggleDropdown"
-      @logout="toggleLogout"
-      class="dropdown"
-      style="max-width: 18.75rem"
-      v-show="showDropdown"
-    ></Dropdown>
+    <div v-if="isLoggedIn">
+      <Dropdown
+        :userName="user.name"
+        :userID="user.id"
+        :dpLink="user.dpLink"
+        class="dropdown"
+        style="max-width: 18.75rem"
+        v-show="showDropdown"
+        @logout="toggleLogout"
+        @close="toggleDropdown"
+      ></Dropdown>
+    </div>
     <nav class="navbar home-nav">
       <div class="container-fluid">
         <NuxtLink class="navbar-brand" to="/"> Forage </NuxtLink>
