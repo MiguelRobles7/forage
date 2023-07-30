@@ -69,7 +69,7 @@
         <div class="review-box-head">
           <span> Top Reviews </span>
           <NuxtLink :to="`/establishment/review/${this.id}`">
-            <button class="see-reviews-button">See All Reviews →</button>
+            <button v-if="isLoggedIn" class="see-reviews-button">See All Reviews →</button>
           </NuxtLink>
         </div>
         <div class="reviews-container">
