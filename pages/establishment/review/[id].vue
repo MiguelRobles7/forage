@@ -34,27 +34,13 @@
           ></AddReviewModal>
 
           <div class="review-container">
-            <div v-for="(r, i) in reviews" :key="r">
+            <div v-for="r in reviews" :key="r">
               <EstablishmentReviewAll
                 :isLoggedIn="isLoggedIn"
                 :loggedUserID="uid"
                 :restaurantID="Number(id)"
-                :reviewID="r.id"
-                :isUpvoted="r.isUpvoted"
-                :ownerReply="r.owner_response"
-                :userImg="r.userImage"
-                :userID="r.userId"
-                :userName="r.userName"
-                :title="r.title"
-                :content="r.body"
-                :stars="r.rating"
-                :upvotes="r.upvotes"
-                :downvotes="r.downvotes"
-                :isEdited="r.is_edited"
-                :images="r.images"
-                :comments="r.restaurantComments"
-                :owner_responded="r.ownerResponded"
                 :owner_image="restaurant.logo"
+                :review="r"
               ></EstablishmentReviewAll>
             </div>
           </div>

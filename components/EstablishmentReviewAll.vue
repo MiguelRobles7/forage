@@ -4,22 +4,8 @@ export default {
     isLoggedIn: Boolean,
     loggedUserID: String,
     restaurantID: Number,
-    reviewID: Number,
-    isUpvoted: Boolean,
-    ownerReply: Array,
-    userImg: String,
-    userName: String,
-    userID: Number,
-    title: String,
-    content: String,
-    stars: Number,
-    upvotes: Number,
-    downvotes: Number,
-    isEdited: Boolean,
-    images: Array,
-    comments: Array,
-    owner_responded: Boolean,
     owner_image: String,
+    review: Object
   },
 
   methods: {
@@ -27,12 +13,12 @@ export default {
       this.modal = true
     },
     async triggerUpvote() {
-      if (!this.isLoggedIn || this.isUpvoted || this.clientisUpvoted) {
+      if (!this.isLoggedIn || this.review.isUpvoted || this.clientisUpvoted) {
         console.log('Upvote discontinued')
         return
       }
-      const upvotes = this.upvotes
-      const reviewID = this.reviewID
+      const upvotes = this.review.upvotes
+      const reviewID = this.review.reviewID
       const restaurantID = this.restaurantID
       const loggedUserID = this.loggedUserID
 
@@ -66,9 +52,9 @@ export default {
     }
   },
   async mounted() {
-    this.clientUpvotes = this.upvotes
-    this.clientDownvotes = this.downvotes
-    this.clientisUpvoted = this.isUpvoted
+    this.clientUpvotes = this.review.upvotes
+    this.clientDownvotes = this.review.downvotes
+    this.clientisUpvoted = this.review.isUpvoted
     const supabase = useSupabaseClient()
 
     let { data: resto, error } = await supabase.from('restaurants').select()
@@ -94,24 +80,24 @@ export default {
 
 <template>
   <div class="review">
-    <NuxtLink :to="`/profile/view/${this.userID}`">
-      <img class="reviewer-pfp" :src="userImg" alt="" />
+    <NuxtLink :to="`/profile/view/${review.userId}`">
+      <img class="reviewer-pfp" :src="review.userImage" alt="" />
     </NuxtLink>
     <div class="cont">
       <div class="review-item" style="margin: -0.5rem 0 -0.3rem 0">
         <div>
-          <span class="tag">{{ userName }}</span>
-          <span v-if="isEdited" class="tag"> • Edited </span>
+          <span class="tag">{{ review.userName }}</span>
+          <span v-if="review.isEdited" class="tag"> • Edited </span>
         </div>
         <div class="stars">
-          <img v-for="index in stars" :key="index" class="star" src="~/assets/icons/star.png" alt="" />
+          <img v-for="index in review.rating" :key="index" class="star" src="~/assets/icons/star.png" alt="" />
         </div>
       </div>
       <div class="review-item">
-        <span class="title-span">{{ title }}</span>
+        <span class="title-span">{{ review.title }}</span>
       </div>
       <div class="review-item">
-        <p class="body" style="min-width: 63vw; max-width: 63vw">{{ content }}</p>
+        <p class="body" style="min-width: 63vw; max-width: 63vw">{{ review.body }}</p>
       </div>
       <div class="review-item" style="gap: 0.4rem">
         <div class="review-voting">
@@ -124,32 +110,18 @@ export default {
           </div>
         </div>
         <div class="review-elements">
-          <div class="review-pill" v-if="images.length > 0">
+          <div class="review-pill" v-if="review.images.length > 0">
             <img class="review-icon" src="~/assets/icons/userimage.svg" alt="" />
-            <span class="review-pill-span">{{ images.length }} Media Attached</span>
+            <span class="review-pill-span">{{ review.images.length }} Media Attached</span>
           </div>
           <button @click="view_discussion" class="review-pill" style="gap: 0.4rem">
             <img class="review-icon" src="~/assets/icons/comment_square.svg" alt="" />
-            <img class="owner-image" :src="owner_image" alt="" v-if="owner_responded" />
-            <span class="review-pill-span" v-if="owner_responded">+ {{ comments.length }} Replies</span>
-            <span class="review-pill-span" v-else>{{ comments.length }} Replies</span>
-            <DiscussionThread
-              v-if="modal"
-              :reviewId="reviewID"
-              :userImg="userImg"
-              :userName="userName"
-              :userID="userID"
-              :title="title"
-              :content="content"
-              :stars="stars"
-              :upvotes="upvotes"
-              :downvotes="downvotes"
-              :isEdited="isEdited"
-              :images="images"
-              :comments="comments"
-              :logo="restaurant.logo"
-              :owner_responded="owner_responded"
-            ></DiscussionThread>
+            <img class="owner-image" :src="owner_image" alt="" v-if="review.ownerResponded" />
+            <span class="review-pill-span" v-if="review.ownerResponded"
+              >+ {{ review.restaurantComments.length }} Replies</span
+            >
+            <span class="review-pill-span" v-else>{{ review.restaurantComments.length }} Replies</span>
+            <DiscussionThread v-if="modal" :review="review" :logo="restaurant.logo"></DiscussionThread>
           </button>
         </div>
       </div>

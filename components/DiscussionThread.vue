@@ -1,19 +1,7 @@
 <script>
 export default {
   props: {
-    reviewId: Number,
-    userImg: String,
-    userName: String,
-    userID: Number,
-    title: String,
-    content: String,
-    stars: Number,
-    upvotes: Number,
-    downvotes: Number,
-    isEdited: Boolean,
-    images: Array,
-    comments: Array,
-    owner_responded: Boolean,
+    review: Object
   },
   data() {
     return {
@@ -21,11 +9,7 @@ export default {
       logId: '',
       newComments: [],
       isOwner: false,
-      user_real_id: '',
-      logo: '',
-
-      owner: false,
-      owner_name: ''
+      user_real_id: ''
     }
   },
   async mounted() {
@@ -45,30 +29,6 @@ export default {
       this.logId = userData.profile_id
       this.user_real_id = userData.id
     }
-
-    if (this.owner_responded == true) {
-      console.log('Auohabdfo')
-      const supabase = useSupabaseClient()
-      let { data: restaurantData, error4 } = await supabase.from('restaurants').select('*')
-      for (var i = 0; i < restaurantData.length; i++) {
-        console.log('Restaurant Data', restaurantData[i].id)
-        console.log('Route Params', parseInt(this.$route.params.id))
-
-        console.log('User Real ID', this.user_real_id)
-        console.log('Owner ID', restaurantData[i].owner_id)
-        if (
-          restaurantData[i].id == parseInt(this.$route.params.id) &&
-          restaurantData[i].owner_id == this.user_real_id
-        ) {
-          console.log('Owner')
-          this.owner = true
-          this.logo = restaurantData[i].logo
-          this.owner_name = restaurantData[i].name
-          console.log('Owner Name', this.owner_name)
-          console.log('isOwner', this.owner)
-        }
-      }
-    }
   },
   methods: {
     reloadPage() {
@@ -76,8 +36,6 @@ export default {
     },
     async addComment() {
       const supabase = useSupabaseClient()
-      // Check if owner
-
       let { data: restaurantData, error4 } = await supabase.from('restaurants').select('*')
       if (error4) {
         console.log(error4)
@@ -94,7 +52,6 @@ export default {
         }
       }
 
-      // Add Comment
       console.log('Add Comment')
       const { data, error } = await supabase
         .from('reviews')
@@ -133,7 +90,7 @@ export default {
         console.log('Success Getting Comment Chain')
 
         for (var i = 0; i < reviews.length; i++) {
-          if (reviews[i].id == this.reviewId) {
+          if (reviews[i].id == this.review.id) {
             console.log('Found', reviews[i])
             for (var j = 0; j < reviews[i].comments.length; j++) {
               this.newComments.push(reviews[i].comments[j])
@@ -149,7 +106,7 @@ export default {
         const { data3, error3 } = await supabase
           .from('reviews')
           .update({ comments: this.newComments, ownerResponded: true })
-          .eq('id', this.reviewId)
+          .eq('id', this.review.id)
           .select()
         if (error3) {
           console.log(error3)
@@ -161,7 +118,7 @@ export default {
         const { data3, error3 } = await supabase
           .from('reviews')
           .update({ comments: this.newComments })
-          .eq('id', this.reviewId)
+          .eq('id', this.review.id)
           .select()
         if (error3) {
           console.log(error3)
@@ -181,8 +138,8 @@ export default {
       <div class="modal-main">
         <div class="head-row">
           <div style="display: flex; align-items: center; gap: 0.625rem; flex: 1 0 0">
-            <img :src="userImg" alt="" />
-            <span> {{ userName }} </span>
+            <img :src="review.userImage" alt="" />
+            <span> {{ review.userName }} </span>
           </div>
           <button class="cancel-button" @click="reloadPage" value="view">
             <img src="~/assets/icons/exit.svg" alt="" />
@@ -191,18 +148,18 @@ export default {
         <div class="comments">
           <div class="main-comment">
             <div class="review-item" style="margin-bottom: -0.5vh">
-              <span class="discussion-tag">{{ title }}</span>
+              <span class="discussion-tag">{{ review.title }}</span>
               <div class="stars">
-                <img v-for="index in stars" :key="index" class="star" src="~/assets/icons/star.png" alt="" />
+                <img v-for="index in review.rating" :key="index" class="star" src="~/assets/icons/star.png" alt="" />
               </div>
             </div>
             <div class="review-item">
-              <p>{{ content }}</p>
+              <p>{{ review.body }}</p>
             </div>
 
-            <div class="image-container" v-if="images.length > 0">
-              <div class="image-row" v-for="count in Math.ceil(images.length / 3)">
-                <img v-for="i in 3" :src="`/_nuxt${images[i * count - 1]}`" alt="" />
+            <div class="image-container" v-if="review.images.length > 0">
+              <div class="image-row" v-for="count in Math.ceil(review.images.length / 3)">
+                <img v-for="i in 3" :src="`/_nuxt${review.images[i * count - 1]}`" alt="" />
               </div>
             </div>
 
@@ -211,34 +168,26 @@ export default {
                 <div class="vote-pill">
                   <img class="review-icon" src="~/assets/icons/upvote.svg" alt="" />
                 </div>
-                <span class="vote-count">{{ upvotes - downvotes }}</span>
+                <span class="vote-count">{{ review.upvotes - review.downvotes }}</span>
                 <div class="vote-pill">
                   <img class="review-icon" src="~/assets/icons/downvote.svg" alt="" />
                 </div>
               </div>
-              <div class="review-pill" v-if="images.length > 0">
+              <div class="review-pill" v-if="review.images.length > 0">
                 <img class="review-icon" src="~/assets/icons/userimage.svg" alt="" />
-                <span class="review-pill-span">{{ images.length }} Media Attached</span>
+                <span class="review-pill-span">{{ review.images.length }} Media Attached</span>
               </div>
-              <div class="review-pill" v-if="comments.length > 0 && owner_responded" style="gap: 0.4rem">
+              <div class="review-pill" v-if="review.comments.length > 0">
                 <img class="review-icon" src="~/assets/icons/comment_square.svg" alt="" />
-                <img class="owner-image" :src="this.logo" alt="" />
-                <span class="review-pill-span">+ {{ comments.length }} Replies</span>
-              </div>
-              <div class="review-pill" v-if="comments.length > 0 && !owner_responded">
-                <img class="review-icon" src="~/assets/icons/comment_square.svg" alt="" />
-                <span class="review-pill-span">{{ comments.length }} Replies</span>
+                <span class="review-pill-span">{{ review.restaurantComments.length }} Replies</span>
               </div>
             </div>
           </div>
-          <div class="sub-comments" v-if="comments.length > 0">
+          <div class="sub-comments" v-if="review.comments.length > 0">
             <DiscussionSubreview
-              v-for="comment in comments"
-              :userID="comment.userId"
-              :Comment="comment"
-              :isOwner="owner"
-              :owner_logo="logo"
-              :owner_name="owner_name"
+              v-for="comment in review.restaurantComments"
+              :userId="review.userId"
+              :comment="comment"
             >
             </DiscussionSubreview>
           </div>
