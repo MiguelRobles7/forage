@@ -27,7 +27,7 @@
 
             <div class="image-container" v-if="review.images.length > 0">
               <div class="image-row" v-for="count in Math.ceil(review.images.length / 3)">
-                <img v-for="i in 3" :src="`/_nuxt${review.images[i * count - 1]}`" alt="" />
+                <img v-for="i in 3" :src="`${review.images[i * count - 1]}`" alt="" />
               </div>
             </div>
 
