@@ -9,7 +9,7 @@
           <NuxtLink
             v-for="restaurant in row"
             :key="restaurant"
-            :to="`/establishment/view/${restaurant.restaurant_id}`"
+            :to="`/establishment/view/${restaurant.id}`"
             style="flex-basis: 25%"
           >
             <RestaurantCard
