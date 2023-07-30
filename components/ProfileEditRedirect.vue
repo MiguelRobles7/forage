@@ -1,5 +1,3 @@
-<script></script>
-
 <template>
   <div class="redirects">
     <div class="redirect-item">
@@ -23,5 +21,3 @@
     </div>
   </div>
 </template>
-
-<style></style>

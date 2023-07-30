@@ -2,7 +2,7 @@
 export default {
   props: {
     userName: String,
-    userID: Number, 
+    userID: Number,
     dpLink: String
   },
   methods: {
@@ -59,5 +59,3 @@ export default {
     </div>
   </div>
 </template>
-
-<style></style>

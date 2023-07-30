@@ -26,22 +26,17 @@
               </button>
             </NuxtLink>
           </div>
-          <AddReviewModal
-            v-if="modal"
-            :restaurant="restaurant.name"
-            :restaurantId="id"
-            :userId="this.userID"
-          ></AddReviewModal>
+          <AddReview v-if="modal" :restaurant="restaurant.name" :restaurantId="id" :userId="this.userID"></AddReview>
 
           <div class="review-container">
             <div v-for="r in reviews" :key="r">
-              <EstablishmentReviewAll
+              <ReviewCard
                 :isLoggedIn="isLoggedIn"
                 :loggedUserID="uid"
                 :restaurantID="Number(id)"
                 :owner_image="restaurant.logo"
                 :review="r"
-              ></EstablishmentReviewAll>
+              ></ReviewCard>
             </div>
           </div>
         </div>

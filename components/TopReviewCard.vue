@@ -1,71 +1,4 @@
-<script>
-export default {
-  data() {
-    return {
-      clientUpvotes: Number,
-      clientDownvotes: Number,
-      clientisUpvoted: Boolean
-    }
-  },
-  props: {
-    isUpvoted: Boolean,
-    loggedUserID: String,
-    reviewID: Number,
-    restaurantID: Number,
-    isLoggedIn: Boolean,
-    ownerReply: Array,
-    userImg: String,
-    userName: String,
-    userID: Number,
-    title: String,
-    content: String,
-    stars: Number,
-    upvotes: Number,
-    downvotes: Number,
-    isEdited: Boolean,
-    images: Array,
-    comments: Array,
-    owner_responded: Boolean,
-    owner_image: String
-  },
-  mounted() {
-    this.clientUpvotes = this.upvotes
-    this.clientDownvotes = this.downvotes
-    this.clientisUpvoted = this.isUpvoted
-  },
-  methods: {
-    async triggerUpvote() {
-      if (!this.isLoggedIn || this.isUpvoted || this.clientisUpvoted) {
-        console.log('Upvote discontinued')
-        return
-      }
-      const upvotes = this.upvotes
-      const reviewID = this.reviewID
-      const restaurantID = this.restaurantID
-      const loggedUserID = this.loggedUserID
-
-      const data = {
-        count: upvotes,
-        loggedUserID: loggedUserID,
-        reviewID: reviewID,
-        restaurantID: restaurantID
-      }
-
-      await useFetch('/api/reviews/', {
-        method: 'POST',
-        body: data
-      })
-      await useFetch('/api/user_upvotes/', {
-        method: 'POST',
-        body: data
-      })
-
-      this.clientUpvotes = this.clientUpvotes + 1
-      this.clientisUpvoted = true
-    }
-  }
-}
-</script>
+<script src="./controllers/topReviewCardController.js" />
 
 <template>
   <div class="review">
@@ -102,7 +35,7 @@ export default {
           <div class="review-pill" v-if="comments.length > 0 && !owner_responded">
             <img class="review-icon" src="~/assets/icons/comment_square.svg" alt="" />
             <span class="review-pill-span">{{ comments.length }}</span>
-          </div> 
+          </div>
         </div>
         <div class="review-voting">
           <div :class="clientisUpvoted ? 'vote-pill-upvoted' : 'vote-pill'">

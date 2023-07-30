@@ -1,6 +1,4 @@
 <script>
-import internal from 'stream'
-
 export default {
   props: {
     imgPath: String,
@@ -50,5 +48,3 @@ export default {
     </div>
   </div>
 </template>
-
-<style></style>

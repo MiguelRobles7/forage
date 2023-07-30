@@ -73,7 +73,7 @@
         <div class="reviews-container">
           <div class="review-column">
             <div class="abox" v-for="(r, i) in reviews_holder[0]" :key="r">
-              <EstablishmentReview
+              <TopReviewCard
                 :key="r"
                 :loggedUserID="loggedUserID"
                 :restaurantID="Number(id)"
@@ -95,12 +95,12 @@
                 :comments="r.comments"
                 :images="r.images"
               >
-              </EstablishmentReview>
+              </TopReviewCard>
             </div>
           </div>
           <div class="review-column">
             <div class="abox" v-for="(r, i) in reviews_holder[1]" :key="r">
-              <EstablishmentReview
+              <TopReviewCard
                 :key="r"
                 :loggedUserID="loggedUserID"
                 :restaurantID="Number(id)"
@@ -122,12 +122,12 @@
                 :owner_image="restaurant.logo"
                 :images="r.images"
               >
-              </EstablishmentReview>
+              </TopReviewCard>
             </div>
           </div>
           <div class="review-column">
             <div class="abox" v-for="(r, i) in reviews_holder[2]" :key="r">
-              <EstablishmentReview
+              <TopReviewCard
                 :key="r"
                 :loggedUserID="loggedUserID"
                 :restaurantID="Number(id)"
@@ -149,7 +149,7 @@
                 :owner_image="restaurant.logo"
                 :images="r.images"
               >
-              </EstablishmentReview>
+              </TopReviewCard>
             </div>
           </div>
         </div>

@@ -89,7 +89,7 @@ export default {
           <button class="review-pill" @click="edit">
             <img class="review-icon" style="height: 0.9rem; width: 0.9rem" src="~/assets/icons/edit-02.svg" alt="" />
             <span class="review-pill-span" style="font-size: 0.75rem">Edit</span>
-            <EditReviewModal
+            <EditReview
               v-if="modal"
               :restaurantName="restaurantName"
               :restaurantId="restaurantId"
@@ -98,7 +98,7 @@ export default {
               :body="content"
               :rating="stars"
               :images="images"
-            ></EditReviewModal>
+            ></EditReview>
           </button>
           <button class="review-pill" @click="deleteReviews">
             <img class="review-icon" style="height: 0.9rem; width: 0.9rem" src="~/assets/icons/delete.svg" alt="" />
