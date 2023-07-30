@@ -21,7 +21,6 @@ export default {
       restaurant: {
         name: String,
         logo: String,
-        bgCard: String,
         description: String,
         tags: String,
         rating: Number,

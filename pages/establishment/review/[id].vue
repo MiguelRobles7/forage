@@ -8,7 +8,6 @@
         <RestaurantCard
           :name="restaurant.name"
           :imgPath="restaurant.logo"
-          :bgImgPath="restaurant.bgCard"
           :description="restaurant.description"
           :tags="restaurant.tags"
           :rating="restaurant.rating"

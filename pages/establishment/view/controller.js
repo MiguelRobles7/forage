@@ -59,7 +59,13 @@ export default {
     const reviewFetch = useFetch(`/api/reviews/restaurant/${useRoute().params.id}`, { immediate: false })
     await reviewFetch.execute({ _initial: true })
     const reviewData = reviewFetch.data.value.reviews
-    var reviewCount = reviewData.length
+    let rCount = 0
+    for (let j = 0; j < reviewData.length; j++) {
+      if (!reviewData[j].isDeleted && !reviewData[j].isReply) {
+        rCount++
+      }
+    }
+    this.restaurant.reviewCount = rCount
     var c = 0
 
     const supabase = useSupabaseClient()
