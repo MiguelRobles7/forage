@@ -35,7 +35,11 @@
           <div class="review-container">
             <div v-for="(r, i) in reviews" :key="r">
               <EstablishmentReviewAll
-                :reviewId="r.id"
+                :isLoggedIn="isLoggedIn"
+                :loggedUserID="uid"
+                :restaurantID="id"
+                :reviewID="r.id"
+                :isUpvoted="r.isUpvoted"
                 :ownerReply="r.owner_response"
                 :userImg="r.userImage"
                 :userID="r.userId"

@@ -1,7 +1,11 @@
 <script>
 export default {
   props: {
-    reviewId: Number,
+    isLoggedIn: Boolean,
+    loggedUserID: String,
+    restaurantID: Number,
+    reviewID: Number,
+    isUpvoted: Boolean,
     ownerReply: Array,
     userImg: String,
     userName: String,
@@ -22,15 +26,50 @@ export default {
   methods: {
     view_discussion: function () {
       this.modal = true
+    },
+    async triggerUpvote() {
+      if (!this.isLoggedIn || this.isUpvoted || this.clientisUpvoted) {
+        console.log('Upvote discontinued')
+        return
+      }
+      const upvotes = this.upvotes
+      const reviewID = this.reviewID
+      const restaurantID = this.restaurantID
+      const loggedUserID = this.loggedUserID
+
+      const data = {
+        count: upvotes,
+        loggedUserID: loggedUserID,
+        reviewID: reviewID,
+        restaurantID: restaurantID
+      }
+
+      await useFetch('/api/reviews/', {
+        method: 'POST',
+        body: data
+      })
+      await useFetch('/api/user_upvotes/', {
+        method: 'POST',
+        body: data
+      })
+
+      this.clientUpvotes = this.clientUpvotes + 1
+      this.clientisUpvoted = true
     }
   },
   data() {
     return {
       modal: false,
-      restaurant: Object
+      restaurant: Object,
+      clientUpvotes: Number,
+      clientDownvotes: Number,
+      clientisUpvoted: Boolean
     }
   },
   async mounted() {
+    this.clientUpvotes = this.upvotes
+    this.clientDownvotes = this.downvotes
+    this.clientisUpvoted = this.isUpvoted
     const supabase = useSupabaseClient()
 
     let { data: resto, error } = await supabase.from('restaurants').select()
@@ -77,10 +116,10 @@ export default {
       </div>
       <div class="review-item" style="gap: 0.4rem">
         <div class="review-voting">
-          <div class="vote-pill">
-            <img class="review-icon" src="~/assets/icons/upvote.svg" alt="" />
+          <div :class="clientisUpvoted ? 'vote-pill-upvoted' : 'vote-pill'">
+            <img @click="triggerUpvote" class="review-icon" src="~/assets/icons/upvote.svg" alt="" />
           </div>
-          <span class="vote-count">{{ upvotes - downvotes }}</span>
+          <span class="vote-count">{{ clientUpvotes - clientDownvotes }}</span>
           <div class="vote-pill">
             <img class="review-icon" src="~/assets/icons/downvote.svg" alt="" />
           </div>
@@ -97,7 +136,7 @@ export default {
             <span class="review-pill-span" v-else>{{ comments.length }} Replies</span>
             <DiscussionThread
               v-if="modal"
-              :reviewId="reviewId"
+              :reviewId="reviewID"
               :userImg="userImg"
               :userName="userName"
               :userID="userID"

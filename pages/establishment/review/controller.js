@@ -9,33 +9,20 @@ export default {
     edit: function () {
       this.modal = true
     },
-    async getUserID() {
-      const supabase = useSupabaseClient()
-      try {
-        const { data, error } = await supabase.auth.getSession()
-        this.uid = data.session.user.id
-        console.log(uid)
-        if (error) throw error
-      } catch (error) {
-        console.log(error)
-      }
-
-      try {
-        const { data, error } = await supabase.from('profiles').select('profile_id').eq('id', uid)
-        if (error) {
-          throw error
-        } else {
-          this.userID = data[0].profile_id
+    isReviewUpvoted(review) {
+      for(var i = 0; i < this.upvotedReviews.length; i++) {
+        if(this.upvotedReviews[i].reviewID === review.id) {
+          return true;
         }
-      } catch (error) {
-        console.log(error)
       }
+      return false;
     }
   },
 
   data() {
     return {
       doneLoading: false,
+      isLoggedIn: true,
       id: useRoute().params.id,
       restaurant: {
         name: String,
@@ -63,21 +50,20 @@ export default {
     try {
       const { data, error } = await supabase.auth.getSession()
       this.uid = data.session.user.id
-      console.log(uid)
       if (error) throw error
     } catch (error) {
       console.log(error)
     }
 
     try {
-      const { data, error } = await supabase.from('profiles').select('profile_id').eq('id', uid)
+      const { data, error } = await supabase.from('profiles').select('profile_id').eq('id', this.uid)
       if (error) {
         throw error
       } else {
         this.userID = data[0].profile_id
       }
     } catch (error) {
-      console.log(error)
+      console.log("ID ERROR", error)
     }
 
     const restaurantFetch = useFetch(`/api/restaurants/${useRoute().params.id}`, { immediate: false })
@@ -97,6 +83,7 @@ export default {
         data: { user }
       } = await supabase.auth.getUser()
       if (user === null) {
+        this.isLoggedIn = false;
         console.log('User is not logged in')
         this.reviewed = true
       }
@@ -143,6 +130,14 @@ export default {
       console.log(rv)
     }
 
+    var userUpvotesData = [];
+    if(this.isLoggedIn) {
+      const userUpvotesFetch = useFetch(`/api/user_upvotes/${this.uid}`, { immediate: false, method: 'GET' })
+      await userUpvotesFetch.execute({ _initial: true });
+      userUpvotesData = userUpvotesFetch.data.value.user_upvotes;
+    }
+    this.upvotedReviews = userUpvotesData;
+    console.log("upvoted stuff:", this.upvotedReviews);
     for (var i = 0; i < rv.length; i++) {
       if (rv[i].restaurantId == this.$route.params.id && rv[i].isReply == false && rv[i].isDeleted == false) {
         let { data: restoName, error } = await supabase.from('restaurants').select('name').eq('id', rv[i].restaurantId)
@@ -164,6 +159,7 @@ export default {
           userId: rv[i].userId,
           title: rv[i].title,
           body: rv[i].body,
+          isUpvoted: false,
           rating: rv[i].rating,
           upvotes: rv[i].upvotes,
           downvotes: rv[i].downvotes,
@@ -176,6 +172,10 @@ export default {
 
           userImage: restoUser[0].displayPicture,
           userName: restoUser[0].name
+        }
+
+        if(this.isReviewUpvoted(rev)) {
+          rev.isUpvoted = true;
         }
         rev['restaurantComments'] = []
         for (var j = 0; j < rv.length; j++) {
