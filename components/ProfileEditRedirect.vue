@@ -11,7 +11,7 @@
         <img class="icon" src="~/assets/icons/display.svg" alt="" />
         <span> <NuxtLink to="/profile/edit/display/"> Display Settings </NuxtLink> </span>
       </div>
-      <!-- TODO: Add back after functionalities are made -->
+      <!-- TODO (BONUS): Add back after functionalities are made -->
       <!-- <div class="redirect-item">
         <img class="icon" src="~/assets/icons/account-setting.svg" alt="" />
         <span><NuxtLink to="/profile/edit/account/1"> Account Settings </NuxtLink> </span>

@@ -200,7 +200,6 @@ export default {
       <div class="modal-main">
         <div class="flex-row" style="width: 100%">
           <span class="title">Write a review for {{ restaurant }}</span>
-          <!-- TODO: MCO3 Turn into radio button -->
           <div class="stars">
             <input class="star-rating" id="star_rate_5" type="radio" value="5" v-model="formData.rating" />
             <label for="star_rate_5">★</label>
@@ -231,7 +230,6 @@ export default {
           <div class="item">
             <span>Media</span>
             <div class="flex-row" style="gap: 0.9rem">
-              <!-- TODO: (GET WAIT) Add images (waiting for image handling) -->
               <img
                 v-for="(image, index) in this.formData.images"
                 class="media-image"

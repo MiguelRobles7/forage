@@ -244,7 +244,6 @@ export default {
       <div class="modal-main">
         <div class="flex-row" style="width: 100%">
           <span class="title">Write a review for {{ restaurantName }}</span>
-          <!-- TODO:MCO3 Turn into radio button -->
           <div class="stars">
             <input class="star-rating" id="star_rate_5" type="radio" value="5" v-model="formData.rating" />
             <label for="star_rate_5">★</label>

@@ -43,7 +43,6 @@ export default {
     <img :src="imgPath" alt="" class="restaurant-card-image" />
     <div class="name">{{ name }}</div>
     <div class="description">{{ description }}</div>
-    <!--TODO : Fix Tags-->
     <div class="tags">
       <div class="info-pill">
         <div class="info-text" style="text-decoration-line: underline">{{ tags }}</div>
