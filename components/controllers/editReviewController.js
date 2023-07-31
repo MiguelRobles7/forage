@@ -94,27 +94,29 @@ export default {
       }
 
       // update review links
-      if (this.formData.addedImages.length > 0) {
-        for (let i = 0; i < this.formData.addedImages.length; i++) {
-          this.formData.images.push(
-            `https://ybdgcrjtuhafbgnuangd.supabase.co/storage/v1/object/public/reviews/${reviewId}/${i}.png`
-          )
+      if (this.formData.deleted) {
+        if (this.formData.addedImages.length > 0) {
+          for (let i = 0; i < this.formData.addedImages.length; i++) {
+            this.formData.images.push(
+              `https://ybdgcrjtuhafbgnuangd.supabase.co/storage/v1/object/public/reviews/${reviewId}/${i}.png`
+            )
+          }
         }
-      }
-
-      try {
-        const { data, error } = await supabase
-          .from('reviews')
-          .update({
-            images: this.formData.images
-          })
-          .eq('id', reviewId)
-        if (error) throw error
-        else {
-          console.log('Updated review links!')
+  
+        try {
+          const { data, error } = await supabase
+            .from('reviews')
+            .update({
+              images: this.formData.images
+            })
+            .eq('id', reviewId)
+          if (error) throw error
+          else {
+            console.log('Updated review links!')
+          }
+        } catch (error) {
+          console.log(error)
         }
-      } catch (error) {
-        console.log(error)
       }
     },
     async editReview() {
