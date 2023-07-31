@@ -16,8 +16,9 @@ export default {
         console.log('Upvote discontinued')
         return
       }
+      console.log("REVIEW!!!!!!!", this.review);
       const upvotes = this.review.upvotes
-      const reviewID = this.review.reviewID
+      const reviewID = this.review.id
       const restaurantID = this.restaurantID
       const loggedUserID = this.loggedUserID
 

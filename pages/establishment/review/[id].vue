@@ -25,7 +25,7 @@
               </button>
             </NuxtLink>
           </div>
-          <AddReview v-if="modal" :restaurant="restaurant.name" :restaurantId="id" :userId="this.userID"></AddReview>
+          <AddReview v-if="modal" :restaurant="restaurant.name" :restaurantId="Number(id)" :userId="this.userID"></AddReview>
 
           <div class="review-container">
             <div v-for="r in reviews" :key="r">

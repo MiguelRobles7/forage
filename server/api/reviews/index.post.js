@@ -4,6 +4,7 @@ import { mode } from 'process';
 export default defineEventHandler(async (event) => {
     console.log("updating review count..");
     const body = await readBody(event);
+    console.log(body);
     const model = serverSupabaseClient(event)
     const newCount = body.count + 1;
     const { error } = await model 
