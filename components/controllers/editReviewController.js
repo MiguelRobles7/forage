@@ -60,16 +60,18 @@ export default {
       }
 
       // delete old images
-      try {
-        for (let i = 0; i < this.formData.imageCount; i++) {
-          const { data, error } = await supabase.storage.from('reviews').remove([`${reviewId}/${i}.png`])
-          if (error) throw error
-          else {
-            console.log('Deleted images!')
+      if (this.formData.deleted) {
+        try {
+          for (let i = 0; i < this.formData.imageCount; i++) {
+            const { data, error } = await supabase.storage.from('reviews').remove([`${reviewId}/${i}.png`])
+            if (error) throw error
+            else {
+              console.log('Deleted images!')
+            }
           }
+        } catch (error) {
+          console.log(error)
         }
-      } catch (error) {
-        console.log(error)
       }
       // upload new images
       try {
