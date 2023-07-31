@@ -4,6 +4,7 @@ export default {
       addresses: ['Menu', 'Top Reviews'],
       addresses_links: ['#menu', '#reviews'],
       upvotedReviews: [],
+      downvotedReviews: [],
       id: useRoute().params.id,
       modal: false,
       reviews_holder: [[], [], []],
@@ -83,6 +84,12 @@ export default {
       const userUpvotesData = userUpvotesFetch.data.value.user_upvotes
 
       this.upvotedReviews = userUpvotesData
+
+      const userDownvotesFetch = useFetch(`/api/user_downvotes/${this.loggedUserID}`, { immediate: false, method: 'GET' })
+      await userDownvotesFetch.execute({ _initial: true })
+      const userDownvotesData = userDownvotesFetch.data.value.user_downvotes
+
+      this.downvotedReviews = userDownvotesData
     }
 
     for (var i = 0; i < reviewData.length; i++) {
@@ -99,6 +106,7 @@ export default {
         rating: reviewData[i].rating,
         upvotes: reviewData[i].upvotes,
         isUpvoted: false,
+        isDownvoted: false,
         downvotes: reviewData[i].downvotes,
         isEdited: reviewData[i].isEdited,
         images: reviewData[i].images,
@@ -108,6 +116,9 @@ export default {
       if (this.isReviewUpvoted(review)) {
         review.isUpvoted = true
       }
+      else if (this.isReviewDownvoted(review)) {
+        review.isDownvoted = true
+      } 
       if (!reviewData[i].isReply && !reviewData[i].isDeleted) {
         this.reviews_holder[c].push(review)
         if (c === 2) {
@@ -140,6 +151,14 @@ export default {
     isReviewUpvoted(review) {
       for (var i = 0; i < this.upvotedReviews.length; i++) {
         if (this.upvotedReviews[i].reviewID === review.review_id) {
+          return true
+        }
+      }
+      return false
+    },
+    isReviewDownvoted(review) {
+      for (var i = 0; i < this.downvotedReviews.length; i++) {
+        if (this.downvotedReviews[i].reviewID === review.review_id) {
           return true
         }
       }

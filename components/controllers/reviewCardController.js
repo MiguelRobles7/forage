@@ -32,7 +32,7 @@ export default {
         restaurantID: restaurantID,
       }
 
-      await useFetch('/api/reviews/update_upvotes/', {
+      await useFetch('/api/reviews/upvotes/update', {
         method: 'POST',
         body: data
       })
@@ -57,7 +57,7 @@ export default {
         restaurantID: restaurantID,
       }
 
-      await useFetch('/api/reviews/revoke_upvote/', {
+      await useFetch('/api/reviews/upvotes/revoke/', {
         method: 'POST',
         body: data
       })

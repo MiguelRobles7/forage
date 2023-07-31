@@ -38,15 +38,31 @@
           </div>
         </div>
         <div class="review-voting">
-          <div :class="clientisUpvoted ? 'vote-pill-upvoted' : 'vote-pill'">
-            <img @click="triggerUpvote" class="review-icon" src="~/assets/icons/upvote.svg" alt="" />
-          </div>
+          <button :disabled="clicked" @click="triggerUpvote" class="interact-button">
+            <div :class="clientisUpvoted ? 'vote-pill-upvoted' : 'vote-pill'">
+              <img class="review-icon" src="~/assets/icons/upvote.svg" alt="" />
+            </div>
+          </button>
           <span class="vote-count">{{ clientUpvotes - clientDownvotes }}</span>
-          <div class="vote-pill">
-            <img class="review-icon" src="~/assets/icons/downvote.svg" alt="" />
-          </div>
+            <button :disabled="clicked" @click="triggerDownvote" class="interact-button">
+            <div :class="clientisDownvoted ? 'vote-pill-upvoted' : 'vote-pill'"> 
+              <img class="review-icon" src="~/assets/icons/downvote.svg" alt="" />
+            </div>
+            </button>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.interact-button {
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+ </style>
