@@ -39,30 +39,34 @@
         </div>
         <div class="review-voting">
           <button :disabled="clicked" @click="triggerUpvote" class="interact-button">
-            <div :class="clientisUpvoted ? 'vote-pill-upvoted' : 'vote-pill'">
-              <img class="review-icon" src="~/assets/icons/upvote.svg" alt="" />
+            <div :class="clicked ? 'vote-pill-disabled' : clientisUpvoted ? 'vote-pill-upvoted' : 'vote-pill'">
+              <img
+                class="review-icon"
+                :src="clientisUpvoted ? '/assets/icons/upvote_up.svg' : '/assets/icons/upvote.svg'"
+                alt=""
+              />
             </div>
           </button>
-          <span class="vote-count">{{ clientUpvotes - clientDownvotes }}</span>
-            <button :disabled="clicked" @click="triggerDownvote" class="interact-button">
-            <div :class="clientisDownvoted ? 'vote-pill-upvoted' : 'vote-pill'"> 
-              <img class="review-icon" src="~/assets/icons/downvote.svg" alt="" />
+          <span v-if="clientisUpvoted" class="vote-count" style="color: #5ddb8f">
+            {{ clientUpvotes - clientDownvotes }}
+          </span>
+          <span v-else-if="clientisDownvoted" class="vote-count" style="color: #ff5b5b">
+            {{ clientUpvotes - clientDownvotes }}
+          </span>
+          <span v-else class="vote-count" style="color: #e6e6e6">
+            {{ clientUpvotes - clientDownvotes }}
+          </span>
+          <button :disabled="clicked" @click="triggerDownvote" class="interact-button">
+            <div :class="clicked ? 'vote-pill-disabled' : clientisDownvoted ? 'vote-pill-downvoted' : 'vote-pill'">
+              <img
+                class="review-icon"
+                :src="clientisDownvoted ? '/assets/icons/upvote_down.svg' : '/assets/icons/upvote.svg'"
+                alt=""
+              />
             </div>
-            </button>
+          </button>
         </div>
       </div>
     </div>
   </div>
 </template>
-
-<style scoped>
-.interact-button {
-  background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
-}
- </style>

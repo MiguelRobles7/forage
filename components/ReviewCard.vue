@@ -24,7 +24,12 @@
       <div class="review-item" style="gap: 0.4rem">
         <div class="review-voting">
           <div :class="clientisUpvoted ? 'vote-pill-upvoted' : 'vote-pill'">
-            <img @click="triggerUpvote" class="review-icon" src="~/assets/icons/upvote.svg" alt="" />
+            <img
+              @click="triggerUpvote"
+              class="review-icon"
+              :src="clientisUpvoted ? '/assets/icons/upvote_up.svg' : '/assets/icons/upvote.svg'"
+              alt=""
+            />
           </div>
           <span class="vote-count">{{ clientUpvotes - clientDownvotes }}</span>
           <div class="vote-pill">
