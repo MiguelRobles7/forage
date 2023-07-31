@@ -12,11 +12,14 @@ export default {
       this.modal = true
     },
     async triggerUpvote() {
-      if (!this.isLoggedIn || this.review.isUpvoted || this.clientisUpvoted) {
+      if (!this.isLoggedIn) { 
         console.log('Upvote discontinued')
         return
       }
-      console.log("REVIEW!!!!!!!", this.review);
+      else if (this.review.isUpvoted || this.clientisUpvoted) {
+        this.revokeUpvote()
+        return
+      }
       const upvotes = this.review.upvotes
       const reviewID = this.review.id
       const restaurantID = this.restaurantID
@@ -26,21 +29,46 @@ export default {
         count: upvotes,
         loggedUserID: loggedUserID,
         reviewID: reviewID,
-        restaurantID: restaurantID
+        restaurantID: restaurantID,
       }
 
-      await useFetch('/api/reviews/', {
+      await useFetch('/api/reviews/update_upvotes/', {
         method: 'POST',
         body: data
       })
-      await useFetch('/api/user_upvotes/', {
+      await useFetch('/api/user_upvotes/new/', {
         method: 'POST',
         body: data
       })
 
       this.clientUpvotes = this.clientUpvotes + 1
       this.clientisUpvoted = true
-    }
+    },
+    async revokeUpvote() {
+      const upvotes = this.review.upvotes
+      const reviewID = this.review.id
+      const restaurantID = this.restaurantID
+      const loggedUserID = this.loggedUserID
+
+      const data = {
+        count: upvotes,
+        loggedUserID: loggedUserID,
+        reviewID: reviewID,
+        restaurantID: restaurantID,
+      }
+
+      await useFetch('/api/reviews/revoke_upvote/', {
+        method: 'POST',
+        body: data
+      })
+      await useFetch('/api/user_upvotes/delete/', {
+        method: 'POST',
+        body: data
+      })
+
+      this.clientUpvotes = this.clientUpvotes - 1
+      this.clientisUpvoted = false 
+    },
   },
   data() {
     return {
