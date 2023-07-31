@@ -45,7 +45,6 @@
                 :src="image"
                 alt=""
                 :id="index"
-                @click="deleteImage"
               />
               <img
                 v-if="this.formData.addedImages.length > 0"
@@ -55,9 +54,13 @@
                 :id="'n-' + index"
                 @click="deleteImage"
               />
-              <label v-if="this.formData.imageCount < 5" for="add-photo" class="media-button">
+              <label v-if="this.formData.addedImages.length < 5 && !this.formData.hasImage" for="add-photo" class="media-button">
                 <img class="media-icon" src="~/assets/icons/camera.svg" alt="" />
                 <span class="media-span">Add Photos</span>
+              </label>
+              <label v-else-if="this.formData.addedImages.length == 0 && this.formData.imageCount > 0" class="media-button" @click="deleteAll">
+                <img class="media-icon" src="~/assets/icons/camera.svg" alt="" />
+                <span class="media-span">Remove Photos</span>
               </label>
               <input
                 v-if="this.formData.imageCount < 5"
