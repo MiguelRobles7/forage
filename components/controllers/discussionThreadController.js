@@ -126,6 +126,7 @@ export default {
           console.log(data3)
         }
       }
+      this.reloadPage()
     }
   }
 }

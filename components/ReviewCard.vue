@@ -31,10 +31,24 @@
               alt=""
             />
           </div>
-          <span class="vote-count">{{ clientUpvotes - clientDownvotes }}</span>
-          <div class="vote-pill">
-            <img class="review-icon" src="~/assets/icons/downvote.svg" alt="" />
-          </div>
+          <span v-if="clientisUpvoted" class="vote-count" style="color: #5ddb8f">
+            {{ clientUpvotes - clientDownvotes }}
+          </span>
+          <span v-else-if="clientisDownvoted" class="vote-count" style="color: #ff5b5b">
+            {{ clientUpvotes - clientDownvotes }}
+          </span>
+          <span v-else class="vote-count" style="color: #e6e6e6">
+            {{ clientUpvotes - clientDownvotes }}
+          </span>
+          <button :disabled="clicked" @click="triggerDownvote" class="interact-button">
+            <div :class="clicked ? 'vote-pill-disabled' : clientisDownvoted ? 'vote-pill-downvoted' : 'vote-pill'">
+              <img
+                class="review-icon"
+                :src="clientisDownvoted ? '/assets/icons/upvote_down.svg' : '/assets/icons/downvote.svg'"
+                alt=""
+              />
+            </div>
+          </button>
         </div>
         <div class="review-elements">
           <div class="review-pill" v-if="review.images.length > 0">

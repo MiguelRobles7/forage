@@ -10,6 +10,14 @@ export default {
         }
       }
       return false
+    },
+    isReviewDownvoted(review) {
+      for (var i = 0; i < this.downvotedReviews.length; i++) {
+        if (this.downvotedReviews[i].reviewID === review.id) {
+          return true
+        }
+      }
+      return false
     }
   },
 
@@ -27,7 +35,8 @@ export default {
         reviewCount: Number,
         price_range: String
       },
-
+      upvotedReviews: [],
+      downvotedReviews: [],
       modal: false,
       userID: '',
       uid: null,
@@ -126,6 +135,12 @@ export default {
     this.upvotedReviews = userUpvotesData
     console.log('upvoted stuff:', this.upvotedReviews)
 
+    const userDownvotesFetch = useFetch(`/api/user_downvotes/${this.uid}`, { immediate: false, method: 'GET' })
+    await userDownvotesFetch.execute({ _initial: true })
+    const userDownvotesData = userDownvotesFetch.data.value.user_downvotes
+
+    this.downvotedReviews = userDownvotesData
+
     let { data: reviews, reviewsError } = await supabase.from('reviews').select()
     if (reviewsError) {
       console.log(reviewsError)
@@ -171,6 +186,7 @@ export default {
           title: reviews[i].title,
           body: reviews[i].body,
           isUpvoted: false,
+          isDownvoted: false,
           rating: reviews[i].rating,
           upvotes: reviews[i].upvotes,
           downvotes: reviews[i].downvotes,
@@ -187,6 +203,9 @@ export default {
 
         if (this.isReviewUpvoted(rev)) {
           rev.isUpvoted = true
+        }
+        else if (this.isReviewDownvoted(rev)) {
+          rev.isDownvoted = true
         }
         rev['restaurantComments'] = []
 

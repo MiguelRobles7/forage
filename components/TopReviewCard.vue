@@ -60,7 +60,7 @@
             <div :class="clicked ? 'vote-pill-disabled' : clientisDownvoted ? 'vote-pill-downvoted' : 'vote-pill'">
               <img
                 class="review-icon"
-                :src="clientisDownvoted ? '/assets/icons/upvote_down.svg' : '/assets/icons/upvote.svg'"
+                :src="clientisDownvoted ? '/assets/icons/upvote_down.svg' : '/assets/icons/downvote.svg'"
                 alt=""
               />
             </div>

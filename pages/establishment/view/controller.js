@@ -92,6 +92,7 @@ export default {
       this.downvotedReviews = userDownvotesData
     }
 
+    console.log("Review data", reviewData)
     for (var i = 0; i < reviewData.length; i++) {
       const userFetch = useFetch(`/api/users/public/${reviewData[i].userId}`, { immediate: false })
       await userFetch.execute({ _initial: true })
@@ -113,6 +114,7 @@ export default {
         isDeleted: reviewData[i].isDeleted,
         comments: reviewData[i].comments
       }
+      console.log("Comments length", review.comments)
       if (this.isReviewUpvoted(review)) {
         review.isUpvoted = true
       }
