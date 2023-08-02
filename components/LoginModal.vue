@@ -1,3 +1,5 @@
+<script src="./controllers/loginModalController.js" />
+
 <template>
   <LoginRegisterSlot type="Login" typeText="your account.">
     <template v-slot:content>
@@ -47,52 +49,6 @@
     </template>
   </LoginRegisterSlot>
 </template>
-
-<script>
-import { RouterLink } from 'vue-router'
-export default {
-  data() {
-    return {
-      accounts: [
-        { email: 'rafa@forage.com', password: 'pogi' },
-        { email: 'jd@forage.com', password: 'pogi' },
-        { email: 'don@forage.com', password: 'pogi' },
-        { email: 'miguel@forage.com', password: 'pogi' }
-      ],
-      email: '',
-      password: '',
-      keepLoggedIn: false,
-      emailText: '',
-      passwordText: ''
-    }
-  },
-  methods: {
-    async signInWithEmail() {
-      const supabase = useSupabaseClient()
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: this.email,
-        password: this.password
-      })
-      console.log(error)
-      if (error) {
-        this.passwordText = 'Email or password is incorrect'
-      } else {
-        this.$emit('login')
-        this.$emit('close')
-      }
-    },
-    hidePlaceholder(e) {
-      e.target.placeholder = ''
-    },
-    showPlaceholder(e) {
-      e.target.type === 'email' ? (e.target.placeholder = 'Email') : (e.target.placeholder = 'Password')
-    },
-    toggleKeepLogin() {
-      this.keepLoggedIn = !this.keepLoggedIn
-    }
-  }
-}
-</script>
 
 <style scoped>
 input {

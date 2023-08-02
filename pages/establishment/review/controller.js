@@ -1,60 +1,50 @@
 export default {
-  props: {
-    restaurant: {
-      type: Object,
-      required: true
-    }
-  },
   methods: {
     edit: function () {
       this.modal = true
     },
-    async getUserID() {
-      const supabase = useSupabaseClient()
-      try {
-        const { data, error } = await supabase.auth.getSession()
-        this.uid = data.session.user.id
-        console.log(uid)
-        if (error) throw error
-      } catch (error) {
-        console.log(error)
-      }
-
-      try {
-        const { data, error } = await supabase.from('profiles').select('profile_id').eq('id', uid)
-        if (error) {
-          throw error
-        } else {
-          this.userID = data[0].profile_id
+    isReviewUpvoted(review) {
+      for (var i = 0; i < this.upvotedReviews.length; i++) {
+        if (this.upvotedReviews[i].reviewID === review.id) {
+          return true
         }
-      } catch (error) {
-        console.log(error)
       }
+      return false
+    },
+    isReviewDownvoted(review) {
+      for (var i = 0; i < this.downvotedReviews.length; i++) {
+        if (this.downvotedReviews[i].reviewID === review.id) {
+          return true
+        }
+      }
+      return false
     }
   },
 
   data() {
     return {
       doneLoading: false,
+      isLoggedIn: true,
       id: useRoute().params.id,
       restaurant: {
         name: String,
         logo: String,
-        bgCard: String,
         description: String,
-        tags: String,
+        tags: Array,
         rating: Number,
         reviewCount: Number,
         price_range: String
       },
-
+      upvotedReviews: [],
+      downvotedReviews: [],
       modal: false,
       userID: '',
       uid: null,
       reviews: [],
       restaurantNames: [],
       restaurantComments: [],
-      reviewed: false
+      reviewed: false,
+      ownerId: null
     }
   },
 
@@ -63,21 +53,20 @@ export default {
     try {
       const { data, error } = await supabase.auth.getSession()
       this.uid = data.session.user.id
-      console.log(uid)
       if (error) throw error
     } catch (error) {
       console.log(error)
     }
 
     try {
-      const { data, error } = await supabase.from('profiles').select('profile_id').eq('id', uid)
+      const { data, error } = await supabase.from('profiles').select('profile_id').eq('id', this.uid)
       if (error) {
         throw error
       } else {
         this.userID = data[0].profile_id
       }
     } catch (error) {
-      console.log(error)
+      console.log('ID ERROR', error)
     }
 
     const restaurantFetch = useFetch(`/api/restaurants/${useRoute().params.id}`, { immediate: false })
@@ -88,7 +77,7 @@ export default {
     this.restaurant.logo = restaurantData.logo
     this.restaurant.name = restaurantData.name
     this.restaurant.description = restaurantData.description
-    this.restaurant.tags = restaurantData.summary
+    this.restaurant.tags = restaurantData.tags
     this.restaurant.rating = restaurantData.rating
     this.restaurant.reviewCount = restaurantData.reviewCount
 
@@ -97,6 +86,7 @@ export default {
         data: { user }
       } = await supabase.auth.getUser()
       if (user === null) {
+        this.isLoggedIn = false
         console.log('User is not logged in')
         this.reviewed = true
       }
@@ -112,7 +102,8 @@ export default {
         .eq('restaurantId', this.$route.params.id)
         .eq('userId', this.userID)
         .eq('isReply', false)
-      console.log('Reviewed data: ' + data)
+        .eq('isDeleted', false)
+      console.log('Reviewed data: ', data)
       if (error) {
         throw error
       }
@@ -135,23 +126,53 @@ export default {
       console.log(error)
     }
 
-    let { data: rv, error } = await supabase.from('reviews').select()
-    if (error) {
-      console.log(error)
+    var userUpvotesData = []
+    if (this.isLoggedIn) {
+      const userUpvotesFetch = useFetch(`/api/user_upvotes/${this.uid}`, { immediate: false, method: 'GET' })
+      await userUpvotesFetch.execute({ _initial: true })
+      userUpvotesData = userUpvotesFetch.data.value.user_upvotes
+    }
+    this.upvotedReviews = userUpvotesData
+    console.log('upvoted stuff:', this.upvotedReviews)
+
+    const userDownvotesFetch = useFetch(`/api/user_downvotes/${this.uid}`, { immediate: false, method: 'GET' })
+    await userDownvotesFetch.execute({ _initial: true })
+    const userDownvotesData = userDownvotesFetch.data.value.user_downvotes
+
+    this.downvotedReviews = userDownvotesData
+
+    let { data: reviews, reviewsError } = await supabase.from('reviews').select()
+    if (reviewsError) {
+      console.log(reviewsError)
     } else {
       console.log('Got Reviews')
-      console.log(rv)
+      console.log(reviews)
+    }
+    let { data: thisResto, restaurantError } = await supabase
+      .from('restaurants')
+      .select('*')
+      .eq('id', this.$route.params.id)
+    if (restaurantError) {
+      console.log(restaurantError)
+    } else {
+      console.log("Got Restaurant's Name")
     }
 
-    for (var i = 0; i < rv.length; i++) {
-      if (rv[i].restaurantId == this.$route.params.id && rv[i].isReply == false && rv[i].isDeleted == false) {
-        let { data: restoName, error } = await supabase.from('restaurants').select('name').eq('id', rv[i].restaurantId)
-        if (error) {
-          console.log(error)
-        } else {
-          console.log("Got Restaurant's Name")
-        }
-        let { data: restoUser, e } = await supabase.from('profiles').select().eq('profile_id', rv[i].userId)
+    // Get owner
+    let { data: owner, ownerErr } = await supabase.from('profiles').select('*').eq('id', thisResto[0].owner_id)
+    if (ownerErr) {
+      console.log(ownerErr)
+    } else {
+      console.log('Got Owner')
+    }
+
+    for (var i = 0; i < reviews.length; i++) {
+      if (
+        reviews[i].restaurantId == this.$route.params.id &&
+        reviews[i].isReply == false &&
+        reviews[i].isDeleted == false
+      ) {
+        let { data: restoUser, e } = await supabase.from('profiles').select().eq('profile_id', reviews[i].userId)
         if (e) {
           console.log(e)
         } else {
@@ -159,47 +180,69 @@ export default {
         }
 
         let rev = {
-          id: parseInt(rv[i].id),
-          restaurantId: rv[i].restaurantId,
-          userId: rv[i].userId,
-          title: rv[i].title,
-          body: rv[i].body,
-          rating: rv[i].rating,
-          upvotes: rv[i].upvotes,
-          downvotes: rv[i].downvotes,
-          isEdited: rv[i].is_edited,
-          isReply: rv[i].is_reply,
-          isDeleted: rv[i].is_deleted,
-          images: rv[i].images,
-          comments: rv[i].comments,
-          ownerResponded: rv[i].ownerResponded,
+          id: parseInt(reviews[i].id),
+          restaurantId: reviews[i].restaurantId,
+          userId: reviews[i].userId,
+          title: reviews[i].title,
+          body: reviews[i].body,
+          isUpvoted: false,
+          isDownvoted: false,
+          rating: reviews[i].rating,
+          upvotes: reviews[i].upvotes,
+          downvotes: reviews[i].downvotes,
+          isEdited: reviews[i].is_edited,
+          isReply: reviews[i].is_reply,
+          isDeleted: reviews[i].is_deleted,
+          images: reviews[i].images,
+          comments: reviews[i].comments,
+          ownerResponded: reviews[i].ownerResponded,
 
           userImage: restoUser[0].displayPicture,
           userName: restoUser[0].name
         }
+
+        if (this.isReviewUpvoted(rev)) {
+          rev.isUpvoted = true
+        }
+        else if (this.isReviewDownvoted(rev)) {
+          rev.isDownvoted = true
+        }
         rev['restaurantComments'] = []
-        for (var j = 0; j < rv.length; j++) {
-          if (rv[j].isReply == true && rv[i].comments.includes(rv[j].id)) {
-            let { data: ru, e } = await supabase.from('profiles').select().eq('profile_id', rv[j].userId)
 
-            let subComment = {
-              body: rv[j].body,
-              upvotes: rv[j].upvotes,
-              downvotes: rv[j].downvotes,
+        for (var j = 0; j < reviews.length; j++) {
+          if (reviews[j].isReply == true && reviews[i].comments.includes(reviews[j].id)) {
+            let { data: reviewUser, e } = await supabase.from('profiles').select().eq('profile_id', reviews[j].userId)
 
-              userImage: ru[0].displayPicture,
-              userName: ru[0].name
+            if (reviews[i].ownerResponded && reviews[j].userId == owner[0].profile_id) {
+              let subComment = {
+                userId: reviews[j].userId,
+                body: reviews[j].body,
+                upvotes: reviews[j].upvotes,
+                downvotes: reviews[j].downvotes,
+
+                userImage: thisResto[0].logo,
+                userName: thisResto[0].name
+              }
+              rev['restaurantComments'].push(subComment)
+            } else {
+              let subComment = {
+                userId: reviews[j].userId,
+                body: reviews[j].body,
+                upvotes: reviews[j].upvotes,
+                downvotes: reviews[j].downvotes,
+
+                userImage: reviewUser[0].displayPicture,
+                userName: reviewUser[0].name
+              }
+              rev['restaurantComments'].push(subComment)
             }
-            rev['restaurantComments'].push(subComment)
-            console.log('Got Restaurant Comments', rv[j])
+            console.log('Got Restaurant Comments', reviews[j])
           }
         }
-        rev['restaurantName'] = restoName[0].name
+        rev['restaurantName'] = thisResto[0].name
         this.reviews.push(rev)
       }
     }
-    console.log(this.reviews)
-
     this.doneLoading = true
   }
 }

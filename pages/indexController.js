@@ -7,6 +7,7 @@ export default {
     }
   },
   async mounted() {
+    const supabase = useSupabaseClient()
     const restaurantsFetch = useFetch('/api/restaurants/', { immediate: false })
     await restaurantsFetch.execute({ _initial: true })
     this.restaurants = restaurantsFetch.data.value.restaurants

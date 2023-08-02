@@ -1,8 +1,8 @@
 <script src="./controller.js" />
 
 <template>
-  <main>
-    <Loading v-if="!doneLoading"></Loading>
+  <Loading v-if="!doneLoading"></Loading>
+  <main v-if="doneLoading">
     <div class="profile-view">
       <div
         class="banner"

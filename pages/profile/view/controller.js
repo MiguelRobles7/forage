@@ -1,5 +1,3 @@
-import Users from '~/assets/JSON/profiles.json'
-
 export default {
   data() {
     return {
@@ -45,7 +43,7 @@ export default {
     if (error) {
       console.log(error)
     } else {
-      console.log('Got Reviews')
+      console.log('Got Reviews', rev)
     }
 
     for (let i = 0; i < rev.length; i++) {

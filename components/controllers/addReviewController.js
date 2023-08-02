@@ -1,4 +1,3 @@
-<script>
 export default {
   props: {
     restaurant: String,
@@ -10,7 +9,7 @@ export default {
       formData: {
         restaurantId: this.restaurantId,
         userId: this.userId,
-        rating: 0,
+        rating: 5,
         title: '',
         body: '',
         upvotes: 0,
@@ -22,7 +21,9 @@ export default {
         videoCount: 0
       },
       doneLoading: true,
-      newId: null
+      newId: null,
+      rCount: 0,
+      avRating: 0
     }
   },
   async mounted() {
@@ -154,17 +155,49 @@ export default {
         if (error) throw error
         else {
           console.log('Added review!')
+          // Update Ratings and Comment Count
+          const restaurantsFetch = useFetch('/api/restaurants/', { immediate: false })
+          await restaurantsFetch.execute({ _initial: true })
+          let restos = restaurantsFetch.data.value.restaurants
+          for (let i = 0; i < restos.length; i++) {
+            if (restos[i].id == this.restaurantId) {
+              let { data: reviewQuery, reviewError } = await supabase
+                .from('reviews')
+                .select('*')
+                .eq('restaurantId', restos[i].id)
+              for (let j = 0; j < reviewQuery.length; j++) {
+                if (!reviewQuery[j].isDeleted && !reviewQuery[j].isReply) {
+                  this.rCount++
+                  this.avRating += reviewQuery[j].rating
+                }
+              }
+            }
+          }
+          this.avRating = Math.round((this.avRating / this.rCount) * 10) / 10
+          let { data: rst, error2 } = await supabase
+            .from('restaurants')
+            .update({
+              reviewCount: this.rCount,
+              rating: this.avRating
+            })
+            .eq('id', this.restaurantId)
+            .select()
+
+          if (error2) {
+            console.log(error2)
+          } else {
+            console.log(rst)
+          }
+          console.log('Updated Table')
           if (this.formData.imageCount + this.formData.videoCount > 0) this.uploadMedia()
         }
       } catch (error) {
         console.log(error)
       }
-      // TODO: Make proper alert
-      alert('Please wait for the page to reload')
       this.doneLoading = false
       setTimeout(function () {
         window.location.reload()
-      }, 5000)
+      }, 8000)
     },
     addMedia(e) {
       if (e.target.files[0].type.split('/')[0] === 'image') {
@@ -193,102 +226,3 @@ export default {
     }
   }
 }
-</script>
-
-<template>
-  <main>
-    <div class="review-modal modal" id="add-modal">
-      <Loading v-if="!doneLoading"></Loading>
-      <div class="modal-main">
-        <div class="flex-row" style="width: 100%">
-          <span class="title">Write a review for {{ restaurant }}</span>
-          <!-- TODO: MCO3 Turn into radio button -->
-          <div class="stars" style="margin: 0 0 0 auto">
-            <input
-              class="text-input"
-              type="number"
-              min="1"
-              max="5"
-              v-model="formData.rating"
-              placeholder="Star Number"
-              style="width: fit-content"
-            />
-            <img class="star" src="~/assets/icons/star.png" alt="" />
-            <img class="star" src="~/assets/icons/star.png" alt="" />
-            <img class="star" src="~/assets/icons/star.png" alt="" />
-            <img class="star" src="~/assets/icons/star.png" alt="" />
-            <img class="star" src="~/assets/icons/star.png" alt="" />
-          </div>
-        </div>
-        <div class="inner">
-          <div class="item">
-            <span>Title</span>
-            <input class="text-input" type="text" v-model="formData.title" placeholder="Title" />
-          </div>
-          <div class="item">
-            <span>Body</span>
-            <textarea v-model="formData.body" class="text-input" type="text" placeholder="Body Text"></textarea>
-          </div>
-
-          <div class="item">
-            <span>Media</span>
-            <div class="flex-row" style="gap: 0.9rem">
-              <!-- TODO: (GET WAIT) Add images (waiting for image handling) -->
-              <img
-                v-for="(image, index) in this.formData.images"
-                class="media-image"
-                :id="index"
-                :src="image.link"
-                @click="removeMedia"
-              />
-              <video
-                v-for="(video, index) in this.formData.videos"
-                class="media-image"
-                :id="index"
-                :src="video.link"
-                @click="removeMedia"
-              ></video>
-              <label
-                v-if="this.formData.imageCount + this.formData.videoCount < 5"
-                for="add-photo"
-                class="media-button"
-              >
-                <img class="media-icon" src="~/assets/icons/camera.svg" alt="" />
-                <span class="media-span">Add Photos</span>
-              </label>
-              <input
-                v-if="this.formData.imageCount + this.formData.videoCount < 5"
-                type="file"
-                id="add-photo"
-                accept=".png, .jpg, .jpeg"
-                @change="addMedia"
-              />
-            </div>
-          </div>
-          <div class="button-row">
-            <button class="cancel-button" @click="reloadPage" value="view" style="padding: 0.625rem 1.5rem">
-              Cancel
-            </button>
-            <button @click="addReview" class="save-button" style="padding: 0.625rem 1.5rem">Save Changes</button>
-          </div>
-        </div>
-      </div>
-      <div></div>
-    </div>
-  </main>
-</template>
-
-<style scoped>
-input[type='file'] {
-  display: none;
-}
-label {
-  cursor: pointer;
-}
-img {
-  cursor: pointer;
-}
-video.media-button {
-  cursor: pointer;
-}
-</style>

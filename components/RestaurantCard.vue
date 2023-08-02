@@ -1,13 +1,11 @@
 <script>
-import internal from 'stream'
-
 export default {
   props: {
     imgPath: String,
     bgImgPath: String,
     name: String,
     description: String,
-    tags: String,
+    tags: Array,
     reviewCount: Number,
     rating: Number,
     price: String
@@ -43,13 +41,10 @@ export default {
     <img :src="imgPath" alt="" class="restaurant-card-image" />
     <div class="name">{{ name }}</div>
     <div class="description">{{ description }}</div>
-    <!--TODO : Fix Tags-->
     <div class="tags">
-      <div class="info-pill">
-        <div class="info-text" style="text-decoration-line: underline">{{ tags }}</div>
+      <div class="info-pill" v-for="t in tags">
+        <div class="info-text" style="text-decoration-line: underline">{{ t }}</div>
       </div>
     </div>
   </div>
 </template>
-
-<style></style>

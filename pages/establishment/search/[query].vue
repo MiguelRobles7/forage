@@ -9,15 +9,14 @@
           <NuxtLink
             v-for="restaurant in row"
             :key="restaurant"
-            :to="`/establishment/view/${restaurant.restaurant_id}`"
+            :to="`/establishment/view/${restaurant.id}`"
             style="flex-basis: 25%"
           >
             <RestaurantCard
               :name="restaurant.name"
               :imgPath="restaurant.logo"
-              :bgImgPath="restaurant.bgCard"
               :description="restaurant.description"
-              :tags="restaurant.summary"
+              :tags="restaurant.tags"
               :rating="restaurant.rating"
               :reviewCount="restaurant.reviewCount"
               :price="restaurant.price_range"

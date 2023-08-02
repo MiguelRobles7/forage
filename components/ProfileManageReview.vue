@@ -17,7 +17,9 @@ export default {
   },
   data() {
     return {
-      modal: false
+      modal: false,
+      rCount: 0,
+      avRating: 0
     }
   },
   methods: {
@@ -31,6 +33,8 @@ export default {
         .update({ isDeleted: true })
         .eq('restaurantId', this.restaurantId)
         .eq('userId', this.userId)
+        .eq('isReply', false)
+        .eq('isDeleted', false)
         .select()
 
       if (error) {
@@ -38,8 +42,42 @@ export default {
       } else {
         console.log('Success!')
         console.log(data)
-        window.location.reload()
+        // Update Ratings and Comment Count
+        const restaurantsFetch = useFetch('/api/restaurants/', { immediate: false })
+        await restaurantsFetch.execute({ _initial: true })
+        let restos = restaurantsFetch.data.value.restaurants
+        for (let i = 0; i < restos.length; i++) {
+          if (restos[i].id == this.restaurantId) {
+            let { data: reviewQuery, reviewError } = await supabase
+              .from('reviews')
+              .select('*')
+              .eq('restaurantId', restos[i].id)
+            for (let j = 0; j < reviewQuery.length; j++) {
+              if (!reviewQuery[j].isDeleted && !reviewQuery[j].isReply) {
+                this.rCount++
+                this.avRating += reviewQuery[j].rating
+              }
+            }
+          }
+        }
+        this.avRating = Math.round((this.avRating / this.rCount) * 10) / 10
+        let { data: rst, error2 } = await supabase
+          .from('restaurants')
+          .update({
+            reviewCount: this.rCount,
+            rating: this.avRating
+          })
+          .eq('id', this.restaurantId)
+          .select()
+
+        if (error2) {
+          console.log(error2)
+        } else {
+          console.log(rst)
+        }
+        console.log('Updated Table')
       }
+      alert('Review Deleted!')
     }
   }
 }
@@ -89,7 +127,7 @@ export default {
           <button class="review-pill" @click="edit">
             <img class="review-icon" style="height: 0.9rem; width: 0.9rem" src="~/assets/icons/edit-02.svg" alt="" />
             <span class="review-pill-span" style="font-size: 0.75rem">Edit</span>
-            <EditReviewModal
+            <EditReview
               v-if="modal"
               :restaurantName="restaurantName"
               :restaurantId="restaurantId"
@@ -98,7 +136,7 @@ export default {
               :body="content"
               :rating="stars"
               :images="images"
-            ></EditReviewModal>
+            ></EditReview>
           </button>
           <button class="review-pill" @click="deleteReviews">
             <img class="review-icon" style="height: 0.9rem; width: 0.9rem" src="~/assets/icons/delete.svg" alt="" />

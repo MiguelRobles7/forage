@@ -7,7 +7,6 @@ export default {
         logo: String,
         name: String,
         desc: String,
-        summary: String,
         location: String,
         openingTime: String,
         closingTime: String,

@@ -1,13 +1,13 @@
 <script src="./controller.js" />
 
 <template>
-  <main>
+  <Loading v-if="!doneLoading"></Loading>
+  <main v-if="doneLoading">
     <div class="establishment-all-reviews">
       <div class="left">
         <RestaurantCard
           :name="restaurant.name"
           :imgPath="restaurant.logo"
-          :bgImgPath="restaurant.bgCard"
           :description="restaurant.description"
           :tags="restaurant.tags"
           :rating="restaurant.rating"
@@ -25,33 +25,17 @@
               </button>
             </NuxtLink>
           </div>
-          <AddReviewModal
-            v-if="modal"
-            :restaurant="restaurant.name"
-            :restaurantId="id"
-            :userId="this.userID"
-          ></AddReviewModal>
+          <AddReview v-if="modal" :restaurant="restaurant.name" :restaurantId="Number(id)" :userId="this.userID"></AddReview>
 
           <div class="review-container">
-            <div v-for="(r, i) in reviews" :key="r">
-              <EstablishmentReviewAll
-                :reviewId="r.id"
-                :ownerReply="r.owner_response"
-                :userImg="r.userImage"
-                :userID="r.userId"
-                :userName="r.userName"
-                :title="r.title"
-                :content="r.body"
-                :stars="r.rating"
-                :upvotes="r.upvotes"
-                :downvotes="r.downvotes"
-                :isEdited="r.is_edited"
-                :images="r.images"
-                :comments="r.restaurantComments"
-                :owner_responded="r.ownerResponded"
+            <div v-for="r in reviews" :key="r">
+              <ReviewCard
+                :isLoggedIn="isLoggedIn"
+                :loggedUserID="uid"
+                :restaurantID="Number(id)"
                 :owner_image="restaurant.logo"
-                :restaurant_id="id"
-              ></EstablishmentReviewAll>
+                :review="r"
+              ></ReviewCard>
             </div>
           </div>
         </div>

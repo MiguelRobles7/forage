@@ -1,33 +1,9 @@
 <script>
 export default {
-  data() {
-    return {
-      user: {
-        name: String,
-        dpLink: String,
-        id: Number
-      }
-    }
-  },
-  async setup() {},
-  async created() {
-    const supabase = useSupabaseClient()
-    var supabaseSession = await supabase.auth.getSession()
-    var userSession = null
-    var userId = ''
-
-    if (!supabaseSession.data.session) {
-      this.isLoggedIn = false
-    } else {
-      this.isLoggedIn = true
-      userSession = supabaseSession.data.session.user
-      userId = userSession.id
-      const userRequest = await useFetch(`/api/users/session/${userId}`)
-      const userData = userRequest.data.value.users[0]
-      this.user.name = userData.name
-      this.user.dpLink = userData.displayPicture
-      this.id = userData.profile_id
-    }
+  props: {
+    userName: String,
+    userID: Number,
+    dpLink: String
   },
   methods: {
     async logout() {
@@ -43,10 +19,10 @@ export default {
 </script>
 <template>
   <div class="dropdown">
-    <NuxtLink :to="`/profile/view/${id}`" style="display: contents">
+    <NuxtLink :to="`/profile/view/${userID}`" style="display: contents">
       <div class="dropdown-head">
-        <img class="head-pfp" :src="user.dpLink" alt="" />
-        <span class="head-span">{{ user.name }} </span>
+        <img class="head-pfp" :src="dpLink" alt="" />
+        <span class="head-span">{{ userName }} </span>
       </div>
     </NuxtLink>
 
@@ -83,5 +59,3 @@ export default {
     </div>
   </div>
 </template>
-
-<style></style>

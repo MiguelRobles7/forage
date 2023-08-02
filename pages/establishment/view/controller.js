@@ -1,18 +1,12 @@
-import Restaurants from '~/assets/JSON/restaurants.json'
-import MenuItems from '~/assets/JSON/menu.json'
-import Users from '~/assets/JSON/profiles.json'
-import Reviews from '~/assets/JSON/reviews.json'
-
 export default {
   data() {
     return {
       addresses: ['Menu', 'Top Reviews'],
       addresses_links: ['#menu', '#reviews'],
       upvotedReviews: [],
+      downvotedReviews: [],
       id: useRoute().params.id,
       modal: false,
-      restaurants: Restaurants,
-      users: Users,
       reviews_holder: [[], [], []],
       menu: [],
       restaurant: {
@@ -21,7 +15,7 @@ export default {
         logo: String,
         name: String,
         desc: String,
-        summary: String,
+        tags: Array,
         location: String,
         openingTime: String,
         closingTime: String,
@@ -38,13 +32,11 @@ export default {
 
     if (error) {
       console.log(error)
-    } else {
-      console.log(this.reviews)
     }
   },
 
   async mounted() {
-    const restaurantFetch = useFetch(`/api/restaurants/${useRoute().params.id}`, { immediate: false})
+    const restaurantFetch = useFetch(`/api/restaurants/${useRoute().params.id}`, { immediate: false })
     await restaurantFetch.execute({ _initial: true })
     const restaurantData = restaurantFetch.data.value.restaurants[0]
     this.restaurant.backgroundImg = restaurantData.banner
@@ -52,7 +44,7 @@ export default {
     this.restaurant.logo = restaurantData.logo
     this.restaurant.name = restaurantData.name
     this.restaurant.desc = restaurantData.description
-    this.restaurant.summary = restaurantData.summary
+    this.restaurant.tags = restaurantData.tags
     this.restaurant.location = restaurantData.location
     this.restaurant.openingTime = restaurantData.openingTime.slice(0, -3)
     this.restaurant.closingTime = restaurantData.closingTime.slice(0, -3)
@@ -68,31 +60,39 @@ export default {
     const reviewFetch = useFetch(`/api/reviews/restaurant/${useRoute().params.id}`, { immediate: false })
     await reviewFetch.execute({ _initial: true })
     const reviewData = reviewFetch.data.value.reviews
-    var reviewCount = reviewData.length
+
     var c = 0
 
-    const supabase = useSupabaseClient();
-    var supabaseSession = await supabase.auth.getSession();
-    var userSession = null;
-    var userId = "";
+    const supabase = useSupabaseClient()
+    var supabaseSession = await supabase.auth.getSession()
+    var userSession = null
+    var userId = ''
 
     if (!supabaseSession.data.session) {
       this.isLoggedIn = false
+      this.loggedUserID = null
     } else {
       this.isLoggedIn = true
       userSession = supabaseSession.data.session.user
-      userId = userSession.id;
-      const userRequest = await useFetch(`/api/users/session/${userId}`);
-      const userData = userRequest.data.value.users[0];
-      this.loggedUserID  = userData.id;
-     
-      const userUpvotesFetch = useFetch(`/api/user_upvotes/${this.loggedUserID}`, { immediate: false, method: 'GET' })
-      await userUpvotesFetch.execute({ _initial: true });
-      const userUpvotesData = userUpvotesFetch.data.value.user_upvotes;
+      userId = userSession.id
+      const userRequest = await useFetch(`/api/users/session/${userId}`)
+      const userData = userRequest.data.value.users[0]
+      this.loggedUserID = userData.id
 
-      this.upvotedReviews = userUpvotesData;
+      const userUpvotesFetch = useFetch(`/api/user_upvotes/${this.loggedUserID}`, { immediate: false, method: 'GET' })
+      await userUpvotesFetch.execute({ _initial: true })
+      const userUpvotesData = userUpvotesFetch.data.value.user_upvotes
+
+      this.upvotedReviews = userUpvotesData
+
+      const userDownvotesFetch = useFetch(`/api/user_downvotes/${this.loggedUserID}`, { immediate: false, method: 'GET' })
+      await userDownvotesFetch.execute({ _initial: true })
+      const userDownvotesData = userDownvotesFetch.data.value.user_downvotes
+
+      this.downvotedReviews = userDownvotesData
     }
 
+    console.log("Review data", reviewData)
     for (var i = 0; i < reviewData.length; i++) {
       const userFetch = useFetch(`/api/users/public/${reviewData[i].userId}`, { immediate: false })
       await userFetch.execute({ _initial: true })
@@ -107,24 +107,22 @@ export default {
         rating: reviewData[i].rating,
         upvotes: reviewData[i].upvotes,
         isUpvoted: false,
-        //walang comments
+        isDownvoted: false,
         downvotes: reviewData[i].downvotes,
         isEdited: reviewData[i].isEdited,
-        //no images breaks da code
         images: reviewData[i].images,
-        isDeleted: reviewData[i].isDeleted
+        isDeleted: reviewData[i].isDeleted,
+        comments: reviewData[i].comments
       }
-      if(this.isReviewUpvoted(review)) {
-        review.isUpvoted = true;
-      };
-
-      if (review.images === null) {
-        review.images = []
+      console.log("Comments length", review.comments)
+      if (this.isReviewUpvoted(review)) {
+        review.isUpvoted = true
       }
+      else if (this.isReviewDownvoted(review)) {
+        review.isDownvoted = true
+      } 
       if (!reviewData[i].isReply && !reviewData[i].isDeleted) {
         this.reviews_holder[c].push(review)
-        console.log(this.reviews_holder)
-        console.log(c)
         if (c === 2) {
           c = 0
         } else {
@@ -153,12 +151,20 @@ export default {
     },
 
     isReviewUpvoted(review) {
-      for(var i = 0; i < this.upvotedReviews.length; i++) {
-        if(this.upvotedReviews[i].reviewID === review.review_id) {
-          return true;
+      for (var i = 0; i < this.upvotedReviews.length; i++) {
+        if (this.upvotedReviews[i].reviewID === review.review_id) {
+          return true
         }
       }
-      return false;
+      return false
+    },
+    isReviewDownvoted(review) {
+      for (var i = 0; i < this.downvotedReviews.length; i++) {
+        if (this.downvotedReviews[i].reviewID === review.review_id) {
+          return true
+        }
+      }
+      return false
     }
   }
 }

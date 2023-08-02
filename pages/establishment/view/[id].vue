@@ -43,11 +43,9 @@
             {{ restaurant.desc }}
           </div>
           <div class="tags">
-            <!-- TODO: FIX SUMMARY
-            <div class="info-pill" v-for="t in restaurant.summary">
+            <div class="info-pill" v-for="t in restaurant.tags">
               <div class="info-text" style="text-decoration-line: underline">{{ t }}</div>
             </div>
-            -->
           </div>
         </div>
       </div>
@@ -69,18 +67,19 @@
         <div class="review-box-head">
           <span> Top Reviews </span>
           <NuxtLink :to="`/establishment/review/${this.id}`">
-            <button class="see-reviews-button">See All Reviews →</button>
+            <button v-if="isLoggedIn" class="see-reviews-button">See All Reviews →</button>
           </NuxtLink>
         </div>
         <div class="reviews-container">
           <div class="review-column">
             <div class="abox" v-for="(r, i) in reviews_holder[0]" :key="r">
-              <EstablishmentReview
+              <TopReviewCard
                 :key="r"
                 :loggedUserID="loggedUserID"
-                :restaurantID="id"
+                :restaurantID="Number(id)"
                 :reviewID="r.review_id"
                 :isUpvoted="r.isUpvoted"
+                :isDownvoted="r.isDownvoted"
                 :isLoggedIn="isLoggedIn"
                 :ownerReply="r.owner_response"
                 :userImg="r.user_image"
@@ -92,21 +91,23 @@
                 :upvotes="r.upvotes"
                 :downvotes="r.downvotes"
                 :isEdited="r.is_edited"
-                :comments="r.comments"
                 :owner_responded="r.owner_responded"
                 :owner_image="restaurant.logo"
+                :comments="r.comments"
+                :images="r.images"
               >
-              </EstablishmentReview>
+              </TopReviewCard>
             </div>
           </div>
           <div class="review-column">
             <div class="abox" v-for="(r, i) in reviews_holder[1]" :key="r">
-              <EstablishmentReview
+              <TopReviewCard
                 :key="r"
                 :loggedUserID="loggedUserID"
-                :restaurantID="id"
+                :restaurantID="Number(id)"
                 :reviewID="r.review_id"
                 :isUpvoted="r.isUpvoted"
+                :isDownvoted="r.isDownvoted"
                 :isLoggedIn="isLoggedIn"
                 :ownerReply="r.owner_response"
                 :userImg="r.user_image"
@@ -121,18 +122,20 @@
                 :comments="r.comments"
                 :owner_responded="r.owner_responded"
                 :owner_image="restaurant.logo"
+                :images="r.images"
               >
-              </EstablishmentReview>
+              </TopReviewCard>
             </div>
           </div>
           <div class="review-column">
             <div class="abox" v-for="(r, i) in reviews_holder[2]" :key="r">
-              <EstablishmentReview
+              <TopReviewCard
                 :key="r"
                 :loggedUserID="loggedUserID"
-                :restaurantID="id"
+                :restaurantID="Number(id)"
                 :reviewID="r.review_id"
                 :isUpvoted="r.isUpvoted"
+                :isDownvoted="r.isDownvoted"
                 :isLoggedIn="isLoggedIn"
                 :ownerReply="r.owner_response"
                 :userImg="r.user_image"
@@ -147,8 +150,9 @@
                 :comments="r.comments"
                 :owner_responded="r.owner_responded"
                 :owner_image="restaurant.logo"
+                :images="r.images"
               >
-              </EstablishmentReview>
+              </TopReviewCard>
             </div>
           </div>
         </div>
