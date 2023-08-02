@@ -7,7 +7,7 @@
         <div class="flex-col">
           <div v-if="currPage === 1">
             <div class="input-parent">
-              <img src="~/assets/icons/Email.png" />
+              <img src="/assets/icons/email.png" />
               <input
                 id="email"
                 v-model="email"
@@ -22,7 +22,7 @@
             <!-- <label v-if="emailText">{{ emailText }}</label> -->
 
             <div class="input-parent">
-              <img src="~/assets/icons/Key.png" />
+              <img src="~/assets/icons/key.png" />
               <input
                 id="password"
                 v-model="password"
@@ -36,7 +36,7 @@
             </div>
 
             <div class="input-parent">
-              <img src="~/assets/icons/Lock.png" />
+              <img src="~/assets/icons/lock.png" />
               <input
                 id="confirm"
                 v-model="passwordConfirm"
@@ -108,7 +108,7 @@
           </div>
           <div v-if="currPage === 3">
             <div class="labels">
-              <img src="~/assets/icons/Note.svg" />
+              <img src="~/assets/icons/note.svg" />
               <label class="input-def">Describe yourself (optional)</label>
             </div>
             <!-- Textbox input -->

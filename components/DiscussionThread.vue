@@ -38,7 +38,7 @@
                 </div>
                 <span class="vote-count">{{ review.upvotes - review.downvotes }}</span>
                 <div class="vote-pill">
-                  <img class="review-icon" src="~/assets/icons/downvote.svg" alt="" />
+                  <img class="review-icon" src="/assets/icons/downvote.svg" alt="" />
                 </div>
               </div>
               <div class="review-pill" v-if="review.images.length > 0">

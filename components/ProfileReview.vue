@@ -3,7 +3,7 @@ export default {
   props: {
     review: Object,
     restaurantName: String
-  },
+  }
 }
 </script>
 
@@ -21,7 +21,6 @@ export default {
       </div>
       <div class="review-item">
         <span class="title-span">{{ review.title }}</span>
-            
       </div>
       <div class="review-item">
         <p class="body">{{ review.body }}</p>
@@ -49,7 +48,7 @@ export default {
           </div>
           <span class="vote-count">{{ review.upvotes - review.downvotes }}</span>
           <div class="vote-pill">
-            <img class="review-icon" src="~/assets/icons/downvote.svg" alt="" />
+            <img class="review-icon" src="/assets/icons/downvote.svg" alt="" />
           </div>
         </div>
       </div>

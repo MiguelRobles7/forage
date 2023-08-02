@@ -24,12 +24,8 @@
       <div class="review-item" style="gap: 0.4rem">
         <div class="review-voting">
           <div :class="clientisUpvoted ? 'vote-pill-upvoted' : 'vote-pill'">
-            <img
-              @click="triggerUpvote"
-              class="review-icon"
-              :src="clientisUpvoted ? '/assets/icons/upvote_up.svg' : '/assets/icons/upvote.svg'"
-              alt=""
-            />
+            <img @click="triggerUpvote" class="review-icon" v-if="clientisUpvoted" src="~/assets/icons/upvote_up.svg" />
+            <img @click="triggerUpvote" class="review-icon" v-else src="~/assets/icons/upvote.svg" alt="" />
           </div>
           <span v-if="clientisUpvoted" class="vote-count" style="color: #5ddb8f">
             {{ clientUpvotes - clientDownvotes }}
@@ -42,11 +38,8 @@
           </span>
           <button :disabled="clicked" @click="triggerDownvote" class="interact-button">
             <div :class="clicked ? 'vote-pill-disabled' : clientisDownvoted ? 'vote-pill-downvoted' : 'vote-pill'">
-              <img
-                class="review-icon"
-                :src="clientisDownvoted ? '/assets/icons/upvote_down.svg' : '/assets/icons/downvote.svg'"
-                alt=""
-              />
+              <img class="review-icon" v-if="clientisDownvoted" src="/assets/icons/upvote_down.svg" alt="" />
+              <img class="review-icon" v-else src="/assets/icons/downvote.svg" alt="" />
             </div>
           </button>
         </div>

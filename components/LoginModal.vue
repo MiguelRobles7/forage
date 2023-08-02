@@ -6,7 +6,7 @@
       <form @submit.prevent="signInWithEmail">
         <div class="flex-col">
           <div class="input-parent">
-            <img src="~/assets/icons/Email.png" />
+            <img src="~/assets/icons/email.png" />
             <input
               v-model="email"
               type="Email"
@@ -20,7 +20,7 @@
           <!-- <label v-if="emailText">{{ emailText }}</label> -->
 
           <div class="input-parent">
-            <img src="~/assets/icons/Key.png" />
+            <img src="~/assets/icons/key.png" />
             <input
               v-model="password"
               type="Password"

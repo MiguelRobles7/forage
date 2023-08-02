@@ -108,7 +108,7 @@ export default {
           </div>
           <span class="vote-count">{{ upvotes - downvotes }}</span>
           <div class="vote-pill">
-            <img class="review-icon" src="~/assets/icons/downvote.svg" alt="" />
+            <img class="review-icon" src="/assets/icons/downvote.svg" alt="" />
           </div>
         </div>
         <div class="review-elements">
