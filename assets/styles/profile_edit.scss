@@ -67,6 +67,7 @@
       .profile-image {
         max-width: 10em;
         border-radius: 10px;
+        object-fit: cover;
       }
       .banner-image {
         max-width: 15em;
@@ -263,6 +264,7 @@
         width: 8em;
         height: 8em;
         border-radius: 8px;
+        object-fit: cover;
       }
       .profile-info {
         display: flex;
