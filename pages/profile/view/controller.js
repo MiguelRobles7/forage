@@ -48,7 +48,7 @@ export default {
 
     for (let i = 0; i < rev.length; i++) {
       let int_id = parseInt(this.id)
-      if (rev[i].userId === int_id && rev[i].isReply === false) {
+      if (rev[i].userId === int_id && rev[i].isReply === false && rev[i].isDeleted === false) {
         this.reviews.push(rev[i])
         let { data: rest, e } = await supabase.from('restaurants').select().eq('id', rev[i].restaurantId)
         if (e) {
