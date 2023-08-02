@@ -95,13 +95,11 @@ export default {
       }
 
       // update review links
-      if (this.formData.deleted) {
-        if (this.formData.addedImages.length > 0) {
-          for (let i = 0; i < this.formData.addedImages.length; i++) {
-            this.formData.images.push(
-              `https://ybdgcrjtuhafbgnuangd.supabase.co/storage/v1/object/public/reviews/${reviewId}/${i}.png`
-            )
-          }
+      if (this.formData.deleted || this.formData.addedImages.length > 0) {
+        for (let i = 0; i < this.formData.addedImages.length; i++) {
+          this.formData.images.push(
+            `https://ybdgcrjtuhafbgnuangd.supabase.co/storage/v1/object/public/reviews/${reviewId}/${i}.png`
+          )
         }
   
         try {
