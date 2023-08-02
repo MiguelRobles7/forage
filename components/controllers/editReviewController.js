@@ -49,6 +49,7 @@ export default {
           .eq('restaurantId', this.restaurantId)
           .eq('userId', this.userId)
           .eq('isDeleted', false)
+          .eq('isReply', false)
           .limit(1)
         if (error) throw error
         else {
