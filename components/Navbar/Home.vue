@@ -33,11 +33,10 @@ export default {
       this.user.dpLink = userData.displayPicture;
       this.user.id = userData.profile_id;
     }
-    this.$emit('doneNav');
-    this.doneLoading = true;
+    this.$emit('doneNav')
+    this.doneLoading = true
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
     toggleLoginModal() {
       if (this.showRegister) this.showRegister = false
@@ -57,10 +56,10 @@ export default {
       console.log('Hide dropdown')
     },
     toggleLogin() {
-      location.reload();
+      location.reload()
     },
     toggleLogout() {
-      location.reload();
+      location.reload()
     }
   }
 }
@@ -94,7 +93,6 @@ export default {
           <div class="buttons-container">
             <button v-if="!isLoggedIn" class="nav-button" @click="toggleRegisterModal">Sign Up</button>
             <button v-if="!isLoggedIn" class="nav-button" @click="toggleLoginModal">Log In</button>
-
             <div v-if="isLoggedIn" class="dropdown-container" @click="toggleDropdown">
               <img class="pfp" :src="user.dpLink" alt="" />
               <span> {{ user.name }}</span>

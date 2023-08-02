@@ -37,15 +37,15 @@
         </p>
       </div>
       <div class="box-3">
-        <span class="footer-header" style="color: aliceblue"
-          >De La Salle University
+        <span class="footer-header">About Page</span>
+        <p class="text">
+          Want to know more about this website? The Technologies used? This website was made primarily with NuxtJS. It
+          also uses Supabase for its database. SCSS was used for styling. Learn more about the other technologies used
+          in this website by visiting the About Page
           <br />
           <br />
-          School Year 2023 - 2024
-          <br />
-          <br />
-          Term 2
-        </span>
+          <NuxtLink to="/about">About Page →</NuxtLink>
+        </p>
       </div>
     </div>
   </main>
