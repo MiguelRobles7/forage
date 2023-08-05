@@ -2,14 +2,14 @@
 
 <template>
   <main>
-    <div class="discussion-modal modal" id="add-modal">
+    <div class="discussion-modal modal" id="add-modal" @click.self="closeModal">
       <div class="modal-main">
         <div class="head-row">
           <div style="display: flex; align-items: center; gap: 0.625rem; flex: 1 0 0">
             <img :src="review.userImage" alt="" />
             <span> {{ review.userName }} </span>
           </div>
-          <button class="cancel-button" @click="reloadPage" value="view">
+          <button class="cancel-button" @click="closeModal" value="view">
             <img src="~/assets/icons/exit.svg" alt="" />
           </button>
         </div>

@@ -33,6 +33,9 @@ export default {
     reloadPage() {
       window.location.reload()
     },
+    closeModal() {
+      this.$emit('toggleModal')
+    },
     async addComment() {
       const supabase = useSupabaseClient()
       let { data: restaurantData, error4 } = await supabase.from('restaurants').select('*')
