@@ -32,6 +32,9 @@ export default {
     }
   },
   methods: {
+    closeModal() {
+      this.$emit('toggleModal')
+    },
     reloadPage() {
       window.location.reload()
     },
@@ -49,6 +52,7 @@ export default {
           .eq('restaurantId', this.restaurantId)
           .eq('userId', this.userId)
           .eq('isDeleted', false)
+          .eq('isReply', false)
           .limit(1)
         if (error) throw error
         else {
@@ -94,13 +98,11 @@ export default {
       }
 
       // update review links
-      if (this.formData.deleted) {
-        if (this.formData.addedImages.length > 0) {
-          for (let i = 0; i < this.formData.addedImages.length; i++) {
-            this.formData.images.push(
-              `https://ybdgcrjtuhafbgnuangd.supabase.co/storage/v1/object/public/reviews/${reviewId}/${i}.png`
-            )
-          }
+      if (this.formData.deleted || this.formData.addedImages.length > 0) {
+        for (let i = 0; i < this.formData.addedImages.length; i++) {
+          this.formData.images.push(
+            `https://ybdgcrjtuhafbgnuangd.supabase.co/storage/v1/object/public/reviews/${reviewId}/${i}.png`
+          )
         }
   
         try {

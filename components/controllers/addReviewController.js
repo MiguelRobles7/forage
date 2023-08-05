@@ -47,6 +47,9 @@ export default {
     reloadPage() {
       window.location.reload()
     },
+    closeModal() {
+      this.$emit('toggleModal')
+    },
     async uploadMedia() {
       const supabase = useSupabaseClient()
 
