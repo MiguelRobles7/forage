@@ -21,14 +21,5 @@ export default {
         <p class="body">{{ comment.body }}</p>
       </div>
     </div>
-    <div class="review-voting">
-      <div class="vote-pill">
-        <img class="review-icon" src="~/assets/icons/upvote.svg" alt="" />
-      </div>
-      <span class="vote-count">{{ comment.upvotes - comment.downvotes }}</span>
-      <div class="vote-pill">
-        <img class="review-icon" src="/assets/icons/downvote.svg" alt="" />
-      </div>
-    </div>
   </div>
 </template>

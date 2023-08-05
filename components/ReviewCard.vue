@@ -44,19 +44,33 @@
           </button>
         </div>
         <div class="review-elements">
-          <div class="review-pill" v-if="review.images.length > 0">
+          <button @click="toggleModal" class="review-pill all-pill">
+            <img class="review-icon" src="~/assets/icons/maximize.svg" alt="" />
+            <span class="review-pill-span">View Discussion</span>
+          </button>
+          <button @click="toggleModal" class="review-pill all-pill" v-if="review.images.length > 0">
             <img class="review-icon" src="~/assets/icons/userimage.svg" alt="" />
             <span class="review-pill-span">{{ review.images.length }} Media Attached</span>
-          </div>
-          <button @click="view_discussion" class="review-pill" style="gap: 0.4rem">
+          </button>
+          <button
+            @click="toggleModal"
+            class="review-pill all-pill"
+            style="gap: 0.4rem"
+            v-if="review.comments.length > 0"
+          >
             <img class="review-icon" src="~/assets/icons/comment_square.svg" alt="" />
             <img class="owner-image" :src="owner_image" alt="" v-if="review.ownerResponded" />
             <span class="review-pill-span" v-if="review.ownerResponded"
               >+ {{ review.restaurantComments.length }} Replies</span
             >
             <span class="review-pill-span" v-else>{{ review.restaurantComments.length }} Replies</span>
-            <DiscussionThread v-if="modal" :review="review" :logo="restaurant.logo"></DiscussionThread>
           </button>
+          <DiscussionThread
+            v-if="modal"
+            :review="review"
+            :logo="restaurant.logo"
+            @toggleModal="toggleModal"
+          ></DiscussionThread>
         </div>
       </div>
     </div>

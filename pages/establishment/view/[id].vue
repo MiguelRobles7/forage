@@ -66,6 +66,8 @@
       <div class="review-box" style="margin-bottom: 5vh" id="reviews">
         <div class="review-box-head">
           <span> Top Reviews </span>
+          <p class="want-to" v-if="isLoggedIn">Want to see and interact with all reviews?</p>
+          <p class="want-to" v-else>Want to see and interact with all reviews? Create an account</p>
           <NuxtLink :to="`/establishment/review/${this.id}`">
             <button v-if="isLoggedIn" class="see-reviews-button">See All Reviews →</button>
           </NuxtLink>

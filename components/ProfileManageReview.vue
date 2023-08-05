@@ -103,20 +103,20 @@ export default {
       </div>
       <div class="review-item" style="justify-content: flex-start; gap: 0.4rem">
         <div class="review-voting">
-          <div class="vote-pill">
+          <div class="vote-pill manage-pill">
             <img class="review-icon" src="~/assets/icons/upvote.svg" alt="" />
           </div>
           <span class="vote-count">{{ upvotes - downvotes }}</span>
-          <div class="vote-pill">
+          <div class="vote-pill manage-pill">
             <img class="review-icon" src="/assets/icons/downvote.svg" alt="" />
           </div>
         </div>
         <div class="review-elements">
-          <div class="review-pill" v-if="images.length > 0">
+          <div class="review-pill manage-pill" v-if="images.length > 0">
             <img class="review-icon" src="~/assets/icons/userimage.svg" alt="" />
             <span class="review-pill-span">{{ images.length }} Media Attached</span>
           </div>
-          <div class="review-pill" style="gap: 0.4rem">
+          <div class="review-pill manage-pill" style="gap: 0.4rem">
             <img class="review-icon" src="~/assets/icons/comment_square.svg" alt="" />
             <img class="owner-image" :src="owner_image" alt="" v-if="owner_responded" />
             <span class="review-pill-span" v-if="owner_responded">+ {{ comments.length }} Replies</span>

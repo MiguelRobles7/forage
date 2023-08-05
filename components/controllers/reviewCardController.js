@@ -8,6 +8,9 @@ export default {
   },
 
   methods: {
+    toggleModal() {
+      this.modal = !this.modal
+    },
     view_discussion: function () {
       this.modal = true
     },
