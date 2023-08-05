@@ -496,6 +496,13 @@
         cursor: pointer;
       }
     }
+    .manage-pill {
+      &:hover {
+        background: var(--base-base-main-base-2, #212124);
+        border: 2px solid var(--base-base-main-border, #2c2c31);
+        cursor: not-allowed;
+      }
+    }
     .review-pill {
       display: flex;
       padding: 0.4rem 0.6rem;
