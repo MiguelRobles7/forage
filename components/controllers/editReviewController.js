@@ -32,6 +32,9 @@ export default {
     }
   },
   methods: {
+    closeModal() {
+      this.$emit('toggleModal')
+    },
     reloadPage() {
       window.location.reload()
     },

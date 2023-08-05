@@ -20,12 +20,12 @@
           <div class="review-head">
             <h1>{{ restaurant.name }}'s Reviews</h1>
             <NuxtLink :to="`/establishment/review/${this.id}`">
-              <button class="see-reviews-button" @click="edit" value="view" v-if="!this.reviewed">
+              <button class="see-reviews-button" @click="toggleModal" value="view" v-if="!this.reviewed">
                 <span class="review-span"> Write a Review + </span>
               </button>
             </NuxtLink>
           </div>
-          <AddReview v-if="modal" :restaurant="restaurant.name" :restaurantId="Number(id)" :userId="this.userID"></AddReview>
+          <AddReview v-if="modal" :restaurant="restaurant.name" :restaurantId="Number(id)" :userId="this.userID" @toggleModal="toggleModal"></AddReview>
 
           <div class="review-container">
             <div v-for="r in reviews" :key="r">
