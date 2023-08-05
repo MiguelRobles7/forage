@@ -2,6 +2,16 @@
 .abox {
   display: contents !important;
 }
+.want-to {
+  font-family: TTInterphases;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: #fff;
+  font-design: normal;
+  margin: 0 !important;
+}
 .see-reviews-button {
   display: inline-flex;
   padding: 0.5rem 1.125rem;
@@ -478,6 +488,13 @@
       font-style: normal;
       font-weight: 700;
       line-height: 113%;
+    }
+    .all-pill {
+      &:hover {
+        background: radial-gradient(50% 50% at 50% 50%, #fff 0%, #d0d0d0 100%);
+        border: 2px solid #d0d0d0;
+        cursor: pointer;
+      }
     }
     .review-pill {
       display: flex;
