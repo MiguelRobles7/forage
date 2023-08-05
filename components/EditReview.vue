@@ -2,7 +2,7 @@
 
 <template>
   <main>
-    <div class="review-modal modal" id="add-modal">
+    <div class="review-modal modal" id="add-modal" @click.self="closeModal">
       <Loading v-if="!doneLoading"></Loading>
       <div class="modal-main">
         <div class="flex-row" style="width: 100%">
@@ -72,7 +72,7 @@
             </div>
           </div>
           <div class="button-row">
-            <button class="cancel-button" @click="reloadPage" value="view" style="padding: 0.625rem 1.5rem">
+            <button class="cancel-button" @click="closeModal" value="view" style="padding: 0.625rem 1.5rem">
               Cancel
             </button>
             <button @click="editReview" class="save-button" style="padding: 0.625rem 1.5rem">Save Changes</button>

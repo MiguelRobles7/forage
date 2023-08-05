@@ -1,8 +1,5 @@
 export default {
   methods: {
-    edit: function () {
-      this.modal = true
-    },
     isReviewUpvoted(review) {
       for (var i = 0; i < this.upvotedReviews.length; i++) {
         if (this.upvotedReviews[i].reviewID === review.id) {
@@ -18,6 +15,9 @@ export default {
         }
       }
       return false
+    },
+    toggleModal() {
+      this.modal = !this.modal
     }
   },
 

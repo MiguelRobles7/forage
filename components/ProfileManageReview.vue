@@ -23,8 +23,8 @@ export default {
     }
   },
   methods: {
-    edit: function () {
-      this.modal = true
+    toggleModal() {
+      this.modal = !this.modal
     },
     async deleteReviews(restaurantId, userId) {
       const supabase = useSupabaseClient()
@@ -124,20 +124,21 @@ export default {
           </div>
         </div>
         <div class="profile-actions">
-          <button class="review-pill" @click="edit">
+          <button class="review-pill" @click="toggleModal">
             <img class="review-icon" style="height: 0.9rem; width: 0.9rem" src="~/assets/icons/edit-02.svg" alt="" />
             <span class="review-pill-span" style="font-size: 0.75rem">Edit</span>
-            <EditReview
-              v-if="modal"
-              :restaurantName="restaurantName"
-              :restaurantId="restaurantId"
-              :userId="userId"
-              :title="title"
-              :body="content"
-              :rating="stars"
-              :images="images"
-            ></EditReview>
           </button>
+          <EditReview
+            v-if="modal"
+            :restaurantName="restaurantName"
+            :restaurantId="restaurantId"
+            :userId="userId"
+            :title="title"
+            :body="content"
+            :rating="stars"
+            :images="images"
+            @toggleModal="toggleModal"
+          ></EditReview>
           <button class="review-pill" @click="deleteReviews">
             <img class="review-icon" style="height: 0.9rem; width: 0.9rem" src="~/assets/icons/delete.svg" alt="" />
             <span
