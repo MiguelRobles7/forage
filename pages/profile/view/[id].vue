@@ -13,17 +13,15 @@
         <div class="left">
           <img class="profile-image" :src="profile.dpLink" alt="" />
           <div class="left-panel">
-            <span>Owned Establishments</span>
-            <div class="establishments" v-if="establishments.length > 0">
+            <span v-if="establishments.length > 0">Owned Establishments</span>
+            <div class="establishments">
               <div class="pair" v-for="establishment in establishments" :key="establishment">
                 <img :src="establishment.logo" alt="" />
-                <p>{{ establishment.name }}</p>
+                <NuxtLink class="est-name" :to="`/establishment/view/${establishment.id}`">{{
+                  establishment.name
+                }}</NuxtLink>
                 <div class="stars">
-                  <img class="star" src="~/assets/icons/star.png" alt="" />
-                  <img class="star" src="~/assets/icons/star.png" alt="" />
-                  <img class="star" src="~/assets/icons/star.png" alt="" />
-                  <img class="star" src="~/assets/icons/star.png" alt="" />
-                  <img class="star" src="~/assets/icons/star.png" alt="" />
+                  <img v-for="_ in establishment.rating" class="star" src="~/assets/icons/star.png" alt="" />
                 </div>
               </div>
             </div>
