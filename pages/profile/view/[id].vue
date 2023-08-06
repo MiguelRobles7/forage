@@ -12,8 +12,8 @@
       <div class="content">
         <div class="left">
           <img class="profile-image" :src="profile.dpLink" alt="" />
-          <div class="left-panel">
-            <span v-if="establishments.length > 0">Owned Establishments</span>
+          <div v-if="establishments.length > 0" class="left-panel">
+            <span>Owned Establishments</span>
             <div class="establishments">
               <div class="pair" v-for="establishment in establishments" :key="establishment">
                 <img :src="establishment.logo" alt="" />
