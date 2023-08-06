@@ -1,6 +1,8 @@
-# Nuxt 3 Minimal Starter
+# Forage
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Major Course Output for CCAPDEV (Web Application Development) course at De La Salle University.
+
+A Food Review App
 
 ## Setup
 
@@ -17,9 +19,7 @@ pnpm install
 yarn install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+## Developing
 
 ```bash
 # npm
@@ -32,32 +32,8 @@ pnpm run dev
 yarn dev
 ```
 
-## Production
+## Screenshots
 
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+![App Screenshot](https://github.com/MiguelRobles7/forage/screenshots/index.png)
+![App Screenshot](https://github.com/MiguelRobles7/forage/screenshots/establishment.jpeg)
+![App Screenshot](https://github.com/MiguelRobles7/forage/screenshots/profile.png)
