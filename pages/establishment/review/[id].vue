@@ -14,6 +14,19 @@
           :reviewCount="restaurant.reviewCount"
           :price="restaurant.price_range"
         ></RestaurantCard>
+        <span class="search-for">Search for a review</span>
+        <div style="display: flex; flex-direction: row; align-items: center">
+          <input
+            v-model="searchCriteria"
+            type="text"
+            class="review-search"
+            placeholder="Search..."
+            @keyup.enter="searchClick()"
+          />
+          <button style="margin-left: -2.2em; background: none; border: none">
+            <span>🔎︎</span>
+          </button>
+        </div>
       </div>
       <div class="right">
         <div class="review-settings">
@@ -25,7 +38,13 @@
               </button>
             </NuxtLink>
           </div>
-          <AddReview v-if="modal" :restaurant="restaurant.name" :restaurantId="Number(id)" :userId="this.userID" @toggleModal="toggleModal"></AddReview>
+          <AddReview
+            v-if="modal"
+            :restaurant="restaurant.name"
+            :restaurantId="Number(id)"
+            :userId="this.userID"
+            @toggleModal="toggleModal"
+          ></AddReview>
 
           <div class="review-container">
             <div v-for="r in reviews" :key="r">
