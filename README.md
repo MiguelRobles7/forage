@@ -34,6 +34,6 @@ yarn dev
 
 ## Screenshots
 
-![App Screenshot](https://github.com/MiguelRobles7/forage/screenshots/index.png)
-![App Screenshot](https://github.com/MiguelRobles7/forage/screenshots/establishment.jpeg)
-![App Screenshot](https://github.com/MiguelRobles7/forage/screenshots/profile.png)
+![App Screenshot](https://github.com/MiguelRobles7/forage/blob/main/screenshots/index.png)
+![App Screenshot](https://github.com/MiguelRobles7/forage/blob/main/screenshots/establishment.jpeg)
+![App Screenshot](https://github.com/MiguelRobles7/forage/blob/main/screenshots/profile.png)
