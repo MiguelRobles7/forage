@@ -140,7 +140,6 @@ export default {
       .from('reviews')
       .select()
       .eq('restaurantId', curr_id)
-      .eq('isReply', false)
       .eq('isDeleted', false)
     if (reviewsError) {
       console.log(reviewsError)
