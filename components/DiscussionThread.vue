@@ -32,14 +32,9 @@
             </div>
 
             <div class="review-elements" style="justify-content: flex-start">
-              <div class="review-voting">
-                <div class="vote-pill">
-                  <img class="review-icon" src="~/assets/icons/upvote.svg" alt="" />
-                </div>
-                <span class="vote-count">{{ review.upvotes - review.downvotes }}</span>
-                <div class="vote-pill">
-                  <img class="review-icon" src="/assets/icons/downvote.svg" alt="" />
-                </div>
+              <div class="review-pill">
+                <img class="review-icon" src="~/assets/icons/upvote.svg" alt="" />
+                <span class="review-pill-span">{{ review.upvotes - review.downvotes }} Upvotes</span>
               </div>
               <div class="review-pill" v-if="review.images.length > 0">
                 <img class="review-icon" src="~/assets/icons/userimage.svg" alt="" />
