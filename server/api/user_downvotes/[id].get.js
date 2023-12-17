@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
     console.log("Getting all user's downvotes");
     const id = event.context.params.id;
     const model = serverSupabaseClient(event)
-    const { data, error } = await model.from('user_downvotes').select().eq('userID', id);
+    const { data, error } = await model.from('user_downvotes').select().eq('user_id', id);
     if(error) {
         console.log(error);
         return "";

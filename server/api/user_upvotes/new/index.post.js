@@ -9,9 +9,9 @@ export default defineEventHandler(async (event) => {
       .from('user_upvotes') 
       .insert([ 
         {
-          userID: body.loggedUserID, 
-          restaurantID: body.restaurantID, 
-          reviewID: body.reviewID}
+          user_id: body.loggedUserID, 
+          restaurant_id: body.restaurantID, 
+          review_id: body.reviewID}
       ]).select();
     if(error) {
         console.log(error);

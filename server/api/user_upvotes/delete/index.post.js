@@ -8,9 +8,9 @@ export default defineEventHandler(async (event) => {
     const { data, error } = await model 
       .from('user_upvotes') 
       .delete() 
-      .eq('userID', body.loggedUserID) 
-      .eq('restaurantID', body.restaurantID) 
-      .eq('reviewID', body.reviewID)
+      .eq('user_id', body.loggedUserID) 
+      .eq('restaurant_id', body.restaurantID) 
+      .eq('review_id', body.reviewID)
       .select();
     if(error) {
         console.log(error);
