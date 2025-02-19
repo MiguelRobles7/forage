@@ -27,21 +27,9 @@ export default {
     }
   },
   async mounted() {
-    const supabase = useSupabaseClient()
-    var supabaseSession = await supabase.auth.getSession()
-    var userSession = null
-    var userId = ''
-
-    if (!supabaseSession.data.session) {
-      this.isLoggedIn = false
-    } else {
-      this.isLoggedIn = true
-      userSession = supabaseSession.data.session.user
-      userId = userSession.id
-      const userRequest = await useFetch(`/api/users/session/${userId}`)
-      const userData = userRequest.data.value.users[0]
-      this.newId = userData.profile_id
-    }
+    const user = await getUserSession()
+    this.isLoggedIn = user.isLoggedIn
+    this.newId = user.profileId
   },
   methods: {
     reloadPage() {
@@ -66,36 +54,9 @@ export default {
         console.log(error)
       }
 
-      // upload images
-      try {
-        for (let i = 0; i < this.formData.imageCount; i++) {
-          const element = this.formData.images[i]
-          const { data, error } = supabase.storage.from('reviews').upload(`${reviewId}/${i}.png`, element.file, {
-            cacheControl: '0'
-          })
-          if (error) throw error
-          else {
-            console.log('Uploaded image!')
-          }
-        }
-      } catch (error) {
-        console.log(error)
-      }
-      // upload videos
-      try {
-        for (let i = 0; i < this.formData.videoCount; i++) {
-          const element = this.formData.videos[i]
-          const { data, error } = supabase.storage.from('reviews').upload(`${reviewId}/${i}.mp4`, element.file, {
-            cacheControl: ' 0'
-          })
-          if (error) throw error
-          else {
-            console.log('Uploaded video!')
-          }
-        }
-      } catch (error) {
-        console.log(error)
-      }
+      // upload media
+      this.formData.images = await uploadMedia('image', reviewId, this.formData.images)
+      this.formData.videos = await uploadMedia('video', reviewId, this.formData.videos)
 
       // update review images
       try {
@@ -135,26 +96,16 @@ export default {
       console.log(this.formData)
       const supabase = useSupabaseClient()
       try {
-        const { data, error } = await supabase
-          .from('reviews')
-          .insert([
-            {
-              restaurantId: this.formData.restaurantId,
-              userId: this.newId,
-              rating: this.formData.rating,
-              title: this.formData.title,
-              body: this.formData.body,
-              upvotes: 0,
-              downvotes: 0,
-              isReply: false,
-              isDeleted: false,
-              isEdited: false,
-              images: [],
-              comments: [],
-              videos: []
-            }
-          ])
-          .select()
+        const review = createReview({
+          restaurantId: this.formData.restaurantId,
+          userId: this.newId,
+          rating: this.formData.rating,
+          title: this.formData.title,
+          body: this.formData.body
+        })
+
+        const { data, error } = await supabase.from('reviews').insert([review])
+
         if (error) throw error
         else {
           console.log('Added review!')

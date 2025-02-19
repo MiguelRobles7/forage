@@ -12,22 +12,9 @@ export default {
     }
   },
   async mounted() {
-    const supabase = useSupabaseClient()
-    var supabaseSession = await supabase.auth.getSession()
-    var userSession = null
-    var userId = ''
-
-    if (!supabaseSession.data.session) {
-      this.isLoggedIn = false
-    } else {
-      this.isLoggedIn = true
-      userSession = supabaseSession.data.session.user
-      userId = userSession.id
-      const userRequest = await useFetch(`/api/users/session/${userId}`)
-      const userData = userRequest.data.value.users[0]
-      this.logId = userData.profile_id
-      this.user_real_id = userData.id
-    }
+    const user = await getUserSession()
+    this.isLoggedIn = user.isLoggedIn
+    this.newId = user.profileId
   },
   methods: {
     reloadPage() {
@@ -55,32 +42,13 @@ export default {
       }
 
       console.log('Add Comment')
-      const { data, error } = await supabase
-        .from('reviews')
-        .insert([
-          {
-            restaurantId: this.$route.params.id,
-            userId: this.logId,
-            rating: 5,
-            title: '',
-            body: this.body,
-            upvotes: 0,
-            downvotes: 0,
-            isReply: true,
-            isDeleted: false,
-            isEdited: false,
-            images: [],
-            comments: [],
-            videos: [],
-            ownerResponded: this.isOwner
-          }
-        ])
-        .select()
+      const newComment = await addComment(this.$route.params.id, this.logId, this.body, this.isOwner)
+
       if (error) {
         console.log(error)
       } else {
         console.log('Success')
-        console.log('Data', data)
+        console.log('Data', newComment)
       }
 
       let { data: reviews, err } = await supabase.from('reviews').select()

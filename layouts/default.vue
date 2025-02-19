@@ -1,11 +1,11 @@
 <template>
-  <!-- <div>
+  <div>
     <NavbarHome v-if="isHome"></NavbarHome>
     <NavbarDefault v-else></NavbarDefault>
     <NuxtPage></NuxtPage>
     <Footer></Footer>
-  </div> -->
-  <div>Under construction</div>
+  </div>
+  <!-- <div>Under construction</div> -->
 </template>
 
 <script>

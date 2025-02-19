@@ -1,4 +1,7 @@
+import { createModalController } from '@/factories/modalFactory'
+
 export default {
+  mixins: [createModalController()], // Use the modal factory
   data() {
     return {
       email: '',
@@ -14,37 +17,6 @@ export default {
     }
   },
   methods: {
-    closeModal() {
-      this.$emit('close')
-    },
-    hidePlaceholder(e) {
-      e.target.placeholder = ''
-    },
-    showPlaceholder(e) {
-      switch (e.target.id) {
-        case 'email':
-          e.target.placeholder = 'Email'
-          break
-        case 'confirm':
-          e.target.placeholder = 'Confirm Password'
-          break
-        case 'password':
-          e.target.placeholder = 'Password'
-          break
-        case 'username':
-          e.target.placeholder = 'Display Name'
-          break
-        case 'province':
-          e.target.placeholder = 'Province'
-          break
-        case 'city':
-          e.target.placeholder = 'City'
-          break
-        case 'country':
-          e.target.placeholder = 'Country'
-          break
-      }
-    },
     async nextPage() {
       if (this.currPage === 1) {
         if (this.password !== this.passwordConfirm) {
@@ -53,7 +25,6 @@ export default {
         }
       }
       if (this.currPage === 3) {
-        console.log(this.username)
         const supabase = useSupabaseClient()
         const { data, error } = await supabase.auth.signUp({
           email: this.email,
@@ -68,13 +39,16 @@ export default {
             }
           }
         })
+
         if (error) {
           console.log(error)
         } else {
           alert('Registered! Please check your email for verification')
         }
-        this.closeModal()
-      } else this.currPage++
+        this.closeModal() // Inherited from modalFactory.js
+      } else {
+        this.currPage++
+      }
     }
   }
 }
