@@ -1,24 +1,34 @@
 {
-  "name": "nuxt-app",
+  "name": "forage",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "devDependencies": {
-    "@nuxt/devtools": "latest",
-    "@nuxtjs/supabase": "^0.3.8",
-    "@types/node": "^18",
-    "nuxt": "^3.6.1",
-    "sass": "^1.63.6",
-    "sass-loader": "^13.3.2"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typegen": "npx supabase gen types typescript --project-id \"cxkzbcqazhddetpsfmab\" --schema public > src/lib/supabase/types.ts"
   },
   "dependencies": {
-    "bootstrap": "^5.3.0",
-    "v-click-outside": "^3.2.0",
-    "vue": "^3.3.4"
+    "@supabase/ssr": "^0.5.1",
+    "@supabase/supabase-js": "^2.48.1",
+    "lucide-react": "^0.475.0",
+    "next": "15.1.7",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sass": "^1.85.0",
+    "supabase": "^2.12.1",
+    "zustand": "^4.5.6"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.7",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   }
 }
